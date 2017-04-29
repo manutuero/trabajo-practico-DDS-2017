@@ -1,0 +1,1 @@
+/* En este archivo se creara un script que inica la base de datos en memoria HSQLDB*/

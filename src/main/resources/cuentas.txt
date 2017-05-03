@@ -1,0 +1,2 @@
+C001;Cuenta prueba 1;facebook;1344345;2017
+C002;Cuenta prueba 2;Twitter;1000000;2016

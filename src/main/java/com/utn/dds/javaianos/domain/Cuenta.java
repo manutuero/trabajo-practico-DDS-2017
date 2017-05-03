@@ -11,6 +11,7 @@ public class Cuenta {
         return idCuenta;
     }
     
+    public Cuenta(){};
     public Cuenta(String idCuenta,String nombre,String empresa, Double valor, Integer periodo){
         this.idCuenta=idCuenta;
         this.nombre=nombre;
@@ -57,4 +58,17 @@ public class Cuenta {
         this.periodo = periodo;
     }
 
+    
+    
+    @Override
+    public String toString(){
+      
+        //C001;Cuenta prueba 1;facebook;1344345;2017
+        return "IdCuenta: "+this.getIdCuenta()+
+                ", Nombre: "+this.getNombre()+
+                ", Empresa: "+this.getEmpresa()+
+                ", Valor: "+(this.getValor()).toString()+
+                ", Periodo: "+(this.getPeriodo()).toString()+
+                "\n";
+    }
 }

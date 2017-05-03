@@ -12,6 +12,7 @@ public class Cuenta {
     }
     
     public Cuenta(){};
+    
     public Cuenta(String idCuenta,String nombre,String empresa, Double valor, Integer periodo){
         this.idCuenta=idCuenta;
         this.nombre=nombre;
@@ -58,8 +59,6 @@ public class Cuenta {
         this.periodo = periodo;
     }
 
-    
-    
     @Override
     public String toString(){
       

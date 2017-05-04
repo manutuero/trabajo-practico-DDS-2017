@@ -12,18 +12,20 @@ import java.util.List;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class CuentaRepositoryImpl implements CuentaRepository {
 
     @Override
-    public List<Cuenta> cargarCuentas() {
+    public List<Cuenta> cargarCuentas(String path) {
         List<Cuenta> listaCuentas = new ArrayList<>();
 
         String sCadena;
 
         BufferedReader bf = null;
         try {
-            bf = new BufferedReader(new FileReader("src\\main\\resources\\cuentas.txt"));
+            bf = new BufferedReader(new FileReader(path));
             while ((sCadena = bf.readLine()) != null) {
                 StringTokenizer st = new StringTokenizer(sCadena, ";");
 

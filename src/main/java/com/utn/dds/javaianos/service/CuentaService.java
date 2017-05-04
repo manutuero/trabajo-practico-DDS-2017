@@ -4,5 +4,5 @@ import com.utn.dds.javaianos.domain.Cuenta;
 import java.util.List;
 
 public interface CuentaService {
-    public List<Cuenta> cargarCuentas();
+    public List<Cuenta> cargarCuentas(String path);
 }

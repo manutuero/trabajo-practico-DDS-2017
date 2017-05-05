@@ -1,4 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -185,7 +187,7 @@
                     </div>
                     <div class="modal-body">
                         <p>Este modulo permite visualizar los valores de todas las cuentas asociadas a una empresa para un periodo determinado.</p>
-                        <form action="consultar-valores-cuenta" method = "post" class = "form-horizontal" role="form">
+                        <form action="api/valores-cuenta" method = "post" class = "form-horizontal" role="form">
                             <p>Ingrese empresa: <input name="empresa" type="text" required="true"></p>
                             <p>Ingrese periodo: <input name="periodo" type="text" required="true"></p>
                             <button type="submit" class="btn btn-primary pull-right">Consultar</button>
@@ -199,10 +201,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>${cuenta}</td>
-                                    <td>${valor}</td>
-                                </tr>
+                                <c:forEach var="cuenta" items="${cuentas}">
+                                    <tr>
+                                        <td>${cuenta.nombre}</td>
+                                        <td>${cuenta.valor}</td>
+                                    </tr>
+                                </c:forEach>    
                             </tbody>
                         </table>
                     </div>

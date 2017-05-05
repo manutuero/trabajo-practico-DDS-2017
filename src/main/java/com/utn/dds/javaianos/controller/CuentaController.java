@@ -18,11 +18,10 @@ public class CuentaController {
 
     @Autowired
     private CuentaService cuentaService;
-
-    private List<Cuenta> cuentas = null;
+    public static List<Cuenta> cuentas; // eliminar esta linea cuando tengamos base de datos
 
     @RequestMapping(value = "/cargar-cuentas", method = RequestMethod.POST)
-    public String cargarcuentas(Model model, @RequestParam(name = "path") String path) {
+    public String cargarcuentas(@RequestParam(name = "path") String path) {
         // esto resolveria el requerimiento, segun lo que pide el enunciado (objeto en memoria)
         cuentas = cuentaService.cargarCuentas(path);
         cuentas.forEach((cuenta) -> {
@@ -31,18 +30,16 @@ public class CuentaController {
         return "index";
     }
 
-    @RequestMapping(value = "/consultar-valores-cuenta", method = RequestMethod.POST)
+    @RequestMapping(value = "/valores-cuenta", method = RequestMethod.POST)
     public String consultarValoresCuentas(Model model,
             @RequestParam(name = "empresa") String empresa,
-            @RequestParam(name = "periodo") String periodo) {
+            @RequestParam(name = "periodo") Integer periodo) {
         
         List<Cuenta> cuentasFiltradas = (List<Cuenta>) cuentas.stream().filter(cuenta -> 
-        (cuenta.getEmpresa().equals(empresa)) && cuenta.getPeriodo().equals(Integer.parseInt(periodo))).collect(Collectors.toList());
-       
-        System.out.println(cuentasFiltradas.size());
-        for(Cuenta cuenta:cuentasFiltradas){
-            System.out.println(cuenta);
-        }
+        (cuenta.getEmpresa().equals(empresa) && 
+         cuenta.getPeriodo().equals(periodo)))
+                .collect(Collectors.toList());
+     
         model.addAttribute("cuentas", cuentasFiltradas);
         return "index";
     }

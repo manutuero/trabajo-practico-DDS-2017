@@ -1,2 +1,5 @@
-C001;Cuenta prueba 1;facebook;1344345;2017
+C001;Cuenta prueba 1;Facebook;1344345;2016
 C002;Cuenta prueba 2;Twitter;1000000;2016
+BDIO;Cuenta bitcoins;Facebook;234235;2016
+BDIO;Cuenta bitcoins;Facebook;3454;2016
+F43;Cuenta FFF;Uber;45454334;2015

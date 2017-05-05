@@ -2,7 +2,9 @@ package com.utn.dds.javaianos.controller;
 
 import com.utn.dds.javaianos.domain.Cuenta;
 import com.utn.dds.javaianos.service.CuentaService;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,12 +36,14 @@ public class CuentaController {
             @RequestParam(name = "empresa") String empresa,
             @RequestParam(name = "periodo") String periodo) {
         
-        List<Cuenta> cuentasFiltradas = cuentas.stream().filter(cuenta -> 
-                   (cuenta.getPeriodo().equals(periodo))
-                && (cuenta.getEmpresa().equals(empresa))).collect(Collectors.toList());
-        
-        model.addAttribute("cuentas", cuentasFiltradas);
+        List<Cuenta> cuentasFiltradas = (List<Cuenta>) cuentas.stream().filter(cuenta -> 
+        (cuenta.getEmpresa().equals(empresa)) && cuenta.getPeriodo().equals(Integer.parseInt(periodo))).collect(Collectors.toList());
        
+        System.out.println(cuentasFiltradas.size());
+        for(Cuenta cuenta:cuentasFiltradas){
+            System.out.println(cuenta);
+        }
+        model.addAttribute("cuentas", cuentasFiltradas);
         return "index";
     }
 }

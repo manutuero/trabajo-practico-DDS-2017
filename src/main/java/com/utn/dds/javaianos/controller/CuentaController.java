@@ -4,6 +4,7 @@ import com.utn.dds.javaianos.domain.Cuenta;
 import com.utn.dds.javaianos.service.CuentaService;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,7 +37,7 @@ public class CuentaController {
             @RequestParam(name = "periodo") String periodo) {
         
         List<Cuenta> cuentasFiltradas = (List<Cuenta>) cuentas.stream().filter(cuenta -> 
-        (cuenta.getEmpresa().equals(empresa))).collect(Collectors.toList());
+        (cuenta.getEmpresa().equals(empresa)) && cuenta.getPeriodo().equals(Integer.parseInt(periodo))).collect(Collectors.toList());
        
         System.out.println(cuentasFiltradas.size());
         for(Cuenta cuenta:cuentasFiltradas){

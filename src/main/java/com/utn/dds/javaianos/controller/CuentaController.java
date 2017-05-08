@@ -2,9 +2,7 @@ package com.utn.dds.javaianos.controller;
 
 import com.utn.dds.javaianos.domain.Cuenta;
 import com.utn.dds.javaianos.service.CuentaService;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,10 +21,7 @@ public class CuentaController {
     @RequestMapping(value = "/cargar-cuentas", method = RequestMethod.POST)
     public String cargarcuentas(@RequestParam(name = "path") String path) {
         // esto resolveria el requerimiento, segun lo que pide el enunciado (objeto en memoria)
-        cuentas = cuentaService.cargarCuentas(path);
-        cuentas.forEach((cuenta) -> {
-            System.out.println(cuenta);
-        });
+        cuentas = cuentaService.cargarCuentas(path); // cambiar el modo de cambiar el archivo!
         return "index";
     }
 

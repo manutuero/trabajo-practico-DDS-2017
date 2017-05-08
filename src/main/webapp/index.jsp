@@ -1,6 +1,4 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -187,11 +185,9 @@
                     </div>
                     <div class="modal-body">
                         <p>Este modulo permite visualizar los valores de todas las cuentas asociadas a una empresa para un periodo determinado.</p>
-                        <form action="api/valores-cuenta" method = "post" class = "form-horizontal" role="form">
-                            <p>Ingrese empresa: <input name="empresa" type="text" required="true"></p>
-                            <p>Ingrese periodo: <input name="periodo" type="text" required="true"></p>
-                            <button type="submit" class="btn btn-primary pull-right">Consultar</button>
-                        </form>
+                        <p>Ingrese empresa: <input id="input-empresa" name="empresa" type="text" required="true"></p>
+                        <p>Ingrese periodo: <input id="input-periodo" name="periodo" type="text" required="true"></p>
+                        <button id="btn-consultar" class="btn btn-primary pull-right">Consultar</button>
                         <!-- Grid table -->
                         <table class="table table-condensed">
                             <thead>
@@ -200,13 +196,7 @@
                                     <th>Valor</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <c:forEach var="cuenta" items="${cuentas}">
-                                    <tr>
-                                        <td>${cuenta.nombre}</td>
-                                        <td>${cuenta.valor}</td>
-                                    </tr>
-                                </c:forEach>    
+                            <tbody id="valores-cuentas">
                             </tbody>
                         </table>
                     </div>
@@ -217,6 +207,7 @@
 
         <script src="js/vendor/jquery-3.2.1.min.js"></script>
         <script src="js/vendor/bootstrap.min.js"></script>
+        <script src="js/app/eventos.js"></script>
     </body>
 </html>
 

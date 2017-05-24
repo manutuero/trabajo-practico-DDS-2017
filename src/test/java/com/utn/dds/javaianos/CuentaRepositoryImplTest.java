@@ -20,18 +20,19 @@ public class CuentaRepositoryImplTest {
 
     @Autowired
     private CuentaRepositoryImpl cuentaRepositoryImpl;
-
+    
     @Test
-    public void saveCuentas_conFormatoValidoYNoVacio_guardaCorrectamente() throws IOException, Exception {
+    public void saveCuentas_conFormatoValidoYNoVacio_guardaCorrectamenteEnDiscoLocal() throws IOException, Exception {
         MockMultipartFile multipartFile
                 = new MockMultipartFile("file", "cuentas.txt", "text/plain", "Esto es una prueba".getBytes());
         
-        String rootPath = System.getProperty("user.dir");
-        String relativePath = File.separator + "src" + File.separator + "test" + File.separator + "resources";        
-        String absolutePath = rootPath + relativePath; 
+        String localPath = 
+                System.getProperty("user.dir") + File.separator + "src" + File.separator + "test" + File.separator + "resources";
         
-        File dir = new File(absolutePath);
-        cuentaRepositoryImpl.setCuentasPath(dir.getAbsolutePath());
-        cuentaRepositoryImpl.saveCuentas(multipartFile);
+        File dir = new File(localPath);
+        if(!dir.exists()) {
+            dir.mkdirs();
+        }
+        cuentaRepositoryImpl.saveCuentas(multipartFile, localPath);
     }
 }

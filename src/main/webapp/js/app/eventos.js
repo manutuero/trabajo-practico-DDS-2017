@@ -35,4 +35,9 @@ function limpiarFormularios() {
 $(document).ready(function () {
     obtenerValoresCuentas();
     limpiarFormularios();
+        
+    // Check for FileReader API (HTML5) support.
+    if (!window.FileReader) {
+        alert('This browser does not support the FileReader API.');
+    }
 });

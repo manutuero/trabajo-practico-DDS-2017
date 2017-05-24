@@ -158,13 +158,13 @@
                         <h4 class="modal-title">Cargar cuentas</h4>
                     </div>
                     <div class="modal-body">
-                        <p>Ingrese la ruta del archivo de cuentas para realizar la carga.</p>
-                        <form action="cargar-cuentas" method = "post" class = "form-horizontal" role="form">
-                            Ingrese ruta: <input name="path" type="text" required="true">
-                            <button type="submit" class="btn btn-primary">Cargar cuentas</button>
+                        <p>Ingrese un archivo de cuentas para realizar la carga.</p>
+                        <form method = "post" class = "form-horizontal" role="form">
+                            <input name="file" type="file" required="true">
                         </form>
                     </div>
                     <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Cargar cuentas</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>

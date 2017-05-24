@@ -5,6 +5,7 @@ import com.utn.dds.javaianos.service.CuentaService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 /* 
     Realiza la carga desde un archivo dejando una lista de objetos Cuenta en memoria.
@@ -16,8 +17,13 @@ public class CuentaServiceImpl implements CuentaService {
     private CuentaRepository cuentaRepository;
     
     @Override
-    public List<Cuenta> cargarCuentas(String path) {
-       return cuentaRepository.cargarCuentas(path);
+    public void saveCuentas(MultipartFile file) {
+       cuentaRepository.saveCuentas(file);
+    }
+
+    @Override
+    public List<Cuenta> getAllCuentas() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
 

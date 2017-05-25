@@ -19,7 +19,7 @@ public class CuentaController {
     public static List<Cuenta> cuentas; // eliminar esta linea cuando tengamos base de datos
 
     @RequestMapping(value = "/fileUpload", method = RequestMethod.POST)
-    public String guardarCuentas(@RequestParam(name = "file") MultipartFile file) {
+    public String guardarCuentas(@RequestParam(name = "file") MultipartFile file) {        
         cuentaService.saveCuentas(file);
         cuentas = cuentaService.getAllCuentas(); // eliminar esta linea cuando tengamos base de datos
         return "index";

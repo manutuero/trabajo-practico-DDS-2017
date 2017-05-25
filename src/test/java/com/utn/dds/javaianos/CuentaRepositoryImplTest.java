@@ -33,6 +33,6 @@ public class CuentaRepositoryImplTest {
         if(!dir.exists()) {
             dir.mkdirs();
         }
-        cuentaRepositoryImpl.saveCuentas(multipartFile, localPath);
+        cuentaRepositoryImpl.saveCuentas(multipartFile);
     }
 }

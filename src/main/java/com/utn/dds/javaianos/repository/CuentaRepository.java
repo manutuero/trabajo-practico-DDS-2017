@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 public interface CuentaRepository {    
-    public void saveCuentas(MultipartFile file, String path);
+    public void saveCuentas(MultipartFile file);
     public List<Cuenta> getAllCuentas();    
 }
 

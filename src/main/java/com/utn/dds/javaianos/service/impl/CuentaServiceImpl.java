@@ -3,7 +3,6 @@ import com.utn.dds.javaianos.domain.Cuenta;
 import com.utn.dds.javaianos.repository.CuentaRepository;
 import com.utn.dds.javaianos.service.CuentaService;
 import java.util.List;
-import javax.servlet.ServletContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,9 +17,8 @@ public class CuentaServiceImpl implements CuentaService {
     private CuentaRepository cuentaRepository;
     
     @Override
-    public void saveCuentas(MultipartFile file, String path) {
-       cuentaRepository.saveCuentas(file, path);
-       System.out.println("GUARDOOOOOOO!!! pero no se en donde");
+    public void saveCuentas(MultipartFile file) {
+       cuentaRepository.saveCuentas(file);
     }
 
     @Override

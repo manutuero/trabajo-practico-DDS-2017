@@ -50,7 +50,7 @@
 
                 <div class="col-md-3 col-sm-6 hero-feature">
                     <div class="thumbnail">
-                        <img src="http://placehold.it/800x500" alt="">
+                        <img src="<%=request.getContextPath()%>\images\bolsa-valores.jpg" alt="http://placehold.it/800x500" >
                         <div class="caption">
                             <h3>Cargar cuentas</h3>
                             <p>Modulo de carga de cuentas empresariales por periodo.</p>
@@ -82,12 +82,15 @@
 
                 <div class="col-md-3 col-sm-6 hero-feature">
                     <div class="thumbnail">
-                        <img src="http://placehold.it/800x500" alt="">
+                        <img src="<%=request.getContextPath()%>\images\indicadores.png" alt="http://placehold.it/800x500" >
                         <div class="caption">
                             <h3>Cargar indicadores</h3>
-                            <p>Proximamente.</p>
+                            <p>Modulo de carga de Indicadores</p>
                             <p>
-                                <a href="#" class="btn btn-primary">Abrir modulo</a>
+                                <!-- Dipara un modal al apretar el boton -->
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-cargar-indicadores">
+                                    Abrir modulo
+                                </button>
                             </p>
                         </div>
                     </div>
@@ -95,7 +98,7 @@
 
                 <div class="col-md-3 col-sm-6 hero-feature">
                     <div class="thumbnail">
-                        <img src="http://placehold.it/800x500" alt="">
+                        <img src="http://placehold.it/800x500" alt="" >
                         <div class="caption">
                             <h3>Graficos Comparativos</h3>
                             <p>Proximamente.</p>
@@ -105,6 +108,7 @@
                         </div>
                     </div>
                 </div>
+                        
                 <div class="col-md-3 col-sm-6 hero-feature">
                     <div class="thumbnail">
                         <img src="http://placehold.it/800x500" alt="">
@@ -204,6 +208,24 @@
 
             </div>
         </div> 
+        
+        <!-- ***** Modulo Carga Indicadores ***** -->
+        <div id="modal-cargar-indicadores" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Carga de Indicadores</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Este modulo permite el ingreso de indicadores al sistema.</p>
+                        <button id="btn-consultar" class="btn btn-primary pull-right">Ingresar</button>
+                    </div>
+                </div>
+                 
+            </div>
+            
+        </div>
 
         <script src="js/vendor/jquery-3.2.1.min.js"></script>
         <script src="js/vendor/bootstrap.min.js"></script>

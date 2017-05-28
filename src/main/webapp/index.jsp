@@ -157,16 +157,16 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">Cargar cuentas</h4>
                     </div>
-                    <div class="modal-body">
-                        <p>Ingrese la ruta del archivo de cuentas para realizar la carga.</p>
-                        <form action="cargar-cuentas" method = "post" class = "form-horizontal" role="form">
-                            Ingrese ruta: <input name="path" type="text" required="true">
-                            <button type="submit" class="btn btn-primary">Cargar cuentas</button>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                    </div>
+                    <form action = "fileUpload" method = "post" class = "form-horizontal" enctype="multipart/form-data">
+                        <div class="modal-body">
+                            <p>Ingrese un archivo de cuentas para realizar la carga.</p>
+                            <input name="file" type="file" required="true">
+                        </div>
+                        <div class="modal-footer">
+                            <input type="submit" class="btn btn-primary">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </form>
                 </div>
 
             </div>

@@ -6,7 +6,7 @@ public class Indicador {
 
     private String nombre;
 
-    public List<Integer> componentes;
+    public List<String> componentes;
 
     public Indicador(){};
 

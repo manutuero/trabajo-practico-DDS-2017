@@ -18,7 +18,7 @@ function obtenerValoresCuentas() {
                             var $valoresCuentas = $('#valores-cuentas');
                             $.each(valores, function (i, valor) {
                                 $valoresCuentas.append('<tr><td>' + valor.nombre + '</td><td>' 
-                                                                  + valor.periodo + '</td></tr>');
+                                                                  + valor.valor + '</td></tr>');
                             });
                          }
             });

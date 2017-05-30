@@ -20,7 +20,11 @@ public class CuentaServiceImpl implements CuentaService {
     public void saveCuentas(MultipartFile file) {
        cuentaRepository.saveCuentas(file);
     }
-
+//    @Override
+//    public void saveDBCuentas(MultipartFile file){
+//        cuentaRepository.saveDBCuentas(file);
+//    }
+    
     @Override
     public List<Cuenta> getAllCuentas() {
         return cuentaRepository.getAllCuentas();

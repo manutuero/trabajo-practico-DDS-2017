@@ -21,7 +21,6 @@ public class CuentaController {
     @RequestMapping(value = "/fileUpload", method = RequestMethod.POST)
     public String guardarCuentas(@RequestParam(name = "file") MultipartFile file) {        
         cuentaService.saveCuentas(file);
-        //cuentaService.saveDBCuentas(file);
         cuentas = cuentaService.getAllCuentas(); // eliminar esta linea cuando tengamos base de datos
         return "index";
     }

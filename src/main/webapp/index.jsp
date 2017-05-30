@@ -84,13 +84,11 @@
                     <div class="thumbnail">
                         <img src="<%=request.getContextPath()%>\images\indicadores.png" alt="http://placehold.it/800x500" >
                         <div class="caption">
-                            <h3>Cargar indicadores</h3>
-                            <p>Modulo de carga de Indicadores</p>
+                            <h3>Indicadores</h3>
+                            <p>Modulo de gestion de Indicadores</p>
                             <p>
-                                <!-- Dipara un modal al apretar el boton -->
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-cargar-indicadores">
-                                    Abrir modulo
-                                </button>
+                                <!-- se abre la pagina al apretar el boton. Harcodeado -->
+                                <a href="/TpIntegradorDDS/WEB-INF/indicadores.jsp" class="btn btn-primary">Abrir modulo</a>
                             </p>
                         </div>
                     </div>
@@ -210,22 +208,26 @@
         </div> 
         
         <!-- ***** Modulo Carga Indicadores ***** -->
-        <div id="modal-cargar-indicadores" class="modal fade" role="dialog">
+        <div id="modal-indicadores" class="modal fade" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Carga de Indicadores</h4>
+                        <h4 class="modal-title">Indicadores</h4>
                     </div>
                     <div class="modal-body">
-                        <p>Este modulo permite el ingreso de indicadores al sistema.</p>
-                        <button id="btn-consultar" class="btn btn-primary pull-right">Ingresar</button>
+                        <p>Este modulo permite ingresar y/o consultar un nuevo indicador. A su vez es posible ingresar </p>
+                        <button id="btn-consultar" class="btn btn-primary pull-right" data-toogle="modal" data-target="#modal-visualizar-indicadores">Predefinido</button>
+                        <button id="btn-consultar" class="btn btn-primary pull-left" data-toogle="modal" data-target="#modal-nuevo-indicador">Nuevo</button>
                     </div>
-                </div>
-                 
+                    <div class="modal-footer">
+                    </div>
+                </div> 
             </div>
             
         </div>
+        
+       
 
         <script src="js/vendor/jquery-3.2.1.min.js"></script>
         <script src="js/vendor/bootstrap.min.js"></script>

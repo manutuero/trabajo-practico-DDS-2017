@@ -6,6 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface CuentaRepository {    
     public void saveCuentas(MultipartFile file);
+    //public void saveDBCuentas(MultipartFile file);
     public List<Cuenta> getAllCuentas();    
 }
 

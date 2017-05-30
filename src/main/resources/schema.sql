@@ -1,2 +1,7 @@
-/* Aqui se creara un script para la base de datos de produccion */
+DROP SCHEMA IF EXISTS puto CASCADE;
 
+CREATE SCHEMA puto;
+
+CREATE TABLE puto.manu (id INT, nombre VARCHAR(25));
+
+INSERT INTO puto.manu VALUES (7,'MANU PUTO');

@@ -50,6 +50,66 @@ public class CuentaRepositoryImpl implements CuentaRepository {
         }
     }
 
+    
+//    @Override
+//    public void saveDBCuentas(MultipartFile file)
+//    {
+////        String txtFile = file.getOriginalFilename();
+////        BufferedReader br = null;
+////        String line = "";
+////        String cvsSplitBy = ";";
+////        Connection con;
+////        Statement stmt;
+////        String insert;
+////
+////        try {
+////
+////            br = new BufferedReader(new FileReader(txtFile));
+////            while ((line = br.readLine()) != null) {
+////
+////                // use comma as separator
+////                String[] campos = line.split(cvsSplitBy);
+////
+////                con = DriverManager.getConnection("jdbc:hsqldb:mem:dbTest","root","root");
+////                stmt=(Statement)con.createStatement();
+////
+////                insert ="INSERT INTO cuenta VALUES('"+campos[0]+"','"+campos[1]+"','"+campos[2]+"','"+campos[3]+"','"+campos[4]+"');";
+////                stmt.executeUpdate(insert);
+////                
+////                
+////                //System.out.println("Country [code= " + country[4] + " , name=" + country[5] + "]");
+////
+////            }
+////
+////        } 
+////        catch (FileNotFoundException e) 
+////        {
+////           Logger.getLogger(CuentaRepositoryImpl.class.getName()).log(Level.SEVERE, null, e);
+////        } 
+////        catch (IOException e) 
+////        {
+////            Logger.getLogger(CuentaRepositoryImpl.class.getName()).log(Level.SEVERE, null, e);
+////        }
+////        catch(Exception e)
+////        {
+////         JOptionPane.showMessageDialog(null, e.getMessage() ,"Error", 1);
+////
+////        }
+////        finally
+////        {
+////            if (br != null)
+////            {
+////                try 
+////                {
+////                    br.close();
+////                } catch (IOException e) {
+////                    e.printStackTrace();
+////                }
+////            }
+////        }
+//    }
+//    
+    
     @Override
     public List<Cuenta> getAllCuentas() {
         List<Cuenta> cuentas = new ArrayList<>();

@@ -88,7 +88,7 @@
                             <p>Modulo de gestion de Indicadores</p>
                             <p>
                                 <!-- se abre la pagina al apretar el boton. Harcodeado -->
-                                <a href="/TpIntegradorDDS/WEB-INF/indicadores.jsp" class="btn btn-primary">Abrir modulo</a>
+                                <a href="/TpIntegradorDDS/indicadores.jsp" class="btn btn-primary">Abrir modulo</a>
                             </p>
                         </div>
                     </div>

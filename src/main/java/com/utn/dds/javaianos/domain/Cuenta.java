@@ -1,19 +1,28 @@
 package com.utn.dds.javaianos.domain;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Cuenta {
 
-    private String idCuenta;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idCuenta;
     private String nombre;
     private String empresa;
     private Double valor;
     private Integer periodo;
 
-    public String getIdCuenta() {
+    public Long getIdCuenta() {
         return idCuenta;
     }
     
     public Cuenta(){};
     
-    public Cuenta(String idCuenta,String nombre,String empresa, Double valor, Integer periodo){
+    public Cuenta(Long idCuenta,String nombre,String empresa, Double valor, Integer periodo){
         this.idCuenta=idCuenta;
         this.nombre=nombre;
         this.empresa=empresa;
@@ -21,9 +30,7 @@ public class Cuenta {
         this.periodo=periodo;
     }
     
-    
-    
-    public void setIdCuenta(String idCuenta) {
+    public void setIdCuenta(Long idCuenta) {
         this.idCuenta = idCuenta;
     }
 
@@ -62,7 +69,7 @@ public class Cuenta {
     @Override
     public String toString(){
       
-        //C001;Cuenta prueba 1;facebook;1344345;2017
+        //1L;Cuenta prueba 1;facebook;1344345;2017
         return "IdCuenta: "+this.getIdCuenta()+
                 ", Nombre: "+this.getNombre()+
                 ", Empresa: "+this.getEmpresa()+

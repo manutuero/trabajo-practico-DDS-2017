@@ -1,7 +1,8 @@
-DROP SCHEMA IF EXISTS puto CASCADE;
-
-CREATE SCHEMA puto;
-
-CREATE TABLE puto.manu (id INT, nombre VARCHAR(25));
-
-INSERT INTO puto.manu VALUES (7,'MANU PUTO');
+DROP TABLE IF EXISTS cuenta;
+CREATE TABLE cuenta (
+    idCuenta BIGINT PRIMARY KEY IDENTITY ,
+    nombre VARCHAR(20), 
+    empresa VARCHAR(20), 
+    periodo VARCHAR(5), 
+    valor DOUBLE
+);

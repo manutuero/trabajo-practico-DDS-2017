@@ -1,1 +1,3 @@
-/* En este archivo se creara un script que inica la base de datos en memoria HSQLDB*/
+DROP TABLE IF EXISTS cuenta;
+CREATE TABLE cuenta (nombre VARCHAR(20), empresa VARCHAR(20), periodo VARCHAR(4), valor DOUBLE);
+

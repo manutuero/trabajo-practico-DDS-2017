@@ -1,58 +1,64 @@
 package com.utn.dds.javaianos.repository.impl;
 
 import com.utn.dds.javaianos.domain.Cuenta;
-import com.utn.dds.javaianos.repository.CuentaRepository;
-import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.StringTokenizer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
 
 @Repository
-public class CuentaRepositoryImpl implements CuentaRepository {
+public class CuentaRepositoryImpl  {
     
-    @Override
+    
+  //  @Override
     public void saveCuentas(MultipartFile file) {
+        /*String currentLine;
+        Connection cnn;
+        String cadena;
         
-        if (!file.isEmpty()) {
-            try {                
-                byte[] bytes = file.getBytes();
+        File convFile = new File(file.getOriginalFilename());
+        PreparedStatement pst;
+        ResultSet rs;
+        try
+        {
+            cnn=DriverManager.getConnection("jdbc:hsqldb:mem:dbTest","SA","");
+            file.transferTo(convFile);
+            
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(convFile));
+                while ((currentLine = bufferedReader.readLine()) != null)
+                {
+                    StringTokenizer st = new StringTokenizer(currentLine, ";");
+    
+                    Cuenta cuenta = new Cuenta();
+                    cuenta.setNombre(st.nextToken());
+                    cuenta.setEmpresa(st.nextToken());
+                    cuenta.setValor(Double.parseDouble(st.nextToken()));
+                    cuenta.setPeriodo(Integer.parseInt(st.nextToken()));
 
-                // crea el directorio en el arbol de directorios del servidor
-                File dir = new File("C:"+ File.separator + "fileUpload");
+                    cadena="INSERT INTO cuenta VALUES("+cuenta.getNombre()+","+cuenta.getEmpresa()+","+cuenta.getPeriodo()+","+cuenta.getValor()+");";
+                    
+                    pst=cnn.prepareStatement(cadena);
+                    pst.clearParameters();
+                    rs=pst.executeQuery();
+                    
+                }
                 
-                if (!dir.exists()) {
-                    dir.mkdirs();
-                }
-     
-                // crea el archivo en el arbol de directorios del servidor         
-                File serverFile = new File("C:" + File.separator + "fileUpload" + File.separator + file.getOriginalFilename());
-                /* uso un BufferedOutputStream para mejorar el rendimiento,
-                pasandole como argumento un FileOutputStream en su constructor.
-                Hago lo mismo con el constructor de FileOutputStream
-                pasandole un File (serverFile).*/
-                try (BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile))) {
-                    stream.write(bytes);
-                    stream.close();
-                }
-            } catch (IOException ex) {
+            } 
+        catch (IOException ex) {
                 //si falla genera un log en el sistema informando el fallo
                 Logger.getLogger(CuentaRepositoryImpl.class.getName()).log(Level.SEVERE, null, ex);
             }
+        catch (SQLException e) {
+            Logger.getLogger(CuentaRepositoryImpl.class.getName()).log(Level.SEVERE, null, e);
+        }*/
+        
+            
         }
-    }
+    
 
-    @Override
+    
+//    @Override
     public List<Cuenta> getAllCuentas() {
-        List<Cuenta> cuentas = new ArrayList<>();
+        /*List<Cuenta> cuentas = new ArrayList<>();
         String currentLine;
 
         try {
@@ -75,5 +81,7 @@ public class CuentaRepositoryImpl implements CuentaRepository {
             Logger.getLogger(CuentaRepositoryImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
         return cuentas;
+        */
+        return null;
     }
 }

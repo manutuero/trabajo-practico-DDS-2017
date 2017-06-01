@@ -22,7 +22,7 @@ public class Cuenta implements Serializable {
     public Long getIdCuenta() {
         return idCuenta;
     }
-        
+
     public void setIdCuenta(Long idCuenta) {
         this.idCuenta = idCuenta;
     }

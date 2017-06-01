@@ -9,21 +9,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * Controller que expone una api y devuelve un JSON
- *
- * @author Manu_
- */
+
 @RestController
 public class CuentaRestController { 
     @RequestMapping(value = "/api/valores-cuenta", method = RequestMethod.POST)
     public List<Cuenta> devolverValoresCuentas(@RequestParam(name = "empresa") String empresa,
             @RequestParam(name = "periodo") Integer periodo) {
-        
-        List<Cuenta> cuentas = new CuentaController().cuentas; // cuando tengamos base de datos se borra esta linea
-        
-        return cuentas.stream().filter(cuenta -> cuenta.getEmpresa().equals(empresa) && 
+                
+        /*return cuentas.stream().filter(cuenta -> cuenta.getEmpresa().equals(empresa) && 
                                                  cuenta.getPeriodo().equals(periodo))
-                                                .collect(Collectors.toList());
+                                                .collect(Collectors.toList());*/
+        return null; //borrar cuando se arregle todo
     }
 }

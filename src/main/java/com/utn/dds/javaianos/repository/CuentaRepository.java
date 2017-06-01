@@ -1,13 +1,9 @@
 package com.utn.dds.javaianos.repository;
 
 import com.utn.dds.javaianos.domain.Cuenta;
-import java.util.List;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface CuentaRepository {    
-    public void saveCuentas(MultipartFile file);
-    //public void saveDBCuentas(MultipartFile file);
-    public List<Cuenta> getAllCuentas();    
+public interface CuentaRepository extends JpaRepository<Cuenta, Long>{
 }
 
 

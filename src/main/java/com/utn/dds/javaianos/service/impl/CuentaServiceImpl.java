@@ -3,9 +3,6 @@ package com.utn.dds.javaianos.service.impl;
 import com.utn.dds.javaianos.domain.Cuenta;
 import com.utn.dds.javaianos.repository.CuentaRepository;
 import com.utn.dds.javaianos.service.CuentaService;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -23,16 +20,13 @@ public class CuentaServiceImpl implements CuentaService {
 
     @Override
     public void saveCuentas(MultipartFile file) {
-
-        String currentLine;
-
-        File convFile = new File(file.getOriginalFilename());
         try {
-            file.transferTo(convFile);
+            byte[] bytes = file.getBytes();
+            String data = new String(bytes);
+            String[] rows = data.split("\\n");
 
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(convFile));
-            while ((currentLine = bufferedReader.readLine()) != null) {
-                StringTokenizer st = new StringTokenizer(currentLine, ";");
+            for (String row : rows) {
+                StringTokenizer st = new StringTokenizer(row, ";");
 
                 Cuenta cuenta = new Cuenta();
                 cuenta.setNombre(st.nextToken());
@@ -42,18 +36,13 @@ public class CuentaServiceImpl implements CuentaService {
 
                 cuentaRepository.save(cuenta);
             }
-
         } catch (IOException ex) {
-            try {
-                throw ex;
-            } catch (IOException ex1) {
-                Logger.getLogger(CuentaServiceImpl.class.getName()).log(Level.SEVERE, null, ex1);
-            }
+            Logger.getLogger(CuentaServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Override
     public List<Cuenta> getAllCuentas() {
-        return cuentaRepository.getAllCuentas();
+        return null;
     }
 }

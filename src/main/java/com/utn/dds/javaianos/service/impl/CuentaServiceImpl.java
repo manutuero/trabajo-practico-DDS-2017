@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -42,7 +43,24 @@ public class CuentaServiceImpl implements CuentaService {
     }
 
     @Override
-    public List<Cuenta> getAllCuentas() {
-        return null;
+    public List<Cuenta> getAllCuentas() 
+    {
+        return cuentaRepository.findAll();
+        
+    }
+    
+    //devuelvev cuentas por periodo y empresa
+    @Override
+    public List<Cuenta> traerDeterminadasCuentas(String empresa, Integer periodo)
+    {
+       
+        List<Cuenta> listaCuentas = getAllCuentas();
+        
+        return listaCuentas.stream().filter(cuenta -> cuenta.getEmpresa().equals(empresa) && 
+                                                 cuenta.getPeriodo().equals(periodo))
+                                                .collect(Collectors.toList());
+        
+       
+        
     }
 }

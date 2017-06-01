@@ -8,5 +8,7 @@ public interface CuentaService {
     
     public void saveCuentas(MultipartFile file);
 
-    public List<Cuenta> getAllCuentas();   
+    public List<Cuenta> getAllCuentas();  
+    
+    public List<Cuenta> traerDeterminadasCuentas(String empresa, Integer periodo);
 }

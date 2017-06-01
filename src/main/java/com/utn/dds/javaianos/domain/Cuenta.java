@@ -1,29 +1,29 @@
 package com.utn.dds.javaianos.domain;
-public class Cuenta {
 
-    private String idCuenta;
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class Cuenta implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idCuenta;
     private String nombre;
     private String empresa;
     private Double valor;
     private Integer periodo;
-
-    public String getIdCuenta() {
+    
+    public Cuenta(){}
+    
+    public Long getIdCuenta() {
         return idCuenta;
     }
-    
-    public Cuenta(){};
-    
-    public Cuenta(String idCuenta,String nombre,String empresa, Double valor, Integer periodo){
-        this.idCuenta=idCuenta;
-        this.nombre=nombre;
-        this.empresa=empresa;
-        this.valor=valor;
-        this.periodo=periodo;
-    }
-    
-    
-    
-    public void setIdCuenta(String idCuenta) {
+
+    public void setIdCuenta(Long idCuenta) {
         this.idCuenta = idCuenta;
     }
 
@@ -62,7 +62,6 @@ public class Cuenta {
     @Override
     public String toString(){
       
-        //C001;Cuenta prueba 1;facebook;1344345;2017
         return "IdCuenta: "+this.getIdCuenta()+
                 ", Nombre: "+this.getNombre()+
                 ", Empresa: "+this.getEmpresa()+

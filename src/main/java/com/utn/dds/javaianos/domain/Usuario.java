@@ -1,6 +1,7 @@
 package com.utn.dds.javaianos.domain;
 
 public class Usuario {
+    /*
     private final String nombre;
     
     public Usuario(String nombreUsu){
@@ -9,5 +10,5 @@ public class Usuario {
 
     public String getNombre() {
         return nombre;
-    }
+    }*/
 }

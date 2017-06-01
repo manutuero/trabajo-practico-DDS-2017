@@ -1,0 +1,3 @@
+/* Script de creacion de tablas */
+
+CREATE TABLE `dbprod`.`cuenta` ( `id_cuenta` BIGINT NOT NULL , `nombre` VARCHAR(50) NOT NULL , `empresa` VARCHAR(50) NOT NULL , `valor` DECIMAL NOT NULL , `periodo` INT NOT NULL , PRIMARY KEY (`id_cuenta`)) ENGINE = InnoDB;

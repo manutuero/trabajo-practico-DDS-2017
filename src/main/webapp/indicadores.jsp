@@ -59,7 +59,7 @@
                             <p><font size="3">Modulo de ingreso de Indicador </font> </p>
                             <p>
                                 <!-- Dipara un modal al apretar el boton -->
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-nuevo-indi">
                                     Abrir modulo
                                 </button>
                             </p>
@@ -74,7 +74,7 @@
                             <p><font size="3">Modulo de consulta de Idicadores del Sistema</font> </p>
                             <p>
                                 <!-- Dipara un modal al apretar el boton -->
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-evaluar-indi">
                                     Abrir modulo
                                 </button>
                             </p>
@@ -85,6 +85,46 @@
             
             
         </div>
+            
+                    <!-- ***** Modulo Cargar cuentas ***** -->
+        <!-- Modal -->
+        <div id="modal-nuevo-indi" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Nuevo Indicador</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-primary">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+           </div>
+        </div> 
+
+                            <!-- ***** Modulo Cargar cuentas ***** -->
+        <!-- Modal -->
+        <div id="modal-evaluar-indi" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Evaluar Indicador</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+           </div>
+        </div> 
+
+        
+        
         <script src="js/vendor/jquery-3.2.1.min.js"></script>
         <script src="js/vendor/bootstrap.min.js"></script>
         <script src="js/app/eventos.js"></script>

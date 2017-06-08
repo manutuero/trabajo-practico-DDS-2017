@@ -32,7 +32,7 @@ public class CuentaServiceImpl implements CuentaService {
                 cuenta.setNombre(st.nextToken());
                 cuenta.setEmpresa(st.nextToken());
                 cuenta.setValor(Double.parseDouble(st.nextToken()));
-                cuenta.setPeriodo(Integer.parseInt(st.nextToken()));
+                cuenta.setPeriodo(Integer.parseInt(st.nextToken().replace("\n", "").replace("\r", "")));
 
                 cuentaRepository.save(cuenta);
             }

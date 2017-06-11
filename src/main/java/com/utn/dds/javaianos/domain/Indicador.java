@@ -1,7 +1,16 @@
 package com.utn.dds.javaianos.domain;
 
-public class Indicador implements Componente {
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "Indicador")
+public class Indicador implements Serializable {
+
+    @Id
     private String nombre;
     
     private String tipo;
@@ -30,11 +39,5 @@ public class Indicador implements Componente {
 
     public void setFormula(String formula) {
         this.formula = formula;
-    }
-    
-    @Override
-    public Double calcularValor() {
-        
-        return null;
     }
 }

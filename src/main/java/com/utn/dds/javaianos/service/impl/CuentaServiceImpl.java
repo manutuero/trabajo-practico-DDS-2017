@@ -43,13 +43,7 @@ public class CuentaServiceImpl implements CuentaService {
             Logger.getLogger(CuentaServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-/*
-    @Override
-    public List<Cuenta> getAllCuentas() 
-    {
-        return cuentaRepository.findAll();
-    }
- */   
+
     // devuelve una coleccion de cuentas filtradas por periodo y empresa
     @Override
     public List<Cuenta> getFilteredCuentas(Empresa empresa, Periodo periodo)

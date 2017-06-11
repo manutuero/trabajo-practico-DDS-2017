@@ -2,15 +2,15 @@
 
 CREATE DATABASE `dbprod`;
 
-CREATE TABLE `dbprod`.`cuenta` 
+CREATE TABLE `dbprod`.`Cuenta` 
 	(`nombre` VARCHAR(50) NOT NULL ,
-     `empresa` VARCHAR(50) NOT NULL ,
+     	 `empresa` VARCHAR(50) NOT NULL ,
  	 `periodo` INT NOT NULL ,
 	 `valor` DECIMAL NOT NULL ,
 	PRIMARY KEY (`empresa`, `valor`, `periodo`)) ENGINE = InnoDB;
 
-CREATE TABLE `dbprod`.`indicador`
-	(`id` INT NOT NULL PRIMARY KEY,
-         `nombre` VARCHAR(50) NOT NULL,
-	 `formula` VARCHAR(50) NOT NULL) ENGINE = InnoDB;
+CREATE TABLE `dbprod`.`Indicador`
+	(`nombre` VARCHAR(50) NOT NULL PRIMARY KEY,
+	 `tipo` VARCHAR(50) NOT NULL,
+	 `formula` VARCHAR(255) NOT NULL) ENGINE = InnoDB;
 	

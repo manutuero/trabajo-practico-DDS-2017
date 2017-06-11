@@ -6,8 +6,8 @@ import javax.persistence.Id;
 import javax.persistence.IdClass;
 
 @Entity
-@IdClass(CuentaId.class)
-public class Cuenta implements Componente, Serializable {
+@IdClass(CuentaPK.class)
+public class Cuenta implements Serializable {
 
     @Id
     private String nombre;
@@ -49,9 +49,4 @@ public class Cuenta implements Componente, Serializable {
     public void setValor(Double valor) {
         this.valor = valor;
     }
-    
-    @Override
-    public Double calcularValor() {
-        return this.getValor();
-    }    
 }

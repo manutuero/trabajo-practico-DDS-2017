@@ -54,4 +54,9 @@ public class CuentaServiceImpl implements CuentaService {
                                             cuenta.getPeriodo().equals(periodo.getPeriodo()))
                                             .collect(Collectors.toList()); 
     }
+
+    @Override
+    public Double calcularValor(Cuenta cuenta) {
+        return cuenta.getValor();
+    }
 }

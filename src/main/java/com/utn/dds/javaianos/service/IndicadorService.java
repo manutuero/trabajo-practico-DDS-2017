@@ -1,8 +1,8 @@
 package com.utn.dds.javaianos.service;
 
-import com.utn.dds.javaianos.domain.Indicador;
-
 public interface IndicadorService {
+
+   // public Boolean formulaValida(Indicador indicador);
     
-    public Boolean isWellComposed(Indicador indicador);
+    //public Double calcularValor(Indicador indicador);
 }

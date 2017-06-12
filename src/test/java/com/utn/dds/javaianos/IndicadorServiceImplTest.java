@@ -3,6 +3,7 @@ package com.utn.dds.javaianos;
 import com.utn.dds.javaianos.domain.Indicador;
 import com.utn.dds.javaianos.repository.IndicadorRepository;
 import com.utn.dds.javaianos.service.IndicadorService;
+import java.util.List;
 import javax.transaction.Transactional;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -24,19 +25,9 @@ public class IndicadorServiceImplTest {
     
     @Autowired
     IndicadorRepository indicadorRepository;
-    
-    @Test
-    public void isWellComposed_conIndicadorValido_spliteaComponentes() {
         
-        Indicador indicador = indicadorRepository.findByNombre("Ingreso neto");
-
-        String[] componentes = indicador.getFormula().split("\\+|-|\\*|/");
-         
-        assertEquals(2, componentes.length);
-    }
-    
     @Test
-    public void findByNombre_conIndicadorGuardadoEnLaDb_devuelveIndicador() {
+    public void findByNombre_conIndicadorGuardadoEnDb_devuelveIndicador() {
         
         Indicador indicador = indicadorRepository.findByNombre("Ingreso neto");
 

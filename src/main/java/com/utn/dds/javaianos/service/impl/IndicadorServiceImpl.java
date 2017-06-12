@@ -2,7 +2,10 @@ package com.utn.dds.javaianos.service.impl;
 
 import com.utn.dds.javaianos.domain.Indicador;
 import com.utn.dds.javaianos.repository.IndicadorRepository;
+import com.utn.dds.javaianos.service.Componente;
 import com.utn.dds.javaianos.service.IndicadorService;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,11 +15,19 @@ public class IndicadorServiceImpl implements IndicadorService {
     @Autowired
     private IndicadorRepository indicadorRepository;
 
-    @Override
-    public Boolean isWellComposed(Indicador indicador) {
+    
+    /*@Override
+    public Double calcularValor(Indicador indicador) {
+        Double valor = null;
         
-        String[] componentes = indicador.getFormula().split("\\+|-|\\*|/"); // regex non-alphanumeric (con caracteres de escape)
+        // regex: uso expresiones regulares para descomponer el String con caracteres de escape (\\)
+        String[] sComponentes = indicador.getFormula().replaceAll("\\s|\\(|\\)","").split("\\+|-|\\*|/");
         
-        return true;
-    }
+        List <Componente> componentes = new <Componente> ArrayList();
+        
+        for(String componente : sComponentes) {
+        
+        }
+        return valor;
+    }*/
 }

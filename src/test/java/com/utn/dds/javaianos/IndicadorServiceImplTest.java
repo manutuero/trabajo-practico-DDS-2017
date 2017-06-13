@@ -5,6 +5,7 @@ import com.utn.dds.javaianos.repository.IndicadorRepository;
 import com.utn.dds.javaianos.service.IndicadorService;
 import javax.transaction.Transactional;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -36,12 +37,14 @@ public class IndicadorServiceImplTest {
     }
     
     @Test
-    public void isValidFormula_llamandoAlParser_devuelveBooleano() {
-        
-       Boolean resultado = indicadorService.isValidFormula("++");
-       
-       System.out.println(resultado);
-       
-       assertTrue(resultado);
+    public void isValidFormula_conFormulaNoValida_devuelveFalse() {
+       Boolean resultado = indicadorService.isValidFormula("++");       
+       assertEquals(false, resultado);
+    }
+    
+    @Test
+    public void isValidFormula_conFormulaValida_devuelveTrue() {
+       Boolean resultado = indicadorService.isValidFormula("(Cuenta1+Cuenta2)*(500-Cuenta3)");       
+       assertEquals(true, resultado);
     }
 }

@@ -38,15 +38,13 @@ public class IndicadorServiceImpl implements IndicadorService {
 
     @Override
     public Boolean isValidFormula(String formula) {
-        Boolean isValid = false;
+        Boolean isValid = null;
         try {
             InputStream stream = new ByteArrayInputStream(formula.getBytes());
             isValid = ExpressionParser.validate(stream);
-            
-        } catch (ParseException | TokenMgrError ex) {
+        } catch (ParseException | TokenMgrError | NullPointerException ex) {
             System.out.println(ex.getMessage());
         }
-        
         return isValid;
     }
 }

@@ -11,25 +11,27 @@ public interface ExpressionParserConstants {
   /** End of File. */
   int EOF = 0;
   /** RegularExpression Id. */
-  int SUMA = 6;
+  int NULL = 1;
   /** RegularExpression Id. */
-  int RESTA = 7;
+  int SUMA = 7;
   /** RegularExpression Id. */
-  int MULTIPLICACION = 8;
+  int RESTA = 8;
   /** RegularExpression Id. */
-  int DIVISION = 9;
+  int MULTIPLICACION = 9;
   /** RegularExpression Id. */
-  int PARENTESIS_IZQUIERDO = 10;
+  int DIVISION = 10;
   /** RegularExpression Id. */
-  int PARENTESIS_DERECHO = 11;
+  int PARENTESIS_IZQUIERDO = 11;
   /** RegularExpression Id. */
-  int NUMERO = 12;
+  int PARENTESIS_DERECHO = 12;
   /** RegularExpression Id. */
-  int DIGITO = 13;
+  int NUMERO = 13;
   /** RegularExpression Id. */
-  int IDENTIFICADOR = 14;
+  int DIGITO = 14;
   /** RegularExpression Id. */
-  int LETRA = 15;
+  int IDENTIFICADOR = 15;
+  /** RegularExpression Id. */
+  int LETRA = 16;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -37,6 +39,7 @@ public interface ExpressionParserConstants {
   /** Literal token values. */
   String[] tokenImage = {
     "<EOF>",
+    "\"null\"",
     "\" \"",
     "\"\\t\"",
     "\"\\r\"",

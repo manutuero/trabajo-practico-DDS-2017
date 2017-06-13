@@ -22,25 +22,12 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @Transactional
 public class CuentaServiceImplTest {
 
-    /*
-    @Autowired
-    DataSource dataSource;
-     
-    @Autowired
-    JdbcTemplate jdbcTemplate;   
-     */
     @Autowired
     CuentaService cuentaService;
 
     @Autowired
     CuentaRepository cuentaRepository;
 
-    /*
-    @Before
-    public void setUp() {
-        jdbcTemplate.setDataSource(dataSource);
-    }*/
-    
     @Test
     public void saveCuentas_conMultiPartFileValido_guardaCorrectamenteEnBaseDeDatos() throws ParseException, IOException {
         MockMultipartFile multipartFile

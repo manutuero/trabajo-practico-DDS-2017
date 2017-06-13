@@ -10,15 +10,8 @@ public class ExpressionParser implements ExpressionParserConstants {
         try {
             ExpressionParser parser = new ExpressionParser(stream);
             parser.evaluate();
-            System.out.println("La expresion ha sido ingresada correctamente.");
             return true;
-        } catch (ParseException ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("Error, la expresion ingresada es incorrecta.");
-            return false;
-        } catch (TokenMgrError ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("Error, uno de los caracteres ingresados no es valido.");
+        } catch (ParseException | TokenMgrError ex) {
             return false;
         }
     }

@@ -28,7 +28,7 @@ public class IndicadorServiceImplTest {
     @Test
     public void findByNombre_conIndicadorGuardadoEnDb_devuelveIndicador() {
         
-        Indicador indicador = indicadorRepository.findByNombre("Ingreso neto");
+        Indicador indicador = (Indicador) indicadorRepository.findByNombre("Ingreso neto");
 
         assertEquals("Ingreso neto",indicador.getNombre());
         assertEquals("predefinido",indicador.getTipo());
@@ -37,13 +37,13 @@ public class IndicadorServiceImplTest {
     
     @Test
     public void isValidFormula_conFormulaNoValida_devuelveFalse() {
-       Boolean resultado = indicadorService.isValidFormula("++");       
+       Boolean resultado = indicadorService.isValidExpression("++");       
        assertEquals(false, resultado);
     }
     
     @Test
     public void isValidFormula_conFormulaValida_devuelveTrue() {
-       Boolean resultado = indicadorService.isValidFormula("(Cuenta1+Cuenta2)*(500-Cuenta3)");       
+       Boolean resultado = indicadorService.isValidExpression("(Cuenta1+Cuenta2)*(500-Cuenta3)");       
        assertEquals(true, resultado);
     }
 
@@ -56,7 +56,7 @@ public class IndicadorServiceImplTest {
         
         indicadorService.saveIndicador(indicador);
         
-        Indicador indicadorGuardado = indicadorRepository.findByNombre("I1");
+        Indicador indicadorGuardado = (Indicador) indicadorRepository.findByNombre("I1");
         
         assertEquals("I1",indicadorGuardado.getNombre());
         assertEquals("definido por el usuario",indicadorGuardado.getTipo());
@@ -72,4 +72,24 @@ public class IndicadorServiceImplTest {
         
         indicadorService.saveIndicador(indicador); // aqui corta la ejecucion        
     }
+    
+    @Test
+    public void allComponentsExists_conComponentesExistentesEnDb_devuelveTrue() {
+        Indicador indicador = new Indicador();
+        indicador.setNombre("I1");
+        indicador.setTipo("definido por el usuario");
+        indicador.setFormula("Ingreso Neto En Operaciones Continuas + Ingreso Neto En Operaciones Discontinuadas");
+        
+        assertEquals(true,indicadorService.allComponentsExists(indicador));
+    }
+    
+   /* @Test
+    public void allComponentsExists_conComponentesNoExistentesEnDb_devuelveFalse() {
+        Indicador indicador = new Indicador();
+        indicador.setNombre("I1");
+        indicador.setTipo("definido por el usuario");
+        indicador.setFormula("verdura");
+        
+        assertEquals(false,indicadorService.allComponentsExists(indicador));
+    }*/
 }

@@ -5,8 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import com.utn.dds.javaianos.service.Componente;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "Cuenta")
 @IdClass(CuentaPK.class)
 public class Cuenta implements Serializable {
 

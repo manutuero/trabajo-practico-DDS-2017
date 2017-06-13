@@ -5,7 +5,9 @@ import com.utn.dds.javaianos.parser.ParseException;
 
 public interface IndicadorService {
     
-    public Boolean isValidFormula(String formula);
+    public Boolean isValidExpression(String expression);
+    
+    public Boolean allComponentsExists(Indicador indicador);
 
     public void saveIndicador(Indicador indicador)throws ParseException;
     

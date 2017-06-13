@@ -33,7 +33,13 @@ public class IndicadorServiceImpl implements IndicadorService {
     }*/
 
     @Override
-    public void saveIndicador(Indicador indicador) {
+    public void saveIndicador(Indicador indicador) throws ParseException {
+        
+        if(isValidFormula(indicador.getFormula())) {
+           indicadorRepository.save(indicador);
+        } else {
+            throw new ParseException("Error, la formula ingresada es incorrecta.");
+        }
     }
 
     @Override

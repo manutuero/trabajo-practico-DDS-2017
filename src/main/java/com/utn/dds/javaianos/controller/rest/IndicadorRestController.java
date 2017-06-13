@@ -16,11 +16,6 @@ public class IndicadorRestController {
     
     @RequestMapping(value = "/api/nuevo-indicador", method = RequestMethod.POST)
     public void guardarIndicador(@RequestBody Indicador indicador){
-
-        System.out.println("----------------------------------------");
-        System.out.println("Nombre: " + indicador.getNombre());
-        System.out.println("Tipo :" + indicador.getTipo());
-        System.out.println("Formula :" + indicador.getFormula());
-        System.out.println("----------------------------------------");
+        indicadorService.saveIndicador(indicador);
     } 
 }

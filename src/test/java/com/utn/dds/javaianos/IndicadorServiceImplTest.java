@@ -3,10 +3,9 @@ package com.utn.dds.javaianos;
 import com.utn.dds.javaianos.domain.Indicador;
 import com.utn.dds.javaianos.repository.IndicadorRepository;
 import com.utn.dds.javaianos.service.IndicadorService;
-import java.util.List;
 import javax.transaction.Transactional;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,5 +33,15 @@ public class IndicadorServiceImplTest {
         assertEquals("Ingreso neto",indicador.getNombre());
         assertEquals("predefinido",indicador.getTipo());
         assertEquals("Ingreso Neto En Operaciones Continuas + Ingreso Neto En Operaciones Discontinuadas",indicador.getFormula());
+    }
+    
+    @Test
+    public void isValidFormula_llamandoAlParser_devuelveBooleano() {
+        
+       Boolean resultado = indicadorService.isValidFormula("++");
+       
+       System.out.println(resultado);
+       
+       assertTrue(resultado);
     }
 }

@@ -22,8 +22,8 @@ function validarIngreso() {
                 dataType: 'json',
                 contentType:'application/json',
                 accept: 'application/json',
-                success: function(result){
-                    alert("Exito");
+                success: function(){
+                    // cerrar modal cuando este finalizado el backend
                 }
             });
         }

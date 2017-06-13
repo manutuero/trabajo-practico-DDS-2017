@@ -1,11 +1,13 @@
 package com.utn.dds.javaianos.service.impl;
 
 import com.utn.dds.javaianos.domain.Indicador;
+import com.utn.dds.javaianos.parser.ExpressionParser;
+import com.utn.dds.javaianos.parser.ParseException;
+import com.utn.dds.javaianos.parser.TokenMgrError;
 import com.utn.dds.javaianos.repository.IndicadorRepository;
-import com.utn.dds.javaianos.service.Componente;
 import com.utn.dds.javaianos.service.IndicadorService;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +16,6 @@ public class IndicadorServiceImpl implements IndicadorService {
 
     @Autowired
     private IndicadorRepository indicadorRepository;
-
     
     /*@Override
     public Double calcularValor(Indicador indicador) {
@@ -30,4 +31,22 @@ public class IndicadorServiceImpl implements IndicadorService {
         }
         return valor;
     }*/
+
+    @Override
+    public void saveIndicador(Indicador indicador) {
+    }
+
+    @Override
+    public Boolean isValidFormula(String formula) {
+        Boolean isValid = false;
+        try {
+            InputStream stream = new ByteArrayInputStream(formula.getBytes());
+            isValid = ExpressionParser.validate(stream);
+            
+        } catch (ParseException | TokenMgrError ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        return isValid;
+    }
 }

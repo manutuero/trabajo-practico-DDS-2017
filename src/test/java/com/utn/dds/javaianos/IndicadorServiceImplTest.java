@@ -1,7 +1,7 @@
 package com.utn.dds.javaianos;
 
 import com.utn.dds.javaianos.domain.Indicador;
-import com.utn.dds.javaianos.parser.ParseException;
+import com.utn.dds.javaianos.repository.CuentaRepository;
 import com.utn.dds.javaianos.repository.IndicadorRepository;
 import com.utn.dds.javaianos.service.IndicadorService;
 import javax.transaction.Transactional;
@@ -24,16 +24,9 @@ public class IndicadorServiceImplTest {
     
     @Autowired
     IndicadorRepository indicadorRepository;
-        
-    @Test
-    public void findByNombre_conIndicadorGuardadoEnDb_devuelveIndicador() {
-        
-        Indicador indicador = (Indicador) indicadorRepository.findByNombre("Ingreso neto");
-
-        assertEquals("Ingreso neto",indicador.getNombre());
-        assertEquals("predefinido",indicador.getTipo());
-        assertEquals("Ingreso Neto En Operaciones Continuas + Ingreso Neto En Operaciones Discontinuadas",indicador.getFormula());
-    }
+    
+    @Autowired
+    CuentaRepository cuentaRepository;
     
     @Test
     public void isValidFormula_conFormulaNoValida_devuelveFalse() {
@@ -46,31 +39,21 @@ public class IndicadorServiceImplTest {
        Boolean resultado = indicadorService.isValidExpression("(Cuenta1+Cuenta2)*(500-Cuenta3)");       
        assertEquals(true, resultado);
     }
-
+    
     @Test
-    public void saveIndicador_conFormulaValida_guardaIndicadorEnDb() throws ParseException {
-        Indicador indicador = new Indicador();
-        indicador.setNombre("I1");
-        indicador.setTipo("definido por el usuario");
-        indicador.setFormula("C1+C3*10");
-        
-        indicadorService.saveIndicador(indicador);
-        
-        Indicador indicadorGuardado = (Indicador) indicadorRepository.findByNombre("I1");
-        
-        assertEquals("I1",indicadorGuardado.getNombre());
-        assertEquals("definido por el usuario",indicadorGuardado.getTipo());
-        assertEquals("C1+C3*10",indicadorGuardado.getFormula());
+    public void isValidFormula_conOtraFormulaValida_devuelveTrue() {
+       Boolean resultado = indicadorService.isValidExpression("Ingreso Neto En Operaciones Continuas");       
+       assertEquals(true, resultado);
     }
     
-    @Test(expected = ParseException.class)
-    public void saveIndicador_conFormulaNoValida_lanzaParseExcepcion() throws ParseException {
+    @Test
+    public void allComponentsExists_conComponentesNoExistentesEnDb_devuelveFalse() {
         Indicador indicador = new Indicador();
         indicador.setNombre("I1");
         indicador.setTipo("definido por el usuario");
-        indicador.setFormula("$-*/");
+        indicador.setFormula("verdura");
         
-        indicadorService.saveIndicador(indicador); // aqui corta la ejecucion        
+        assertEquals(false,indicadorService.allComponentsExists(indicador));
     }
     
     @Test
@@ -80,16 +63,52 @@ public class IndicadorServiceImplTest {
         indicador.setTipo("definido por el usuario");
         indicador.setFormula("Ingreso Neto En Operaciones Continuas + Ingreso Neto En Operaciones Discontinuadas");
         
-        assertEquals(true,indicadorService.allComponentsExists(indicador));
+        assertEquals(true, indicadorService.allComponentsExists(indicador));
     }
     
-   /* @Test
-    public void allComponentsExists_conComponentesNoExistentesEnDb_devuelveFalse() {
+    @Test
+    public void saveIndicador_conFormulaValidaYElementosExistentes_guardaYDevuelve0() {
         Indicador indicador = new Indicador();
         indicador.setNombre("I1");
         indicador.setTipo("definido por el usuario");
-        indicador.setFormula("verdura");
+        indicador.setFormula("Ingreso Neto En Operaciones Continuas");
         
-        assertEquals(false,indicadorService.allComponentsExists(indicador));
-    }*/
+        int resultado = indicadorService.saveIndicador(indicador);
+        
+        Indicador indicadorGuardado = indicadorRepository.findByNombre("I1");
+        System.out.println(indicadorGuardado.getNombre());
+        System.out.println(indicadorGuardado.getTipo());
+        System.out.println(indicadorGuardado.getFormula());
+        
+        assertEquals("I1",indicadorGuardado.getNombre());
+        assertEquals("definido por el usuario",indicadorGuardado.getTipo());
+        assertEquals("Ingreso Neto En Operaciones Continuas",indicadorGuardado.getFormula());
+        assertEquals(0, resultado);
+    }
+    
+    @Test
+    public void saveIndicador_conFormulaNoValida_noGuardaYDevuelve1() {
+        Indicador indicador = new Indicador();
+        indicador.setNombre("I1");
+        indicador.setTipo("definido por el usuario");
+        indicador.setFormula("$-*");
+        
+        int resultado = indicadorService.saveIndicador(indicador);  
+        
+        assertEquals(null, indicadorRepository.findByNombre("I1"));
+        assertEquals(1, resultado);
+    }
+    
+    @Test
+    public void saveIndicador_conFormulaValidaYElementosNoExistentes_noGuardaYDevuelve2() {
+        Indicador indicador = new Indicador();
+        indicador.setNombre("I1");
+        indicador.setTipo("definido por el usuario");
+        indicador.setFormula("C1+C3*10");
+        
+        int resultado = indicadorService.saveIndicador(indicador);
+        
+        assertEquals(null, indicadorRepository.findByNombre("I1"));
+        assertEquals(2, resultado);
+    }
 }

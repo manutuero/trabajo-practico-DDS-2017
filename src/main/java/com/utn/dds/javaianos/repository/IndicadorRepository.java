@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IndicadorRepository extends JpaRepository<Indicador, Long>{
-    public Object findByNombre(String nombre);
+    public Indicador findByNombre(String nombre);
 }

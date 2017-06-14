@@ -17,6 +17,10 @@ public class IndicadorRestController {
     
     @RequestMapping(value = "/api/nuevo-indicador", method = RequestMethod.POST)
     public void guardarIndicador(@RequestBody Indicador indicador) throws ParseException{
+        System.out.println("Nombre: " + indicador.getNombre());
+        System.out.println("Nombre: " + indicador.getTipo());
+        System.out.println("Nombre: " + indicador.getFormula());
+
         indicadorService.saveIndicador(indicador);
     } 
 }

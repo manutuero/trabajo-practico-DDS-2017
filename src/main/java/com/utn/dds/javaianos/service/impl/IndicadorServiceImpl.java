@@ -1,6 +1,5 @@
 package com.utn.dds.javaianos.service.impl;
 
-import com.utn.dds.javaianos.domain.Cuenta;
 import com.utn.dds.javaianos.domain.Indicador;
 import com.utn.dds.javaianos.parser.ExpressionParser;
 import com.utn.dds.javaianos.parser.ParseException;
@@ -11,8 +10,8 @@ import com.utn.dds.javaianos.service.IndicadorService;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.Arrays;
-import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +20,7 @@ public class IndicadorServiceImpl implements IndicadorService {
 
     @Autowired
     private IndicadorRepository indicadorRepository;
-
+    
     @Autowired
     private CuentaRepository cuentaRepository;
     
@@ -39,17 +38,24 @@ public class IndicadorServiceImpl implements IndicadorService {
         }
         return valor;
     }*/
+    
     @Override
-    public void saveIndicador(Indicador indicador) throws ParseException {
-
-        // && allComponentsExists(indicador.getFormula())
-        if (isValidExpression(indicador.getFormula())) {
+    public int saveIndicador(Indicador indicador) {
+        /* Codigo de resultado:
+            0: guardo un nuevo indicador con exito
+            1: error, expresion mal formada en la formula del indicador
+            2: error, elementos no existentes en la formula del indicador
+        */
+        if(isValidExpression(indicador.getFormula()) && allComponentsExists(indicador)) {
             indicadorRepository.save(indicador);
+            return 0;
+        } else if(!isValidExpression(indicador.getFormula())){
+            return 1;
         } else {
-            throw new ParseException("Error, la formula ingresada es incorrecta.");
+            return 2;
         }
     }
-
+    
     @Override
     public Boolean isValidExpression(String expression) {
         Boolean isValid = null;
@@ -64,14 +70,16 @@ public class IndicadorServiceImpl implements IndicadorService {
 
     @Override
     public Boolean allComponentsExists(Indicador indicador) {
+        /* En este metodo utilizo Streams de Java 8 y trabajo con conceptos de paradigma funcional */
+        // regex: aplico el uso de expresiones regulares para descomponer el String, tambien se usan caracteres de escape (\\)
+        String[] sComponentes = indicador.getFormula().replaceAll("\\(|\\)", "").split("\\+|-|\\*|/");
+        Stream<String> oldStream = Arrays.stream(sComponentes);
+        Stream<String> componentes = oldStream.map(c -> c.trim());
         
-        // regex: uso expresiones regulares para descomponer el String con caracteres de escape (\\)
-        String[] sComponentes = indicador.getFormula().replaceAll("\\s|\\(|\\)", "").split("\\+|-|\\*|/");
-        List<String> componentes = Arrays.asList(sComponentes);
+        Predicate<String> predicate = (String componente) -> 
+            (indicadorRepository.findByNombre(componente) == null) &&
+            (cuentaRepository.findByNombre(componente) == null);
         
-        List<Cuenta> cuentas = cuentaRepository.findAll();
-        List<Indicador> indicadores = indicadorRepository.findAll();
-        
-        return true;
+        return componentes.noneMatch(predicate);
     }
 }

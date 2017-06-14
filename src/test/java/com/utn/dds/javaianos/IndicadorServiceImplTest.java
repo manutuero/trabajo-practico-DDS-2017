@@ -2,8 +2,12 @@ package com.utn.dds.javaianos;
 
 import com.utn.dds.javaianos.domain.Indicador;
 import com.utn.dds.javaianos.parser.ParseException;
+import com.utn.dds.javaianos.repository.CuentaRepository;
 import com.utn.dds.javaianos.repository.IndicadorRepository;
 import com.utn.dds.javaianos.service.IndicadorService;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
 import javax.transaction.Transactional;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
@@ -24,6 +28,9 @@ public class IndicadorServiceImplTest {
     
     @Autowired
     IndicadorRepository indicadorRepository;
+    
+    @Autowired
+    CuentaRepository cuentaRepository;
         
     @Test
     public void findByNombre_conIndicadorGuardadoEnDb_devuelveIndicador() {
@@ -80,10 +87,10 @@ public class IndicadorServiceImplTest {
         indicador.setTipo("definido por el usuario");
         indicador.setFormula("Ingreso Neto En Operaciones Continuas + Ingreso Neto En Operaciones Discontinuadas");
         
-        assertEquals(true,indicadorService.allComponentsExists(indicador));
+        assertEquals(true, indicadorService.allComponentsExists(indicador));
     }
     
-   /* @Test
+    @Test
     public void allComponentsExists_conComponentesNoExistentesEnDb_devuelveFalse() {
         Indicador indicador = new Indicador();
         indicador.setNombre("I1");
@@ -91,5 +98,5 @@ public class IndicadorServiceImplTest {
         indicador.setFormula("verdura");
         
         assertEquals(false,indicadorService.allComponentsExists(indicador));
-    }*/
+    }
 }

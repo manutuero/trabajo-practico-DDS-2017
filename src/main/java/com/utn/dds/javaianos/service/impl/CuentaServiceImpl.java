@@ -1,6 +1,8 @@
 package com.utn.dds.javaianos.service.impl;
 
 import com.utn.dds.javaianos.domain.Cuenta;
+import com.utn.dds.javaianos.domain.Empresa;
+import com.utn.dds.javaianos.domain.Periodo;
 import com.utn.dds.javaianos.repository.CuentaRepository;
 import com.utn.dds.javaianos.service.CuentaService;
 import java.io.IOException;
@@ -32,8 +34,8 @@ public class CuentaServiceImpl implements CuentaService {
                 Cuenta cuenta = new Cuenta();
                 cuenta.setNombre(st.nextToken());
                 cuenta.setEmpresa(st.nextToken());
-                cuenta.setValor(Double.parseDouble(st.nextToken()));
                 cuenta.setPeriodo(Integer.parseInt(st.nextToken().replace("\n", "").replace("\r", "")));
+                cuenta.setValor(Double.parseDouble(st.nextToken()));
 
                 cuentaRepository.save(cuenta);
             }
@@ -42,25 +44,19 @@ public class CuentaServiceImpl implements CuentaService {
         }
     }
 
+    // devuelve una coleccion de cuentas filtradas por periodo y empresa
     @Override
-    public List<Cuenta> getAllCuentas() 
+    public List<Cuenta> getFilteredCuentas(Empresa empresa, Periodo periodo)
     {
-        return cuentaRepository.findAll();
+        List<Cuenta> listaCuentas = cuentaRepository.findAll();
         
+        return listaCuentas.stream().filter(cuenta -> cuenta.getEmpresa().equals(empresa.getNombre()) &&
+                                            cuenta.getPeriodo().equals(periodo.getPeriodo()))
+                                            .collect(Collectors.toList()); 
     }
-    
-    //devuelvev cuentas por periodo y empresa
+
     @Override
-    public List<Cuenta> traerDeterminadasCuentas(String empresa, Integer periodo)
-    {
-       
-        List<Cuenta> listaCuentas = getAllCuentas();
-        
-        return listaCuentas.stream().filter(cuenta -> cuenta.getEmpresa().equals(empresa) && 
-                                                 cuenta.getPeriodo().equals(periodo))
-                                                .collect(Collectors.toList());
-        
-       
-        
+    public Double calcularValor(Cuenta cuenta) {
+        return cuenta.getValor();
     }
 }

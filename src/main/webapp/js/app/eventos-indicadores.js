@@ -22,7 +22,8 @@ function validarIngreso() {
                 dataType: 'json',
                 contentType:'application/json',
                 accept: 'application/json',
-                success: function(){
+                success: function(respuesta){
+                    alert("TODO JOYA");
                     // cerrar modal cuando este finalizado el backend
                 }
             });

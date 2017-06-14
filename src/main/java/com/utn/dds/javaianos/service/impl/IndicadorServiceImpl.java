@@ -10,7 +10,6 @@ import com.utn.dds.javaianos.service.IndicadorService;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.Arrays;
-import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,17 +38,24 @@ public class IndicadorServiceImpl implements IndicadorService {
         }
         return valor;
     }*/
+    
     @Override
-    public void saveIndicador(Indicador indicador) throws ParseException {
-
-        // && allComponentsExists(indicador.getFormula())
-        if (isValidExpression(indicador.getFormula())) {
+    public int saveIndicador(Indicador indicador) {
+        /* Codigo de resultado:
+            0: guardo un nuevo indicador con exito
+            1: error, expresion mal formada en la formula del indicador
+            2: error, elementos no existentes en la formula del indicador
+        */
+        if(isValidExpression(indicador.getFormula()) && allComponentsExists(indicador)) {
             indicadorRepository.save(indicador);
+            return 0;
+        } else if(!isValidExpression(indicador.getFormula())){
+            return 1;
         } else {
-            throw new ParseException("Error, la formula ingresada es incorrecta.");
+            return 2;
         }
     }
-
+    
     @Override
     public Boolean isValidExpression(String expression) {
         Boolean isValid = null;

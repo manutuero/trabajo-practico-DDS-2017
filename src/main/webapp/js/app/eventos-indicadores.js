@@ -1,4 +1,4 @@
-function validarIngreso() {
+function validarIngresoNuevoIndicador() {
     $('#btn-crear').click(function () {
         var nombre = $('#input-nombre').val();
         var tipo = "definido por el usuario";
@@ -22,8 +22,18 @@ function validarIngreso() {
                 dataType: 'json',
                 contentType:'application/json',
                 accept: 'application/json',
-                success: function(respuesta){
-                    alert("TODO JOYA");
+                success: function(response) {
+                    if(response.resultado === "0") {
+                        alert("Exito!. El indicador se ha guardado exitosamente.");
+                    }
+                    if(response.resultado === "1") {
+                        alert("Error de sintaxis. La formula ingresada no es correcta.");
+                    }
+                    if(response.resultado === "2") {
+                        alert("Error lexico. Alguno de los elementos de la formula no existe.");
+                    } else {
+                        alert("Bueno, algo hizo");
+                    }
                     // cerrar modal cuando este finalizado el backend
                 }
             });
@@ -32,5 +42,5 @@ function validarIngreso() {
 };
 
 $(document).ready(function () {
-    validarIngreso();
+    validarIngresoNuevoIndicador();
 });

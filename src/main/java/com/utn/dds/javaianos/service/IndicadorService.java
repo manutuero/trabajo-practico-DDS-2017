@@ -8,7 +8,7 @@ public interface IndicadorService {
     
     public Boolean allComponentsExists(Indicador indicador);
 
-    public int saveIndicador(Indicador indicador);
+    public Integer saveIndicador(Indicador indicador);
     
     //public Double calcularValor(Indicador indicador);
 }

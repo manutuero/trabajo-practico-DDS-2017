@@ -122,7 +122,18 @@
                             <p><h4 class="modal-title">Evaluar Indicador</h4><p>
                             <div class="row">
                                 <div class="col-xs-2">Indicador</div>
-                                <div class="col-xs-10"><p><input id ="input-nombre" type="text" required="true" size="20"></p></div>
+                                <!--<div class="col-xs-10"><p><input id ="input-nombre" type="text" required="true" size="20"></p></div>-->
+                                <div class="col-xs-6">
+                                    <p>
+                                        <select class="form-control" name="size">
+                                            <option value="">Seleccione un indicador</option>
+                                            <option value="s">Small (S)</option>
+                                            <option value="m">Medium (M)</option>
+                                            <option value="l">Large (L)</option>
+                                            <option value="xl">Extra large (XL)</option>
+                                        </select>
+                                    </p>
+                                </div>
     
                             </div>
                             <div class="row">

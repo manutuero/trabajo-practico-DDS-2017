@@ -20,6 +20,4 @@ public class CuentaController {
         cuentaService.saveCuentas(file);
         return "redirect:/index.jsp";
     }
-    
-    
 }

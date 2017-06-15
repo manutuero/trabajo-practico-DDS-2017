@@ -72,7 +72,9 @@ public class IndicadorServiceImpl implements IndicadorService {
     public Boolean allComponentsExists(Indicador indicador) {
         /* En este metodo utilizo Streams de Java 8 y trabajo con conceptos de paradigma funcional */
         // regex: aplico el uso de expresiones regulares para descomponer el String, tambien se usan caracteres de escape (\\)
-        String[] sComponentes = indicador.getFormula().replaceAll("\\(|\\)", "").split("\\+|-|\\*|/");
+        // Aclaracion: los numeros son validos en las formulas. Los omitimos ya que siempre seran True.
+        String[] sComponentes = indicador.getFormula().replaceAll("\\(|\\)|\\d+", "").split("\\+|-|\\*|/");
+        
         Stream<String> oldStream = Arrays.stream(sComponentes);
         Stream<String> componentes = oldStream.map(c -> c.trim());
         

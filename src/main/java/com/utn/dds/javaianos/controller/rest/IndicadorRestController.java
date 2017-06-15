@@ -1,7 +1,6 @@
 package com.utn.dds.javaianos.controller.rest;
 
 import com.utn.dds.javaianos.domain.Indicador;
-import com.utn.dds.javaianos.parser.ParseException;
 import com.utn.dds.javaianos.service.IndicadorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,13 +13,11 @@ public class IndicadorRestController {
     
     @Autowired
     private IndicadorService indicadorService;
-    
-    @RequestMapping(value = "/api/nuevo-indicador", method = RequestMethod.POST)
-    public void guardarIndicador(@RequestBody Indicador indicador) throws ParseException{
-        System.out.println("Nombre: " + indicador.getNombre());
-        System.out.println("Nombre: " + indicador.getTipo());
-        System.out.println("Nombre: " + indicador.getFormula());
 
-        indicadorService.saveIndicador(indicador);
+    @RequestMapping(value = "/api/nuevo-indicador", method = RequestMethod.POST)
+    public JsonResponse guardarIndicador(@RequestBody Indicador indicador) {
+        Integer resultado = indicadorService.saveIndicador(indicador);
+        JsonResponse jsonResponse = new JsonResponse(resultado.toString());
+        return jsonResponse;
     } 
 }

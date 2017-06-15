@@ -40,7 +40,7 @@ public class IndicadorServiceImpl implements IndicadorService {
     }*/
     
     @Override
-    public int saveIndicador(Indicador indicador) {
+    public Integer saveIndicador(Indicador indicador) {
         /* Codigo de resultado:
             0: guardo un nuevo indicador con exito
             1: error, expresion mal formada en la formula del indicador
@@ -78,7 +78,7 @@ public class IndicadorServiceImpl implements IndicadorService {
         
         Predicate<String> predicate = (String componente) -> 
             (indicadorRepository.findByNombre(componente) == null) &&
-            (cuentaRepository.findByNombre(componente) == null);
+            (cuentaRepository.findFirstByNombre(componente) == null);
         
         return componentes.noneMatch(predicate);
     }

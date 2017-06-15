@@ -1,7 +1,4 @@
-Cuenta prueba 1;Facebook;1344345;2016
-Cuenta prueba 2;Twitter;1000000;2016
-Cuenta prueba 3;Facebook;234235;2016
-Cuenta prueba 4;Facebook;3454;2016
-Cuenta prueba 5;Uber;45454334;2015
-Cuenta prueba 6;Uber;22233;2015
-Cuenta prueba 7;Uber;34252;2015
+EBITDA;Facebook;2016;14870
+EBITDA;Facebook;2015;8162
+Ingreso Neto En Operaciones Continuas;Facebook;2016;4273000000
+Ingreso Neto En Operaciones Discontinuadas;Facebook;2016;0

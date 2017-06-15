@@ -1,7 +1,6 @@
 package com.utn.dds.javaianos;
 
 import com.utn.dds.javaianos.domain.Indicador;
-import com.utn.dds.javaianos.repository.CuentaRepository;
 import com.utn.dds.javaianos.repository.IndicadorRepository;
 import com.utn.dds.javaianos.service.IndicadorService;
 import javax.transaction.Transactional;
@@ -24,9 +23,6 @@ public class IndicadorServiceImplTest {
     
     @Autowired
     IndicadorRepository indicadorRepository;
-    
-    @Autowired
-    CuentaRepository cuentaRepository;
     
     @Test
     public void isValidFormula_conFormulaNoValida_devuelveFalse() {

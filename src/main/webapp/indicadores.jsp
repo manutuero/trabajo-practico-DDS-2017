@@ -119,15 +119,57 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Evaluar Indicador</h4>
+                            <p><h4 class="modal-title">Evaluar Indicador</h4><p>
+                            <div class="row">
+                                <div class="col-xs-2">Indicador</div>
+                                <!--<div class="col-xs-10"><p><input id ="input-nombre" type="text" required="true" size="20"></p></div>-->
+                                <div class="col-xs-6">
+                                    <p>
+                                        <select class="form-control" name="size">
+                                            <option value="">Seleccione un indicador</option>
+                                            <option value="s">Small (S)</option>
+                                            <option value="m">Medium (M)</option>
+                                            <option value="l">Large (L)</option>
+                                            <option value="xl">Extra large (XL)</option>
+                                        </select>
+                                    </p>
+                                </div>
+    
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-2">Año</div>
+                                <div class="col-xs-10"><p><input id ="input-nombre" type="text" required="true" size="20"></p></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-2">Empresa</div>
+                                <div class="col-xs-10"><p><input id ="input-nombre" type="text" required="true" size="20"></p></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <p>Resultado: <text id="textarea-formula" class="form-control" rows="5" style="max-width:100%;"></textarea></p>
+                                </div>
+                            </div>
                         </div>
                         <div class="modal-footer">
+                            <input id="btn-crear" type="submit" class="btn btn-primary" value="Calcular">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                         </div>
                     </div>
                 </div>
             </div> 
 
+            
+       
+
+            <!-- Footer -->
+            <footer>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p>Copyright &copy; Developed by Javaianos, 2017</p>
+                    </div>
+                </div>
+            </footer>
+       
             <script src="js/vendor/jquery-3.2.1.min.js"></script>
             <script src="js/vendor/bootstrap.min.js"></script>
             <script src="js/app/eventos-indicadores.js"></script>

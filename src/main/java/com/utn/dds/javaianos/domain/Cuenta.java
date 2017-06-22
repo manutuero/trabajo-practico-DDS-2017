@@ -2,31 +2,24 @@ package com.utn.dds.javaianos.domain;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "Cuenta")
+@IdClass(CuentaPK.class)
 public class Cuenta implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idCuenta;
     private String nombre;
+    @Id
     private String empresa;
-    private Double valor;
+    @Id
     private Integer periodo;
     
-    public Cuenta(){}
+    private Double valor;
     
-    public Long getIdCuenta() {
-        return idCuenta;
-    }
-
-    public void setIdCuenta(Long idCuenta) {
-        this.idCuenta = idCuenta;
-    }
-
     public String getNombre() {
         return nombre;
     }
@@ -43,14 +36,6 @@ public class Cuenta implements Serializable {
         this.empresa = empresa;
     }
 
-    public Double getValor() {
-        return valor;
-    }
-
-    public void setValor(Double valor) {
-        this.valor = valor;
-    }
-
     public Integer getPeriodo() {
         return periodo;
     }
@@ -59,14 +44,11 @@ public class Cuenta implements Serializable {
         this.periodo = periodo;
     }
 
-    @Override
-    public String toString(){
-      
-        return "IdCuenta: "+this.getIdCuenta()+
-                ", Nombre: "+this.getNombre()+
-                ", Empresa: "+this.getEmpresa()+
-                ", Valor: "+(this.getValor()).toString()+
-                ", Periodo: "+(this.getPeriodo()).toString()+
-                "\n";
+    public Double getValor() {
+        return valor;
+    }
+
+    public void setValor(Double valor) {
+        this.valor = valor;
     }
 }

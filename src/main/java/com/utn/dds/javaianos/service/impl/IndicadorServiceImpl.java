@@ -40,7 +40,7 @@ public class IndicadorServiceImpl implements IndicadorService {
     }*/
     
     @Override
-    public int saveIndicador(Indicador indicador) {
+    public Integer saveIndicador(Indicador indicador) {
         /* Codigo de resultado:
             0: guardo un nuevo indicador con exito
             1: error, expresion mal formada en la formula del indicador
@@ -72,13 +72,15 @@ public class IndicadorServiceImpl implements IndicadorService {
     public Boolean allComponentsExists(Indicador indicador) {
         /* En este metodo utilizo Streams de Java 8 y trabajo con conceptos de paradigma funcional */
         // regex: aplico el uso de expresiones regulares para descomponer el String, tambien se usan caracteres de escape (\\)
-        String[] sComponentes = indicador.getFormula().replaceAll("\\(|\\)", "").split("\\+|-|\\*|/");
+        // Aclaracion: los numeros son validos en las formulas. Los omitimos ya que siempre seran True.
+        String[] sComponentes = indicador.getFormula().replaceAll("\\(|\\)|\\d+", "").split("\\+|-|\\*|/");
+        
         Stream<String> oldStream = Arrays.stream(sComponentes);
         Stream<String> componentes = oldStream.map(c -> c.trim());
         
         Predicate<String> predicate = (String componente) -> 
             (indicadorRepository.findByNombre(componente) == null) &&
-            (cuentaRepository.findByNombre(componente) == null);
+            (cuentaRepository.findFirstByNombre(componente) == null);
         
         return componentes.noneMatch(predicate);
     }

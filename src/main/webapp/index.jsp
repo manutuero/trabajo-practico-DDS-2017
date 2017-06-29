@@ -66,7 +66,7 @@
 
                 <div class="col-md-3 col-sm-6 hero-feature">
                     <div class="thumbnail">
-                        <img src="http://placehold.it/800x500" alt="">
+                        <img src="<%=request.getContextPath()%>\images\consulta-valores.jpeg" alt="http://placehold.it/800x500">
                         <div class="caption">
                             <h3>Consultar valores</h3>
                             <p>Modulo de consulta de valores por criterios.</p>
@@ -82,7 +82,7 @@
 
                 <div class="col-md-3 col-sm-6 hero-feature">
                     <div class="thumbnail">
-                        <img src="<%=request.getContextPath()%>\images\indicadores.png" alt="http://placehold.it/800x500" >
+                        <img src="<%=request.getContextPath()%>\images\indicadores.png" alt="http://placehold.it/800x500" width="644" height="355">
                         <div class="caption">
                             <h3>Indicadores</h3>
                             <p>Modulo de gestion de Indicadores</p>

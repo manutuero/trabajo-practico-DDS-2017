@@ -10,5 +10,5 @@ public interface IndicadorService {
 
     public Integer saveIndicador(Indicador indicador);
     
-    //public Double calcularValor(Indicador indicador);
+    public Double calcularValor(Indicador indicador, String empresa, Integer periodo);
 }

@@ -24,20 +24,14 @@ public class IndicadorServiceImpl implements IndicadorService {
     @Autowired
     private CuentaRepository cuentaRepository;
     
-    /* @Override
-    public Double calcularValor(Indicador indicador) {
+    @Override
+    public Double calcularValor(Indicador indicador, String empresa, Integer periodo) {
         Double valor = null;
         
-        // regex: uso expresiones regulares para descomponer el String con caracteres de escape (\\)
-        String[] sComponentes = indicador.getFormula().replaceAll("\\s|\\(|\\)","").split("\\+|-|\\*|/");
+        // agregar codigo magico :)
         
-        List <Componente> componentes = new <Componente> ArrayList();
-        
-        for(String componente : sComponentes) {
-        
-        }
         return valor;
-    }*/
+    }
     
     @Override
     public Integer saveIndicador(Indicador indicador) {

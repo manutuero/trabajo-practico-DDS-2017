@@ -82,4 +82,10 @@ public class Cuenta implements Serializable , Componente {
         // este es un nodo hoja asi que este metodo no es aplicable para esta clase.
         return null;
     }
+
+
+    @Override
+    public Double calcularValor(String empresa, Integer periodo) {
+       return this.valor;
+    }
 }

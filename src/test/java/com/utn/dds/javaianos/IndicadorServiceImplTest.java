@@ -107,4 +107,7 @@ public class IndicadorServiceImplTest {
         assertEquals(null, indicadorRepository.findByNombre("I1"));
         assertEquals(2, resultado);
     }
+    
+   
+    
 }

@@ -10,6 +10,7 @@ import com.utn.dds.javaianos.service.IndicadorService;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,12 +25,14 @@ public class IndicadorServiceImpl implements IndicadorService {
     @Autowired
     private CuentaRepository cuentaRepository;
     
+
+        
     @Override
     public Double calcularValor(Indicador indicador, String empresa, Integer periodo) {
         Double valor = null;
         
         // agregar codigo magico :)
-        
+
         return valor;
     }
     
@@ -77,5 +80,10 @@ public class IndicadorServiceImpl implements IndicadorService {
             (cuentaRepository.findFirstByNombre(componente) == null);
         
         return componentes.noneMatch(predicate);
+    }
+
+    @Override
+    public List<Indicador> getAllIndicadores() {
+        return indicadorRepository.findAll();
     }
 }

@@ -16,8 +16,13 @@ CREATE TABLE Indicador (
 );
 
 INSERT INTO Cuenta (nombre, empresa, periodo, valor) VALUES ('EBITDA','Facebook',2016,14870);
+INSERT INTO Cuenta (nombre, empresa, periodo, valor) VALUES ('EFG','Facebook',2016,100);
 INSERT INTO Cuenta (nombre, empresa, periodo, valor) VALUES ('EBITDA','Facebook',2015,8162);
 INSERT INTO Cuenta (nombre, empresa, periodo, valor) VALUES ('Ingreso Neto En Operaciones Continuas','Facebook',2016,4273000000);
 INSERT INTO Cuenta (nombre, empresa, periodo, valor) VALUES ('Ingreso Neto En Operaciones Discontinuadas','Facebook',2016,0);
 
 INSERT INTO Indicador(nombre, tipo, formula) VALUES ('Ingreso neto','predefinido','Ingreso Neto En Operaciones Continuas + Ingreso Neto En Operaciones Discontinuadas');
+INSERT INTO Indicador(nombre, tipo, formula) VALUES ('I_J1','predefinido','EBITDA');
+
+INSERT INTO Indicador(nombre, tipo, formula) VALUES ('I_TestSoloCuenta','predefinido','EBITDA*EFG');
+INSERT INTO Indicador(nombre, tipo, formula) VALUES ('I_TestSoloIndicador','predefinido','I_J1');

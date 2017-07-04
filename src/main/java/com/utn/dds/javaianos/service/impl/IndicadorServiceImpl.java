@@ -25,11 +25,14 @@ public class IndicadorServiceImpl implements IndicadorService {
     @Autowired
     private CuentaRepository cuentaRepository;
     
-    // faltan periodo y empresa
+
+        
     @Override
-    public Double obtenerValor(Indicador indicador) {
+    public Double calcularValor(Indicador indicador, String empresa, Integer periodo) {
         Double valor = null;
         
+        // agregar codigo magico :)
+
         return valor;
     }
     

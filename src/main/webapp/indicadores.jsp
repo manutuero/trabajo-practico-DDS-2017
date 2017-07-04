@@ -74,7 +74,7 @@
                             <p><font size="3">Modulo de evaluacion de indicadores existentes</font> </p>
                             <p>
                                 <!-- Dipara un modal al apretar el boton -->
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-evaluar-indi">
+                                <button id="btn-abrir-evaluar-indicador" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-evaluar-indi">
                                     Abrir modulo
                                 </button>
                             </p>
@@ -147,17 +147,8 @@
                     <p><h4 class="modal-title">Evaluar Indicador</h4><p>
                     <div class="row">
                         <div class="col-xs-2">Indicador</div>
-                        <!--<div class="col-xs-10"><p><input id ="input-nombre" type="text" required="true" size="20"></p></div>-->
                         <div class="col-xs-6">
-                            <p>
-                                <select class="form-control" name="size">
-                                    <option value="">Seleccione un indicador</option>
-                                    <option value="s">Small (S)</option>
-                                    <option value="m">Medium (M)</option>
-                                    <option value="l">Large (L)</option>
-                                    <option value="xl">Extra large (XL)</option>
-                                </select>
-                            </p>
+                            <p><select id="list-indicadores" class="form-control" name="size" ></select></p>
                         </div>
                     </div>
                     <div class="row">

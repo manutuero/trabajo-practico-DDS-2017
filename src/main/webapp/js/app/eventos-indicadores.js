@@ -1,3 +1,20 @@
+function initListaIndicadores() {
+    var listaIndicadores = $('#list-indicadores');
+ 
+    listaIndicadores.empty();
+    listaIndicadores.append('<option value="" disabled selected>Seleccione un indicador</option>');
+            
+    $.ajax({
+        url: 'http://localhost:8084/TpIntegradorDDS/api/indicadores',
+        type: 'GET',
+        success: function (indicadores) {
+            $.each(indicadores, function (indice, indicador) {
+                listaIndicadores.append('<option>' + indicador.nombre + '</option>');
+            });
+        }
+    });
+}
+
 function validarIngresoNuevoIndicador() {
     $('#btn-crear').click(function () {
         cleanResponses();
@@ -54,17 +71,7 @@ function cleanResponses() {
 ;
 
 function cleanForm() {
-    /*$('#input-nombre').html("");
-    $('#textarea-formula').html("");
-    $('#modal1').on('hidden.bs.modal', function (e) {
-        $(this)
-                .find("input,textarea,select")
-                .val('')
-                .end()
-                .find("input[type=checkbox], input[type=radio]")
-                .prop("checked", "")
-                .end();
-    })*/
+
 }
 
 function abrirModalNuevoIndicador() {
@@ -83,10 +90,21 @@ function cerrarModalNuevoIndicador() {
 }
 ;
 
+function abrirModalEvaluarIndicador() {
+    $('#btn-abrir-evaluar-indicador').click(function () {
+        initListaIndicadores();
+    });
+}
+;
+
+// Metodos que van a estar listos para usar cuando se cargue el documento HTML.
 $(document).ready(function () {
     cleanForm();
     cleanResponses();
+    
+    // eventos
     abrirModalNuevoIndicador();
     cerrarModalNuevoIndicador();
     validarIngresoNuevoIndicador();
+    abrirModalEvaluarIndicador();
 });

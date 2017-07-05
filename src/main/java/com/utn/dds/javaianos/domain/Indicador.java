@@ -84,29 +84,42 @@ public class Indicador implements Serializable, Componente {
     @Override
 
     public Double calcularValor(String empresa, Integer periodo) {
-        // desarrollar calcularValor para este indicador, haciendo un calcularValor para cada componente de su coleccion
-        Double valor = 0.0;
+        Double valor = 0.0; 
         String[] result = formula.split("(?<=[-+*/)( ])|(?=[-+*/)( ])");
-        String formulaFinal = "";
-        Componente componente = null;
+        String formulaFinal = "";  
+        Indicador indicador;
+        Cuenta cuenta;
+        Componente componente=null;
+        
         for (String elemento : result) {
+            indicador=null;
+            cuenta=null;
             if ((elemento.matches("([0-9.]+)")) || (elemento.matches("[-+*/()]"))) {
                 formulaFinal = formulaFinal + elemento;
-                //System.out.println("Es numero u operador");
             } else //Es un componente. Busco su valor. 
-            {
-                if (indicadorRepository.findByNombre(elemento) != null) {
-                    componente = indicadorRepository.findByNombre(elemento);
-                } else if (cuentaRepository.findByNombreAndEmpresaAndPeriodo(elemento, empresa, periodo) != null) {
-                    componente = cuentaRepository.findByNombreAndEmpresaAndPeriodo(elemento, empresa, periodo);
+            {   try {
+                indicador=indicadorRepository.findByNombre(elemento);
+                cuenta=cuentaRepository.findByNombreAndEmpresaAndPeriodo(elemento, empresa, periodo);
+                }catch (Exception ex)
+                {System.out.println("ERROR AL BUSCAR CUENTAS E INDICADORES.");}
+                if ( indicador!= null) {
+                    System.out.println("Es indicador");
+                    componente=indicador;
+                    
+                } else if ( cuenta!= null) {
+                    System.out.println("Es cuenta");
+                    componente=cuenta;
                 } else {
                     System.out.println("Error, no encontro ni cuenta ni indicador. indicador.java");
                 }
+            
+            if(componente!=null){
+             valor = componente.calcularValor(empresa, periodo);
+             formulaFinal = formulaFinal + valor.toString();//obtiene el valor en formato string de una cuenta o indicador. 
+            } else {System.out.println("componente vino null");}  
             }
-            valor = componente.calcularValor(empresa, periodo);
-            formulaFinal = formulaFinal + valor.toString();//obtiene el valor en formato string de una cuenta o indicador. 
         }
-
+        System.out.println("FOrmula final aca: ---"+formulaFinal); 
         ScriptEngineManager manager = new ScriptEngineManager();
         ScriptEngine engine = manager.getEngineByName("js");
         try {

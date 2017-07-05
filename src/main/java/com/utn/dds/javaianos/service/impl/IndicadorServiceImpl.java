@@ -26,11 +26,10 @@ public class IndicadorServiceImpl implements IndicadorService {
     private CuentaRepository cuentaRepository;
 
     @Override
-    public Double calcularValor(Indicador indicador, String empresa, Integer periodo) {
-        Double valor = null;
+    public Double evaluarIndicador(Indicador indicador, String empresa, Integer periodo) {
+        Double valor;
         valor = indicador.calcularValor(empresa,periodo);
 
-        // agregar codigo magico :)
         return valor;
     }
 

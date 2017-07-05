@@ -28,6 +28,7 @@ public class IndicadorServiceImpl implements IndicadorService {
     @Override
     public Double calcularValor(Indicador indicador, String empresa, Integer periodo) {
         Double valor = null;
+        valor = indicador.calcularValor(empresa,periodo);
 
         // agregar codigo magico :)
         return valor;

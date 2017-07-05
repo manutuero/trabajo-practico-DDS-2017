@@ -32,13 +32,7 @@ public class IndicadorServiceImplTest {
     
     @Test
     public void isValidFormula_conFormulaValida_devuelveTrue() {
-       Boolean resultado = indicadorService.isValidExpression("(Cuenta1+Cuenta2)*(500-Cuenta3)");       
-       assertEquals(true, resultado);
-    }
-    
-    @Test
-    public void isValidFormula_conOtraFormulaValida_devuelveTrue() {
-       Boolean resultado = indicadorService.isValidExpression("Ingreso Neto En Operaciones Continuas");       
+       Boolean resultado = indicadorService.isValidExpression("(Cuenta1+Indicador1)*(500-Cuenta2)");       
        assertEquals(true, resultado);
     }
     
@@ -47,7 +41,7 @@ public class IndicadorServiceImplTest {
         Indicador indicador = new Indicador();
         indicador.setNombre("I1");
         indicador.setTipo("definido por el usuario");
-        indicador.setFormula("verdura");
+        indicador.setFormula("(verdura/2)+1");
         
         assertEquals(false,indicadorService.allComponentsExists(indicador));
     }
@@ -57,7 +51,7 @@ public class IndicadorServiceImplTest {
         Indicador indicador = new Indicador();
         indicador.setNombre("I1");
         indicador.setTipo("definido por el usuario");
-        indicador.setFormula("Ingreso Neto En Operaciones Continuas + Ingreso Neto En Operaciones Discontinuadas");
+        indicador.setFormula("INOC+INOD");
         
         assertEquals(true, indicadorService.allComponentsExists(indicador));
     }
@@ -67,7 +61,7 @@ public class IndicadorServiceImplTest {
         Indicador indicador = new Indicador();
         indicador.setNombre("I1");
         indicador.setTipo("definido por el usuario");
-        indicador.setFormula("Ingreso Neto En Operaciones Continuas");
+        indicador.setFormula("INOC");
         
         int resultado = indicadorService.saveIndicador(indicador);
         
@@ -78,7 +72,7 @@ public class IndicadorServiceImplTest {
         
         assertEquals("I1",indicadorGuardado.getNombre());
         assertEquals("definido por el usuario",indicadorGuardado.getTipo());
-        assertEquals("Ingreso Neto En Operaciones Continuas",indicadorGuardado.getFormula());
+        assertEquals("INOC",indicadorGuardado.getFormula());
         assertEquals(0, resultado);
     }
     

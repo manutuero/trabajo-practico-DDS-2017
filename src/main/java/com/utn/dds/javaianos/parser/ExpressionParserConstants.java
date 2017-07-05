@@ -25,15 +25,13 @@ public interface ExpressionParserConstants {
   /** RegularExpression Id. */
   int PARENTESIS_DERECHO = 11;
   /** RegularExpression Id. */
-  int ESPACIO = 12;
+  int NUMERO = 12;
   /** RegularExpression Id. */
-  int NUMERO = 13;
+  int DIGITO = 13;
   /** RegularExpression Id. */
-  int DIGITO = 14;
+  int IDENTIFICADOR = 14;
   /** RegularExpression Id. */
-  int IDENTIFICADOR = 15;
-  /** RegularExpression Id. */
-  int LETRA = 16;
+  int LETRA = 15;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -52,7 +50,6 @@ public interface ExpressionParserConstants {
     "\"/\"",
     "\"(\"",
     "\")\"",
-    "\" \"",
     "<NUMERO>",
     "<DIGITO>",
     "<IDENTIFICADOR>",

@@ -17,97 +17,85 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @WebAppConfiguration
 @Transactional
 public class IndicadorServiceImplTest {
-    
+
     @Autowired
     IndicadorService indicadorService;
-    
+
     @Autowired
     IndicadorRepository indicadorRepository;
-    
+
     @Test
     public void isValidFormula_conFormulaNoValida_devuelveFalse() {
-       Boolean resultado = indicadorService.isValidExpression("++");       
-       assertEquals(false, resultado);
+        Boolean resultado = indicadorService.isValidExpression("++");
+        assertEquals(false, resultado);
     }
-    
+
     @Test
     public void isValidFormula_conFormulaValida_devuelveTrue() {
-       Boolean resultado = indicadorService.isValidExpression("(Cuenta1+Cuenta2)*(500-Cuenta3)");       
-       assertEquals(true, resultado);
+        Boolean resultado = indicadorService.isValidExpression("(Cuenta1+Indicador1)*(500-Cuenta2)");
+        assertEquals(true, resultado);
     }
-    
-    @Test
-    public void isValidFormula_conOtraFormulaValida_devuelveTrue() {
-       Boolean resultado = indicadorService.isValidExpression("Ingreso Neto En Operaciones Continuas");       
-       assertEquals(true, resultado);
-    }
-    
+
     @Test
     public void allComponentsExists_conComponentesNoExistentesEnDb_devuelveFalse() {
         Indicador indicador = new Indicador();
         indicador.setNombre("I1");
         indicador.setTipo("definido por el usuario");
-        indicador.setFormula("verdura");
-        
-        assertEquals(false,indicadorService.allComponentsExists(indicador));
+        indicador.setFormula("(verdura/2)+1");
+
+        assertEquals(false, indicadorService.allComponentsExists(indicador));
     }
-    
+
     @Test
     public void allComponentsExists_conComponentesExistentesEnDb_devuelveTrue() {
         Indicador indicador = new Indicador();
         indicador.setNombre("I1");
         indicador.setTipo("definido por el usuario");
-        indicador.setFormula("Ingreso Neto En Operaciones Continuas + Ingreso Neto En Operaciones Discontinuadas");
-        
+        indicador.setFormula("INOC+INOD");
+
         assertEquals(true, indicadorService.allComponentsExists(indicador));
     }
-    
+
     @Test
     public void saveIndicador_conFormulaValidaYElementosExistentes_guardaYDevuelve0() {
         Indicador indicador = new Indicador();
         indicador.setNombre("I1");
         indicador.setTipo("definido por el usuario");
-        indicador.setFormula("Ingreso Neto En Operaciones Continuas");
-        
+        indicador.setFormula("INOC");
+
         int resultado = indicadorService.saveIndicador(indicador);
-        
+
         Indicador indicadorGuardado = indicadorRepository.findByNombre("I1");
-        System.out.println(indicadorGuardado.getNombre());
-        System.out.println(indicadorGuardado.getTipo());
-        System.out.println(indicadorGuardado.getFormula());
-        
-        assertEquals("I1",indicadorGuardado.getNombre());
-        assertEquals("definido por el usuario",indicadorGuardado.getTipo());
-        assertEquals("Ingreso Neto En Operaciones Continuas",indicadorGuardado.getFormula());
+
+        assertEquals("I1", indicadorGuardado.getNombre());
+        assertEquals("definido por el usuario", indicadorGuardado.getTipo());
+        assertEquals("INOC", indicadorGuardado.getFormula());
         assertEquals(0, resultado);
     }
-    
+
     @Test
     public void saveIndicador_conFormulaNoValida_noGuardaYDevuelve1() {
         Indicador indicador = new Indicador();
         indicador.setNombre("I1");
         indicador.setTipo("definido por el usuario");
         indicador.setFormula("$-*");
-        
-        int resultado = indicadorService.saveIndicador(indicador);  
-        
+
+        int resultado = indicadorService.saveIndicador(indicador);
+
         assertEquals(null, indicadorRepository.findByNombre("I1"));
         assertEquals(1, resultado);
     }
-    
+
     @Test
     public void saveIndicador_conFormulaValidaYElementosNoExistentes_noGuardaYDevuelve2() {
         Indicador indicador = new Indicador();
         indicador.setNombre("I1");
         indicador.setTipo("definido por el usuario");
         indicador.setFormula("C1+C3*10");
-        
+
         int resultado = indicadorService.saveIndicador(indicador);
-        
+
         assertEquals(null, indicadorRepository.findByNombre("I1"));
         assertEquals(2, resultado);
     }
-    
-   
-    
 }

@@ -21,38 +21,35 @@ public class IndicadorServiceImpl implements IndicadorService {
 
     @Autowired
     private IndicadorRepository indicadorRepository;
-    
+
     @Autowired
     private CuentaRepository cuentaRepository;
-    
 
-        
     @Override
     public Double calcularValor(Indicador indicador, String empresa, Integer periodo) {
         Double valor = null;
-        
-        // agregar codigo magico :)
 
+        // agregar codigo magico :)
         return valor;
     }
-    
+
     @Override
     public Integer saveIndicador(Indicador indicador) {
         /* Codigo de resultado:
             0: guardo un nuevo indicador con exito
             1: error, expresion mal formada en la formula del indicador
             2: error, elementos no existentes en la formula del indicador
-        */
-        if(isValidExpression(indicador.getFormula()) && allComponentsExists(indicador)) {
+         */
+        if (isValidExpression(indicador.getFormula()) && allComponentsExists(indicador)) {
             indicadorRepository.save(indicador);
             return 0;
-        } else if(!isValidExpression(indicador.getFormula())){
+        } else if (!isValidExpression(indicador.getFormula())) {
             return 1;
         } else {
             return 2;
         }
     }
-    
+
     @Override
     public Boolean isValidExpression(String expression) {
         Boolean isValid = null;
@@ -70,16 +67,16 @@ public class IndicadorServiceImpl implements IndicadorService {
         /* En este metodo utilizo Streams de Java 8 y trabajo con conceptos de paradigma funcional */
         // regex: aplico el uso de expresiones regulares para descomponer el String, tambien se usan caracteres de escape (\\)
         // Aclaracion: los numeros son validos en las formulas. Los omitimos ya que siempre seran True.
-        String[] sComponentes = indicador.getFormula().replaceAll("\\(|\\)|\\d+", "").split("\\+|-|\\*|/");
         
-        Stream<String> oldStream = Arrays.stream(sComponentes);
-        Stream<String> componentes = oldStream.map(c -> c.trim());
+        String[] sComponentes = indicador.getFormula().replaceAll("\\(|\\)|[0-9]", "").split("\\+|-|\\*|/");
         
-        Predicate<String> predicate = (String componente) -> 
-            (indicadorRepository.findByNombre(componente) == null) &&
-            (cuentaRepository.findFirstByNombre(componente) == null);
+        Stream<String> stream = Arrays.stream(sComponentes);
+
+        Predicate<String> predicate = (String componente)
+                -> (indicadorRepository.findByNombre(componente) == null)
+                && (cuentaRepository.findFirstByNombre(componente) == null);
         
-        return componentes.noneMatch(predicate);
+        return stream.noneMatch(predicate);
     }
 
     @Override

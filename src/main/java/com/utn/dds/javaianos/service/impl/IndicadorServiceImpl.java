@@ -31,7 +31,7 @@ public class IndicadorServiceImpl implements IndicadorService {
     public Double calcularValor(Indicador indicador, String empresa, Integer periodo) {
         Double valor = null;
         
-        // agregar codigo magico :)
+        valor = indicador.calcularValor(empresa,periodo);
 
         return valor;
     }

@@ -75,6 +75,7 @@ public class Indicador implements Serializable, Componente {
         String[] elementos = formula.split("(?<=[-+*/)( ])|(?=[-+*/)( ])");
         String formulaFinal = "";
         Componente componente = null;
+
         Integer pos=0;
         for (String elemento : elementos) {       
             if ((elemento.matches("([0-9.]+)")) || (elemento.matches("[-+*/()]"))) {

@@ -76,9 +76,6 @@ public class Indicador implements Serializable, Componente {
         for (String elemento : result) {
             //indicador = null;
             //cuenta = null;
-            System.out.println("------------------------------------------------");
-            System.out.println("Elemento: " + elemento);
-            System.out.println("------------------------------------------------");
             
             if ((elemento.matches("([0-9.]+)")) || (elemento.matches("[-+*/()]"))) {
                 formulaFinal = formulaFinal + elemento;

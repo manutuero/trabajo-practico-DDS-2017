@@ -98,4 +98,13 @@ public class IndicadorServiceImplTest {
         assertEquals(null, indicadorRepository.findByNombre("I1"));
         assertEquals(2, resultado);
     }
+
+    @Test
+    public void evaluarIndicador_conIndicadorExistente_devuelveValor() {
+        Indicador indicador = new Indicador();
+        indicador.setNombre("I_TestSoloCuenta");
+        indicador.setTipo("definido por el usuario");
+        indicador.setFormula("EBITDA*EFG");
+        indicadorService.evaluarIndicador("I_TestSoloCuenta","Facebook",2016);
+    }
 }

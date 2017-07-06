@@ -38,7 +38,7 @@ public class IndicadorServiceImpl implements IndicadorService {
         for (String sComponente : sComponentes) {
             if (!(sComponente.matches("([0-9.]+)")) || (sComponente.matches("[-+*/()]"))) {
                 iComponente = indicadorRepository.findByNombre(sComponente);
-                cComponente = ind
+                //cComponente = ind;
                 if (iComponente != null) {
                     componentes.add(iComponente);
                 } else if (cComponente != null) {

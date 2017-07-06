@@ -3,10 +3,15 @@ package com.utn.dds.javaianos.domain;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
 
 @Entity
 @Table(name = "Indicador")
@@ -67,42 +72,29 @@ public class Indicador implements Serializable, Componente {
     @Override
     public Double calcularValor(String empresa, Integer periodo) {
         Double valor = 0.0;
-        String[] result = formula.split("(?<=[-+*/)( ])|(?=[-+*/)( ])");
+        String[] elementos = formula.split("(?<=[-+*/)( ])|(?=[-+*/)( ])");
         String formulaFinal = "";
-        Indicador indicador;
-        Cuenta cuenta;
         Componente componente = null;
 
-        for (String elemento : result) {
-            //indicador = null;
-            //cuenta = null;
-            
+        Integer pos=0;
+        for (String elemento : elementos) {       
             if ((elemento.matches("([0-9.]+)")) || (elemento.matches("[-+*/()]"))) {
                 formulaFinal = formulaFinal + elemento;
             } else //Es un componente. Busco su valor. 
             {
-                //Iindicador = indicadorRepository.findByNombre(elemento);
-                //cuenta = cuentaRepository.findByNombreAndEmpresaAndPeriodo("EBITDA", "Facebook", 2016);
-
-                /*if (indicador != null) {
-                    System.out.println("Es indicador");
-                    componente = indicador;
-                } else if (cuenta != null) {
-                    System.out.println("Es cuenta");
-                    componente = cuenta;
-                } else {
-                    System.out.println("Error, no encontro ni cuenta ni indicador.");
-                }*/
-
-                if (componente != null) {
-                    valor = componente.calcularValor(empresa, periodo);
-                    formulaFinal = formulaFinal + valor.toString();//obtiene el valor en formato string de una cuenta o indicador. 
-                } else {
-                    System.out.println("componente vino null");
+                componente=componentes.get(pos);
+                pos++;
+                if(componente.getNombre().equals(elemento)){
+                    valor=componente.calcularValor(empresa,periodo);
+                    formulaFinal = formulaFinal + valor.toString();//obtiene el valor en formato string de una cuenta o indicador.      
+            
+                } else 
+                {
+                    System.out.println("Error al buscar elemento leido de la formula en la lista de componentes");
                 }
             }
+                
         }
-        /*
         System.out.println("Formula final aca: " + formulaFinal);
         ScriptEngineManager manager = new ScriptEngineManager();
         ScriptEngine engine = manager.getEngineByName("js");
@@ -111,7 +103,7 @@ public class Indicador implements Serializable, Componente {
         } catch (ScriptException ex) {
             Logger.getLogger(Indicador.class.getName()).log(Level.SEVERE, null, ex);
             valor = 0.0;
-        }*/
+        }
         return valor;
     }
 

@@ -86,14 +86,12 @@ public class Indicador implements Serializable, Componente {
                 pos++;
                 if(componente.getNombre().equals(elemento)){
                     valor=componente.calcularValor(empresa,periodo);
-                    formulaFinal = formulaFinal + valor.toString();//obtiene el valor en formato string de una cuenta o indicador.      
-            
+                    formulaFinal = formulaFinal + valor.toString();//obtiene el valor en formato string de una cuenta o indicador.
                 } else 
                 {
                     System.out.println("Error al buscar elemento leido de la formula en la lista de componentes");
                 }
             }
-                
         }
         System.out.println("Formula final aca: " + formulaFinal);
         ScriptEngineManager manager = new ScriptEngineManager();
@@ -124,10 +122,6 @@ public class Indicador implements Serializable, Componente {
 
     @Override
     public Double calcularValor() {
-        return null;
-    }
-    
-    public Indicador buscarIndicador() {
         return null;
     }
 }

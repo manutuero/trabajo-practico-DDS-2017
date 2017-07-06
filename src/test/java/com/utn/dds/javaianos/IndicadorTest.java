@@ -21,11 +21,11 @@ public class IndicadorTest {
     @Autowired
     IndicadorRepository indicadorRepository;
 
-    @Test
+    /*@Test
     public void calcularValor_indicadorValidoSoloCuenta_devuelveValor() {
         Indicador indicador = indicadorRepository.findByNombre("I_TestSoloCuenta");
         Double resultado = indicador.calcularValor("Facebook", 2016);
 
         assertEquals(new Double(1489000), resultado);
-    }
+    }*/
 }

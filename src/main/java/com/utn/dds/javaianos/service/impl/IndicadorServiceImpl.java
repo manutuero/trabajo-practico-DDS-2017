@@ -1,5 +1,6 @@
 package com.utn.dds.javaianos.service.impl;
 
+import com.utn.dds.javaianos.domain.Componente;
 import com.utn.dds.javaianos.domain.Indicador;
 import com.utn.dds.javaianos.parser.ExpressionParser;
 import com.utn.dds.javaianos.parser.ParseException;
@@ -9,6 +10,7 @@ import com.utn.dds.javaianos.repository.IndicadorRepository;
 import com.utn.dds.javaianos.service.IndicadorService;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
@@ -26,11 +28,27 @@ public class IndicadorServiceImpl implements IndicadorService {
     private CuentaRepository cuentaRepository;
 
     @Override
-    public Double evaluarIndicador(Indicador indicador, String empresa, Integer periodo) {
-        Double valor;
-        valor = indicador.calcularValor(empresa,periodo);
+    public Double evaluarIndicador(String codigoIndicador, String empresa, Integer periodo) {
+        Indicador indicador = indicadorRepository.findByNombre(codigoIndicador);
+        List<Componente> componentes = new ArrayList();
+        String[] sComponentes = indicador.getFormula().split("(?<=[-+*/)( ])|(?=[-+*/)( ])");
+        Componente iComponente = null;
+        Componente cComponente = null;
 
-        return valor;
+        for (String sComponente : sComponentes) {
+            if (!(sComponente.matches("([0-9.]+)")) || (sComponente.matches("[-+*/()]"))) {
+                iComponente = indicadorRepository.findByNombre(sComponente);
+                //cComponente = ind;
+                if (iComponente != null) {
+                    componentes.add(iComponente);
+                } else if (cComponente != null) {
+                }
+            }
+
+        }
+        indicador.setComponentes(componentes);
+
+        return indicador.calcularValor(empresa, periodo);
     }
 
     @Override
@@ -51,7 +69,8 @@ public class IndicadorServiceImpl implements IndicadorService {
     }
 
     @Override
-    public Boolean isValidExpression(String expression) {
+    public Boolean isValidExpression(String expression
+    ) {
         Boolean isValid = null;
         try {
             InputStream stream = new ByteArrayInputStream(expression.getBytes());
@@ -63,19 +82,20 @@ public class IndicadorServiceImpl implements IndicadorService {
     }
 
     @Override
-    public Boolean allComponentsExists(Indicador indicador) {
+    public Boolean allComponentsExists(Indicador indicador
+    ) {
         /* En este metodo utilizo Streams de Java 8 y trabajo con conceptos de paradigma funcional */
         // regex: aplico el uso de expresiones regulares para descomponer el String, tambien se usan caracteres de escape (\\)
         // Aclaracion: los numeros son validos en las formulas. Los omitimos ya que siempre seran True.
-        
+
         String[] sComponentes = indicador.getFormula().replaceAll("\\(|\\)|[0-9]", "").split("\\+|-|\\*|/");
-        
+
         Stream<String> stream = Arrays.stream(sComponentes);
 
         Predicate<String> predicate = (String componente)
                 -> (indicadorRepository.findByNombre(componente) == null)
                 && (cuentaRepository.findFirstByNombre(componente) == null);
-        
+
         return stream.noneMatch(predicate);
     }
 

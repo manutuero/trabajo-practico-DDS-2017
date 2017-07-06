@@ -13,5 +13,5 @@ public interface IndicadorService {
     
     public List<Indicador> getAllIndicadores();
     
-    public Double calcularValor(Indicador indicador, String empresa, Integer periodo);
+    public Double evaluarIndicador(String codigoIndicador, String empresa, Integer periodo);
 }

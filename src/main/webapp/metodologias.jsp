@@ -31,19 +31,10 @@
         <div class="container">
             <!-- Jumbotron Header -->
             <header class="jumbotron hero-spacer">
-                <h1>Gestion de Indicadores</h1>
-                <p>Aqui se podra tanto ingresar y/o consultar un nuevo indicador como verificar un indicador del sistema</p>
+                <h1>Gestion de Metodologias</h1>
+                <p>Aqui se podra tanto ingresar una nueva metodologia como evaluar una metodologia del sistema</p>
             </header>
 
-            <!-- A success message -->
-            <div class="row">
-                <div class="col-lg-7"></div>
-                <div class="col-lg-5">
-                    <div id="success-message" class="alert alert-success" hidden="true">
-                        <strong>Exito!</strong> El indicador se ha guardado exitosamente.
-                    </div>
-                </div>
-            </div>
 
             <div class="row">
                 <div class="col-lg-12">
@@ -56,31 +47,26 @@
                 <div class="col-md-6 col-sm-8 hero-feature">
                     <div class="thumbnail">
                         <div class="caption">
-                            <h1>Cargar nuevo Indicador</h1>
-                            <p><font size="3">Modulo de ingreso de nuevos indicadores definidos por el usuario</font> </p>
+                            <h3>Cargar Metodologia</h3>
+                            <p><font size="3">Permite cargar nuevas metodologias.</font></p>
                             <p>
-                                <!-- Dipara un modal al apretar el boton -->
-                                <button id="btn-abrir-nuevo-indicador" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-nuevo-indi">
-                                    Abrir modulo
-                                </button>
+                                <a id="btn-abrir-nueva-metodologia" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-nueva-metod">Abrir modulo</a>
                             </p>
                         </div>
                     </div>
                 </div>
+
                 <div class="col-md-6 col-sm-8 hero-feature">
                     <div class="thumbnail">
                         <div class="caption">
-                            <h1>Evaluar Indicador</h1>
-                            <p><font size="3">Modulo de evaluacion de indicadores existentes</font> </p>
+                            <h3>Analizar metodologias</h3>
+                            <p><font size="3">Modulo que realiza analisis de metodologias.</font></p>
                             <p>
-                                <!-- Dipara un modal al apretar el boton -->
-                                <button id="btn-abrir-evaluar-indicador" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-evaluar-indi">
-                                    Abrir modulo
-                                </button>
+                                <a id="btn-abrir-evaluar-metodologia" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-evaluar-metod">Abrir modulo</a>
                             </p>
                         </div>
                     </div>
-                </div>           
+                </div>
             </div>
 
             <!-- Page Footer -->
@@ -94,15 +80,15 @@
             </footer>
         </div>
 
-        <!-- ***** Modulo Nuevo Indicador ***** -->
+        <!-- ***** Modulo Nueva metodologia ***** -->
         <!-- Modal -->
-        <div id="modal-nuevo-indi" class="modal fade" role="dialog">
+        <div id="modal-nueva-metod" class="modal fade" role="dialog">
             <div class="modal-dialog">
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Nuevo Indicador</h4><br>
+                        <h4 class="modal-title">Nueva Metodologia</h4><br>
                         <div class="row">
                             <div class="col-xs-12">
                                 <p>Nombre: <input id ="input-nombre" type="text" required="true" size="45"></p>
@@ -129,35 +115,26 @@
                     </div>
                     <div class="modal-footer">
                         <input id="btn-crear" type="submit" class="btn btn-primary" value="Crear">
-                        <button id="btn-cerrar-nuevo-indicador" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <button id="btn-cerrar-nueva-metod" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- ***** Modulo Evaluar Indicador ***** -->
+        
+            <!-- ***** Modulo Evaluar Metodologia ***** -->
     <!-- Modal -->
-    <div id="modal-evaluar-indi" class="modal fade" role="dialog">
+    <div id="modal-evaluar-metod" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <p><h4 class="modal-title">Evaluar Indicador</h4><p>
+                    <p><h4 class="modal-title">Evaluar Metodologia</h4><p>
                     <div class="row">
                         <div class="col-xs-2">Indicador</div>
                         <div class="col-xs-6">
-                            <p><select id="list-indicadores" class="form-control" name="size" ></select></p>
+                            <p><select id="list-metodologias" class="form-control" name="size" ></select></p>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-2">Año</div>
-                        <div class="col-xs-10"><p><input id ="input-nombre" type="text" required="true" size="20"></p></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-2">Empresa</div>
-                        <div class="col-xs-10"><p><input id ="input-nombre" type="text" required="true" size="20"></p></div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12">
@@ -173,10 +150,11 @@
         </div>
     </div>
 
-    <!-- Script files -->
-    <script src="js/vendor/jquery-3.2.1.min.js"></script>
-    <script src="js/vendor/bootstrap.min.js"></script>
-    <script src="js/app/eventos-indicadores.js"></script>
-</body>
+        <!-- Script files -->
+        <script src="js/vendor/jquery-3.2.1.min.js"></script>
+        <script src="js/vendor/bootstrap.min.js"></script>
+        <script src="js/app/eventos-metodologias.js"></script>
+    </body>
 </html>
+
 

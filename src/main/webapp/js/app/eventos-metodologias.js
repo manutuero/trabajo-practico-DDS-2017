@@ -1,26 +1,25 @@
-function initListaIndicadores() {
-    var listaIndicadores = $('#list-indicadores');
+function initListaMetodologias() {
+    var listaMetodologias = $('#list-metodologias');
  
-    listaIndicadores.empty();
-    listaIndicadores.append('<option value="" disabled selected>Seleccione un indicador</option>');
+    listaMetodologias.empty();
+    listaMetodologias.append('<option value="" disabled selected>Seleccione una metodologia</option>');
             
     $.ajax({
-        url: 'http://localhost:8084/TpIntegradorDDS/api/indicadores',
+        url: 'http://localhost:8084/TpIntegradorDDS/api/metodologias',
         type: 'GET',
-        success: function (indicadores) {
-            $.each(indicadores, function (indice, indicador) {
-                listaIndicadores.append('<option>' + indicador.nombre + '</option>');
+        success: function (metodologias) {
+            $.each(metodologias, function (indice, metodologia) {
+                listaMetodologias.append('<option>' + metodologia.nombre + '</option>');
             });
         }
     });
-}
+};
 
-function validarIngresoNuevoIndicador() {
+function validarIngresoNuevaMetodologia() {
     $('#btn-crear').click(function () {
         cleanResponses();
 
         var nombre = $('#input-nombre').val();
-        var tipo = "definido por el usuario";
         var formula = $('#textarea-formula').val();
 
         if (nombre === '' || formula === '') {
@@ -30,12 +29,11 @@ function validarIngresoNuevoIndicador() {
 
             var data = {
                 nombre: nombre,
-                tipo: tipo,
                 formula: formula
             };
 
             $.ajax({
-                url: 'http://localhost:8084/TpIntegradorDDS/api/nuevo-indicador',
+                url: 'http://localhost:8084/TpIntegradorDDS/api/nueva-metodologia',
                 type: 'POST',
                 data: JSON.stringify(data),
                 dataType: 'json',
@@ -45,7 +43,7 @@ function validarIngresoNuevoIndicador() {
                     if (response.resultado === "0") {
                         cleanResponses();
                         cleanForm();
-                        $('#modal-nuevo-indi').modal("hide");
+                        $('#modal-nueva-metod').modal("hide");
                         $('#success-message').show();
                     }
                     if (response.resultado === "1") {
@@ -74,25 +72,25 @@ function cleanForm() {
 
 }
 
-function abrirModalNuevoIndicador() {
-    $('#btn-abrir-nuevo-indicador').click(function () {
+function abrirModalNuevaMetodologia() {
+    $('#btn-abrir-nueva-metodologia').click(function () {
         cleanForm();
         cleanResponses();
     });
 }
 ;
 
-function cerrarModalNuevoIndicador() {
-    $('#btn-cerrar-nuevo-indicador').click(function () {
+function cerrarModalNuevaMetodologia() {
+    $('#btn-cerrar-nueva-metod').click(function () {
         cleanForm();
         cleanResponses();
     });
 }
 ;
 
-function abrirModalEvaluarIndicador() {
-    $('#btn-abrir-evaluar-indicador').click(function () {
-        initListaIndicadores();
+function abrirModalEvaluarMetodologia() {
+    $('#btn-abrir-evaluar-metodologia').click(function () {
+        initListaMetodologias();
     });
 }
 ;
@@ -103,8 +101,8 @@ $(document).ready(function () {
     cleanResponses();
     
     // eventos
-    abrirModalNuevoIndicador();
-    cerrarModalNuevoIndicador();
-    validarIngresoNuevoIndicador();
-    abrirModalEvaluarIndicador();
+    abrirModalNuevaMetodologia();
+    cerrarModalNuevaMetodologia();
+    validarIngresoNuevaMetodologia();
+    abrirModalEvaluarMetodologia();
 });

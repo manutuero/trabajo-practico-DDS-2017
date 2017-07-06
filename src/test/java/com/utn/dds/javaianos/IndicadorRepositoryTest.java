@@ -31,6 +31,6 @@ public class IndicadorRepositoryTest {
 
         assertEquals("Ingreso neto",indicador.getNombre());
         assertEquals("predefinido",indicador.getTipo());
-        assertEquals("Ingreso Neto En Operaciones Continuas + Ingreso Neto En Operaciones Discontinuadas",indicador.getFormula());
+        assertEquals("INOC+INOD",indicador.getFormula());
     }
 }

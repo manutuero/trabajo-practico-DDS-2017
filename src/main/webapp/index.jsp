@@ -82,7 +82,7 @@
 
                 <div class="col-md-3 col-sm-6 hero-feature">
                     <div class="thumbnail">
-                        <img src="<%=request.getContextPath()%>\images\indicadores.png" alt="http://placehold.it/800x500" width="644" height="355">
+                        <img src="<%=request.getContextPath()%>\images\indicadores.png" alt="http://placehold.it/800x500">
                         <div class="caption">
                             <h3>Indicadores</h3>
                             <p>Modulo de gestion de Indicadores</p>
@@ -96,12 +96,12 @@
 
                 <div class="col-md-3 col-sm-6 hero-feature">
                     <div class="thumbnail">
-                        <img src="http://placehold.it/800x500" alt="" >
+                        <img src="<%=request.getContextPath()%>\images\formulas-matematicas.jpg" alt="http://placehold.it/800x500">
                         <div class="caption">
-                            <h3>Graficos Comparativos</h3>
-                            <p>Proximamente.</p>
+                            <h3>Metodologias</h3>
+                            <p>Modulo que permite la administracion y el uso de metodologias.</p>
                             <p>
-                                <a href="#" class="btn btn-primary">Abrir modulo</a>
+                                <a href="/TpIntegradorDDS/metodologias.jsp" method="POST" class="btn btn-primary">Abrir modulo</a>
                             </p>
                         </div>
                     </div>
@@ -109,22 +109,9 @@
                         
                 <div class="col-md-3 col-sm-6 hero-feature">
                     <div class="thumbnail">
-                        <img src="http://placehold.it/800x500" alt="">
+                        <img src="http://placehold.it/800x500" alt="" >
                         <div class="caption">
-                            <h3>Cargar Metodologia</h3>
-                            <p>Proximamente.</p>
-                            <p>
-                                <a href="#" class="btn btn-primary">Abrir modulo</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3 col-sm-6 hero-feature">
-                    <div class="thumbnail">
-                        <img src="http://placehold.it/800x500" alt="">
-                        <div class="caption">
-                            <h3>Analizar metodologias</h3>
+                            <h3>Graficos Comparativos</h3>
                             <p>Proximamente.</p>
                             <p>
                                 <a href="#" class="btn btn-primary">Abrir modulo</a>
@@ -203,7 +190,7 @@
 
             </div>
         </div> 
-        
+
         <!-- ***** Modulo Carga Indicadores ***** -->
         <div id="modal-indicadores" class="modal fade" role="dialog">
             <div class="modal-dialog">
@@ -221,10 +208,10 @@
                     </div>
                 </div> 
             </div>
-            
+
         </div>
-        
-       
+
+
 
         <script src="js/vendor/jquery-3.2.1.min.js"></script>
         <script src="js/vendor/bootstrap.min.js"></script>

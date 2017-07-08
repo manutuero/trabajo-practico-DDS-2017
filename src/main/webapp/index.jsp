@@ -52,13 +52,12 @@
                     <div class="thumbnail">
                         <img src="<%=request.getContextPath()%>\images\bolsa-valores.jpg" alt="http://placehold.it/800x500" >
                         <div class="caption">
-                            <h3>Cargar cuentas</h3>
-                            <p>Modulo de carga de cuentas empresariales por periodo.</p>
+                            <h3>Cuentas</h3>
+                            <p>Modulo de gestion de cuentas empresariales.</p>
                             <p>
-                                <!-- Dipara un modal al apretar el boton -->
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-cargar-cuentas">
+                                <a href="/TpIntegradorDDS/cuentas.jsp" class="btn btn-primary">
                                     Abrir modulo
-                                </button>
+                                </a>
                             </p>
                         </div>
                     </div>
@@ -87,8 +86,9 @@
                             <h3>Indicadores</h3>
                             <p>Modulo de gestion de Indicadores</p>
                             <p>
-                                <!-- se abre la pagina al apretar el boton. Harcodeado -->
-                                <a href="/TpIntegradorDDS/indicadores.jsp" method = POST class="btn btn-primary">Abrir modulo</a>
+                                <a href="/TpIntegradorDDS/indicadores.jsp" class="btn btn-primary">
+                                    Abrir modulo
+                                </a>
                             </p>
                         </div>
                     </div>
@@ -106,7 +106,7 @@
                         </div>
                     </div>
                 </div>
-                        
+
                 <div class="col-md-3 col-sm-6 hero-feature">
                     <div class="thumbnail">
                         <img src="http://placehold.it/800x500" alt="" >
@@ -131,32 +131,6 @@
                 </div>
             </footer>
         </div>
-
-        <!-- ***** Modulo Cargar cuentas ***** -->
-        <!-- Modal -->
-        <div id="modal-cargar-cuentas" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Cargar cuentas</h4>
-                    </div>
-                    <form action = "fileUpload" method = "post" class = "form-horizontal" enctype="multipart/form-data">
-                        <div class="modal-body">
-                            <p>Ingrese un archivo de cuentas para realizar la carga.</p>
-                            <input name="file" type="file" required="true">
-                        </div>
-                        <div class="modal-footer">
-                            <input type="submit" class="btn btn-primary">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                        </div>
-                    </form>
-                </div>
-
-            </div>
-        </div> 
 
         <!-- ***** Modulo Consultar valores ***** -->
         <!-- Modal -->
@@ -208,9 +182,7 @@
                     </div>
                 </div> 
             </div>
-
         </div>
-
 
 
         <script src="js/vendor/jquery-3.2.1.min.js"></script>

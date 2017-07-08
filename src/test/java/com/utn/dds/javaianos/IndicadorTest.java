@@ -20,6 +20,11 @@ public class IndicadorTest {
 
     @Autowired
     IndicadorRepository indicadorRepository;
+    
+    @Test
+    public void testMethod() {
+        
+    }
 
     /*@Test
     public void calcularValor_indicadorValidoSoloCuenta_devuelveValor() {

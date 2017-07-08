@@ -1,16 +1,20 @@
-/* Script de creacion de tablas */
-
+/* Script de creacion base de datos MYSQL */
 CREATE DATABASE `dbprod`;
 
 CREATE TABLE `dbprod`.`Cuenta` 
-	(`nombre` VARCHAR(50) NOT NULL ,
-     	 `empresa` VARCHAR(50) NOT NULL ,
- 	 `periodo` INT NOT NULL ,
-	 `valor` DECIMAL NOT NULL ,
-	PRIMARY KEY (`empresa`, `valor`, `periodo`)) ENGINE = InnoDB;
+	(`codigo` VARCHAR(50) NOT NULL PRIMARY KEY,
+     	 `nombre` VARCHAR(50) NULL) ENGINE = InnoDB;
+
+CREATE TABLE `dbprod`.`Cotizacion`
+	(`cuenta` VARCHAR(50) NOT NULL,
+     	 `empresa` VARCHAR(50) NOT NULL,
+ 	 `periodo` INT NOT NULL,
+	 `valor` DECIMAL NOT NULL,
+	PRIMARY KEY (`cuenta`, `empresa`, `periodo`)) ENGINE = InnoDB;
 
 CREATE TABLE `dbprod`.`Indicador`
-	(`nombre` VARCHAR(50) NOT NULL PRIMARY KEY,
+	(`codigo` VARCHAR(50) NOT NULL PRIMARY KEY,
+         `nombre` VARCHAR(50),
 	 `tipo` VARCHAR(50) NOT NULL,
 	 `formula` VARCHAR(255) NOT NULL) ENGINE = InnoDB;
 	

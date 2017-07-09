@@ -9,18 +9,18 @@ CREATE TABLE Cuenta (
 );
 
 CREATE TABLE Empresa (
-    id BIGINT NOT NULL PRIMARY KEY,
-    nombre VARCHAR(50) NOT NULL 
+    nombre VARCHAR(50) NOT NULL PRIMARY KEY
 );
 
 CREATE TABLE Cotizacion (
+    id BIGINT IDENTITY PRIMARY KEY,
     cuenta VARCHAR(50) NOT NULL,
-    empresa BIGINT NOT NULL,
+    empresa VARCHAR(50) NOT NULL,
     periodo INTEGER NOT NULL,
     valor DECIMAL NOT NULL,
-    PRIMARY KEY (cuenta, empresa, periodo),
     FOREIGN KEY (cuenta) REFERENCES Cuenta(codigo),
-    FOREIGN KEY (empresa) REFERENCES Empresa(id)
+    FOREIGN KEY (empresa) REFERENCES Empresa(nombre),
+    UNIQUE(cuenta,empresa,periodo)
 );
 
 CREATE TABLE Indicador (
@@ -37,16 +37,16 @@ CREATE TABLE Periodo (
 );
 */
 
-INSERT INTO Empresa (id, nombre) VALUES (1,'Facebook');
-INSERT INTO Empresa (id, nombre) VALUES (2,'Twitter');
+INSERT INTO Empresa (nombre) VALUES ('Facebook');
+INSERT INTO Empresa (nombre) VALUES ('Twitter');
 
 INSERT INTO Cuenta (codigo, nombre) VALUES ('EBITDA',null);
 INSERT INTO Cuenta (codigo, nombre) VALUES ('INOC','Ingreso Neto En Operaciones Continuas');
 INSERT INTO Cuenta (codigo, nombre) VALUES ('INOD','Ingreso Neto En Operaciones Discontinuadas');
 
-INSERT INTO Cotizacion(cuenta, empresa, periodo, valor) VALUES ('EBITDA',1,2015,8162);
-INSERT INTO Cotizacion(cuenta, empresa, periodo, valor) VALUES ('EBITDA',1,2016,14870);
-INSERT INTO Cotizacion(cuenta, empresa, periodo, valor) VALUES ('INOC',1,2016,4273000000);
-INSERT INTO Cotizacion(cuenta, empresa, periodo, valor) VALUES ('INOD',1,2016,0);
+INSERT INTO Cotizacion(id, cuenta, empresa, periodo, valor) VALUES (1,'EBITDA','Facebook',2015,8162);
+INSERT INTO Cotizacion(id, cuenta, empresa, periodo, valor) VALUES (2,'EBITDA','Facebook',2016,14870);
+INSERT INTO Cotizacion(id, cuenta, empresa, periodo, valor) VALUES (3,'INOC','Facebook',2016,4273000000);
+INSERT INTO Cotizacion(id, cuenta, empresa, periodo, valor) VALUES (4,'INOD','Facebook',2016,0);
 
 INSERT INTO Indicador(codigo, nombre, tipo, formula) VALUES ('INETO','Ingreso neto','predefinido','INOC+INOD');

@@ -12,7 +12,15 @@ public class Cuenta implements Serializable , Componente {
     @Id
     private String codigo;
     private String nombre;
-     
+    
+    public Cuenta() {
+    }
+    
+    public Cuenta(String codigo, String nombre) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+    }
+    
     public String getCodigo() {
         return codigo;
     }

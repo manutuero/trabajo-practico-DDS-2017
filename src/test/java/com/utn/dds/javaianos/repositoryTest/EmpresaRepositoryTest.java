@@ -21,9 +21,4 @@ public class EmpresaRepositoryTest {
     public void findByNombre_conNombreDeEmpresaExistente_devuelveEmpresa() {
         assertNotNull(empresaRepository.findByNombre("Facebook"));
     }
-    
-    @Test
-    public void findOne_conIdDeEmpresaExistente_devuelveEmpresa() {
-        assertNotNull(empresaRepository.findOne(1L));
-    }
 }

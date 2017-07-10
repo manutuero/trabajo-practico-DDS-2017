@@ -1,8 +1,6 @@
 package com.utn.dds.javaianos.controller.rest;
 
 import com.utn.dds.javaianos.domain.Cuenta;
-import com.utn.dds.javaianos.domain.Empresa;
-import com.utn.dds.javaianos.domain.Periodo;
 import com.utn.dds.javaianos.service.CuentaService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +20,13 @@ public class CuentaRestController {
     public List<Cuenta> devolverValoresCuentas(@RequestParam(name = "empresa") String sEmpresa,
             @RequestParam(name = "periodo") String sPeriodo)
     {
-        Empresa empresa = new Empresa();
+      /*  Empresa empresa = new Empresa();
         empresa.setNombre(sEmpresa);
         
         Periodo periodo = new Periodo();
         periodo.setPeriodo(Integer.parseInt(sPeriodo));
         
-        return cuentaService.getFilteredCuentas(empresa, periodo); 
+        return cuentaService.getFilteredCuentas(empresa, periodo); */
+        return null;
     }
 }

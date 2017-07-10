@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MetodologiaRepository extends JpaRepository<Metodologia, Long> {
-    public Metodologia findByNombre(String nombre);
+    //public Metodologia findByNombre(String nombre);
 }

@@ -3,33 +3,32 @@ package com.utn.dds.javaianos.domain;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "Cuenta")
-@IdClass(CuentaPK.class)
 public class Cuenta implements Serializable , Componente {
 
     @Id
+    private String codigo;
     private String nombre;
-    @Id
-    private String empresa;
-    @Id
-    private Integer periodo;
-    
-    private Double valor;
     
     public Cuenta() {
     }
     
-    public Cuenta(String nombre, String empresa, Integer periodo, Double valor) {
+    public Cuenta(String codigo, String nombre) {
+        this.codigo = codigo;
         this.nombre = nombre;
-        this.empresa = empresa;
-        this.periodo = periodo;
-        this.valor = valor;
     }
-        
+    
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -37,55 +36,26 @@ public class Cuenta implements Serializable , Componente {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+    
+//    @Override
+//    public void add(Componente componente) {
+//        // este es un nodo hoja asi que este metodo no es aplicable para esta clase.
+//    }
+//
+//    @Override
+//    public void remove(Componente componente) {
+//        // este es un nodo hoja asi que este metodo no es aplicable para esta clase.
+//    }
+//
+//    @Override
+//    public Componente getChild(int i) {
+//        // este es un nodo hoja asi que este metodo no es aplicable para esta clase.
+//        return null;
+//    }
 
-    public String getEmpresa() {
-        return empresa;
-    }
-
-    public void setEmpresa(String empresa) {
-        this.empresa = empresa;
-    }
-
-    public Integer getPeriodo() {
-        return periodo;
-    }
-
-    public void setPeriodo(Integer periodo) {
-        this.periodo = periodo;
-    }
-
-    public Double getValor() {
-        return valor;
-    }
-
-    public void setValor(Double valor) {
-        this.valor = valor;
-    }
-
-    @Override
-    public Double calcularValor() {
-        return getValor();
-    }
-
-    @Override
-    public void add(Componente componente) {
-        // este es un nodo hoja asi que este metodo no es aplicable para esta clase.
-    }
-
-    @Override
-    public void remove(Componente componente) {
-        // este es un nodo hoja asi que este metodo no es aplicable para esta clase.
-    }
-
-    @Override
-    public Componente getChild(int i) {
-        // este es un nodo hoja asi que este metodo no es aplicable para esta clase.
-        return null;
-    }
-
-
+    /*
     @Override
     public Double calcularValor(String empresa, Integer periodo) {
-       return this.valor;
-    }
+       falta el codigo aqui
+    }*/
 }

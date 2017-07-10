@@ -1,4 +1,0 @@
-EBITDA;Facebook;2016;14870
-EBITDA;Facebook;2015;8162
-Ingreso Neto En Operaciones Continuas;Facebook;2016;4273000000
-Ingreso Neto En Operaciones Discontinuadas;Facebook;2016;0

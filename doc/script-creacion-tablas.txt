@@ -3,7 +3,7 @@ CREATE DATABASE `dbprod`;
 
 CREATE TABLE `dbprod`.`Cuenta` 
 	(`codigo` VARCHAR(50) NOT NULL PRIMARY KEY,
-     	 `nombre` VARCHAR(50) NOT NULL) ENGINE = InnoDB;
+     	 `nombre` VARCHAR(150) NOT NULL) ENGINE = InnoDB;
 
 CREATE TABLE `dbprod`.`Empresa` 
 	(`nombre` VARCHAR(50) NOT NULL PRIMARY KEY) ENGINE = InnoDB;

@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.text.ParseException;
 import javax.transaction.Transactional;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,17 +32,17 @@ public class CuentaServiceImplTest {
     @Test
     public void saveCuentas_conArchivoValido_guardaCuentasEnDb() throws ParseException, IOException {
         MockMultipartFile multipartFile
-                = new MockMultipartFile("file", "cuentas.csv", "text/plain", ("C1\n"
-                        + "C2,Cuenta con nombre").getBytes());
+                = new MockMultipartFile("file", "cuentas.csv", "text/plain", ("C1,Cuenta 1\n"
+                        + "C2,Cuenta 2").getBytes());
 
         cuentaService.saveCuentas(multipartFile);
         
         Cuenta cuenta1 = cuentaRepository.findFirstByCodigo("C1");
         assertEquals("C1", cuenta1.getCodigo());
-        assertNull(cuenta1.getNombre());
-        
+        assertEquals("Cuenta 1",cuenta1.getNombre());
+
         Cuenta cuenta2 = cuentaRepository.findFirstByCodigo("C2");
         assertEquals("C2", cuenta2.getCodigo());
-        assertEquals("Cuenta con nombre",cuenta2.getNombre());
+        assertEquals("Cuenta 2",cuenta2.getNombre());
     }
 }

@@ -30,7 +30,6 @@ CREATE TABLE Indicador (
     formula VARCHAR(255) NOT NULL
 );
 
-
 /* Pensar si realmente vale la pensa implementar una clase periodo ?? mientras se maneja como Integer
 CREATE TABLE Periodo (
     periodo INT NOT NULL PRIMARY KEY
@@ -40,7 +39,7 @@ CREATE TABLE Periodo (
 INSERT INTO Empresa (nombre) VALUES ('Facebook');
 INSERT INTO Empresa (nombre) VALUES ('Twitter');
 
-INSERT INTO Cuenta (codigo, nombre) VALUES ('EBITDA',null);
+INSERT INTO Cuenta (codigo, nombre) VALUES ('EBITDA','Earnings Before Interest Taxes Depreciation and Amortization');
 INSERT INTO Cuenta (codigo, nombre) VALUES ('INOC','Ingreso Neto En Operaciones Continuas');
 INSERT INTO Cuenta (codigo, nombre) VALUES ('INOD','Ingreso Neto En Operaciones Discontinuadas');
 

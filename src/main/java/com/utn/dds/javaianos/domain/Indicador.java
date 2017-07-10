@@ -17,26 +17,29 @@ import javax.script.ScriptException;
 @Table(name = "Indicador")
 public class Indicador implements Serializable, Componente {
 
+    //atributos
     @Id
+    private String codigo;
     private String nombre;
     private String tipo;
     private String formula;
-
     @Transient
     private List<Componente> componentes;
 
+    // constructor
     public Indicador() {
         this.componentes = new ArrayList();
     }
-
-    public Indicador(String nombre, String tipo, String formula) {
-        this.nombre = nombre;
-        this.tipo = tipo;
-        this.formula = formula;
-        this.componentes = new ArrayList();
+    
+    //setters & getters
+    public String getCodigo() {
+        return codigo;
     }
 
-    @Override
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -68,60 +71,60 @@ public class Indicador implements Serializable, Componente {
     public void setComponentes(List<Componente> componentes) {
         this.componentes = componentes;
     }
-
-    @Override
-    public Double calcularValor(String empresa, Integer periodo) {
-        Double valor = 0.0;
-        String[] elementos = formula.split("(?<=[-+*/)( ])|(?=[-+*/)( ])");
-        String formulaFinal = "";
-        Componente componente = null;
-
-        Integer pos=0;
-        for (String elemento : elementos) {       
-            if ((elemento.matches("([0-9.]+)")) || (elemento.matches("[-+*/()]"))) {
-                formulaFinal = formulaFinal + elemento;
-            } else //Es un componente. Busco su valor. 
-            {
-                componente=componentes.get(pos);
-                pos++;
-                if(componente.getNombre().equals(elemento)){
-                    valor=componente.calcularValor(empresa,periodo);
-                    formulaFinal = formulaFinal + valor.toString();//obtiene el valor en formato string de una cuenta o indicador.
-                } else 
-                {
-                    System.out.println("Error al buscar elemento leido de la formula en la lista de componentes");
-                }
-            }
-        }
-        System.out.println("Formula final aca: " + formulaFinal);
-        ScriptEngineManager manager = new ScriptEngineManager();
-        ScriptEngine engine = manager.getEngineByName("js");
-        try {
-            valor = (Double) engine.eval(formulaFinal);
-        } catch (ScriptException ex) {
-            Logger.getLogger(Indicador.class.getName()).log(Level.SEVERE, null, ex);
-            valor = 0.0;
-        }
-        return valor;
-    }
-
-    @Override
-    public void add(Componente componente) {
-        componentes.add(componente);
-    }
-
-    @Override
-    public void remove(Componente componente) {
-        componentes.remove(componente);
-    }
-
-    @Override
-    public Componente getChild(int i) {
-        return componentes.get(i);
-    }
-
-    @Override
-    public Double calcularValor() {
-        return null;
-    }
+    
+//    @Override
+//    public Double calcularValor(String empresa, Integer periodo) {
+//        Double valor = 0.0;
+//        String[] elementos = formula.split("(?<=[-+*/)( ])|(?=[-+*/)( ])");
+//        String formulaFinal = "";
+//        Componente componente = null;
+//
+//        Integer pos=0;
+//        for (String elemento : elementos) {       
+//            if ((elemento.matches("([0-9.]+)")) || (elemento.matches("[-+*/()]"))) {
+//                formulaFinal = formulaFinal + elemento;
+//            } else //Es un componente. Busco su valor. 
+//            {
+//                componente=componentes.get(pos);
+//                pos++;
+//                if(componente.getNombre().equals(elemento)){
+//                    valor=componente.calcularValor(empresa,periodo);
+//                    formulaFinal = formulaFinal + valor.toString();//obtiene el valor en formato string de una cuenta o indicador.
+//                } else 
+//                {
+//                    System.out.println("Error al buscar elemento leido de la formula en la lista de componentes");
+//                }
+//            }
+//        }
+//        System.out.println("Formula final aca: " + formulaFinal);
+//        ScriptEngineManager manager = new ScriptEngineManager();
+//        ScriptEngine engine = manager.getEngineByName("js");
+//        try {
+//            valor = (Double) engine.eval(formulaFinal);
+//        } catch (ScriptException ex) {
+//            Logger.getLogger(Indicador.class.getName()).log(Level.SEVERE, null, ex);
+//            valor = 0.0;
+//        }
+//        return valor;
+//    }
+//
+//    @Override
+//    public void add(Componente componente) {
+//        componentes.add(componente);
+//    }
+//
+//    @Override
+//    public void remove(Componente componente) {
+//        componentes.remove(componente);
+//    }
+//
+//    @Override
+//    public Componente getChild(int i) {
+//        return componentes.get(i);
+//    }
+//
+//    @Override
+//    public Double calcularValor() {
+//        return null;
+//    }
 }

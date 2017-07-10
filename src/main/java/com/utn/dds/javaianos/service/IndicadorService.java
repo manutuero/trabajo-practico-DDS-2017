@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface IndicadorService {
     
-    public Boolean isValidExpression(String expression);
+ /*   public Boolean isValidExpression(String expression);
     
     public Boolean allComponentsExists(Indicador indicador);
 
@@ -13,5 +13,5 @@ public interface IndicadorService {
     
     public List<Indicador> getAllIndicadores();
     
-    public Double evaluarIndicador(String codigoIndicador, String empresa, Integer periodo);
+    public Double evaluarIndicador(String codigoIndicador, String empresa, Integer periodo);*/
 }

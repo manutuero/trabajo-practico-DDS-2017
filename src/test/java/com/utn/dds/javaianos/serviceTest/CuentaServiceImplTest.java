@@ -1,5 +1,6 @@
-package com.utn.dds.javaianos;
+package com.utn.dds.javaianos.serviceTest;
 
+import com.utn.dds.javaianos.domain.Cuenta;
 import com.utn.dds.javaianos.repository.CuentaRepository;
 import com.utn.dds.javaianos.service.CuentaService;
 import java.io.IOException;
@@ -27,16 +28,21 @@ public class CuentaServiceImplTest {
 
     @Autowired
     CuentaRepository cuentaRepository;
-
+    
     @Test
-    public void saveCuentas_conMultiPartFileValido_guardaCorrectamenteEnBaseDeDatos() throws ParseException, IOException {
+    public void saveCuentas_conArchivoValido_guardaCuentasEnDb() throws ParseException, IOException {
         MockMultipartFile multipartFile
-                = new MockMultipartFile("file", "cuentas.txt", "text/plain", ("Cuenta prueba 1;Facebook;1344345;2016\n"
-                        + "Cuenta prueba 2;Twitter;1000000;2016").getBytes());
+                = new MockMultipartFile("file", "cuentas.csv", "text/plain", ("C1,Cuenta 1\n"
+                        + "C2,Cuenta 2").getBytes());
 
         cuentaService.saveCuentas(multipartFile);
+        
+        Cuenta cuenta1 = cuentaRepository.findFirstByCodigo("C1");
+        assertEquals("C1", cuenta1.getCodigo());
+        assertEquals("Cuenta 1",cuenta1.getNombre());
 
-        assertEquals("Facebook", cuentaRepository.findAll().get(0).getEmpresa());
-        assertEquals("Twitter", cuentaRepository.findAll().get(1).getEmpresa());
+        Cuenta cuenta2 = cuentaRepository.findFirstByCodigo("C2");
+        assertEquals("C2", cuenta2.getCodigo());
+        assertEquals("Cuenta 2",cuenta2.getNombre());
     }
 }

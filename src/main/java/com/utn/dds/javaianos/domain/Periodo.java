@@ -1,4 +1,4 @@
-package com.utn.dds.javaianos.domain;
+/*package com.utn.dds.javaianos.domain;
 
 public class Periodo {
 
@@ -11,4 +11,4 @@ public class Periodo {
     public void setPeriodo(Integer periodo) {
         this.periodo = periodo;
     }
-}
+}*/

@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS Empresa;
 
 CREATE TABLE Cuenta (
     codigo VARCHAR(50) NOT NULL PRIMARY KEY,
-    nombre VARCHAR(50) NULL
+    nombre VARCHAR(150) NOT NULL
 );
 
 CREATE TABLE Empresa (

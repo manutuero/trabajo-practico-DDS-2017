@@ -22,17 +22,14 @@ public class CuentaRepositoryTest {
     
     @Autowired
     private CuentaRepository cuentaRepository;
-
-    @Autowired
-    private CotizacionRepository cotizacionRepository;
     
     @Test
     public void findByCodigo_conCuentaExistente_devuelveUnaCuenta() {
-        assertNotNull(cuentaRepository.findByCodigo("EBITDA"));
+        assertNotNull(cuentaRepository.findFirstByCodigo("EBITDA"));
     }
 
     @Test
     public void findByCodigo_conCuentaNoExistente_devuelveNull() {
-        assertNull(cuentaRepository.findByCodigo("cuentaQueNoExiste"));
+        assertNull(cuentaRepository.findFirstByCodigo("cuentaQueNoExiste"));
     }   
 }

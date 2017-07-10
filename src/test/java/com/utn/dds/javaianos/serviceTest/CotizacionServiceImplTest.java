@@ -24,20 +24,24 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @AutoConfigureMockMvc
 @Transactional
 public class CotizacionServiceImplTest {
-    
+
     @Autowired
     CotizacionService cotizacionService;
-    
+
     @Autowired
     CotizacionRepository cotizacionRepository;
-    
+
+    /* Los test deben hacerse con cuentas y empresas previamente cargadas en la DB, debido a la implementacion de los metodos 
+       que utilizan llamadas a objetos. Si no se dispone de estos, se lanza una excepcion del tipo ConstraintViolationException, porque se
+       esta violando el constraint UNIQUE en alguno de los campos "cuenta" o "empresa" del objeto cotizacion a cargar */
     @Test
     public void saveCotizaciones_conArchivoValido_guardaCuentasEnDb() throws ParseException, IOException {
-     MockMultipartFile file
-                = new MockMultipartFile("file", "cotizaciones.csv", "text/plain", ("EBITDA,Facebook,2017,1000\n")
+        MockMultipartFile file
+                = new MockMultipartFile("file", "cotizaciones.csv", "text/plain", ("EBITDA,Facebook,2017,1000\n"
+                        + "INOD,Facebook,2017,1000")
                         .getBytes());
 
         cotizacionService.saveCotizaciones(file);
-        assertEquals(5,cotizacionRepository.findAll().size());
+        assertEquals(6, cotizacionRepository.findAll().size());
     }
 }

@@ -3,18 +3,26 @@ CREATE DATABASE `dbprod`;
 
 CREATE TABLE `dbprod`.`Cuenta` 
 	(`codigo` VARCHAR(50) NOT NULL PRIMARY KEY,
-     	 `nombre` VARCHAR(50) NULL) ENGINE = InnoDB;
+     	 `nombre` VARCHAR(50) NOT NULL) ENGINE = InnoDB;
+
+CREATE TABLE `dbprod`.`Empresa` 
+	(`nombre` VARCHAR(50) NOT NULL PRIMARY KEY) ENGINE = InnoDB;
 
 CREATE TABLE `dbprod`.`Cotizacion`
-	(`cuenta` VARCHAR(50) NOT NULL,
+	( id INT AUTO_INCREMENT PRIMARY KEY,
+	 `cuenta` VARCHAR(50) NOT NULL,
      	 `empresa` VARCHAR(50) NOT NULL,
  	 `periodo` INT NOT NULL,
 	 `valor` DECIMAL NOT NULL,
-	PRIMARY KEY (`cuenta`, `empresa`, `periodo`)) ENGINE = InnoDB;
+	  FOREIGN KEY (cuenta) REFERENCES Cuenta(codigo),
+    	  FOREIGN KEY (empresa) REFERENCES Empresa(nombre),	
+	  UNIQUE (`cuenta`, `empresa`, `periodo`)) ENGINE = InnoDB;
 
 CREATE TABLE `dbprod`.`Indicador`
 	(`codigo` VARCHAR(50) NOT NULL PRIMARY KEY,
          `nombre` VARCHAR(50),
 	 `tipo` VARCHAR(50) NOT NULL,
 	 `formula` VARCHAR(255) NOT NULL) ENGINE = InnoDB;
-	
+
+INSERT INTO `dbprod`.`Empresa` (nombre) VALUES ('Facebook'),
+				     ('Twitter');

@@ -9,13 +9,11 @@ import java.io.IOException;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
-@Transactional
 public class CotizacionServiceImpl implements CotizacionService {
 
     @Autowired
@@ -34,13 +32,11 @@ public class CotizacionServiceImpl implements CotizacionService {
 
             for (String row : rows) {
                 StringTokenizer st = new StringTokenizer(row, ",");
-                
                 Cotizacion cotizacion = new Cotizacion();
-                cotizacion.setCuenta(cuentaRepository.findByCodigo(st.nextToken()));
+                cotizacion.setCuenta(cuentaRepository.findFirstByCodigo(st.nextToken()));
                 cotizacion.setEmpresa(empresaRepository.findByNombre(st.nextToken()));
                 cotizacion.setPeriodo(Integer.parseInt(st.nextToken()));
                 cotizacion.setValor(Double.parseDouble(st.nextToken()));
-                
                 cotizacionRepository.save(cotizacion);
             }
         } catch (IOException ex) {

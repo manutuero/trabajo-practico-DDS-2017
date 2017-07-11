@@ -12,18 +12,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class IndicadorRestController {
 
-//    @Autowired
-//    private IndicadorService indicadorService;
-//
-//    @RequestMapping(value = "/api/nuevo-indicador", method = RequestMethod.POST)
-//    public JsonResponse guardarIndicador(@RequestBody Indicador indicador) {
-//        Integer resultado = indicadorService.saveIndicador(indicador);
-//        JsonResponse jsonResponse = new JsonResponse(resultado.toString());
-//        return jsonResponse;
-//    }
-//
-//    @RequestMapping(value = "/api/indicadores", method = RequestMethod.GET)
-//    public List<Indicador> obtenerIndicadores() {
-//        return indicadorService.getAllIndicadores();
-//    }
+    @Autowired
+    private IndicadorService indicadorService;
+
+    @RequestMapping(value = "/api/nuevo-indicador", method = RequestMethod.POST)
+    public JsonResponse guardarIndicador(@RequestBody Indicador indicador) {
+        Integer resultado = indicadorService.saveIndicador(indicador);
+        JsonResponse jsonResponse = new JsonResponse(resultado.toString());
+        return jsonResponse;
+    }
+
+    @RequestMapping(value = "/api/indicadores", method = RequestMethod.GET)
+    public List<Indicador> obtenerIndicadores() {
+        return indicadorService.getAllIndicadores();
+    }
 }

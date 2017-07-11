@@ -105,6 +105,7 @@
                         <h4 class="modal-title">Nuevo Indicador</h4><br>
                         <div class="row">
                             <div class="col-xs-12">
+                                <p>Codigo: <input id ="input-codigo" type="text" required="true" size="20"></p>
                                 <p>Nombre: <input id ="input-nombre" type="text" required="true" size="45"></p>
                             </div>
                         </div>

@@ -12,7 +12,6 @@ import javax.persistence.Transient;
 @Table(name = "Indicador")
 public class Indicador implements Serializable, Componente {
 
-    //atributos
     @Id
     private String codigo;
     private String nombre;
@@ -21,12 +20,18 @@ public class Indicador implements Serializable, Componente {
     @Transient
     private List<Componente> componentes;
 
-    // constructor
     public Indicador() {
         this.componentes = new ArrayList();
     }
     
-    //setters & getters
+    public Indicador(String codigo, String nombre, String tipo, String formula, List<Componente> componentes) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.tipo = tipo;
+        this.formula = formula;
+        this.componentes = componentes;
+    }
+
     public String getCodigo() {
         return codigo;
     }

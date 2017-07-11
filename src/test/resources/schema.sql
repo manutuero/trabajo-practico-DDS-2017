@@ -33,8 +33,7 @@ CREATE TABLE Indicador (
 /* Pensar si realmente vale la pensa implementar una clase periodo ?? mientras se maneja como Integer
 CREATE TABLE Periodo (
     periodo INT NOT NULL PRIMARY KEY
-);
-*/
+);*/
 
 INSERT INTO Empresa (nombre) VALUES ('Facebook');
 INSERT INTO Empresa (nombre) VALUES ('Twitter');

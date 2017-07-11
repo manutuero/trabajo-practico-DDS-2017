@@ -41,7 +41,7 @@ public class CotizacionServiceImplTest {
                         .getBytes());
 
         cotizacionService.saveCotizaciones(file);
-        assertEquals(6, cotizacionRepository.findAll().size());
+        assertEquals(7, cotizacionRepository.findAll().size());
     }
     
     @Test

@@ -106,7 +106,7 @@ public class IndicadorServiceImplTest {
 
     @Test
     public void evaluarIndicador_conIndicadorNuevoFormulaSoloCuentas_devuelveValor() {
-        Double valor = 0.00;
+        Double valor ;
         Indicador indicador = new Indicador();
         indicador.setCodigo("I_TestSoloCuenta");
         indicador.setNombre("I_TestSoloCuenta");
@@ -118,7 +118,7 @@ public class IndicadorServiceImplTest {
     
     @Test
     public void evaluarIndicador_conIndicadorNuevoFormulaCuentaEIndicador_devuelveValor(){
-        Double valor = 0.00;
+        Double valor ;
         Indicador indicador = new Indicador();
         indicador.setCodigo("I_Test");
         indicador.setNombre("I_Test");

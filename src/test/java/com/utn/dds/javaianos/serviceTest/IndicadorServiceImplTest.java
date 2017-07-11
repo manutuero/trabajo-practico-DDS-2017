@@ -120,11 +120,11 @@ public class IndicadorServiceImplTest {
     public void evaluarIndicador_conIndicadorNuevoFormulaCuentaEIndicador_devuelveValor(){
         Double valor = 0.00;
         Indicador indicador = new Indicador();
-        indicador.setCodigo("I_TestSoloCuenta");
-        indicador.setNombre("I_TestSoloCuenta");
+        indicador.setCodigo("I_Test");
+        indicador.setNombre("I_Test");
         indicador.setTipo("definido por el usuario");
-        indicador.setFormula("INETO*INOD");
+        indicador.setFormula("INETO*INOD+5");
         valor=indicadorService.evaluarIndicador(indicador, new Empresa("Facebook") ,2016);
-        assertEquals(new Double(8550),valor);
+        assertEquals(new Double(8555),valor);
     }
 }

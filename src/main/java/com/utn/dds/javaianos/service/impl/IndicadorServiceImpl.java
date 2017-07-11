@@ -39,7 +39,7 @@ public class IndicadorServiceImpl implements IndicadorService {
     private CotizacionRepository cotizacionRepository;
     
     @Autowired
-    CuentaRepository cuentaRepository;
+    private CuentaRepository cuentaRepository;
     
     @Override
     public Double evaluarIndicador(Indicador indicador, Empresa empresa, Integer periodo) {
@@ -48,27 +48,29 @@ public class IndicadorServiceImpl implements IndicadorService {
         String formulaFinal = "";
         Indicador indicadorFormula = null;
         Cotizacion cotizacionFormula = null;
-        
+        Cuenta cuenta = null;
         for (String elemento : elementos) {       
            indicadorFormula = null;
            cotizacionFormula = null;
+           cuenta=null;
             if ((elemento.matches("([0-9.]+)")) || (elemento.matches("[-+*/()]"))) {
                 formulaFinal = formulaFinal + elemento;
             } else //Es un componente. Busco su valor. 
             {
                 if(indicadorRepository.findByCodigo(elemento)!=null){
                    indicadorFormula = indicadorRepository.findByCodigo(elemento);
-                   valor = this.evaluarIndicador(indicador,  empresa,  periodo);
+                   valor = this.evaluarIndicador(indicadorFormula,empresa,  periodo);
                 } else 
-                    if(cotizacionRepository.findByCuentaAndEmpresaAndPeriodo(new Cuenta(elemento,elemento), empresa, periodo)!=null){
-                       cotizacionFormula = cotizacionRepository.findByCuentaAndEmpresaAndPeriodo(new Cuenta(elemento,elemento), empresa, periodo);
+                    cuenta=cuentaRepository.findFirstByCodigo(elemento);
+                    if(cotizacionRepository.findByCuentaAndEmpresaAndPeriodo(cuenta, empresa, periodo)!=null){
+                       cotizacionFormula = cotizacionRepository.findByCuentaAndEmpresaAndPeriodo(cuenta, empresa, periodo);
                        valor = cotizacionFormula.getValor();
                     }
                 formulaFinal = formulaFinal + valor.toString();//obtiene el valor en formato string de una cuenta o indicador.
                 
             }
         }
-        System.out.println("Formula final aca: " + formulaFinal);
+        //System.out.println("Formula final aca: " + formulaFinal);
         ScriptEngineManager manager = new ScriptEngineManager();
         ScriptEngine engine = manager.getEngineByName("js");
         try {

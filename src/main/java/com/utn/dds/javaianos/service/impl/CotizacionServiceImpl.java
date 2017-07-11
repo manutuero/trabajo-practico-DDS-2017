@@ -1,6 +1,8 @@
 package com.utn.dds.javaianos.service.impl;
 
 import com.utn.dds.javaianos.domain.Cotizacion;
+import com.utn.dds.javaianos.domain.Cuenta;
+import com.utn.dds.javaianos.domain.Empresa;
 import com.utn.dds.javaianos.repository.CotizacionRepository;
 import com.utn.dds.javaianos.repository.CuentaRepository;
 import com.utn.dds.javaianos.repository.EmpresaRepository;

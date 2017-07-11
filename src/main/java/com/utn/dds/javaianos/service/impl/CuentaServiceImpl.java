@@ -41,18 +41,4 @@ public class CuentaServiceImpl implements CuentaService {
             Logger.getLogger(CuentaServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-//    @Override
-//    public List<Cuenta> getFilteredCuentas(Empresa empresa, Periodo periodo)
-//    {
-//        List<Cuenta> listaCuentas = cuentaRepository.findAll();
-//        
-//        return listaCuentas.stream().filter(cuenta -> cuenta.getEmpresa().equals(empresa.getNombre()) &&
-//                                            cuenta.getPeriodo().equals(periodo.getPeriodo()))
-//                                            .collect(Collectors.toList()); 
-//    }
-//    @Override
-//    public Double calcularValor(Cuenta cuenta) {
-//        return cuenta.getValor();
-//    }
 }

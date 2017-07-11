@@ -1,7 +1,9 @@
 package com.utn.dds.javaianos.service.impl;
 
 import com.utn.dds.javaianos.domain.Cuenta;
+import com.utn.dds.javaianos.domain.Empresa;
 import com.utn.dds.javaianos.repository.CuentaRepository;
+import com.utn.dds.javaianos.service.CotizacionService;
 import com.utn.dds.javaianos.service.CuentaService;
 import java.io.IOException;
 import java.util.NoSuchElementException;
@@ -32,7 +34,7 @@ public class CuentaServiceImpl implements CuentaService {
                 try {
                     cuenta.setCodigo(st.nextToken());
                     cuenta.setNombre(st.nextToken());
-                } catch(NoSuchElementException ex){
+                } catch (NoSuchElementException ex) {
                     cuenta.setNombre(null);
                 }
                 cuentaRepository.save(cuenta);
@@ -41,7 +43,7 @@ public class CuentaServiceImpl implements CuentaService {
             Logger.getLogger(CuentaServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
 //    @Override
 //    public List<Cuenta> getFilteredCuentas(Empresa empresa, Periodo periodo)
 //    {

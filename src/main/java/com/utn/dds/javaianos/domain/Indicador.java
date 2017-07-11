@@ -3,15 +3,10 @@ package com.utn.dds.javaianos.domain;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
-import javax.script.ScriptException;
 
 @Entity
 @Table(name = "Indicador")
@@ -128,7 +123,7 @@ public class Indicador implements Serializable, Componente {
 //        return null;
 //    }
 
-    @Override
+   /* @Override
     public void add(Componente componente) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -146,5 +141,5 @@ public class Indicador implements Serializable, Componente {
     @Override
     public Double calcularValor(Empresa empresa, Integer periodo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    }*/
 }

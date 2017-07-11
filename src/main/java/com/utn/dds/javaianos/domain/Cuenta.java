@@ -36,25 +36,4 @@ public class Cuenta implements Serializable, Componente {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
-    @Override
-    public void add(Componente componente) {
-        // este es un nodo hoja asi que este metodo no es aplicable para esta clase.
-    }
-
-    @Override
-    public void remove(Componente componente) {
-        // este es un nodo hoja asi que este metodo no es aplicable para esta clase.
-    }
-
-    @Override
-    public Componente getChild(int i) {
-        // este es un nodo hoja asi que este metodo no es aplicable para esta clase.
-        return null;
-    }
-
-    @Override
-    public Double calcularValor(Empresa empresa, Integer periodo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

@@ -1,9 +1,7 @@
 package com.utn.dds.javaianos.service.impl;
 
 import com.utn.dds.javaianos.domain.Cuenta;
-import com.utn.dds.javaianos.domain.Empresa;
 import com.utn.dds.javaianos.repository.CuentaRepository;
-import com.utn.dds.javaianos.service.CotizacionService;
 import com.utn.dds.javaianos.service.CuentaService;
 import java.io.IOException;
 import java.util.NoSuchElementException;

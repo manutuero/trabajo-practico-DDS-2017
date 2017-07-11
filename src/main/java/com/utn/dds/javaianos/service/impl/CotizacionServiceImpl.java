@@ -1,5 +1,6 @@
 package com.utn.dds.javaianos.service.impl;
 
+import com.utn.dds.javaianos.domain.Componente;
 import com.utn.dds.javaianos.domain.Cotizacion;
 import com.utn.dds.javaianos.domain.Cuenta;
 import com.utn.dds.javaianos.domain.Empresa;
@@ -44,5 +45,31 @@ public class CotizacionServiceImpl implements CotizacionService {
         } catch (IOException ex) {
             Logger.getLogger(CuentaServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @Override
+    public void add(Componente componente) {
+        // metodo no implementado en nodo hoja (leaf)
+    }
+
+    @Override
+    public void remove(Componente componente) {
+        // metodo no implementado en nodo hoja (leaf)
+    }
+
+    @Override
+    public Componente getChild(int i) {
+        // metodo no implementado en nodo hoja (leaf)
+        return null;
+    }
+
+    @Override
+    public Cotizacion buscarCotizacion(Cuenta cuenta, Empresa empresa, Integer periodo) {
+        return cotizacionRepository.findByCuentaAndEmpresaAndPeriodo((Cuenta)cuenta, empresa, periodo);
+    }
+
+    @Override
+    public Double calcularValor(Componente cuenta, Empresa empresa, Integer periodo) {
+        return this.buscarCotizacion((Cuenta)cuenta, empresa, periodo).getValor();
     }
 }

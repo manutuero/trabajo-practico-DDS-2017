@@ -38,7 +38,7 @@ public class CotizacionServiceImpl implements CotizacionService {
             for (String row : rows) {
                 StringTokenizer st = new StringTokenizer(row, ",");
                 Cotizacion cotizacion = new Cotizacion();
-                cotizacion.setCuenta(cuentaRepository.findFirstByCodigo(st.nextToken()));
+                cotizacion.setCuenta(cuentaRepository.findByCodigo(st.nextToken()));
                 cotizacion.setEmpresa(empresaRepository.findByNombre(st.nextToken()));
                 cotizacion.setPeriodo(Integer.parseInt(st.nextToken()));
                 cotizacion.setValor(Double.parseDouble(st.nextToken()));

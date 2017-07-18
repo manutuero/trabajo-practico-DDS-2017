@@ -18,17 +18,18 @@ function initListaIndicadores() {
 function validarIngresoNuevoIndicador() {
     $('#btn-crear').click(function () {
         cleanResponses();
-
+        var codigo = $('#input-codigo').val();
         var nombre = $('#input-nombre').val();
         var tipo = "definido por el usuario";
         var formula = $('#textarea-formula').val();
 
-        if (nombre === '' || formula === '') {
+        if (codigo === '' || nombre === '' || formula === '') {
             $('#warning-message').show();
         } else {
             $('#warning-message').hide();
 
             var data = {
+                codigo: codigo,
                 nombre: nombre,
                 tipo: tipo,
                 formula: formula

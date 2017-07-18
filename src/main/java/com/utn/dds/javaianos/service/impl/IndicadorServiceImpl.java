@@ -1,6 +1,5 @@
 package com.utn.dds.javaianos.service.impl;
 
-import com.utn.dds.javaianos.domain.Componente;
 import com.utn.dds.javaianos.domain.Indicador;
 import com.utn.dds.javaianos.parser.ExpressionParser;
 import com.utn.dds.javaianos.parser.ParseException;
@@ -10,7 +9,6 @@ import com.utn.dds.javaianos.repository.IndicadorRepository;
 import com.utn.dds.javaianos.service.IndicadorService;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
@@ -94,7 +92,7 @@ public class IndicadorServiceImpl implements IndicadorService {
 
         Predicate<String> predicate = (String componente)
                 -> (indicadorRepository.findByCodigo(componente) == null)
-                && (cuentaRepository.findFirstByCodigo(componente) == null);
+                && (cuentaRepository.findByCodigo(componente) == null);
 
         return stream.noneMatch(predicate);
     }

@@ -1,5 +1,7 @@
 package com.utn.dds.javaianos.serviceTest;
 
+import com.utn.dds.javaianos.domain.Cuenta;
+import com.utn.dds.javaianos.domain.Empresa;
 import com.utn.dds.javaianos.domain.Indicador;
 import com.utn.dds.javaianos.repository.IndicadorRepository;
 import com.utn.dds.javaianos.service.IndicadorService;
@@ -103,11 +105,26 @@ public class IndicadorServiceImplTest {
     }
 
     @Test
-    public void evaluarIndicador_conIndicadorExistente_devuelveValor() {
+    public void evaluarIndicador_conIndicadorNuevoFormulaSoloCuentas_devuelveValor() {
+        Double valor ;
         Indicador indicador = new Indicador();
+        indicador.setCodigo("I_TestSoloCuenta");
         indicador.setNombre("I_TestSoloCuenta");
         indicador.setTipo("definido por el usuario");
         indicador.setFormula("EBITDA*EFG");
-        //indicadorService.evaluarIndicador("I_TestSoloCuenta","Facebook",2016);
+        valor=indicadorService.evaluarIndicador(indicador, new Empresa("Facebook") ,2016);
+        assertEquals(new Double(14870),valor);
+    }
+    
+    @Test
+    public void evaluarIndicador_conIndicadorNuevoFormulaCuentaEIndicador_devuelveValor(){
+        Double valor ;
+        Indicador indicador = new Indicador();
+        indicador.setCodigo("I_Test");
+        indicador.setNombre("I_Test");
+        indicador.setTipo("definido por el usuario");
+        indicador.setFormula("INETO*INOD+5");
+        valor=indicadorService.evaluarIndicador(indicador, new Empresa("Facebook") ,2016);
+        assertEquals(new Double(8555),valor);
     }
 }

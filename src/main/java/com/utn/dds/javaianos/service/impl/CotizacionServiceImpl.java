@@ -49,25 +49,6 @@ public class CotizacionServiceImpl implements CotizacionService {
         }
     }
 
-    /* Inicio metodos del patron composite */
-    @Override
-    public void add(Componente componente) {
-        // metodo no implementado en nodo hoja (leaf)
-    }
-
-    @Override
-    public void remove(Componente componente) {
-        // metodo no implementado en nodo hoja (leaf)
-    }
-
-    @Override
-    public Componente getChild(int i) {
-        // metodo no implementado en nodo hoja (leaf)
-        return null;
-    }
-
-    /* Fin metodos del patron composite */
-
     @Override
     public Cotizacion buscarCotizacion(Cuenta cuenta, Empresa empresa, Integer periodo) {
         return cotizacionRepository.findByCuentaAndEmpresaAndPeriodo((Cuenta) cuenta, empresa, periodo);

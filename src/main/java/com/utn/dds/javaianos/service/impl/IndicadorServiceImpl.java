@@ -1,6 +1,5 @@
 package com.utn.dds.javaianos.service.impl;
 
-import com.utn.dds.javaianos.domain.Componente;
 import com.utn.dds.javaianos.domain.Cotizacion;
 import com.utn.dds.javaianos.domain.Cuenta;
 import com.utn.dds.javaianos.domain.Empresa;
@@ -65,8 +64,7 @@ public class IndicadorServiceImpl implements IndicadorService {
                        cotizacionFormula = cotizacionRepository.findByCuentaAndEmpresaAndPeriodo(cuenta, empresa, periodo);
                        valor = cotizacionFormula.getValor();
                     }
-                formulaFinal = formulaFinal + valor.toString();//obtiene el valor en formato string de una cuenta o indicador.
-                
+                formulaFinal = formulaFinal + valor.toString(); //obtiene el valor en formato string de una cuenta o indicador.
             }
         }
         //System.out.println("Formula final aca: " + formulaFinal);

@@ -1,6 +1,8 @@
 package com.utn.dds.javaianos.service.impl;
 
+import com.utn.dds.javaianos.domain.Componente;
 import com.utn.dds.javaianos.domain.Cuenta;
+import com.utn.dds.javaianos.domain.Empresa;
 import com.utn.dds.javaianos.repository.CuentaRepository;
 import com.utn.dds.javaianos.service.CuentaService;
 import java.io.IOException;
@@ -40,5 +42,10 @@ public class CuentaServiceImpl implements CuentaService {
         } catch (IOException ex) {
             Logger.getLogger(CuentaServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @Override
+    public Double calcularValor(Componente componente, Empresa empresa, Integer periodo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

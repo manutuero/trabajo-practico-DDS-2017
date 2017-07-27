@@ -38,7 +38,7 @@ public class CotizacionServiceImpl implements CotizacionService {
             for (String row : rows) {
                 StringTokenizer st = new StringTokenizer(row, ",");
                 Cotizacion cotizacion = new Cotizacion();
-                cotizacion.setCuenta(cuentaRepository.findFirstByCodigo(st.nextToken()));
+                cotizacion.setCuenta(cuentaRepository.findByCodigo(st.nextToken()));
                 cotizacion.setEmpresa(empresaRepository.findByNombre(st.nextToken()));
                 cotizacion.setPeriodo(Integer.parseInt(st.nextToken()));
                 cotizacion.setValor(Double.parseDouble(st.nextToken()));
@@ -48,25 +48,6 @@ public class CotizacionServiceImpl implements CotizacionService {
             Logger.getLogger(CuentaServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-    /* Inicio metodos del patron composite */
-    @Override
-    public void add(Componente componente) {
-        // metodo no implementado en nodo hoja (leaf)
-    }
-
-    @Override
-    public void remove(Componente componente) {
-        // metodo no implementado en nodo hoja (leaf)
-    }
-
-    @Override
-    public Componente getChild(int i) {
-        // metodo no implementado en nodo hoja (leaf)
-        return null;
-    }
-
-    /* Fin metodos del patron composite */
 
     @Override
     public Cotizacion buscarCotizacion(Cuenta cuenta, Empresa empresa, Integer periodo) {

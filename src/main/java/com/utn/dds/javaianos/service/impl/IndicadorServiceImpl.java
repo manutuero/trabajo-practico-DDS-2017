@@ -1,6 +1,5 @@
 package com.utn.dds.javaianos.service.impl;
 
-import com.utn.dds.javaianos.domain.Componente;
 import com.utn.dds.javaianos.domain.Cotizacion;
 import com.utn.dds.javaianos.domain.Cuenta;
 import com.utn.dds.javaianos.domain.Empresa;
@@ -14,7 +13,6 @@ import com.utn.dds.javaianos.repository.IndicadorRepository;
 import com.utn.dds.javaianos.service.IndicadorService;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
@@ -61,13 +59,12 @@ public class IndicadorServiceImpl implements IndicadorService {
                    indicadorFormula = indicadorRepository.findByCodigo(elemento);
                    valor = this.evaluarIndicador(indicadorFormula,empresa,  periodo);
                 } else 
-                    cuenta=cuentaRepository.findFirstByCodigo(elemento);
-                    if(cotizacionRepository.findByCuentaAndEmpresaAndPeriodo(cuenta, empresa, periodo)!=null){
+                    cuenta = cuentaRepository.findByCodigo(elemento);
+                    if(cotizacionRepository.findByCuentaAndEmpresaAndPeriodo(cuenta, empresa, periodo)!= null) {
                        cotizacionFormula = cotizacionRepository.findByCuentaAndEmpresaAndPeriodo(cuenta, empresa, periodo);
                        valor = cotizacionFormula.getValor();
                     }
-                formulaFinal = formulaFinal + valor.toString();//obtiene el valor en formato string de una cuenta o indicador.
-                
+                formulaFinal = formulaFinal + valor.toString(); //obtiene el valor en formato string de una cuenta o indicador.
             }
         }
         //System.out.println("Formula final aca: " + formulaFinal);
@@ -80,7 +77,6 @@ public class IndicadorServiceImpl implements IndicadorService {
             valor = 0.0;
         }
         return valor;
-        
     }
 
     @Override
@@ -124,7 +120,7 @@ public class IndicadorServiceImpl implements IndicadorService {
 
         Predicate<String> predicate = (String componente)
                 -> (indicadorRepository.findByCodigo(componente) == null)
-                && (cuentaRepository.findFirstByCodigo(componente) == null);
+                && (cuentaRepository.findByCodigo(componente) == null);
 
         return stream.noneMatch(predicate);
     }
@@ -132,9 +128,5 @@ public class IndicadorServiceImpl implements IndicadorService {
     @Override
     public List<Indicador> getAllIndicadores() {
         return indicadorRepository.findAll();
-    }
-
-    public Double evaluarIndicador(String codigoIndicador, String empresa, Integer periodo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

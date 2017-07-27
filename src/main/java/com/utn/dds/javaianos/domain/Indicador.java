@@ -3,21 +3,15 @@ package com.utn.dds.javaianos.domain;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
-import javax.script.ScriptException;
 
 @Entity
 @Table(name = "Indicador")
 public class Indicador implements Serializable, Componente {
 
-    //atributos
     @Id
     private String codigo;
     private String nombre;
@@ -26,12 +20,18 @@ public class Indicador implements Serializable, Componente {
     @Transient
     private List<Componente> componentes;
 
-    // constructor
     public Indicador() {
         this.componentes = new ArrayList();
     }
     
-    //setters & getters
+    public Indicador(String codigo, String nombre, String tipo, String formula, List<Componente> componentes) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.tipo = tipo;
+        this.formula = formula;
+        this.componentes = componentes;
+    }
+
     public String getCodigo() {
         return codigo;
     }
@@ -127,4 +127,24 @@ public class Indicador implements Serializable, Componente {
 //    public Double calcularValor() {
 //        return null;
 //    }
+
+   /* @Override
+    public void add(Componente componente) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void remove(Componente componente) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Componente getChild(int i) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Double calcularValor(Empresa empresa, Integer periodo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }*/
 }

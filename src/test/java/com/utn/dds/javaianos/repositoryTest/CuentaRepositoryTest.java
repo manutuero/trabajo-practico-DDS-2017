@@ -25,11 +25,11 @@ public class CuentaRepositoryTest {
     
     @Test
     public void findByCodigo_conCuentaExistente_devuelveUnaCuenta() {
-        assertNotNull(cuentaRepository.findFirstByCodigo("EBITDA"));
+        assertNotNull(cuentaRepository.findByCodigo("EBITDA"));
     }
 
     @Test
     public void findByCodigo_conCuentaNoExistente_devuelveNull() {
-        assertNull(cuentaRepository.findFirstByCodigo("cuentaQueNoExiste"));
+        assertNull(cuentaRepository.findByCodigo("cuentaQueNoExiste"));
     }   
 }

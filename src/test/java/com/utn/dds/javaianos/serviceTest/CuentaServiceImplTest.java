@@ -37,11 +37,11 @@ public class CuentaServiceImplTest {
 
         cuentaService.saveCuentas(multipartFile);
         
-        Cuenta cuenta1 = cuentaRepository.findFirstByCodigo("C1");
+        Cuenta cuenta1 = cuentaRepository.findByCodigo("C1");
         assertEquals("C1", cuenta1.getCodigo());
         assertEquals("Cuenta 1",cuenta1.getNombre());
 
-        Cuenta cuenta2 = cuentaRepository.findFirstByCodigo("C2");
+        Cuenta cuenta2 = cuentaRepository.findByCodigo("C2");
         assertEquals("C2", cuenta2.getCodigo());
         assertEquals("Cuenta 2",cuenta2.getNombre());
     }

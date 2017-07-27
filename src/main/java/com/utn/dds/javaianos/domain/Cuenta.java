@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Cuenta")
-public class Cuenta implements Serializable , Componente {
+public class Cuenta implements Serializable, Componente {
 
     @Id
     private String codigo;
@@ -20,7 +20,7 @@ public class Cuenta implements Serializable , Componente {
         this.codigo = codigo;
         this.nombre = nombre;
     }
-    
+
     public String getCodigo() {
         return codigo;
     }
@@ -36,26 +36,4 @@ public class Cuenta implements Serializable , Componente {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
-//    @Override
-//    public void add(Componente componente) {
-//        // este es un nodo hoja asi que este metodo no es aplicable para esta clase.
-//    }
-//
-//    @Override
-//    public void remove(Componente componente) {
-//        // este es un nodo hoja asi que este metodo no es aplicable para esta clase.
-//    }
-//
-//    @Override
-//    public Componente getChild(int i) {
-//        // este es un nodo hoja asi que este metodo no es aplicable para esta clase.
-//        return null;
-//    }
-
-    /*
-    @Override
-    public Double calcularValor(String empresa, Integer periodo) {
-       falta el codigo aqui
-    }*/
 }

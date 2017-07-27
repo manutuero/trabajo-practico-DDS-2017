@@ -17,6 +17,7 @@ public class CotizacionController {
     @RequestMapping(value = "/fileUploadCotizaciones", method = RequestMethod.POST)
     public String guardarCotizaciones(@RequestParam(name = "file") MultipartFile file) {
         cotizacionService.saveCotizaciones(file);
+        //  considerar manejar la excepcion que devuelve si trato de insertar una cotizacion ya existente (violacion de PK)
         return "redirect:/cuentas.jsp";
     }
 }

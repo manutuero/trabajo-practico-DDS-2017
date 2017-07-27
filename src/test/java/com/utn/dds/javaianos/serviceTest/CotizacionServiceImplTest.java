@@ -1,6 +1,5 @@
 package com.utn.dds.javaianos.serviceTest;
 
-import com.utn.dds.javaianos.domain.Cotizacion;
 import com.utn.dds.javaianos.domain.Cuenta;
 import com.utn.dds.javaianos.domain.Empresa;
 import com.utn.dds.javaianos.repository.CotizacionRepository;
@@ -42,6 +41,13 @@ public class CotizacionServiceImplTest {
                         .getBytes());
 
         cotizacionService.saveCotizaciones(file);
-        assertEquals(6, cotizacionRepository.findAll().size());
+        assertEquals(7, cotizacionRepository.findAll().size());
+    }
+    
+    @Test
+    public void calcularValor_conCotizacionValida_devuelveValor() {
+        assertEquals(new Double(14870),cotizacionService
+                .buscarCotizacion(new Cuenta("EBITDA","foo"), new Empresa("Facebook"), 2016)
+                .getValor());
     }
 }

@@ -156,7 +156,7 @@
                                     <th>Valor</th>
                                 </tr>
                             </thead>
-                            <tbody id="valores-cuentas">
+                            <tbody id="cotizaciones">
                             </tbody>
                         </table>
                     </div>

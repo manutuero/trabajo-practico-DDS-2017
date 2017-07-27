@@ -1,5 +1,6 @@
-package com.utn.dds.javaianos;
+package com.utn.dds.javaianos.config;
 
+import com.utn.dds.javaianos.TpIntegradorDdsApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 

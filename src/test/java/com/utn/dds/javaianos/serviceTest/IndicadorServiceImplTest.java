@@ -1,5 +1,7 @@
-package com.utn.dds.javaianos;
+package com.utn.dds.javaianos.serviceTest;
 
+import com.utn.dds.javaianos.domain.Cuenta;
+import com.utn.dds.javaianos.domain.Empresa;
 import com.utn.dds.javaianos.domain.Indicador;
 import com.utn.dds.javaianos.repository.IndicadorRepository;
 import com.utn.dds.javaianos.service.IndicadorService;
@@ -39,6 +41,7 @@ public class IndicadorServiceImplTest {
     @Test
     public void allComponentsExists_conComponentesNoExistentesEnDb_devuelveFalse() {
         Indicador indicador = new Indicador();
+        indicador.setCodigo("I1");
         indicador.setNombre("I1");
         indicador.setTipo("definido por el usuario");
         indicador.setFormula("(verdura/2)+1");
@@ -49,6 +52,7 @@ public class IndicadorServiceImplTest {
     @Test
     public void allComponentsExists_conComponentesExistentesEnDb_devuelveTrue() {
         Indicador indicador = new Indicador();
+        indicador.setCodigo("I1");
         indicador.setNombre("I1");
         indicador.setTipo("definido por el usuario");
         indicador.setFormula("INOC+INOD");
@@ -59,13 +63,14 @@ public class IndicadorServiceImplTest {
     @Test
     public void saveIndicador_conFormulaValidaYElementosExistentes_guardaYDevuelve0() {
         Indicador indicador = new Indicador();
+        indicador.setCodigo("I1");
         indicador.setNombre("I1");
         indicador.setTipo("definido por el usuario");
         indicador.setFormula("INOC");
 
         int resultado = indicadorService.saveIndicador(indicador);
 
-        Indicador indicadorGuardado = indicadorRepository.findByNombre("I1");
+        Indicador indicadorGuardado = indicadorRepository.findByCodigo("I1");
 
         assertEquals("I1", indicadorGuardado.getNombre());
         assertEquals("definido por el usuario", indicadorGuardado.getTipo());
@@ -82,7 +87,7 @@ public class IndicadorServiceImplTest {
 
         int resultado = indicadorService.saveIndicador(indicador);
 
-        assertEquals(null, indicadorRepository.findByNombre("I1"));
+        assertEquals(null, indicadorRepository.findByCodigo("I1"));
         assertEquals(1, resultado);
     }
 
@@ -95,16 +100,31 @@ public class IndicadorServiceImplTest {
 
         int resultado = indicadorService.saveIndicador(indicador);
 
-        assertEquals(null, indicadorRepository.findByNombre("I1"));
+        assertEquals(null, indicadorRepository.findByCodigo("I1"));
         assertEquals(2, resultado);
     }
 
     @Test
-    public void evaluarIndicador_conIndicadorExistente_devuelveValor() {
+    public void evaluarIndicador_conIndicadorNuevoFormulaSoloCuentas_devuelveValor() {
+        Double valor ;
         Indicador indicador = new Indicador();
+        indicador.setCodigo("I_TestSoloCuenta");
         indicador.setNombre("I_TestSoloCuenta");
         indicador.setTipo("definido por el usuario");
         indicador.setFormula("EBITDA*EFG");
-        indicadorService.evaluarIndicador("I_TestSoloCuenta","Facebook",2016);
+        valor=indicadorService.evaluarIndicador(indicador, new Empresa("Facebook") ,2016);
+        assertEquals(new Double(14870),valor);
+    }
+    
+    @Test
+    public void evaluarIndicador_conIndicadorNuevoFormulaCuentaEIndicador_devuelveValor(){
+        Double valor ;
+        Indicador indicador = new Indicador();
+        indicador.setCodigo("I_Test");
+        indicador.setNombre("I_Test");
+        indicador.setTipo("definido por el usuario");
+        indicador.setFormula("INETO*INOD+5");
+        valor=indicadorService.evaluarIndicador(indicador, new Empresa("Facebook") ,2016);
+        assertEquals(new Double(8555),valor);
     }
 }

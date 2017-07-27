@@ -11,13 +11,14 @@ function obtenerValoresCuentas() {
             alert("no se aceptan campos vacios");
         }else {
             $.ajax({
-                url: 'http://localhost:8084/TpIntegradorDDS/api/valores-cuenta',
+                url: 'http://localhost:8084/TpIntegradorDDS/api/cotizaciones',
                 type: 'POST',
                 data: data,
                 success: function (valores) {
-                            var $valoresCuentas = $('#valores-cuentas');
+                            var $cotizaciones = $('#cotizaciones');
                             $.each(valores, function (i, valor) {
-                                $valoresCuentas.append('<tr><td>' + valor.nombre + '</td><td>' 
+                                console.log(valor);
+                                $cotizaciones.append('<tr><td>' + valor.cuenta.nombre + '</td><td>' 
                                                                   + valor.valor + '</td></tr>');
                             });
                          }
@@ -28,7 +29,7 @@ function obtenerValoresCuentas() {
 
 function limpiarFormularios() {
     $('.btn-primary').click(function () {
-        $('#valores-cuentas tr').remove();
+        $('#cotizaciones tr').remove();
     });
 }
 

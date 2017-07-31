@@ -129,4 +129,9 @@ public class IndicadorServiceImpl implements IndicadorService {
     public List<Indicador> getAllIndicadores() {
         return indicadorRepository.findAll();
     }
+    
+    @Override
+    public Indicador findIndicador(String nombre) {
+        return indicadorRepository.findByCodigo(nombre);
+    }
 }

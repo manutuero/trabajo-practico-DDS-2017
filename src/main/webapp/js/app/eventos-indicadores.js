@@ -9,11 +9,49 @@ function initListaIndicadores() {
         type: 'GET',
         success: function (indicadores) {
             $.each(indicadores, function (indice, indicador) {
-                listaIndicadores.append('<option>' + indicador.nombre + '</option>');
+                //listaIndicadores.append('<option>'+ "("+ indicador.codigo + ") "+ indicador.nombre + '</option>');
+                listaIndicadores.append('<option>'+ indicador.codigo + '</option>');
             });
         }
     });
 }
+
+function calcularIndicador()
+{
+    $('#btn-calcular').click(function() {
+        
+        var anio = $('#input-anio').val();
+        var empresa = $('#input-empresa').val();
+        var indicador = $('#list-indicadores').val();
+        
+        
+        var data = {
+            empresa: empresa,
+            anio: anio,
+            indicador: indicador
+        };
+        
+        
+        if (anio === '' || empresa === '') {
+            $('#warning-message').show();
+        } else {
+            $('#warning-message').hide();
+            
+                        
+            $.ajax({
+                url: 'http://localhost:8084/TpIntegradorDDS/api/calcular-indicador',
+                type: 'GET',
+                data: data,
+                success: function (resultado) {
+                                       
+                    $('#text-resultado').text(resultado);
+                    
+                }
+            });
+        
+        }
+    });
+};
 
 function validarIngresoNuevoIndicador() {
     $('#btn-crear').click(function () {
@@ -108,4 +146,5 @@ $(document).ready(function () {
     cerrarModalNuevoIndicador();
     validarIngresoNuevoIndicador();
     abrirModalEvaluarIndicador();
+    calcularIndicador();
 });

@@ -154,20 +154,20 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-2">Año</div>
-                        <div class="col-xs-10"><p><input id ="input-nombre" type="text" required="true" size="20"></p></div>
+                        <div class="col-xs-10"><p><input id ="input-anio" type="text" required="true" size="20"></p></div>
                     </div>
                     <div class="row">
                         <div class="col-xs-2">Empresa</div>
-                        <div class="col-xs-10"><p><input id ="input-nombre" type="text" required="true" size="20"></p></div>
+                        <div class="col-xs-10"><p><input id ="input-empresa" type="text" required="true" size="20"></p></div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12">
-                            <p>Resultado: <text id="textarea-formula" class="form-control" rows="5" style="max-width:100%;"></textarea></p>
+                            <p>Resultado: <text id="text-resultado" class="form-control" rows="5" style="max-width:100%;"></text></p>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <input id="btn-crear" type="submit" class="btn btn-primary" value="Calcular">
+                    <input id="btn-calcular" type="submit" class="btn btn-primary" value="Calcular">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>

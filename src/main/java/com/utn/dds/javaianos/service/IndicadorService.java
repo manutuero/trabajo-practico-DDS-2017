@@ -10,4 +10,7 @@ public interface IndicadorService {
     public Integer saveIndicador(Indicador indicador);
     public List<Indicador> getAllIndicadores();
     public Double evaluarIndicador(Indicador indicador, Empresa empresa, Integer periodo);
+    public Indicador findIndicador(String codigo);
+     
+    
 }

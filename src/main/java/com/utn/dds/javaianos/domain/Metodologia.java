@@ -4,14 +4,18 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 @Entity
-public class Metodologia implements Serializable {
+public abstract class Metodologia implements Serializable {
 
     @Id
-    private String nombre;
-    //private List<Condicion> condiciones;
-    //@Transient
+    public String nombre;
+
+    public void evaluarMetodologia(){} ;
+    
+    @Transient
+    public List<Condicion> condiciones;
 
 //    public List<Condicion> getCondiciones() {
 //        return condiciones;
@@ -21,7 +25,6 @@ public class Metodologia implements Serializable {
 //        this.condiciones = condiciones;
 //    }
 //    
-  
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }

@@ -18,7 +18,7 @@ function initListaIndicadores() {
 function calcularIndicador()
 {
     $('#btn-calcular').click(function() {
-        
+        cleanResponses();
         var anio = $('#input-anio').val();
         var empresa = $('#input-empresa').val();
         var indicador = $('#list-indicadores').val();

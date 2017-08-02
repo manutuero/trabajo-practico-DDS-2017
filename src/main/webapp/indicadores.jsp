@@ -38,11 +38,11 @@
             <!-- A success message -->
             <div class="row">
                 <div class="col-lg-7"></div>
-                <div class="col-lg-5">
+                
                     <div id="success-message" class="alert alert-success" hidden="true">
                         <strong>Exito!</strong> El indicador se ha guardado exitosamente.
                     </div>
-                </div>
+                
             </div>
 
             <div class="row">

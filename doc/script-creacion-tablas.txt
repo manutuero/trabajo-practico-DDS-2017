@@ -24,5 +24,10 @@ CREATE TABLE `dbprod`.`Indicador`
 	 `tipo` VARCHAR(50) NOT NULL,
 	 `formula` VARCHAR(255) NOT NULL) ENGINE = InnoDB;
 
+CREATE TABLE `dbprod`.`Condicion` 
+	(`codigo` VARCHAR(50) NOT NULL PRIMARY KEY,
+     	 `nombre` VARCHAR(150) NOT NULL,
+	 `formula` VARCHAR(255) NOT NULL) ENGINE = InnoDB;
+
 INSERT INTO `dbprod`.`Empresa` (nombre) VALUES ('Facebook'),
 				     ('Twitter');

@@ -1,29 +1,82 @@
 function initListaIndicadores() {
     var listaIndicadores = $('#list-indicadores');
- 
+
     listaIndicadores.empty();
     listaIndicadores.append('<option value="" disabled selected>Seleccione un indicador</option>');
-            
+
     $.ajax({
         url: 'http://localhost:8084/TpIntegradorDDS/api/indicadores',
         type: 'GET',
         success: function (indicadores) {
             $.each(indicadores, function (indice, indicador) {
-                listaIndicadores.append('<option>'+ indicador.codigo + '</option>');
+                listaIndicadores.append('<option>' + indicador.codigo + '</option>');
+            });
+        }
+    });
+}
+;
+
+function initListaCondiciones() {
+    var listaCondiciones = $('#list-condiciones');
+
+    listaCondiciones.empty();
+    listaCondiciones.append('<option value="" disabled selected>Seleccione una Condicion</option>');
+
+    $.ajax({
+        url: 'http://localhost:8084/TpIntegradorDDS/api/condiciones',
+        type: 'GET',
+        success: function (condiciones) {
+            $.each(condiciones, function (indice, condicion) {
+                listaCondiciones.append('<option>' + condicion.nombre + '</option>');
             });
         }
     });
 };
 
-function insertarIndicador(){
-    $('#textarea-formula-condicion').append($('#list-indicadores').val());
+function initListaTipoMetodologia(){
+    var listaTiposMetodologias = $('#list-tipos-metodologia');
+    
+    listaTiposMetodologias.empty();
+    listaTiposMetodologias.append('<option value="" disabled selected>Seleccione un Tipo de Metodologia</option>');
+    listaTiposMetodologias.append('<option value="">Taxativa</option>');
+    listaTiposMetodologias.append('<option value="">Prioritaria</option>');
+    listaTiposMetodologias.append('<option value="">Mixta</option>');
+}
+
+function agregarCondicion() {
+    
+        var max_fields = 10; //maximum input boxes allowed
+        var wrapper = $(".input_fields_wrap"); //Fields wrapper
+        var add_button = $(".add_field_button"); //Add button ID
+
+        var x = 1; //initlal text box count
+        $('#btn-agregar-condicion').click(function (e) { //on add input button click
+            e.preventDefault();
+            if (x < max_fields) { //max input box allowed
+                x++; //text box increment
+                $(wrapper).append('<div><textarea readonly type="text" rows="1" style="width:75%; background-color:#49E20E" >'+$('#list-condiciones').val()+'</textarea><a href="#" class="remove_field">Remove</a></div>'); //add input box
+            }
+        });
+
+        $(wrapper).on("click", ".remove_field", function (e) { //user click on remove text
+            e.preventDefault();
+            $(this).parent('div').remove();
+            x--;
+        })
+    
+
 };
 
+function insertarIndicador() {
+    $('#textarea-formula-condicion').append($('#list-indicadores').val());
+}
+;
+
 function validarIngresoNuevaCondicion() {
-    
-    $('#btn-crear-condicion').click(function() {
+
+    $('#btn-crear-condicion').click(function () {
         cleanResponses();
-        
+
         var codigo = $('#input-codigo').val();
         var nombre = $('#input-nombre').val();
         var formula = $('#textarea-formula-condicion').val();
@@ -76,30 +129,32 @@ function cleanResponses() {
 ;
 
 function cleanForm() {
-    
+
 }
 
-function abrirModalNuevaCondicion(){
+function abrirModalNuevaCondicion() {
     $('#btn-abrir-nueva-condicion').click(function () {
         cleanForm();
         cleanResponses();
         initListaIndicadores();
     });
-};
+}
+;
 
 function cerrarModalEvaluarCondicion() {
     $('#btn-cerrar-nueva-condicion').click(function () {
         cleanForm();
         cleanResponses();
     });
-};
+}
+;
 
 
 function abrirModalNuevaMetodologia() {
     $('#btn-abrir-nueva-metodologia').click(function () {
         cleanForm();
         cleanResponses();
-        initListaIndicadores();
+        initListaCondiciones();
     });
 }
 ;
@@ -109,26 +164,30 @@ function cerrarModalNuevaMetodologia() {
         cleanForm();
         cleanResponses();
     });
-};
+}
+;
 
 function abrirModalEvaluarMetodologia() {
     $('#btn-abrir-evaluar-metodologia').click(function () {
         initListaMetodologias();
     });
-};
+}
+;
 
 function cerrarModalEvaluarMetodologia() {
     $('#btn-cerrar-evaluar-metod').click(function () {
         cleanForm();
         cleanResponses();
     });
-};
+}
+;
 
 // Metodos que van a estar listos para usar cuando se cargue el documento HTML.
 $(document).ready(function () {
     cleanForm();
     cleanResponses();
-    
+    initListaTipoMetodologia();
+
     // eventos
     validarIngresoNuevaCondicion();
     abrirModalNuevaMetodologia();
@@ -137,7 +196,7 @@ $(document).ready(function () {
     cerrarModalEvaluarMetodologia();
     abrirModalNuevaCondicion();
     cerrarModalNuevacondicion();
-    
+
     //validarIngresoNuevaMetodologia();
-    
+
 });

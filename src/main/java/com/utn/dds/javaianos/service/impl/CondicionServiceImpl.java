@@ -9,6 +9,7 @@ import com.utn.dds.javaianos.repository.CondicionRepository;
 import com.utn.dds.javaianos.service.CondicionService;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,6 +47,11 @@ public class CondicionServiceImpl implements CondicionService {
         
     }
     
+    @Override
+    public List<Condicion> getAllCondiciones()
+    {
+        return condicionRepository.findAll();
+    }
         
  
     

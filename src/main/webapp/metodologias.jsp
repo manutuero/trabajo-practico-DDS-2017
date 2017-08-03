@@ -37,11 +37,11 @@
 
             <div class="row">
                 <div class="col-lg-7"></div>
-                
-                    <div id="success-condicion-message" class="alert alert-success" hidden="true">
-                        <strong>Exito!</strong> La Condicion se ha guardado exitosamente.
-                    </div>
-                
+
+                <div id="success-condicion-message" class="alert alert-success" hidden="true">
+                    <strong>Exito!</strong> La Condicion se ha guardado exitosamente.
+                </div>
+
             </div>
 
             <div class="row">
@@ -51,7 +51,7 @@
             </div>
 
             <!-- Page Features -->
-                                 
+
             <div class="row text-center">
                 <div class="col-md-4 col-sm-8 hero-feature">
                     <div class="thumbnail">
@@ -64,7 +64,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-md-4 col-sm-8 hero-feature">
                     <div class="thumbnail">
                         <div class="caption">
@@ -88,7 +88,7 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div>
 
             <!-- Page Footer -->
@@ -149,7 +149,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div id="modal-nueva-metod" class="modal fade" role="dialog">
             <div class="modal-dialog">
                 <!-- Modal content-->
@@ -163,8 +163,27 @@
                             </div>
                         </div>
                         <div class="row">
+                            <div class="col-xs-5">
+                                <p>Seleccione tipo de Metodologia:</p>
+                            </div>
+                            <div class="col-xs-6">
+                                <select id="list-tipos-metodologia" class="form-control" name="size"></select>
+                            </div>
+                            <div class="col-xs-1">
+                                
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
                             <div class="col-xs-12">
-                                <p>Formula: <textarea id="textarea-formula" class="form-control" rows="2" style="max-width:100%;"></textarea></p>
+                                <div class="col-xs-10">
+                                    <p><select onChange="agregarCondicion()" id="list-condiciones" class="form-control" name="size"></select></p>
+                                </div> 
+                                <div class="col-xs-2">
+                                    <button id="btn-agregar-condicion" class="add_field_button">Agregar</button>
+                                </div> 
+                                <div class="input_fields_wrap">
+                                </div> 
                             </div>
                         </div>
                     </div>
@@ -173,50 +192,44 @@
                             <div id="warning-message" class="alert alert-warning" hidden="true">
                                 <strong>Advertencia!</strong> Los campos no deben estar vacios.
                             </div>
-                            <div id="syntax-error-message" class="alert alert-danger" hidden="true">
-                                <strong>Error sintactico!</strong> La formula ingresada posee una expresion no valida.
-                            </div>
-                            <div id="input-error-message" class="alert alert-danger" hidden="true">
-                                <strong>Error de contenido!</strong> La formula ingresada posee cuentas o indicadores no existentes.
-                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <input id="btn-crear" type="submit" class="btn btn-primary" value="Crear">
+                        <input id="btn-crear-metodologia" type="submit" class="btn btn-primary" value="Crear">
                         <button id="btn-cerrar-nueva-metod" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
             </div>
         </div>
-        
-            <!-- ***** Modulo Evaluar Metodologia ***** -->
-    <!-- Modal -->
-    <div id="modal-evaluar-metod" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <p><h4 class="modal-title">Evaluar Metodologia</h4><p>
-                    <div class="row">
-                        <div class="col-xs-2">Metodologia</div>
-                        <div class="col-xs-6">
-                            <p><select id="list-metodologias" class="form-control" name="size" ></select></p>
+
+        <!-- ***** Modulo Evaluar Metodologia ***** -->
+        <!-- Modal -->
+        <div id="modal-evaluar-metod" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <p><h4 class="modal-title">Evaluar Metodologia</h4><p>
+                        <div class="row">
+                            <div class="col-xs-2">Metodologia</div>
+                            <div class="col-xs-6">
+                                <p><select id="list-metodologias" class="form-control" name="size" ></select></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <p>Resultado: <text id="textarea-formula" class="form-control" rows="5" style="max-width:100%;"></textarea></p>
+                            </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <p>Resultado: <text id="textarea-formula" class="form-control" rows="5" style="max-width:100%;"></textarea></p>
-                        </div>
+                    <div class="modal-footer">
+                        <input id="btn-crear" type="submit" class="btn btn-primary" value="Calcular">
+                        <button id="btn-cerrar-evaluar-metod" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <input id="btn-crear" type="submit" class="btn btn-primary" value="Calcular">
-                    <button id="btn-cerrar-evaluar-metod" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
-    </div>
 
         <!-- Script files -->
         <script src="js/vendor/jquery-3.2.1.min.js"></script>

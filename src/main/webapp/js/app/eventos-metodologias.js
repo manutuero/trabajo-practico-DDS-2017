@@ -1,26 +1,32 @@
-function initListaMetodologias() {
-    var listaMetodologias = $('#list-metodologias');
+function initListaIndicadores() {
+    var listaIndicadores = $('#list-indicadores');
  
-    listaMetodologias.empty();
-    listaMetodologias.append('<option value="" disabled selected>Seleccione una metodologia</option>');
+    listaIndicadores.empty();
+    listaIndicadores.append('<option value="" disabled selected>Seleccione un indicador</option>');
             
     $.ajax({
-        url: 'http://localhost:8084/TpIntegradorDDS/api/metodologias',
+        url: 'http://localhost:8084/TpIntegradorDDS/api/indicadores',
         type: 'GET',
-        success: function (metodologias) {
-            $.each(metodologias, function (indice, metodologia) {
-                listaMetodologias.append('<option>' + metodologia.nombre + '</option>');
+        success: function (indicadores) {
+            $.each(indicadores, function (indice, indicador) {
+                listaIndicadores.append('<option>'+ indicador.codigo + '</option>');
             });
         }
     });
 };
 
-function validarIngresoNuevaMetodologia() {
-    $('#btn-crear').click(function () {
-        cleanResponses();
+function insertarIndicador(){
+    $('#textarea-formula-condicion').append($('#list-indicadores').val());
+};
 
+function validarIngresoNuevaCondicion() {
+    
+    $('#btn-crear-condicion').click(function() {
+        cleanResponses();
+        
+        var codigo = $('#input-codigo').val();
         var nombre = $('#input-nombre').val();
-        var formula = $('#textarea-formula').val();
+        var formula = $('#textarea-formula-condicion').val();
 
         if (nombre === '' || formula === '') {
             $('#warning-message').show();
@@ -28,12 +34,13 @@ function validarIngresoNuevaMetodologia() {
             $('#warning-message').hide();
 
             var data = {
+                codigo: codigo,
                 nombre: nombre,
                 formula: formula
             };
 
             $.ajax({
-                url: 'http://localhost:8084/TpIntegradorDDS/api/nueva-metodologia',
+                url: 'http://localhost:8084/TpIntegradorDDS/api/nueva-condicion',
                 type: 'POST',
                 data: JSON.stringify(data),
                 dataType: 'json',
@@ -43,8 +50,8 @@ function validarIngresoNuevaMetodologia() {
                     if (response.resultado === "0") {
                         cleanResponses();
                         cleanForm();
-                        $('#modal-nueva-metod').modal("hide");
-                        $('#success-message').show();
+                        $('#modal-nueva-condicion').modal("hide");
+                        $('#success-condicion-message').show();
                     }
                     if (response.resultado === "1") {
                         cleanResponses();
@@ -69,13 +76,30 @@ function cleanResponses() {
 ;
 
 function cleanForm() {
-
+    
 }
+
+function abrirModalNuevaCondicion(){
+    $('#btn-abrir-nueva-condicion').click(function () {
+        cleanForm();
+        cleanResponses();
+        initListaIndicadores();
+    });
+};
+
+function cerrarModalEvaluarCondicion() {
+    $('#btn-cerrar-nueva-condicion').click(function () {
+        cleanForm();
+        cleanResponses();
+    });
+};
+
 
 function abrirModalNuevaMetodologia() {
     $('#btn-abrir-nueva-metodologia').click(function () {
         cleanForm();
         cleanResponses();
+        initListaIndicadores();
     });
 }
 ;
@@ -85,15 +109,20 @@ function cerrarModalNuevaMetodologia() {
         cleanForm();
         cleanResponses();
     });
-}
-;
+};
 
 function abrirModalEvaluarMetodologia() {
     $('#btn-abrir-evaluar-metodologia').click(function () {
         initListaMetodologias();
     });
-}
-;
+};
+
+function cerrarModalEvaluarMetodologia() {
+    $('#btn-cerrar-evaluar-metod').click(function () {
+        cleanForm();
+        cleanResponses();
+    });
+};
 
 // Metodos que van a estar listos para usar cuando se cargue el documento HTML.
 $(document).ready(function () {
@@ -101,8 +130,14 @@ $(document).ready(function () {
     cleanResponses();
     
     // eventos
+    validarIngresoNuevaCondicion();
     abrirModalNuevaMetodologia();
     cerrarModalNuevaMetodologia();
-    validarIngresoNuevaMetodologia();
     abrirModalEvaluarMetodologia();
+    cerrarModalEvaluarMetodologia();
+    abrirModalNuevaCondicion();
+    cerrarModalNuevacondicion();
+    
+    //validarIngresoNuevaMetodologia();
+    
 });

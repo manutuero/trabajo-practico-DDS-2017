@@ -166,6 +166,13 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                        <div class="col-xs-12">
+                            <div id="warning-message" class="alert alert-warning" hidden="true">
+                                <strong>Advertencia!</strong> Los campos no deben estar vacios.
+                            </div>
+                        </div>
+                    </div>
                 <div class="modal-footer">
                     <input id="btn-calcular" type="submit" class="btn btn-primary" value="Calcular">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>

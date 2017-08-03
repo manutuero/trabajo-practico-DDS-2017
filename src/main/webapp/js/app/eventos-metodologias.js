@@ -137,6 +137,7 @@ function abrirModalNuevaCondicion() {
         cleanForm();
         cleanResponses();
         initListaIndicadores();
+        validarIngresoNuevaCondicion();
     });
 }
 ;
@@ -189,7 +190,6 @@ $(document).ready(function () {
     initListaTipoMetodologia();
 
     // eventos
-    validarIngresoNuevaCondicion();
     abrirModalNuevaMetodologia();
     cerrarModalNuevaMetodologia();
     abrirModalEvaluarMetodologia();

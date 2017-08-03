@@ -6,7 +6,7 @@ public class MetodologiaTaxativa extends Metodologia {
 
     @Override
     public void evaluarMetodologia() {
-        for (Condicion condicion : this.condiciones) {
+        for (Condicion condicion : this.listCondiciones) {
             //saco cuantas condiciones se cumplen
         }
         //si cumple mas del XX % setea el bool en true

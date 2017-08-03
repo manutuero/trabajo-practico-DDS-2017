@@ -2,6 +2,7 @@ package com.utn.dds.javaianos.controller.rest;
 
 import com.utn.dds.javaianos.domain.Condicion;
 import com.utn.dds.javaianos.service.CondicionService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,11 @@ public class CondicionRestController {
         Integer resultado = condicionService.saveCondicion(condicion);
         JsonResponse jsonResponse = new JsonResponse(resultado.toString());
         return jsonResponse;
+    }
+    
+    @RequestMapping(value = "/api/condiciones", method = RequestMethod.GET)
+    public List<Condicion> obtenerCondiciones() {
+        return condicionService.getAllCondiciones();
     }
     
 }

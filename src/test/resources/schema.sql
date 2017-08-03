@@ -3,6 +3,7 @@ DROP TABLE IF EXISTS Indicador;
 DROP TABLE IF EXISTS Cuenta;
 DROP TABLE IF EXISTS Empresa;
 DROP TABLE IF EXISTS Condicion;
+DROP TABLE IF EXISTS Metodologia;
 
 CREATE TABLE Cuenta (
     codigo VARCHAR(50) NOT NULL PRIMARY KEY,
@@ -37,12 +38,21 @@ CREATE TABLE Condicion (
     formula VARCHAR(255) NOT NULL
 );
 
+CREATE TABLE Metodologia (
+    codigo VARCHAR(50) NOT NULL PRIMARY KEY,
+    descripcion VARCHAR(50) NOT NULL,
+    tipo VARCHAR(50) NOT NULL,
+    condiciones VARCHAR(255) NOT NULL
+);
+
 /* Pensar si realmente vale la pensa implementar una clase periodo ?? mientras se maneja como Integer
 CREATE TABLE Periodo (
     periodo INT NOT NULL PRIMARY KEY
 );*/
 
 INSERT INTO Condicion (codigo, nombre, formula) VALUES ('Mayor5','Mayor a 5','>5');
+
+INSERT INTO Metodologia (codigo, descripcion, tipo, condiciones) VALUES ('METOD1', 'una metodologia de prueba', 'Taxativa', 'Mayor5');
 
 INSERT INTO Empresa (nombre) VALUES ('Facebook');
 INSERT INTO Empresa (nombre) VALUES ('Twitter');
@@ -59,5 +69,7 @@ INSERT INTO Cotizacion(id, cuenta, empresa, periodo, valor) VALUES (4,'INOD','Fa
 INSERT INTO Cotizacion(id, cuenta, empresa, periodo, valor) VALUES (5,'EFG','Facebook',2016,1);
 
 INSERT INTO Indicador(codigo, nombre, tipo, formula) VALUES ('INETO','Ingreso neto','predefinido','INOC+INOD');
+
+
 
 

@@ -38,11 +38,11 @@
             <!-- A success message -->
             <div class="row">
                 <div class="col-lg-7"></div>
-                
-                    <div id="success-message" class="alert alert-success" hidden="true">
-                        <strong>Exito!</strong> El indicador se ha guardado exitosamente.
-                    </div>
-                
+
+                <div id="success-message" class="alert alert-success" hidden="true">
+                    <strong>Exito!</strong> El indicador se ha guardado exitosamente.
+                </div>
+
             </div>
 
             <div class="row">
@@ -158,7 +158,9 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-2">Empresa</div>
-                        <div class="col-xs-10"><p><input id ="input-empresa" type="text" required="true" size="20"></p></div>
+                        <div class="col-xs-6">
+                            <p><select id="list-empresas" class="form-control" name="size" ></select></p>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12">
@@ -167,12 +169,12 @@
                     </div>
                 </div>
                 <div class="row">
-                        <div class="col-xs-12">
-                            <div id="warning-message" class="alert alert-warning" hidden="true">
-                                <strong>Advertencia!</strong> Los campos no deben estar vacios.
-                            </div>
+                    <div class="col-xs-12">
+                        <div id="warning-message" class="alert alert-warning" hidden="true">
+                            <strong>Advertencia!</strong> Los campos no deben estar vacios.
                         </div>
                     </div>
+                </div>
                 <div class="modal-footer">
                     <input id="btn-calcular" type="submit" class="btn btn-primary" value="Calcular">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>

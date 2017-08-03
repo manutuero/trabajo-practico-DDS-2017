@@ -17,7 +17,7 @@ public class IndicadorRestController {
 
     @Autowired
     private IndicadorService indicadorService;
-    
+
     @Autowired
     private EmpresaService empresaService;
 
@@ -32,12 +32,17 @@ public class IndicadorRestController {
     public List<Indicador> obtenerIndicadores() {
         return indicadorService.getAllIndicadores();
     }
-    
+
     @RequestMapping(value = "/api/calcular-indicador", method = RequestMethod.GET)
-    public Double obtenerValorIndicador(@RequestParam (name = "anio") Integer anio, @RequestParam (name = "empresa") String nombreEmpresa,  @RequestParam (name = "indicador") String codigo) {
+    public Double obtenerValorIndicador(@RequestParam(name = "anio") Integer anio, @RequestParam(name = "empresa") String nombreEmpresa, @RequestParam(name = "indicador") String codigo) {
         Indicador indicador = indicadorService.findIndicador(codigo);
         Empresa empresa = empresaService.findEmpresa(nombreEmpresa);
         Double resultado = indicadorService.evaluarIndicador(indicador, empresa, anio);
         return resultado;
+    }
+
+    @RequestMapping(value = "/api/empresas", method = RequestMethod.GET)
+    public List<Empresa> obtenerEmpresas() {
+        return empresaService.getAllEmpresas();
     }
 }

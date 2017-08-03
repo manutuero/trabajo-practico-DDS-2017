@@ -44,6 +44,13 @@ CREATE TABLE Metodologia (
     tipo VARCHAR(50) NOT NULL,
     condiciones VARCHAR(255) NOT NULL
 );
+-- 
+-- CREATE TABLE Metodologia_Condicion {
+--     codigoCondicion VARCHAR(50) NOT NULL PRIMARY KEY
+--     codigoMeto  VARCHAR(50) NOT NULL PRIMARY KEY,
+--     FOREIGN KEY (codigoCondicion) REFERENCES Condicion(codigo),
+--     FOREIGN KEY (codigoMeto) REFERENCES Metodologia(codigo), 
+-- ]
 
 /* Pensar si realmente vale la pensa implementar una clase periodo ?? mientras se maneja como Integer
 CREATE TABLE Periodo (

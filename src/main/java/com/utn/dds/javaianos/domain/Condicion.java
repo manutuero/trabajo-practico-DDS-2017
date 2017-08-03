@@ -7,11 +7,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name= "Condicion")
-public class Condicion implements Serializable {
+public abstract class Condicion implements Serializable {
     
     @Id
     private String codigo;
     private String nombre;
+    private String tipo;
     private String formula;
     
     public String getNombre() {

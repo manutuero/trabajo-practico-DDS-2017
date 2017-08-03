@@ -9,14 +9,13 @@ import javax.persistence.Transient;
 
 @Entity
 @Table(name = "Metodologia")
-public abstract class Metodologia implements Serializable {
+public class Metodologia implements Serializable {
 
     @Id
     public String codigo;
     public String tipo;
     public String descripcion;
-    public String condiciones;
-
+   
     @Transient
     public List<Condicion> listCondiciones;
 
@@ -32,9 +31,9 @@ public abstract class Metodologia implements Serializable {
         return descripcion;
     }
 
-    public String getCondiciones() {
-        return condiciones;
-    }
+//    public String getCondiciones() {
+//        return condiciones;
+//    }
 
     public List<Condicion> getListCondiciones() {
         return listCondiciones;
@@ -52,9 +51,9 @@ public abstract class Metodologia implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public void setCondiciones(String condiciones) {
-        this.condiciones = condiciones;
-    }
+//    public void setCondiciones(String condiciones) {
+//        this.condiciones = condiciones;
+//    }
 
     public void setListCondiciones(List<Condicion> listCondiciones) {
         this.listCondiciones = listCondiciones;

@@ -35,13 +35,13 @@ CREATE TABLE Indicador (
 CREATE TABLE Condicion (
     codigo VARCHAR(50) NOT NULL PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
+    tipo VARCHAR(50) NOT NULL,
     formula VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE Metodologia (
     codigo VARCHAR(50) NOT NULL PRIMARY KEY,
     descripcion VARCHAR(50) NOT NULL,
-    tipo VARCHAR(50) NOT NULL,
     condiciones VARCHAR(255) NOT NULL
 );
 -- 
@@ -57,9 +57,9 @@ CREATE TABLE Periodo (
     periodo INT NOT NULL PRIMARY KEY
 );*/
 
-INSERT INTO Condicion (codigo, nombre, formula) VALUES ('Mayor5','Mayor a 5','>5');
+INSERT INTO Condicion (codigo, nombre,tipo, formula) VALUES ('Mayor5','Mayor a 5','Taxativa','>5');
 
-INSERT INTO Metodologia (codigo, descripcion, tipo, condiciones) VALUES ('METOD1', 'una metodologia de prueba', 'Taxativa', 'Mayor5');
+INSERT INTO Metodologia (codigo, descripcion,condiciones) VALUES ('METOD1', 'una metodologia de prueba', 'Mayor5');
 
 INSERT INTO Empresa (nombre) VALUES ('Facebook');
 INSERT INTO Empresa (nombre) VALUES ('Twitter');

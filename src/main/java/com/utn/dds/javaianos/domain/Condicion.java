@@ -3,10 +3,9 @@ package com.utn.dds.javaianos.domain;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
+
 
 @Entity
-@Table(name= "Condicion")
 public abstract class Condicion implements Serializable {
     
     @Id
@@ -14,6 +13,14 @@ public abstract class Condicion implements Serializable {
     private String nombre;
     private String tipo;
     private String formula;
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
     
     public String getNombre() {
         return nombre;
@@ -41,11 +48,12 @@ public abstract class Condicion implements Serializable {
        
     public Condicion(){};
     
-    public Condicion (String codigo, String nombre, String formula) 
+    public Condicion (String codigo, String nombre, String formula, String tipo) 
     {
         this.codigo = codigo;
         this.nombre = nombre;
         this.formula = formula;
+        this.tipo = tipo;
     }
     
     

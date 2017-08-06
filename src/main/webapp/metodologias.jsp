@@ -123,6 +123,9 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-6">
+                                <select id="list-tipos-condiciones" class="form-control" name="size"></select>
+                            </div>
+                            <div class="col-xs-6">
                                 <p><select onChange="insertarIndicador()" id="list-indicadores" class="form-control" name="size"   ></select></p>
                             </div>
                         </div>

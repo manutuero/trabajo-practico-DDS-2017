@@ -33,14 +33,14 @@ function initListaCondiciones() {
     });
 };
 
-function initListaTipoMetodologia(){
-    var listaTiposMetodologias = $('#list-tipos-metodologia');
+function initListaTipoCondiciones(){
+    var listaTiposCondiciones = $('#list-tipos-condiciones');
     
-    listaTiposMetodologias.empty();
-    listaTiposMetodologias.append('<option value="" disabled selected>Seleccione un Tipo de Metodologia</option>');
-    listaTiposMetodologias.append('<option value="">Taxativa</option>');
-    listaTiposMetodologias.append('<option value="">Prioritaria</option>');
-    listaTiposMetodologias.append('<option value="">Mixta</option>');
+    listaTiposCondiciones.empty();
+    listaTiposCondiciones.append('<option value="" disabled selected>Seleccione Tipo de Condicion</option>');
+    listaTiposCondiciones.append('<option value="">Taxativa</option>');
+    listaTiposCondiciones.append('<option value="">Prioritaria</option>');
+
 }
 
 function agregarCondicion() {
@@ -79,6 +79,7 @@ function validarIngresoNuevaCondicion() {
         var codigo = $('#input-codigo').val();
         var nombre = $('#input-nombre').val();
         var formula = $('#textarea-formula-condicion').val();
+        var tipo = $('#list-tipos-condiciones').val();
 
         if (nombre === '' || formula === '') {
             $('#warning-message').show();
@@ -88,7 +89,8 @@ function validarIngresoNuevaCondicion() {
             var data = {
                 codigo: codigo,
                 nombre: nombre,
-                formula: formula
+                formula: formula,
+                tipo: tipo,
             };
 
             $.ajax({
@@ -136,6 +138,7 @@ function abrirModalNuevaCondicion() {
         cleanForm();
         cleanResponses();
         initListaIndicadores();
+        initListaTipoCondiciones();
         validarIngresoNuevaCondicion();
     });
 }
@@ -155,6 +158,7 @@ function abrirModalNuevaMetodologia() {
         cleanForm();
         cleanResponses();
         initListaCondiciones();
+        
     });
 }
 ;
@@ -169,7 +173,7 @@ function cerrarModalNuevaMetodologia() {
 
 function abrirModalEvaluarMetodologia() {
     $('#btn-abrir-evaluar-metodologia').click(function () {
-        initListaMetodologias();
+        
     });
 }
 ;
@@ -186,7 +190,7 @@ function cerrarModalEvaluarMetodologia() {
 $(document).ready(function () {
     cleanForm();
     cleanResponses();
-    initListaTipoMetodologia();
+    
 
     // eventos
     abrirModalNuevaMetodologia();

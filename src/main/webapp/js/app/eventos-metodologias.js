@@ -90,11 +90,10 @@ function validarIngresoNuevaCondicion() {
                 codigo: codigo,
                 nombre: nombre,
                 formula: formula,
-                tipo: tipo
-            };
+               };
 
             $.ajax({
-                url: 'http://localhost:8084/TpIntegradorDDS/api/nueva-condicion',
+                url: 'http://localhost:8084/TpIntegradorDDS/api/nueva-condicion-taxativa',
                 type: 'POST',
                 data: JSON.stringify(data),
                 dataType: 'json',

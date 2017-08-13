@@ -165,18 +165,8 @@
                                 <p>Nombre: <input id ="input-nombre" type="text" required="true" size="45"></p>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-xs-5">
-                                <p>Seleccione tipo de Metodologia:</p>
-                            </div>
-                            <div class="col-xs-6">
-                                <select id="list-tipos-metodologia" class="form-control" name="size"></select>
-                            </div>
-                            <div class="col-xs-1">
-                                
-                            </div>
-                        </div>
-                        <hr>
+                    </div>
+                    <p style="text-indent: 10px">  Seleccione un conjunto de Condiciones </p>
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="col-xs-10">
@@ -189,7 +179,6 @@
                                 </div> 
                             </div>
                         </div>
-                    </div>
                     <div class="row">
                         <div class="col-xs-12">
                             <div id="warning-message" class="alert alert-warning" hidden="true">

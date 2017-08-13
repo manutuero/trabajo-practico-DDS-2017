@@ -26,8 +26,7 @@ CREATE TABLE `dbprod`.`Indicador`
 
 CREATE TABLE `dbprod`.`Metodologia` 
 	(`codigo` VARCHAR(50) NOT NULL PRIMARY KEY,
-    	`descripcion` VARCHAR(100) NOT NULL,
-    	`tipo` VARCHAR(50) NOT NULL,
+    	`descripcion` VARCHAR(50) NOT NULL,
     	`condiciones` VARCHAR(255) NOT NULL) ENGINE = InnoDB;
 
 
@@ -35,6 +34,7 @@ CREATE TABLE `dbprod`.`Metodologia`
 CREATE TABLE `dbprod`.`Condicion` 
  	(`codigo` VARCHAR(50) NOT NULL PRIMARY KEY,
        `nombre` VARCHAR(150) NOT NULL,
+	`tipo` VARCHAR(50) NOT NULL,
   	`formula` VARCHAR(255) NOT NULL) ENGINE = InnoDB;
 
 INSERT INTO `dbprod`.`Empresa` (nombre) VALUES ('Facebook'),

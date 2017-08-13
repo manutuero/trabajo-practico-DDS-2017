@@ -90,7 +90,7 @@ function validarIngresoNuevaCondicion() {
                 codigo: codigo,
                 nombre: nombre,
                 formula: formula,
-                tipo: tipo,
+                tipo: tipo
             };
 
             $.ajax({

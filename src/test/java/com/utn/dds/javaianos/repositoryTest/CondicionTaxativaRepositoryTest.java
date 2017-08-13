@@ -1,6 +1,8 @@
+
 package com.utn.dds.javaianos.repositoryTest;
 
-import com.utn.dds.javaianos.repository.CondicionRepository;
+
+import com.utn.dds.javaianos.repository.CondicionTaxativaRepository;
 import javax.transaction.Transactional;
 import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
@@ -12,14 +14,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Transactional
-public class CondicionRepositoryTest {
+public class CondicionTaxativaRepositoryTest {
     
     @Autowired
-    CondicionRepository condicionRepository;
+    CondicionTaxativaRepository condicionTaxativaRepository;
     
     @Test
     public void findByCodigo_conCodigoDeCondicionExistente_devuelveCondicion() {
-        assertNotNull(condicionRepository.findByCodigo("Mayor5"));
+        assertNotNull(condicionTaxativaRepository.findByCodigo("Mayor5"));
     }
-    
 }

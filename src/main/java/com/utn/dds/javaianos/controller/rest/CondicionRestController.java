@@ -32,6 +32,7 @@ public class CondicionRestController {
         JsonResponse jsonResponse = new JsonResponse(resultado.toString());
         return jsonResponse;
     }
+    
     @RequestMapping(value = "/api/nueva-condicion-prioritaria", method = RequestMethod.POST)
     public JsonResponse guardarCondicionPrioritaria(@RequestBody CondicionPrioritaria condicion)
     {

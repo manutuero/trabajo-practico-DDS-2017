@@ -53,7 +53,7 @@ function agregarCondicion() {
             e.preventDefault();
             if (x < max_fields) { //max input box allowed
                 x++; //text box increment
-                $(wrapper).append('<div><textarea readonly type="text" rows="1" style="width:75%; background-color:#49E20E" >'+$('#list-condiciones').val()+'</textarea><a href="#" class="remove_field">Remove</a></div>'); //add input box
+                $(wrapper).append('<div class="w3-container w3-teal"><textarea readonly type="text" rows="1" style="width:75%; background-color:#4CAF50; color: white; margin:5px">'+$('#list-condiciones').val()+'</textarea><a href="#" style="vertical-align: super" class="remove_field">Remove</a></div>'); //add input box
             }
         });
 
@@ -61,7 +61,7 @@ function agregarCondicion() {
             e.preventDefault();
             $(this).parent('div').remove();
             x--;
-        })
+        });
     
 
 };
@@ -80,7 +80,17 @@ function validarIngresoNuevaCondicion() {
         var nombre = $('#input-nombre').val();
         var formula = $('#textarea-formula-condicion').val();
         var tipo = $('#list-tipos-condiciones').val();
-
+        var url;
+        
+        if(tipo === 'Taxativa')
+        {
+            url= "http://localhost:8084/TpIntegradorDDS/api/nueva-condicion-taxativa";
+        }
+        else
+        {
+            url= "http://localhost:8084/TpIntegradorDDS/api/nueva-condicion-prioritaria";
+        }
+        
         if (nombre === '' || formula === '') {
             $('#warning-message').show();
         } else {
@@ -89,11 +99,11 @@ function validarIngresoNuevaCondicion() {
             var data = {
                 codigo: codigo,
                 nombre: nombre,
-                formula: formula,
+                formula: formula
                };
 
-            $.ajax({
-                url: 'http://localhost:8084/TpIntegradorDDS/api/nueva-condicion-taxativa',
+            $.ajax({                
+                url: url,
                 type: 'POST',
                 data: JSON.stringify(data),
                 dataType: 'json',

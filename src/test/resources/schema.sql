@@ -2,8 +2,10 @@ DROP TABLE IF EXISTS Cotizacion;
 DROP TABLE IF EXISTS Indicador;
 DROP TABLE IF EXISTS Cuenta;
 DROP TABLE IF EXISTS Empresa;
+DROP TABLE IF EXISTS MetodologiaCondicion;
 DROP TABLE IF EXISTS Condicion;
 DROP TABLE IF EXISTS Metodologia;
+
 
 CREATE TABLE Cuenta (
     codigo VARCHAR(50) NOT NULL PRIMARY KEY,
@@ -44,14 +46,13 @@ CREATE TABLE Metodologia (
     descripcion VARCHAR(50) NOT NULL,
     condiciones VARCHAR(255) NOT NULL
 );
--- 
--- CREATE TABLE Metodologia_Condicion {
---     codigoCondicion VARCHAR(50) NOT NULL PRIMARY KEY
---     codigoMeto  VARCHAR(50) NOT NULL PRIMARY KEY,
---     FOREIGN KEY (codigoCondicion) REFERENCES Condicion(codigo),
---     FOREIGN KEY (codigoMeto) REFERENCES Metodologia(codigo), 
--- ]
 
+CREATE TABLE MetodologiaCondicion (
+    condicion VARCHAR(50) NOT NULL,
+    metodologia  VARCHAR(50) NOT NULL PRIMARY KEY,
+    FOREIGN KEY (condicion) REFERENCES Condicion(codigo),
+    FOREIGN KEY (metodologia) REFERENCES Metodologia(codigo)
+);
 /* Pensar si realmente vale la pensa implementar una clase periodo ?? mientras se maneja como Integer
 CREATE TABLE Periodo (
     periodo INT NOT NULL PRIMARY KEY

@@ -175,9 +175,10 @@
                                 <div class="col-xs-2">
                                     <button id="btn-agregar-condicion" class="add_field_button">Agregar</button>
                                 </div> 
-                                <div class="input_fields_wrap">
-                                </div> 
                             </div>
+                            <div class="col-xs-12">
+                                <div class="input_fields_wrap"></div> 
+                             </div>
                         </div>
                     <div class="row">
                         <div class="col-xs-12">

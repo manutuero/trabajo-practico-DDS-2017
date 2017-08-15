@@ -58,6 +58,8 @@ CREATE TABLE Periodo (
     periodo INT NOT NULL PRIMARY KEY
 );*/
 
+INSERT INTO Metodologia( codigo, descripcion, condiciones) VALUES ('test', 'asd', 'muchasCondiciones');
+
 INSERT INTO Condicion (codigo, nombre, tipo, formula) VALUES ('Mayor5','Mayor a 5','Taxativa','>5');
 INSERT INTO Condicion (codigo, nombre, tipo, formula) VALUES ('Menor5','Menor a 5','Prioritaria','<5');
 

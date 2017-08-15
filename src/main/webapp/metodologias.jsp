@@ -162,7 +162,10 @@
                         <h4 class="modal-title">Nueva Metodologia</h4><br>
                         <div class="row">
                             <div class="col-xs-12">
-                                <p>Nombre: <input id ="input-nombre" type="text" required="true" size="45"></p>
+                                <p>Codigo: <input id ="input-codigo" type="text" required="true" size="45"></p>
+                            </div>
+                            <div class="col-xs-12">
+                                <p>Descripcion: <input id ="input-descripcion" type="text" required="true" size="45"></p>
                             </div>
                         </div>
                     </div>
@@ -180,6 +183,10 @@
                                 <div class="input_fields_wrap"></div> 
                              </div>
                         </div>
+                    <div class="col-xs-12">
+                                <p>Formula: <textarea id="textarea-formula-met" class="form-control" rows="2" style="max-width:100%;"></textarea></p>
+                            </div>
+                        
                     <div class="row">
                         <div class="col-xs-12">
                             <div id="warning-message" class="alert alert-warning" hidden="true">

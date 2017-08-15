@@ -41,6 +41,9 @@
                 <div id="success-condicion-message" class="alert alert-success" hidden="true">
                     <strong>Exito!</strong> La Condicion se ha guardado exitosamente.
                 </div>
+                <div id="success-metod-message" class="alert alert-success" hidden="true">
+                    <strong>Exito!</strong> La Metodologia se ha guardado exitosamente.
+                </div>
 
             </div>
 
@@ -123,6 +126,9 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-6">
+                                <select id="list-tipos-condiciones" class="form-control" name="size"></select>
+                            </div>
+                            <div class="col-xs-6">
                                 <p><select onChange="insertarIndicador()" id="list-indicadores" class="form-control" name="size"   ></select></p>
                             </div>
                         </div>
@@ -159,21 +165,14 @@
                         <h4 class="modal-title">Nueva Metodologia</h4><br>
                         <div class="row">
                             <div class="col-xs-12">
-                                <p>Nombre: <input id ="input-nombre" type="text" required="true" size="45"></p>
+                                <p>Codigo: <input id ="input-codigo" type="text" required="true" size="45"></p>
+                            </div>
+                            <div class="col-xs-12">
+                                <p>Descripcion: <input id ="input-descripcion" type="text" required="true" size="45"></p>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-xs-5">
-                                <p>Seleccione tipo de Metodologia:</p>
-                            </div>
-                            <div class="col-xs-6">
-                                <select id="list-tipos-metodologia" class="form-control" name="size"></select>
-                            </div>
-                            <div class="col-xs-1">
-                                
-                            </div>
-                        </div>
-                        <hr>
+                    </div>
+                    <p style="text-indent: 10px">  Seleccione un conjunto de Condiciones </p>
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="col-xs-10">
@@ -182,11 +181,15 @@
                                 <div class="col-xs-2">
                                     <button id="btn-agregar-condicion" class="add_field_button">Agregar</button>
                                 </div> 
-                                <div class="input_fields_wrap">
-                                </div> 
                             </div>
+                            <div class="col-xs-12">
+                                <div class="input_fields_wrap"></div> 
+                             </div>
                         </div>
-                    </div>
+                    <div class="col-xs-12">
+                                <p>Formula: <textarea id="textarea-formula-met" class="form-control" rows="2" style="max-width:100%;"></textarea></p>
+                            </div>
+                        
                     <div class="row">
                         <div class="col-xs-12">
                             <div id="warning-message" class="alert alert-warning" hidden="true">

@@ -16,12 +16,22 @@ public class MetodologiaServiceImpl implements MetodologiaService {
     @Override
     public Integer saveMetodologia(Metodologia metodologia) {
 
+        try
+        {
+            metodologiaRepository.save(metodologia);
+            return 0;
+        }
+        catch(Exception e)
+        {
+            return 1;
+        }
         
-        return 0;
     }
 
     @Override
     public List<Metodologia> getAllMetodologias() {
         return metodologiaRepository.findAll();
     }
+    
+    
 }

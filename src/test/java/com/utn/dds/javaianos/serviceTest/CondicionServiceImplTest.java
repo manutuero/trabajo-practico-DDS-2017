@@ -17,28 +17,18 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @WebAppConfiguration
 @Transactional
 public class CondicionServiceImplTest {
+    
     @Autowired
     CondicionService condicionService;
     
      @Autowired
     CondicionRepository condicionRepository;
     
-    
+    //hacer tests de Taxativas y Prioritarias
+     
+     
     @Test
     public void saveCondicion_conFormulaValida_guardaYDevuelve0() {
-        Condicion condicion = new Condicion();
         
-        condicion.setCodigo("Menor1");
-        condicion.setNombre("Menor a uno");
-        condicion.setFormula("<1");
-
-        int resultado = condicionService.saveCondicion(condicion);
-
-        Condicion CondicionGuardada = condicionRepository.findByCodigo("Menor1");
-
-        assertEquals("Menor1", CondicionGuardada.getCodigo());
-        assertEquals("Menor a uno", CondicionGuardada.getNombre());
-        assertEquals("<1", CondicionGuardada.getFormula());
-        assertEquals(0, resultado);
     }
 }

@@ -27,45 +27,46 @@ function initListaCondiciones() {
         type: 'GET',
         success: function (condiciones) {
             $.each(condiciones, function (indice, condicion) {
-                listaCondiciones.append('<option>' + condicion.nombre + '</option>');
+                listaCondiciones.append('<option>' + condicion.codigo + '</option>');
             });
         }
     });
-};
+}
+;
 
-function initListaTipoMetodologia(){
-    var listaTiposMetodologias = $('#list-tipos-metodologia');
-    
-    listaTiposMetodologias.empty();
-    listaTiposMetodologias.append('<option value="" disabled selected>Seleccione un Tipo de Metodologia</option>');
-    listaTiposMetodologias.append('<option value="">Taxativa</option>');
-    listaTiposMetodologias.append('<option value="">Prioritaria</option>');
-    listaTiposMetodologias.append('<option value="">Mixta</option>');
+function initListaTipoCondiciones() {
+    var listaTiposCondiciones = $('#list-tipos-condiciones');
+
+    listaTiposCondiciones.empty();
+    listaTiposCondiciones.append('<option value="" disabled selected>Seleccione Tipo de Condicion</option>');
+    listaTiposCondiciones.append('<option value="">Taxativa</option>');
+    listaTiposCondiciones.append('<option value="">Prioritaria</option>');
+
 }
 
 function agregarCondicion() {
-    
-        var max_fields = 10; //maximum input boxes allowed
-        var wrapper = $(".input_fields_wrap"); //Fields wrapper
-        var add_button = $(".add_field_button"); //Add button ID
 
-        var x = 1; //initlal text box count
-        $('#btn-agregar-condicion').click(function (e) { //on add input button click
-            e.preventDefault();
-            if (x < max_fields) { //max input box allowed
-                x++; //text box increment
-                $(wrapper).append('<div><textarea readonly type="text" rows="1" style="width:75%; background-color:#49E20E" >'+$('#list-condiciones').val()+'</textarea><a href="#" class="remove_field">Remove</a></div>'); //add input box
-            }
-        });
+    var max_fields = 10; //maximum input boxes allowed
+    var wrapper = $(".input_fields_wrap"); //Fields wrapper
 
-        $(wrapper).on("click", ".remove_field", function (e) { //user click on remove text
-            e.preventDefault();
-            $(this).parent('div').remove();
-            x--;
-        })
-    
+    var x = 1; //initlal text box count
+    $('#btn-agregar-condicion').click(function (e) { //on add input button click
+        e.preventDefault();
+        if (x < max_fields) { //max input box allowed
+            x++; //text box increment
+            $(wrapper).append('<div class="w3-container w3-teal"><textarea readonly class="cond" type="text" rows="1" style="width:75%; background-color:#4CAF50; color: white; margin:5px">' + $('#list-condiciones').val() + '</textarea><a href="#" style="vertical-align: super" class="remove_field">Remove</a></div>'); //add input box
+        }
+    });
 
-};
+    $(wrapper).on("click", ".remove_field", function (e) { //user click on remove text
+        e.preventDefault();
+        $(this).parent('div').remove();
+        x--;
+    });
+
+
+}
+;
 
 function insertarIndicador() {
     $('#textarea-formula-condicion').append($('#list-indicadores').val());
@@ -80,6 +81,16 @@ function validarIngresoNuevaCondicion() {
         var codigo = $('#input-codigo').val();
         var nombre = $('#input-nombre').val();
         var formula = $('#textarea-formula-condicion').val();
+        var tipo = $('#list-tipos-condiciones').val();
+        var url;
+
+        if (tipo === 'Taxativa')
+        {
+            url = "http://localhost:8084/TpIntegradorDDS/api/nueva-condicion-taxativa";
+        } else
+        {
+            url = "http://localhost:8084/TpIntegradorDDS/api/nueva-condicion-prioritaria";
+        }
 
         if (nombre === '' || formula === '') {
             $('#warning-message').show();
@@ -93,7 +104,7 @@ function validarIngresoNuevaCondicion() {
             };
 
             $.ajax({
-                url: 'http://localhost:8084/TpIntegradorDDS/api/nueva-condicion',
+                url: url,
                 type: 'POST',
                 data: JSON.stringify(data),
                 dataType: 'json',
@@ -121,6 +132,56 @@ function validarIngresoNuevaCondicion() {
 }
 ;
 
+function validarIngresoNuevaMetodologia() {
+    $('#btn-crear-metodologia').click(function () {
+        cleanResponses();
+
+        var codigo = $('#input-codigo').val();
+        var descripcion = $('#input-descripcion').val();
+        var condiciones = new Set();
+
+
+        $('.cond').each(function ()
+        {
+            condiciones.add($(this).text());
+        });
+
+        var data = {
+            codigo: codigo,
+            descripcion: descripcion,
+            condiciones: condiciones
+        };
+
+        $.ajax({
+            url: "http://localhost:8084/TpIntegradorDDS/api/nueva-metodologia",
+            type: 'POST',
+            data: JSON.stringify(data),
+            dataType: 'json',
+            contentType: 'application/json',
+            accept: 'application/json',
+            success: function (response) {
+                if (response.resultado === "0") {
+                    cleanResponses();
+                    cleanForm();
+
+                    $('#modal-nueva-metod').modal("hide");
+                    $('#success-metod-message').show();
+                }
+                if (response.resultado === "1") {
+                    cleanResponses();
+                    $('#syntax-error-message').show();
+                }
+                if (response.resultado === "2") {
+                    cleanResponses();
+                    $('#input-error-message').show();
+                }
+            }
+        });
+    }
+    );
+}
+;
+
 function cleanResponses() {
     $('#warning-message').hide();
     $('#syntax-error-message').hide();
@@ -137,6 +198,7 @@ function abrirModalNuevaCondicion() {
         cleanForm();
         cleanResponses();
         initListaIndicadores();
+        initListaTipoCondiciones();
         validarIngresoNuevaCondicion();
     });
 }
@@ -156,6 +218,7 @@ function abrirModalNuevaMetodologia() {
         cleanForm();
         cleanResponses();
         initListaCondiciones();
+        validarIngresoNuevaMetodologia();
     });
 }
 ;
@@ -170,7 +233,7 @@ function cerrarModalNuevaMetodologia() {
 
 function abrirModalEvaluarMetodologia() {
     $('#btn-abrir-evaluar-metodologia').click(function () {
-        initListaMetodologias();
+
     });
 }
 ;
@@ -187,7 +250,7 @@ function cerrarModalEvaluarMetodologia() {
 $(document).ready(function () {
     cleanForm();
     cleanResponses();
-    initListaTipoMetodologia();
+
 
     // eventos
     abrirModalNuevaMetodologia();

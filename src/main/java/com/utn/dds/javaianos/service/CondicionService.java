@@ -10,4 +10,5 @@ public interface CondicionService {
     public Condicion findCondicionByCodigo(String codigo);
     public Integer saveCondicion(Condicion condicion);
     public List<Condicion> getAllCondiciones();
+    public List<Condicion> getCondiciones(List<String> condiciones);
 }

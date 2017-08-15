@@ -2,8 +2,10 @@ DROP TABLE IF EXISTS Cotizacion;
 DROP TABLE IF EXISTS Indicador;
 DROP TABLE IF EXISTS Cuenta;
 DROP TABLE IF EXISTS Empresa;
+DROP TABLE IF EXISTS MetodologiaCondicion;
 DROP TABLE IF EXISTS Condicion;
 DROP TABLE IF EXISTS Metodologia;
+
 
 CREATE TABLE Cuenta (
     codigo VARCHAR(50) NOT NULL PRIMARY KEY,
@@ -35,24 +37,32 @@ CREATE TABLE Indicador (
 CREATE TABLE Condicion (
     codigo VARCHAR(50) NOT NULL PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
+    tipo VARCHAR(50) NOT NULL,
     formula VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE Metodologia (
     codigo VARCHAR(50) NOT NULL PRIMARY KEY,
-    descripcion VARCHAR(50) NOT NULL,
-    tipo VARCHAR(50) NOT NULL,
-    condiciones VARCHAR(255) NOT NULL
+    descripcion VARCHAR(50) NOT NULL
 );
 
+CREATE TABLE MetodologiaCondicion (
+    condicion VARCHAR(50) NOT NULL,
+    metodologia  VARCHAR(50) NOT NULL PRIMARY KEY,
+    FOREIGN KEY (condicion) REFERENCES Condicion(codigo),
+    FOREIGN KEY (metodologia) REFERENCES Metodologia(codigo)
+);
 /* Pensar si realmente vale la pensa implementar una clase periodo ?? mientras se maneja como Integer
 CREATE TABLE Periodo (
     periodo INT NOT NULL PRIMARY KEY
 );*/
 
-INSERT INTO Condicion (codigo, nombre, formula) VALUES ('Mayor5','Mayor a 5','>5');
+INSERT INTO Metodologia( codigo, descripcion) VALUES ('test', 'asd');
 
-INSERT INTO Metodologia (codigo, descripcion, tipo, condiciones) VALUES ('METOD1', 'una metodologia de prueba', 'Taxativa', 'Mayor5');
+INSERT INTO Condicion (codigo, nombre, tipo, formula) VALUES ('Mayor5','Mayor a 5','Taxativa','>5');
+INSERT INTO Condicion (codigo, nombre, tipo, formula) VALUES ('Menor5','Menor a 5','Prioritaria','<5');
+
+INSERT INTO Metodologia (codigo, descripcion) VALUES ('METOD1', 'una metodologia de prueba');
 
 INSERT INTO Empresa (nombre) VALUES ('Facebook');
 INSERT INTO Empresa (nombre) VALUES ('Twitter');

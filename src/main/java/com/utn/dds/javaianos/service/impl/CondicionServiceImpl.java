@@ -2,13 +2,9 @@
 package com.utn.dds.javaianos.service.impl;
 
 import com.utn.dds.javaianos.domain.Condicion;
-import com.utn.dds.javaianos.parser.ExpressionParser;
-import com.utn.dds.javaianos.parser.ParseException;
-import com.utn.dds.javaianos.parser.TokenMgrError;
 import com.utn.dds.javaianos.repository.CondicionRepository;
 import com.utn.dds.javaianos.service.CondicionService;
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +49,17 @@ public class CondicionServiceImpl implements CondicionService {
         return condicionRepository.findAll();
     }
         
+    @Override
+    public List<Condicion> getCondiciones(List<String> condiciones)
+    {
+        List<Condicion> listCondiciones = new ArrayList<>();
+        for(String condicion: condiciones)
+        {
+            listCondiciones.add(condicionRepository.findByCodigo(condicion));
+        }
+               
+        return listCondiciones;
+    }
  
     
     

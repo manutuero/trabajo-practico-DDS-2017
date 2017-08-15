@@ -28,7 +28,6 @@ public class MetodologiaServiceImplTest {
         Metodologia metodologia = new Metodologia();
         metodologia.setCodigo("unCodigo");
         metodologia.setDescripcion("unaDescripcion");
-        metodologia.setCondiciones("variasCondiciones");
         
         int resultado = metodologiaService.saveMetodologia(metodologia);
         

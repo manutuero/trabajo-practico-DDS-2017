@@ -43,8 +43,7 @@ CREATE TABLE Condicion (
 
 CREATE TABLE Metodologia (
     codigo VARCHAR(50) NOT NULL PRIMARY KEY,
-    descripcion VARCHAR(50) NOT NULL,
-    condiciones VARCHAR(255) NOT NULL
+    descripcion VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE MetodologiaCondicion (
@@ -58,12 +57,12 @@ CREATE TABLE Periodo (
     periodo INT NOT NULL PRIMARY KEY
 );*/
 
-INSERT INTO Metodologia( codigo, descripcion, condiciones) VALUES ('test', 'asd', 'muchasCondiciones');
+INSERT INTO Metodologia( codigo, descripcion) VALUES ('test', 'asd');
 
 INSERT INTO Condicion (codigo, nombre, tipo, formula) VALUES ('Mayor5','Mayor a 5','Taxativa','>5');
 INSERT INTO Condicion (codigo, nombre, tipo, formula) VALUES ('Menor5','Menor a 5','Prioritaria','<5');
 
-INSERT INTO Metodologia (codigo, descripcion,condiciones) VALUES ('METOD1', 'una metodologia de prueba', 'Mayor5');
+INSERT INTO Metodologia (codigo, descripcion) VALUES ('METOD1', 'una metodologia de prueba');
 
 INSERT INTO Empresa (nombre) VALUES ('Facebook');
 INSERT INTO Empresa (nombre) VALUES ('Twitter');

@@ -26,8 +26,7 @@ CREATE TABLE `dbprod`.`Indicador`
 
 CREATE TABLE `dbprod`.`Metodologia` 
 	(`codigo` VARCHAR(50) NOT NULL PRIMARY KEY,
-    	`descripcion` VARCHAR(50) NOT NULL,
-    	`condiciones` VARCHAR(255) NOT NULL) ENGINE = InnoDB;
+    	`descripcion` VARCHAR(50) NOT NULL) ENGINE = InnoDB;
 
 
 

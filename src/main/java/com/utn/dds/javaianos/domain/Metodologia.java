@@ -14,16 +14,7 @@ public class Metodologia implements Serializable {
     @Id
     private String codigo;
     private String descripcion;
-    private String condiciones;
-
-    public void setCondiciones(String condiciones) {
-        this.condiciones = condiciones;
-    }
-
-    public String getCondiciones() {
-        return condiciones;
-    }
-   
+    
     @Transient
     public List<Condicion> listCondiciones;
 

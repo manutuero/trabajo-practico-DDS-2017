@@ -41,6 +41,9 @@
                 <div id="success-condicion-message" class="alert alert-success" hidden="true">
                     <strong>Exito!</strong> La Condicion se ha guardado exitosamente.
                 </div>
+                <div id="success-metod-message" class="alert alert-success" hidden="true">
+                    <strong>Exito!</strong> La Metodologia se ha guardado exitosamente.
+                </div>
 
             </div>
 

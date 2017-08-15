@@ -32,4 +32,6 @@ public class MetodologiaServiceImpl implements MetodologiaService {
     public List<Metodologia> getAllMetodologias() {
         return metodologiaRepository.findAll();
     }
+    
+    
 }

@@ -140,14 +140,22 @@
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <button id="btn-consultar-valores" type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">Consultar valores de una cuenta</h4>
                     </div>
                     <div class="modal-body">
                         <p>Este modulo permite visualizar los valores de todas las cuentas asociadas a una empresa para un periodo determinado.</p>
-                        <p>Ingrese empresa: <input id="input-empresa" name="empresa" type="text" required="true"></p>
+                        <div class="row">
+                            <div class="col-xs-2">Seleccione empresa</div>
+                            <div class="col-xs-6">
+                                <p><select id="list-empresas" class="form-control" name="size" ></select></p>
+                            </div>
+                        </div>
                         <p>Ingrese periodo: <input id="input-periodo" name="periodo" type="text" required="true"></p>
-                        <button id="btn-consultar" class="btn btn-primary pull-right">Consultar</button>
+                        <div class="modal-footer">
+                            <button id="btn-consultar" class="btn btn-primary">Consultar</button>
+                            <button id="btn-cerrar-calcular-valores" type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                        </div>
                         <!-- Grid table -->
                         <table class="table table-condensed">
                             <thead>

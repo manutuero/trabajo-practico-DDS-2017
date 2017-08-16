@@ -103,7 +103,7 @@ function initListaEmpresas() {
     listaEmpresas.append('<option value="" disabled selected>Seleccione una empresa</option>');
             
     $.ajax({
-        url: 'http://localhost:8084/TpIntegradorDDS/api/empresas',
+        url: 'http://localhost:8084/TpIntegradorDDS/api/indicador-empresas',
         type: 'GET',
         success: function (empresas) {
             $.each(empresas, function (indice, empresa) {

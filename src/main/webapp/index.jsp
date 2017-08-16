@@ -145,7 +145,12 @@
                     </div>
                     <div class="modal-body">
                         <p>Este modulo permite visualizar los valores de todas las cuentas asociadas a una empresa para un periodo determinado.</p>
-                        <p>Ingrese empresa: <input id="input-empresa" name="empresa" type="text" required="true"></p>
+                        <div class="row">
+                            <div class="col-xs-2">Seleccione empresa</div>
+                            <div class="col-xs-6">
+                                <p><select id="list-empresas" class="form-control" name="size" ></select></p>
+                            </div>
+                        </div>
                         <p>Ingrese periodo: <input id="input-periodo" name="periodo" type="text" required="true"></p>
                         <button id="btn-consultar" class="btn btn-primary pull-right">Consultar</button>
                         <!-- Grid table -->

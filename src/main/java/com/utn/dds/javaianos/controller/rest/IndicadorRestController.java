@@ -41,7 +41,7 @@ public class IndicadorRestController {
         return resultado;
     }
 
-    @RequestMapping(value = "/api/empresas", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/indicador-empresas", method = RequestMethod.GET)
     public List<Empresa> obtenerEmpresas() {
         return empresaService.getAllEmpresas();
     }

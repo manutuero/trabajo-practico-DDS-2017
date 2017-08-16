@@ -27,6 +27,30 @@ function obtenerValoresCuentas() {
     });
 }
 
+function initListaEmpresas() {
+    var listaEmpresas = $('#list-empresas');
+
+    listaEmpresas.empty();
+    listaEmpresas.append('<option value="" disabled selected>Seleccione una empresa</option>');
+
+    $.ajax({
+        url: 'http://localhost:8084/TpIntegradorDDS/api/cuenta-empresas',
+        type: 'GET',
+        success: function (empresas) {
+            $.each(empresas, function (indice, empresa) {
+                listaEmpresas.append('<option>' + empresa.nombre + '</option>');
+            });
+        }
+    });
+}
+
+function abrirModalConsultarValores() {
+    $('#modal-consultar-valores').click(function () {
+        initListaEmpresas();
+    });
+}
+;
+
 function limpiarFormularios() {
     $('.btn-primary').click(function () {
         $('#cotizaciones tr').remove();
@@ -36,7 +60,9 @@ function limpiarFormularios() {
 $(document).ready(function () {
     obtenerValoresCuentas();
     limpiarFormularios();
-        
+    
+    abrirModalConsultarValores();
+    
     // Check for FileReader API (HTML5) support.
     if (!window.FileReader) {
         alert('This browser does not support the FileReader API.');

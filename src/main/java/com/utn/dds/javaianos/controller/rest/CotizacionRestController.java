@@ -17,17 +17,9 @@ public class CotizacionRestController {
     @Autowired
     private CotizacionService cotizacionService;
 
-    @Autowired
-    private EmpresaService empresaService;
-
     @RequestMapping(value = "/api/cotizaciones", method = RequestMethod.POST)
     public List<Cotizacion> devolverCotizaciones(@RequestParam(name = "empresa") String empresa,
             @RequestParam(name = "periodo") Integer periodo) {
         return cotizacionService.getFilteredCotizaciones(new Empresa(empresa), periodo);
-    }
-
-    @RequestMapping(value = "/api/cuenta-empresas", method = RequestMethod.GET)
-    public List<Empresa> obtenerEmpresas() {
-        return empresaService.getAllEmpresas();
     }
 }

@@ -36,5 +36,11 @@ CREATE TABLE `dbprod`.`Condicion`
 	`tipo` VARCHAR(50) NOT NULL,
   	`formula` VARCHAR(255) NOT NULL) ENGINE = InnoDB;
 
+CREATE TABLE `dbprod` . `MetodologiaCondicion` 
+	(`condicion` VARCHAR(50) NOT NULL PRIMARY KEY,
+    `metodologia`  VARCHAR(50) NOT NULL PRIMARY KEY,
+    FOREIGN KEY (condicion) REFERENCES Condicion(codigo),
+    FOREIGN KEY (metodologia) REFERENCES Metodologia(codigo))ENGINE = InnoDB;
+
 INSERT INTO `dbprod`.`Empresa` (nombre) VALUES ('Facebook'),
 				     ('Twitter');

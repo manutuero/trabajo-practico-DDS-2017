@@ -165,10 +165,10 @@
                         <h4 class="modal-title">Nueva Metodologia</h4><br>
                         <div class="row">
                             <div class="col-xs-12">
-                                <p>Codigo: <input id ="input-codigo" type="text" required="true" size="45"></p>
+                                <p>Codigo: <input id ="input-codigo-met" type="text" required="true" size="45"></p>
                             </div>
                             <div class="col-xs-12">
-                                <p>Descripcion: <input id ="input-descripcion" type="text" required="true" size="45"></p>
+                                <p>Descripcion: <input id ="input-descripcion-met" type="text" required="true" size="45"></p>
                             </div>
                         </div>
                     </div>

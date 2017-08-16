@@ -136,8 +136,9 @@ function validarIngresoNuevaMetodologia() {
     $('#btn-crear-metodologia').click(function () {
         cleanResponses();
 
-        var codigo = $('#input-codigo').val();
-        var descripcion = $('#input-descripcion').val();
+       
+        var codigo = $('#input-codigo-met').val();
+        var descripcion = $('#input-descripcion-met').val();
         var condiciones = new Set();
 
 
@@ -145,15 +146,16 @@ function validarIngresoNuevaMetodologia() {
         {
             condiciones.add($(this).text());
         });
-
+        
         var data = {
             codigo: codigo,
             descripcion: descripcion,
             condiciones: condiciones
-        };
-
+         };
+        
+        
         $.ajax({
-            url: "http://localhost:8084/TpIntegradorDDS/api/nueva-metodologia",
+            url: 'http://localhost:8084/TpIntegradorDDS/api/nueva-metodologia',
             type: 'POST',
             data: JSON.stringify(data),
             dataType: 'json',
@@ -163,7 +165,6 @@ function validarIngresoNuevaMetodologia() {
                 if (response.resultado === "0") {
                     cleanResponses();
                     cleanForm();
-
                     $('#modal-nueva-metod').modal("hide");
                     $('#success-metod-message').show();
                 }
@@ -177,6 +178,7 @@ function validarIngresoNuevaMetodologia() {
                 }
             }
         });
+        
     }
     );
 }
@@ -259,6 +261,7 @@ $(document).ready(function () {
     cerrarModalEvaluarMetodologia();
     abrirModalNuevaCondicion();
     cerrarModalNuevacondicion();
+    validarIngresoNuevaMetodologia();
 
     //validarIngresoNuevaMetodologia();
 

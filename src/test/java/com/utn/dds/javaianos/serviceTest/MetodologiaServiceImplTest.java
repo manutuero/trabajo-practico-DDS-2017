@@ -3,6 +3,8 @@ package com.utn.dds.javaianos.serviceTest;
 import com.utn.dds.javaianos.domain.Metodologia;
 import com.utn.dds.javaianos.repository.MetodologiaRepository;
 import com.utn.dds.javaianos.service.MetodologiaService;
+import java.util.ArrayList;
+import java.util.List;
 import javax.transaction.Transactional;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
@@ -28,6 +30,10 @@ public class MetodologiaServiceImplTest {
         Metodologia metodologia = new Metodologia();
         metodologia.setCodigo("unCodigo");
         metodologia.setDescripcion("unaDescripcion");
+        List<String> list = new ArrayList<>();
+        list.add("Mayor5");
+        list.add("Menor5");
+        metodologia.setListstrCondiciones(list);
         
         int resultado = metodologiaService.saveMetodologia(metodologia);
         

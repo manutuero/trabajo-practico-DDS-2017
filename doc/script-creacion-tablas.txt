@@ -37,8 +37,9 @@ CREATE TABLE `dbprod`.`Condicion`
   	`formula` VARCHAR(255) NOT NULL) ENGINE = InnoDB;
 
 CREATE TABLE `dbprod` . `MetodologiaCondicion` 
-	(`condicion` VARCHAR(50) NOT NULL PRIMARY KEY,
-    `metodologia`  VARCHAR(50) NOT NULL PRIMARY KEY,
+	(`condicion` VARCHAR(50) NOT NULL,
+    `metodologia`  VARCHAR(50) NOT NULL,
+    PRIMARY KEY (condicion, metodologia),
     FOREIGN KEY (condicion) REFERENCES Condicion(codigo),
     FOREIGN KEY (metodologia) REFERENCES Metodologia(codigo))ENGINE = InnoDB;
 

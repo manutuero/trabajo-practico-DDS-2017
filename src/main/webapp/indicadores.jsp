@@ -38,11 +38,11 @@
             <!-- A success message -->
             <div class="row">
                 <div class="col-lg-7"></div>
-                <div class="col-lg-5">
-                    <div id="success-message" class="alert alert-success" hidden="true">
-                        <strong>Exito!</strong> El indicador se ha guardado exitosamente.
-                    </div>
+
+                <div id="success-message" class="alert alert-success" hidden="true">
+                    <strong>Exito!</strong> El indicador se ha guardado exitosamente.
                 </div>
+
             </div>
 
             <div class="row">
@@ -105,6 +105,7 @@
                         <h4 class="modal-title">Nuevo Indicador</h4><br>
                         <div class="row">
                             <div class="col-xs-12">
+                                <p>Codigo: <input id ="input-codigo" type="text" required="true" size="20"></p>
                                 <p>Nombre: <input id ="input-nombre" type="text" required="true" size="45"></p>
                             </div>
                         </div>
@@ -153,20 +154,29 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-2">Año</div>
-                        <div class="col-xs-10"><p><input id ="input-nombre" type="text" required="true" size="20"></p></div>
+                        <div class="col-xs-10"><p><input id ="input-anio" type="text" required="true" size="20"></p></div>
                     </div>
                     <div class="row">
                         <div class="col-xs-2">Empresa</div>
-                        <div class="col-xs-10"><p><input id ="input-nombre" type="text" required="true" size="20"></p></div>
+                        <div class="col-xs-6">
+                            <p><select id="list-empresas" class="form-control" name="size" ></select></p>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12">
-                            <p>Resultado: <text id="textarea-formula" class="form-control" rows="5" style="max-width:100%;"></textarea></p>
+                            <p>Resultado: <text id="text-resultado" class="form-control" rows="5" style="max-width:100%;"></text></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div id="warning-message" class="alert alert-warning" hidden="true">
+                            <strong>Advertencia!</strong> Los campos no deben estar vacios.
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <input id="btn-crear" type="submit" class="btn btn-primary" value="Calcular">
+                    <input id="btn-calcular" type="submit" class="btn btn-primary" value="Calcular">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>

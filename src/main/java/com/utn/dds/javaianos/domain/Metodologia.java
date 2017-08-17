@@ -1,52 +1,62 @@
 package com.utn.dds.javaianos.domain;
 
-import com.utn.dds.javaianos.repository.MetodologiaRepository;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-import org.springframework.beans.factory.annotation.Autowired;
 
 @Entity
 @Table(name = "Metodologia")
-public class Metodologia implements Serializable{
+public class Metodologia implements Serializable {
 
     @Id
-    private String nombre;
-
+    private String codigo;
+    private String descripcion;
+    
     @Transient
-    private List<Componente> componentes;
-
-    @Autowired
+    public List<Condicion> listCondiciones;
+    
     @Transient
-    MetodologiaRepository metodologiaRepository;
+    private List<String> liststrCondiciones;
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public String getCodigo() {
+        return codigo;
     }
 
-    public void setComponentes(List<Componente> componentes) {
-        this.componentes = componentes;
+
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public List<Componente> getComponentes() {
-        return componentes;
+    public List<Condicion> getListCondiciones() {
+        return listCondiciones;
     }
 
-    public String getNombre() {
-        return nombre;
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
-    public Metodologia() {
-        this.componentes = new ArrayList();
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
-    public Metodologia(String nombre) {
-        this.nombre = nombre;
-        this.componentes = new ArrayList();
+    public void setListCondiciones(List<Condicion> listCondiciones) {
+        this.listCondiciones = listCondiciones;
     }
+
+    public List<String> getListstrCondiciones() {
+        return liststrCondiciones;
+    }
+
+    public void setListstrCondiciones(List<String> liststrCondiciones) {
+        this.liststrCondiciones = liststrCondiciones;
+    }
+
+    
+    
+    public void evaluarMetodologia(){} ;
 
 }

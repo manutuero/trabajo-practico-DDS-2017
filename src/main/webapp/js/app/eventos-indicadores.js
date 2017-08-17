@@ -9,26 +9,59 @@ function initListaIndicadores() {
         type: 'GET',
         success: function (indicadores) {
             $.each(indicadores, function (indice, indicador) {
-                listaIndicadores.append('<option>' + indicador.nombre + '</option>');
+                listaIndicadores.append('<option>'+ indicador.codigo + '</option>');
             });
         }
     });
-}
+};
+
+function calcularIndicador()
+{
+    $('#btn-calcular').click(function() {
+        cleanResponses();
+        var anio = $('#input-anio').val();
+        var empresa = $('#list-empresas').val();
+        var indicador = $('#list-indicadores').val();
+        
+        var data = {
+            empresa: empresa,
+            anio: anio,
+            indicador: indicador
+        };
+        
+        if (anio === '' || empresa === '') {
+            $('#warning-message').show();
+        } else {
+            $('#warning-message').hide();
+                        
+            $.ajax({
+                url: 'http://localhost:8084/TpIntegradorDDS/api/calcular-indicador',
+                type: 'GET',
+                data: data,
+                success: function (resultado) {
+                    $('#text-resultado').text(resultado);
+                }
+            });
+        
+        }
+    });
+};
 
 function validarIngresoNuevoIndicador() {
     $('#btn-crear').click(function () {
         cleanResponses();
-
+        var codigo = $('#input-codigo').val();
         var nombre = $('#input-nombre').val();
         var tipo = "definido por el usuario";
         var formula = $('#textarea-formula').val();
 
-        if (nombre === '' || formula === '') {
+        if (codigo === '' || nombre === '' || formula === '') {
             $('#warning-message').show();
         } else {
             $('#warning-message').hide();
 
             var data = {
+                codigo: codigo,
                 nombre: nombre,
                 tipo: tipo,
                 formula: formula
@@ -63,6 +96,23 @@ function validarIngresoNuevoIndicador() {
 }
 ;
 
+function initListaEmpresas() {
+    var listaEmpresas = $('#list-empresas');
+ 
+    listaEmpresas.empty();
+    listaEmpresas.append('<option value="" disabled selected>Seleccione una empresa</option>');
+            
+    $.ajax({
+        url: 'http://localhost:8084/TpIntegradorDDS/api/empresas',
+        type: 'GET',
+        success: function (empresas) {
+            $.each(empresas, function (indice, empresa) {
+                listaEmpresas.append('<option>'+ empresa.nombre + '</option>');
+            });
+        }
+    });
+}
+
 function cleanResponses() {
     $('#warning-message').hide();
     $('#syntax-error-message').hide();
@@ -93,6 +143,7 @@ function cerrarModalNuevoIndicador() {
 function abrirModalEvaluarIndicador() {
     $('#btn-abrir-evaluar-indicador').click(function () {
         initListaIndicadores();
+        initListaEmpresas();
     });
 }
 ;
@@ -107,4 +158,5 @@ $(document).ready(function () {
     cerrarModalNuevoIndicador();
     validarIngresoNuevoIndicador();
     abrirModalEvaluarIndicador();
+    calcularIndicador();
 });

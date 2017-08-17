@@ -14,10 +14,9 @@ public class CuentaController {
     @Autowired
     private CuentaService cuentaService;
 
-    @RequestMapping(value = "/fileUpload", method = RequestMethod.POST)
-    public String guardarCuentas(@RequestParam(name = "file") MultipartFile file) 
-    {        
+    @RequestMapping(value = "/fileUploadCuentas", method = RequestMethod.POST)
+    public String guardarCuentas(@RequestParam(name = "file") MultipartFile file) {        
         cuentaService.saveCuentas(file);
-        return "redirect:/index.jsp";
+        return "redirect:/cuentas.jsp";
     }
 }

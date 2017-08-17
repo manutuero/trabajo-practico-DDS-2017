@@ -1,4 +1,4 @@
-package com.utn.dds.javaianos;
+package com.utn.dds.javaianos.repositoryTest;
 
 import com.utn.dds.javaianos.domain.Indicador;
 import com.utn.dds.javaianos.repository.IndicadorRepository;
@@ -11,10 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-/**
- *
- * @author Manu_
- */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @WebAppConfiguration
@@ -25,9 +21,9 @@ public class IndicadorRepositoryTest {
     private IndicadorRepository indicadorRepository;
     
     @Test
-    public void findByNombre_conIndicadorGuardadoEnDb_devuelveIndicador() {
+    public void findByCodigo_conIndicadorGuardadoEnDb_devuelveIndicador() {
         
-        Indicador indicador = indicadorRepository.findByNombre("Ingreso neto");
+        Indicador indicador = indicadorRepository.findByCodigo("INETO");
 
         assertEquals("Ingreso neto",indicador.getNombre());
         assertEquals("predefinido",indicador.getTipo());

@@ -1,9 +1,12 @@
-package com.utn.dds.javaianos;
+package com.utn.dds.javaianos.repositoryTest;
 
+import com.utn.dds.javaianos.domain.Cotizacion;
 import com.utn.dds.javaianos.domain.Cuenta;
+import com.utn.dds.javaianos.repository.CotizacionRepository;
 import com.utn.dds.javaianos.repository.CuentaRepository;
 import javax.transaction.Transactional;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +24,12 @@ public class CuentaRepositoryTest {
     private CuentaRepository cuentaRepository;
     
     @Test
-    public void findOneByNombre_conCuentaGuardadaEnDb_devuelveUnaCuenta() {
-        
-        Cuenta cuenta = cuentaRepository.findFirstByNombre("EBITDA");
-        
-        assertNotNull(cuenta);
+    public void findByCodigo_conCuentaExistente_devuelveUnaCuenta() {
+        assertNotNull(cuentaRepository.findByCodigo("EBITDA"));
     }
-    
+
+    @Test
+    public void findByCodigo_conCuentaNoExistente_devuelveNull() {
+        assertNull(cuentaRepository.findByCodigo("cuentaQueNoExiste"));
+    }   
 }

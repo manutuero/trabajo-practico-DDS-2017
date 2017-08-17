@@ -1,16 +1,15 @@
 package com.utn.dds.javaianos.service.impl;
 
+import com.utn.dds.javaianos.domain.Componente;
 import com.utn.dds.javaianos.domain.Cuenta;
 import com.utn.dds.javaianos.domain.Empresa;
-import com.utn.dds.javaianos.domain.Periodo;
 import com.utn.dds.javaianos.repository.CuentaRepository;
 import com.utn.dds.javaianos.service.CuentaService;
 import java.io.IOException;
-import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -29,14 +28,15 @@ public class CuentaServiceImpl implements CuentaService {
             String[] rows = data.split("\\n");
 
             for (String row : rows) {
-                StringTokenizer st = new StringTokenizer(row, ";");
+                StringTokenizer st = new StringTokenizer(row, ",");
 
                 Cuenta cuenta = new Cuenta();
-                cuenta.setNombre(st.nextToken());
-                cuenta.setEmpresa(st.nextToken());
-                cuenta.setPeriodo(Integer.parseInt(st.nextToken().replace("\n", "").replace("\r", "")));
-                cuenta.setValor(Double.parseDouble(st.nextToken()));
-
+                try {
+                    cuenta.setCodigo(st.nextToken());
+                    cuenta.setNombre(st.nextToken());
+                } catch (NoSuchElementException ex) {
+                    cuenta.setNombre(null);
+                }
                 cuentaRepository.save(cuenta);
             }
         } catch (IOException ex) {
@@ -44,19 +44,8 @@ public class CuentaServiceImpl implements CuentaService {
         }
     }
 
-    // devuelve una coleccion de cuentas filtradas por periodo y empresa
     @Override
-    public List<Cuenta> getFilteredCuentas(Empresa empresa, Periodo periodo)
-    {
-        List<Cuenta> listaCuentas = cuentaRepository.findAll();
-        
-        return listaCuentas.stream().filter(cuenta -> cuenta.getEmpresa().equals(empresa.getNombre()) &&
-                                            cuenta.getPeriodo().equals(periodo.getPeriodo()))
-                                            .collect(Collectors.toList()); 
-    }
-
-    @Override
-    public Double calcularValor(Cuenta cuenta) {
-        return cuenta.getValor();
+    public Double calcularValor(Componente componente, Empresa empresa, Integer periodo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -6,7 +6,6 @@ import java.util.List;
 public interface MetodologiaService {
 
     public Integer saveMetodologia(Metodologia metodologia);
-
     public List<Metodologia> getAllMetodologias();
     
 }

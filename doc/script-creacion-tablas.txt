@@ -1,16 +1,47 @@
-/* Script de creacion de tablas */
-
+/* Script de creacion base de datos MYSQL */
 CREATE DATABASE `dbprod`;
 
 CREATE TABLE `dbprod`.`Cuenta` 
-	(`nombre` VARCHAR(50) NOT NULL ,
-     	 `empresa` VARCHAR(50) NOT NULL ,
- 	 `periodo` INT NOT NULL ,
-	 `valor` DECIMAL NOT NULL ,
-	PRIMARY KEY (`empresa`, `valor`, `periodo`)) ENGINE = InnoDB;
+	(`codigo` VARCHAR(50) NOT NULL PRIMARY KEY,
+     	 `nombre` VARCHAR(150) NOT NULL) ENGINE = InnoDB;
+
+CREATE TABLE `dbprod`.`Empresa` 
+	(`nombre` VARCHAR(50) NOT NULL PRIMARY KEY) ENGINE = InnoDB;
+
+CREATE TABLE `dbprod`.`Cotizacion`
+	( id INT AUTO_INCREMENT PRIMARY KEY,
+	 `cuenta` VARCHAR(50) NOT NULL,
+     	 `empresa` VARCHAR(50) NOT NULL,
+ 	 `periodo` INT NOT NULL,
+	 `valor` DECIMAL NOT NULL,
+	  FOREIGN KEY (cuenta) REFERENCES Cuenta(codigo),
+    	  FOREIGN KEY (empresa) REFERENCES Empresa(nombre),	
+	  UNIQUE (`cuenta`, `empresa`, `periodo`)) ENGINE = InnoDB;
 
 CREATE TABLE `dbprod`.`Indicador`
-	(`nombre` VARCHAR(50) NOT NULL PRIMARY KEY,
+	(`codigo` VARCHAR(50) NOT NULL PRIMARY KEY,
+         `nombre` VARCHAR(50),
 	 `tipo` VARCHAR(50) NOT NULL,
 	 `formula` VARCHAR(255) NOT NULL) ENGINE = InnoDB;
-	
+
+CREATE TABLE `dbprod`.`Metodologia` 
+	(`codigo` VARCHAR(50) NOT NULL PRIMARY KEY,
+    	`descripcion` VARCHAR(50) NOT NULL) ENGINE = InnoDB;
+
+
+
+CREATE TABLE `dbprod`.`Condicion` 
+ 	(`codigo` VARCHAR(50) NOT NULL PRIMARY KEY,
+       `nombre` VARCHAR(150) NOT NULL,
+	`tipo` VARCHAR(50) NOT NULL,
+  	`formula` VARCHAR(255) NOT NULL) ENGINE = InnoDB;
+
+CREATE TABLE `dbprod` . `MetodologiaCondicion` 
+	(`condicion` VARCHAR(50) NOT NULL,
+    `metodologia`  VARCHAR(50) NOT NULL,
+    PRIMARY KEY (condicion, metodologia),
+    FOREIGN KEY (condicion) REFERENCES Condicion(codigo),
+    FOREIGN KEY (metodologia) REFERENCES Metodologia(codigo))ENGINE = InnoDB;
+
+INSERT INTO `dbprod`.`Empresa` (nombre) VALUES ('Facebook'),
+				     ('Twitter');

@@ -39,8 +39,8 @@ function initListaTipoCondiciones() {
 
     listaTiposCondiciones.empty();
     listaTiposCondiciones.append('<option value="" disabled selected>Seleccione Tipo de Condicion</option>');
-    listaTiposCondiciones.append('<option value="">Taxativa</option>');
-    listaTiposCondiciones.append('<option value="">Prioritaria</option>');
+    listaTiposCondiciones.append('<option>Taxativa</option>');
+    listaTiposCondiciones.append('<option>Prioritaria</option>');
 
 }
 

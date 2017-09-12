@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Entity
 @DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue("Taxativa")
-public class CondicionTaxativa extends Condicion{
+public class CondicionTaxativa extends StrategyCondicion{
     public CondicionTaxativa(){}
     
 

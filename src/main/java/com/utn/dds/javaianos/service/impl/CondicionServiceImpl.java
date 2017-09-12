@@ -1,7 +1,7 @@
 
 package com.utn.dds.javaianos.service.impl;
 
-import com.utn.dds.javaianos.domain.Condicion;
+import com.utn.dds.javaianos.domain.StrategyCondicion;
 import com.utn.dds.javaianos.repository.CondicionRepository;
 import com.utn.dds.javaianos.service.CondicionService;
 import java.util.ArrayList;
@@ -19,17 +19,17 @@ public class CondicionServiceImpl implements CondicionService {
     private CondicionRepository condicionRepository;
     
     @Override
-    public Condicion findCondicionByNombre(String nombre) {
+    public StrategyCondicion findCondicionByNombre(String nombre) {
         return condicionRepository.findByNombre(nombre);
     }
     
     @Override
-    public Condicion findCondicionByCodigo(String codigo) {
+    public StrategyCondicion findCondicionByCodigo(String codigo) {
         return condicionRepository.findByCodigo(codigo);
     }
     
     @Override
-    public Integer saveCondicion(Condicion condicion) {
+    public Integer saveCondicion(StrategyCondicion condicion) {
         try
         {
             condicionRepository.save(condicion);
@@ -44,15 +44,15 @@ public class CondicionServiceImpl implements CondicionService {
     }
     
     @Override
-    public List<Condicion> getAllCondiciones()
+    public List<StrategyCondicion> getAllCondiciones()
     {
         return condicionRepository.findAll();
     }
         
     @Override
-    public List<Condicion> getCondiciones(List<String> condiciones)
+    public List<StrategyCondicion> getCondiciones(List<String> condiciones)
     {
-        List<Condicion> listCondiciones = new ArrayList<>();
+        List<StrategyCondicion> listCondiciones = new ArrayList<>();
         for(String condicion: condiciones)
         {
             listCondiciones.add(condicionRepository.findByCodigo(condicion));

@@ -14,7 +14,7 @@ import javax.persistence.Table;
 @Table(name= "Condicion")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "tipo")
-public abstract class Condicion implements Serializable {
+public abstract class StrategyCondicion implements Serializable {
     
     @Id
     private String codigo;
@@ -47,9 +47,9 @@ public abstract class Condicion implements Serializable {
         this.formula = formula;
     }
        
-    public Condicion(){};
+    public StrategyCondicion(){};
     
-    public Condicion (String codigo, String nombre, String formula) 
+    public StrategyCondicion (String codigo, String nombre, String formula) 
     {
         this.codigo = codigo;
         this.nombre = nombre;

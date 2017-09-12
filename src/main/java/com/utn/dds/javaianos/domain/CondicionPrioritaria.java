@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Entity
 @DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue("Prioritaria")
-public class CondicionPrioritaria extends Condicion {
+public class CondicionPrioritaria extends StrategyCondicion {
     
     public CondicionPrioritaria(){}
 

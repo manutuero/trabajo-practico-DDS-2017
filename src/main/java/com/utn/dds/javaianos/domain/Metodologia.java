@@ -16,7 +16,7 @@ public class Metodologia implements Serializable {
     private String descripcion;
     
     @Transient
-    public List<Condicion> listCondiciones;
+    public List<StrategyCondicion> listCondiciones;
     
     @Transient
     private List<String> liststrCondiciones;
@@ -30,7 +30,7 @@ public class Metodologia implements Serializable {
         return descripcion;
     }
 
-    public List<Condicion> getListCondiciones() {
+    public List<StrategyCondicion> getListCondiciones() {
         return listCondiciones;
     }
 
@@ -43,7 +43,7 @@ public class Metodologia implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public void setListCondiciones(List<Condicion> listCondiciones) {
+    public void setListCondiciones(List<StrategyCondicion> listCondiciones) {
         this.listCondiciones = listCondiciones;
     }
 

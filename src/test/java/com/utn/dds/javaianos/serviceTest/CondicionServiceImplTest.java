@@ -1,6 +1,6 @@
 package com.utn.dds.javaianos.serviceTest;
 
-import com.utn.dds.javaianos.domain.Condicion;
+import com.utn.dds.javaianos.domain.StrategyCondicion;
 import com.utn.dds.javaianos.repository.CondicionRepository;
 import com.utn.dds.javaianos.service.CondicionService;
 import javax.transaction.Transactional;

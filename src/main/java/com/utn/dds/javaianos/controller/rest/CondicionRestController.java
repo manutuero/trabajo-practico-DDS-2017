@@ -1,6 +1,6 @@
 package com.utn.dds.javaianos.controller.rest;
 
-import com.utn.dds.javaianos.domain.Condicion;
+import com.utn.dds.javaianos.domain.StrategyCondicion;
 import com.utn.dds.javaianos.domain.CondicionPrioritaria;
 import com.utn.dds.javaianos.domain.CondicionTaxativa;
 import com.utn.dds.javaianos.service.CondicionPrioritariaService;
@@ -42,7 +42,7 @@ public class CondicionRestController {
     }
     
     @RequestMapping(value = "/api/condiciones", method = RequestMethod.GET)
-    public List<Condicion> obtenerCondiciones() {
+    public List<StrategyCondicion> obtenerCondiciones() {
         return condicionService.getAllCondiciones();
     }
     

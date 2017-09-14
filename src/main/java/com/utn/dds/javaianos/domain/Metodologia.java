@@ -1,9 +1,17 @@
 package com.utn.dds.javaianos.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -12,19 +20,25 @@ import javax.persistence.Transient;
 public class Metodologia implements Serializable {
 
     @Id
-    private String codigo;
+    @Column(name = "metCodigo")
+    private String metCodigo;
     private String descripcion;
-    
-    @Transient
-    public List<StrategyCondicion> listCondiciones;
-    
+
+    //@Transient
+    @ManyToMany//(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
+    @JoinTable(name = "Metodologia_Condicion",
+            joinColumns = {@JoinColumn(name = "metCodigo")},
+            inverseJoinColumns = {@JoinColumn(name = "condCodigo")})
+    public List<StrategyCondicion> listCondiciones = new ArrayList();
+
     @Transient
     private List<String> liststrCondiciones;
 
-    public String getCodigo() {
-        return codigo;
+    public Metodologia(){}
+    
+    public String getmetCodigo() {
+        return metCodigo;
     }
-
 
     public String getDescripcion() {
         return descripcion;
@@ -34,10 +48,9 @@ public class Metodologia implements Serializable {
         return listCondiciones;
     }
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    public void setmetCodigo(String metCodigo) {
+        this.metCodigo = metCodigo;
     }
-
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
@@ -55,8 +68,50 @@ public class Metodologia implements Serializable {
         this.liststrCondiciones = liststrCondiciones;
     }
 
+    public void addCondicion(StrategyCondicion condicion){
+        this.listCondiciones.add(condicion);
+    }
     
-    
-    public void evaluarMetodologia(){} ;
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((metCodigo == null) ? 0 : metCodigo.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof Metodologia)) {
+            return false;
+        }
+        Metodologia other = (Metodologia) obj;
+        if (metCodigo != other.metCodigo) {
+            return false;
+        }
+        if (descripcion == null) {
+            if (other.descripcion != null) {
+                return false;
+            }
+        } else if (!descripcion.equals(other.descripcion)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Metodologia [metCodigo=" + metCodigo + ", descripcion=" + descripcion + "]";
+    }
+
+    public void evaluarMetodologia() {
+    }
+;
 
 }

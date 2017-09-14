@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface CondicionTaxativaService {
     public CondicionTaxativa findCondicionByNombre(String nombre);
-    public CondicionTaxativa findCondicionByCodigo(String codigo);
+    public CondicionTaxativa findCondicionByCondCodigo(String codigo);
     public Integer saveCondicion(CondicionTaxativa condicion);
     public List<CondicionTaxativa> getAllCondiciones();
 }

@@ -26,14 +26,14 @@ public class CondicionPrioritariaServiceImplTest {
     @Test
     public void guardarCondicion() {
         CondicionPrioritaria condicion = new CondicionPrioritaria();
-        condicion.setCodigo("testPrio");
+        condicion.setcondCodigo("testPrio");
         condicion.setFormula("IN>2");
         condicion.setNombre("TEsteo");
         
 
         int resultado = condicionPrioritariaService.saveCondicion(condicion);
 
-        CondicionPrioritaria condicionGuardada = condicionPrioritariaRepo.findByCodigo("testPrio");
+        CondicionPrioritaria condicionGuardada = condicionPrioritariaRepo.findByCondCodigo("testPrio");
 
         assertEquals("TEsteo", condicionGuardada.getNombre());
         assertEquals("IN>2", condicionGuardada.getFormula());

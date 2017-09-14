@@ -1,6 +1,8 @@
 package com.utn.dds.javaianos.serviceTest;
 
+import com.utn.dds.javaianos.domain.CondicionTaxativa;
 import com.utn.dds.javaianos.domain.Metodologia;
+import com.utn.dds.javaianos.domain.StrategyCondicion;
 import com.utn.dds.javaianos.repository.MetodologiaRepository;
 import com.utn.dds.javaianos.service.MetodologiaService;
 import java.util.ArrayList;
@@ -28,19 +30,27 @@ public class MetodologiaServiceImplTest {
     @Test
     public void guardarMetodologia(){
         Metodologia metodologia = new Metodologia();
-        metodologia.setCodigo("unCodigo");
+        metodologia.setmetCodigo("unCodigo");
         metodologia.setDescripcion("unaDescripcion");
-        List<String> list = new ArrayList<>();
-        list.add("Mayor5");
-        list.add("Menor5");
-        metodologia.setListstrCondiciones(list);
+        List<StrategyCondicion> list = new ArrayList<>();
+        StrategyCondicion condicion1 = new CondicionTaxativa();
+        condicion1.setcondCodigo("C1");
+        condicion1.setNombre("cond 1");
+        condicion1.setFormula("IN<5");
+        list.add(condicion1);
+//        List<String> list = new ArrayList<>();
+//        list.add("Mayor5");
+//        list.add("Menor5");
+//        metodologia.setListstrCondiciones(list);
+        metodologia.setListCondiciones(list);
         
         int resultado = metodologiaService.saveMetodologia(metodologia);
         
-        Metodologia otraMetodologia = metodologiaRepository.findByCodigo("unCodigo");
+        Metodologia otraMetodologia = new Metodologia();
+        otraMetodologia = metodologiaRepository.findByMetCodigo("unCodigo");
         
         assertEquals(resultado,0);
-        assertEquals(otraMetodologia.getCodigo(),metodologia.getCodigo());
+        assertEquals(otraMetodologia.getmetCodigo(),metodologia.getmetCodigo());
         assertEquals(otraMetodologia.getDescripcion(),metodologia.getDescripcion());
         }
     

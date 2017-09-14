@@ -20,7 +20,7 @@ public class MetodologiaRepositoryTest {
     
     @Test
     public void findByCodigo() {
-        assertNotNull(metodologiaRepository.findByCodigo("test"));
+        assertNotNull(metodologiaRepository.findByMetCodigo("test"));
     }
     
     

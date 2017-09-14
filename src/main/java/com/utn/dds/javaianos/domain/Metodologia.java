@@ -14,6 +14,7 @@ public class Metodologia implements Serializable {
     @Id
     private String codigo;
     private String descripcion;
+    private String condiciones;
     
     @Transient
     public List<StrategyCondicion> listCondiciones;
@@ -21,6 +22,17 @@ public class Metodologia implements Serializable {
     @Transient
     private List<String> liststrCondiciones;
 
+    public void setCondiciones() {
+        for(StrategyCondicion condicion : listCondiciones)
+        {
+            this.condiciones = this.condiciones +";"+ condicion.getCodigo();
+        }
+    }
+
+    public String getCondiciones() {
+        return condiciones;
+    }
+    
     public String getCodigo() {
         return codigo;
     }

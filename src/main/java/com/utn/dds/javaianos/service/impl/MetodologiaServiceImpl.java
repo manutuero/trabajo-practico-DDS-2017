@@ -35,24 +35,25 @@ public class MetodologiaServiceImpl implements MetodologiaService {
                 
         try
         {
+            
             metodologiaRepository.save(metodologia);
             
-            for(String strcondicion : metodologia.getListstrCondiciones())
-            {
-                if(condicionTaxativaRepository.findByCodigo(strcondicion)!= null)
-                {
-                    
-                    condTax = condicionTaxativaRepository.findByCodigo(strcondicion);
-                    //metodologiaRepository.guardarCondicionesPorMetodologia(condTax.getCodigo(), metodologia.getCodigo());
-                }
-                else
-                {
-                    condPrio = condicionPrioritariaRepository.findByCodigo(strcondicion);
-                    //metodologiaRepository.guardarCondicionesPorMetodologia(condPrio.getCodigo(), metodologia.getCodigo());
-                }
-                
-                
-            }
+//            for(String strcondicion : metodologia.getListstrCondiciones())
+//            {
+//                if(condicionTaxativaRepository.findByCodigo(strcondicion)!= null)
+//                {
+//                    
+//                    condTax = condicionTaxativaRepository.findByCodigo(strcondicion);
+//                    //metodologiaRepository.guardarCondicionesPorMetodologia(condTax.getCodigo(), metodologia.getCodigo());
+//                }
+//                else
+//                {
+//                    condPrio = condicionPrioritariaRepository.findByCodigo(strcondicion);
+//                    //metodologiaRepository.guardarCondicionesPorMetodologia(condPrio.getCodigo(), metodologia.getCodigo());
+//                }
+//                
+//                
+//            }
             
             return 0;
         }

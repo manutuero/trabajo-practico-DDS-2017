@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS Cotizacion;
 DROP TABLE IF EXISTS Indicador;
 DROP TABLE IF EXISTS Cuenta;
 DROP TABLE IF EXISTS Empresa;
-DROP TABLE IF EXISTS MetodologiaCondicion;
+/*DROP TABLE IF EXISTS MetodologiaCondicion;*/
 DROP TABLE IF EXISTS Condicion;
 DROP TABLE IF EXISTS Metodologia;
 
@@ -43,26 +43,27 @@ CREATE TABLE Condicion (
 
 CREATE TABLE Metodologia (
     codigo VARCHAR(50) NOT NULL PRIMARY KEY,
-    descripcion VARCHAR(50) NOT NULL
+    descripcion VARCHAR(50) NOT NULL,
+    condiciones VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE MetodologiaCondicion (
+/*CREATE TABLE MetodologiaCondicion (
     condicion VARCHAR(50) NOT NULL,
     metodologia  VARCHAR(50) NOT NULL PRIMARY KEY,
     FOREIGN KEY (condicion) REFERENCES Condicion(codigo),
     FOREIGN KEY (metodologia) REFERENCES Metodologia(codigo)
 );
-/* Pensar si realmente vale la pensa implementar una clase periodo ?? mientras se maneja como Integer
+Pensar si realmente vale la pensa implementar una clase periodo ?? mientras se maneja como Integer
 CREATE TABLE Periodo (
     periodo INT NOT NULL PRIMARY KEY
 );*/
 
-INSERT INTO Metodologia( codigo, descripcion) VALUES ('test', 'asd');
+INSERT INTO Metodologia( codigo, descripcion, condiciones) VALUES ('test', 'asd', 'IN');
 
 INSERT INTO Condicion (codigo, nombre, tipo, formula) VALUES ('Mayor5','Mayor a 5','Taxativa','>5');
 INSERT INTO Condicion (codigo, nombre, tipo, formula) VALUES ('Menor5','Menor a 5','Prioritaria','<5');
 
-INSERT INTO Metodologia (codigo, descripcion) VALUES ('METOD1', 'una metodologia de prueba');
+INSERT INTO Metodologia (codigo, descripcion, condiciones) VALUES ('METOD1', 'una metodologia de prueba', 'Mayor5;Menor5');
 
 INSERT INTO Empresa (nombre) VALUES ('Facebook');
 INSERT INTO Empresa (nombre) VALUES ('Twitter');

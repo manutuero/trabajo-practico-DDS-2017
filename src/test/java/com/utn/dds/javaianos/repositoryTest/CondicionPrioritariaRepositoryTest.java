@@ -23,12 +23,12 @@ public class CondicionPrioritariaRepositoryTest {
     
     @Test
     public void findByCodigo_conCodigoDeCondicionExistente_devuelveCondicion() {
-        assertNotNull(condicionPrioritariaRepository.findByCodigo("Menor5"));
+        assertNotNull(condicionPrioritariaRepository.findByCondCodigo("Menor5"));
     }
     
     @Test
     public void findByCodigo2_conCodigoDeCondicionExistente_devuelveCondicion(){
-        CondicionPrioritaria condicion = condicionPrioritariaRepository.findByCodigo("Menor5");
-        assertEquals("Menor5", condicion.getCodigo());
+        CondicionPrioritaria condicion = condicionPrioritariaRepository.findByCondCodigo("Menor5");
+        assertEquals("Menor5", condicion.getcondCodigo());
     }
 }

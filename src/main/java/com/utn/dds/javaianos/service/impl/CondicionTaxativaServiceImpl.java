@@ -22,8 +22,8 @@ public class CondicionTaxativaServiceImpl implements CondicionTaxativaService {
     }
     
     @Override
-    public CondicionTaxativa findCondicionByCodigo(String codigo) {
-        return condicionTaxativaRepository.findByCodigo(codigo);
+    public CondicionTaxativa findCondicionByCondCodigo(String codigo) {
+        return condicionTaxativaRepository.findByCondCodigo(codigo);
     }
     
     @Override

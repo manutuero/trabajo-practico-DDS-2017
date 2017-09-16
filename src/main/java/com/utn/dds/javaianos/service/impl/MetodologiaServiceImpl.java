@@ -3,6 +3,7 @@ package com.utn.dds.javaianos.service.impl;
 import com.utn.dds.javaianos.domain.CondicionPrioritaria;
 import com.utn.dds.javaianos.domain.CondicionTaxativa;
 import com.utn.dds.javaianos.domain.Metodologia;
+import com.utn.dds.javaianos.domain.StrategyCondicion;
 import com.utn.dds.javaianos.repository.CondicionPrioritariaRepository;
 import com.utn.dds.javaianos.repository.CondicionRepository;
 import com.utn.dds.javaianos.repository.CondicionTaxativaRepository;
@@ -17,24 +18,28 @@ public class MetodologiaServiceImpl implements MetodologiaService {
 
     @Autowired
     private MetodologiaRepository metodologiaRepository;
-    
-    @Autowired
-    private CondicionTaxativaRepository condicionTaxativaRepository;
-    
-    @Autowired
-    private CondicionPrioritariaRepository condicionPrioritariaRepository;
-    
-    @Autowired
-    private CondicionRepository condicionRepository;
+
+//    @Autowired
+//    private CondicionTaxativaRepository condicionTaxativaRepository;
+//
+//    @Autowired
+//    private CondicionPrioritariaRepository condicionPrioritariaRepository;
+//
+//    @Autowired
+//    private CondicionRepository condicionRepository;
+
+//    @Autowired
+//    private SessionFactory sessionFactory;
 
     @Override
     public Integer saveMetodologia(Metodologia metodologia) {
+
         
-        CondicionTaxativa condTax;
-        CondicionPrioritaria condPrio;
+//        CondicionTaxativa condTax;
+//        CondicionPrioritaria condPrio;
                 
-        try
-        {
+//        try
+//        {
             
             metodologiaRepository.save(metodologia);
             
@@ -55,19 +60,17 @@ public class MetodologiaServiceImpl implements MetodologiaService {
 //                
 //            }
             
+
             return 0;
-        }
-        catch(Exception e)
-        {
-            return 1;
-        }
-        
+//        } catch (Exception e) {
+//            return 1;
+//        }
+
     }
 
     @Override
     public List<Metodologia> getAllMetodologias() {
         return metodologiaRepository.findAll();
     }
-    
-    
+
 }

@@ -45,7 +45,7 @@ function initListaEmpresas() {
 }
 
 function abrirModalConsultarValores() {
-    $('#btn-consultar-valores').click(function () {
+    $('#btn-abrir-consultar-valores').click(function () {
         limpiarFormularios();
     });
 }

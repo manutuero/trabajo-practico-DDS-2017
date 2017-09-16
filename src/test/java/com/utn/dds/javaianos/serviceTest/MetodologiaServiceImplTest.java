@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.transaction.Transactional;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,22 +28,23 @@ public class MetodologiaServiceImplTest {
     @Autowired
     MetodologiaRepository metodologiaRepository;
     
+    @Autowired
+    CondicionTaxativaRepository condicionRepository;
+    
     @Test
     public void guardarMetodologia(){
         Metodologia metodologia = new Metodologia();
         metodologia.setmetCodigo("unCodigo");
         metodologia.setDescripcion("unaDescripcion");
-        List<StrategyCondicion> list = new ArrayList<>();
-        StrategyCondicion condicion1 = new CondicionTaxativa();
-        condicion1.setcondCodigo("C1");
-        condicion1.setNombre("cond 1");
-        condicion1.setFormula("IN<5");
-        list.add(condicion1);
-//        List<String> list = new ArrayList<>();
-//        list.add("Mayor5");
-//        list.add("Menor5");
-//        metodologia.setListstrCondiciones(list);
-        metodologia.setListCondiciones(list);
+        CondicionTaxativa condicion = new CondicionTaxativa();
+        condicion.setCodigo("testTax");
+        condicion.setFormula("IN<5");
+        condicion.setNombre("TEste");
+        List<StrategyCondicion> lstCond = new ArrayList<>();
+        lstCond.add(condicion);
+        metodologia.setListCondiciones(lstCond);
+        metodologia.setCondiciones();
+
         
         int resultado = metodologiaService.saveMetodologia(metodologia);
         
@@ -52,6 +54,7 @@ public class MetodologiaServiceImplTest {
         assertEquals(resultado,0);
         assertEquals(otraMetodologia.getmetCodigo(),metodologia.getmetCodigo());
         assertEquals(otraMetodologia.getDescripcion(),metodologia.getDescripcion());
+        assertNotNull(otraMetodologia.getCondiciones());
         }
     
 }

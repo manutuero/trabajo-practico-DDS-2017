@@ -24,20 +24,6 @@ public class Metodologia implements Serializable {
     private String metCodigo;
     private String descripcion;
 
-    //@Transient
-    @ManyToMany//(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
-    @JoinTable(name = "Metodologia_Condicion",
-            joinColumns = {@JoinColumn(name = "metCodigo")},
-            inverseJoinColumns = {@JoinColumn(name = "condCodigo")})
-    public List<StrategyCondicion> listCondiciones = new ArrayList();
-
-    @Transient
-    private List<String> liststrCondiciones;
-
-    public Metodologia(){}
-    
-    public String getmetCodigo() {
-        return metCodigo;
     }
 
     public String getDescripcion() {

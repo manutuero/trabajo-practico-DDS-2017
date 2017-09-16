@@ -34,32 +34,32 @@ public class MetodologiaServiceImpl implements MetodologiaService {
     @Override
     public Integer saveMetodologia(Metodologia metodologia) {
 
+        
 //        CondicionTaxativa condTax;
 //        CondicionPrioritaria condPrio;
-
-//        try {
+                
+//        try
+//        {
+            
             metodologiaRepository.save(metodologia);
-
-//            for (StrategyCondicion condicion : metodologia.getListCondiciones()) {
-//
-//                Query query = sessionFactory.getCurrentSession().createQuery("insert into metodologiacondicion(con, stock_name)"
-//                                    + "select stock_code, stock_name from backup_stock");
-//                int result = query.executeUpdate();
-//
-//                Query query = sessionFactory.getCurrentSession().createQuery("INSERT INTO metodologiacondicion VALUES (:condicion,:metodologia)");
-//                query.setParameter(":condicion", condicion);
-//                query.setParameter(":metodologia", metodologia);
-//                query.list().get(0);
-//
-//                if (condicionTaxativaRepository.findByCodigo(condicion.getCodigo()) != null) {
-//
-//                    condTax = condicionTaxativaRepository.findByCodigo(condicion.getCodigo());
+            
+//            for(String strcondicion : metodologia.getListstrCondiciones())
+//            {
+//                if(condicionTaxativaRepository.findByCodigo(strcondicion)!= null)
+//                {
+//                    
+//                    condTax = condicionTaxativaRepository.findByCodigo(strcondicion);
 //                    //metodologiaRepository.guardarCondicionesPorMetodologia(condTax.getCodigo(), metodologia.getCodigo());
-//                } else {
-//                    condPrio = condicionPrioritariaRepository.findByCodigo(condicion.getCodigo());
+//                }
+//                else
+//                {
+//                    condPrio = condicionPrioritariaRepository.findByCodigo(strcondicion);
 //                    //metodologiaRepository.guardarCondicionesPorMetodologia(condPrio.getCodigo(), metodologia.getCodigo());
 //                }
+//                
+//                
 //            }
+            
 
             return 0;
 //        } catch (Exception e) {

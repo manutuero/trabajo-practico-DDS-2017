@@ -54,7 +54,7 @@ function agregarCondicion() {
         e.preventDefault();
         if (x < max_fields) { //max input box allowed
             x++; //text box increment
-            $(wrapper).append('<div class="btn-group"><button class="btn btn-primary btn-lg" value="'+$('#list-condiciones option:selected').val() +
+            $(wrapper).append('<div class="btn-group"><button id="uno" class="btn btn-info btn-lg" value="'+$('#list-condiciones option:selected').val() +
                     '" disabled>' + $('#list-condiciones option:selected').text() + '</button><button id="remove" type="button" class="btn btn-danger btn-lg" title="Eliminar condicion">x</button><br></div>');
         }
     });
@@ -140,19 +140,20 @@ function validarIngresoNuevaMetodologia() {
        
         var codigo = $('#input-codigo-met').val();
         var descripcion = $('#input-descripcion-met').val();
-        var condiciones = new Set();
+        var condiciones = [];
 
-
-        $('.form-group has-success has-feedback').each(function ()
+        
+        $('.btn-info').each(function ()
         {
-            condiciones.add($(this).val());
-            $('#textarea').append($(this).val());
+            condiciones.push($(this).val());
+            
+            
         });
         
         var data = {
             codigo: codigo,
             descripcion: descripcion,
-            condiciones: condiciones
+            condiciones: condiciones.join(";")
          };
         
         
@@ -223,7 +224,6 @@ function abrirModalNuevaMetodologia() {
         cleanResponses();
         initListaCondiciones();
         validarIngresoNuevaMetodologia();
-        agregarCondicion();
     });
 }
 ;
@@ -256,15 +256,20 @@ $(document).ready(function () {
     cleanForm();
     cleanResponses();
 
-
+    
     // eventos
+    abrirModalNuevaCondicion();
+    //cerrarModalNuevacondicion();
+    
     abrirModalNuevaMetodologia();
+    agregarCondicion();
+    //validarIngresoNuevaMetodologia();
     cerrarModalNuevaMetodologia();
+
     abrirModalEvaluarMetodologia();
     cerrarModalEvaluarMetodologia();
-    abrirModalNuevaCondicion();
-    cerrarModalNuevacondicion();
-    validarIngresoNuevaMetodologia();
+    
+    
 
     //validarIngresoNuevaMetodologia();
 

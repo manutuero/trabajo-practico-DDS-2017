@@ -176,7 +176,7 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="col-xs-10">
-                                    <p><select onChange="agregarCondicion()" id="list-condiciones" class="form-control" name="size"></select></p>
+                                    <p><select id="list-condiciones" class="form-control" name="size"></select></p>
                                 </div> 
                                 <div class="col-xs-2">
                                     <button id="btn-agregar-condicion" class="add_field_button">Agregar</button>
@@ -186,9 +186,12 @@
                                 <div class="input_fields_wrap"></div> 
                              </div>
                         </div>
-                    <div class="col-xs-12">
-                                <p>Formula: <textarea id="textarea-formula-met" class="form-control" rows="2" style="max-width:100%;"></textarea></p>
+                    <div class="row">
+                            <div class="col-xs-12">
+                                <p>Formula: <textarea id="textarea" class="form-control" rows="2" style="max-width:100%;"></textarea></p>
                             </div>
+                        </div>
+                    
                         
                     <div class="row">
                         <div class="col-xs-12">

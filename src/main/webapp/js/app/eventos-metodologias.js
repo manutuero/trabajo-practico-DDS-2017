@@ -9,7 +9,7 @@ function initListaIndicadores() {
         type: 'GET',
         success: function (indicadores) {
             $.each(indicadores, function (indice, indicador) {
-                listaIndicadores.append('<option value='+indicador.codigo+'>' + indicador.nombre + '</option>');
+                listaIndicadores.append('<option value="'+indicador.codigo+'">' + indicador.nombre + '</option>');
             });
         }
     });
@@ -27,7 +27,7 @@ function initListaCondiciones() {
         type: 'GET',
         success: function (condiciones) {
             $.each(condiciones, function (indice, condicion) {
-                listaCondiciones.append('<option value='+condicion.codigo+'>' + condicion.nombre + '</option>');
+                listaCondiciones.append('<option value="' + condicion.codigo + '">' + condicion.nombre + '</option>');
             });
         }
     });
@@ -49,16 +49,17 @@ function agregarCondicion() {
     var max_fields = 10; //maximum input boxes allowed
     var wrapper = $(".input_fields_wrap"); //Fields wrapper
 
-    var x = 1; //initlal text box count
-    $('#btn-agregar-condicion').click(function (e) { //on add input button click
+    var x = 0; //initlal text box count
+    $('.add_field_button').click(function (e) { //on add input button click
         e.preventDefault();
         if (x < max_fields) { //max input box allowed
             x++; //text box increment
-            $(wrapper).append('<div class="w3-container w3-teal"><textarea readonly class="cond" type="text" rows="1" style="width:75%; background-color:#4CAF50; color: white; margin:5px">' + $('#list-condiciones option:selected').text() + '</textarea><a href="#" style="vertical-align: super" class="remove_field">Remove</a></div>'); //add input box
+            $(wrapper).append('<div class="btn-group"><button class="btn btn-primary btn-lg" value="'+$('#list-condiciones option:selected').val() +
+                    '" disabled>' + $('#list-condiciones option:selected').text() + '</button><button id="remove" type="button" class="btn btn-danger btn-lg" title="Eliminar condicion">x</button><br></div>');
         }
     });
 
-    $(wrapper).on("click", ".remove_field", function (e) { //user click on remove text
+    $(wrapper).on("click", "#remove", function (e) { //user click on remove text
         e.preventDefault();
         $(this).parent('div').remove();
         x--;
@@ -142,9 +143,10 @@ function validarIngresoNuevaMetodologia() {
         var condiciones = new Set();
 
 
-        $('.cond').each(function ()
+        $('.form-group has-success has-feedback').each(function ()
         {
-            condiciones.add($(this).text());
+            condiciones.add($(this).val());
+            $('#textarea').append($(this).val());
         });
         
         var data = {
@@ -221,6 +223,7 @@ function abrirModalNuevaMetodologia() {
         cleanResponses();
         initListaCondiciones();
         validarIngresoNuevaMetodologia();
+        agregarCondicion();
     });
 }
 ;

@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface CondicionPrioritariaService {
     public CondicionPrioritaria findCondicionByNombre(String nombre);
-    public CondicionPrioritaria findCondicionByCodigo(String codigo);
+    public CondicionPrioritaria findCondicionByCondCodigo(String codigo);
     public Integer saveCondicion(CondicionPrioritaria condicion);
     public List<CondicionPrioritaria> getAllCondiciones();
 }

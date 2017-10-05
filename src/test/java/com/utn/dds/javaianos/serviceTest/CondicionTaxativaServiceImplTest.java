@@ -26,14 +26,14 @@ public class CondicionTaxativaServiceImplTest {
     @Test
     public void guardarCondicion() {
         CondicionTaxativa condicion = new CondicionTaxativa();
-        condicion.setCodigo("testTax");
+        condicion.setcondCodigo("testTax");
         condicion.setFormula("IN<5");
         condicion.setNombre("TEste");
         
 
         int resultado = condicionTaxativaService.saveCondicion(condicion);
 
-        CondicionTaxativa condicionGuardada = condicionTaxativaRepo.findByCodigo("testTax");
+        CondicionTaxativa condicionGuardada = condicionTaxativaRepo.findByCondCodigo("testTax");
 
         assertEquals("TEste", condicionGuardada.getNombre());
         assertEquals("IN<5", condicionGuardada.getFormula());

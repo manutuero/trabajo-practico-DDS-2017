@@ -21,6 +21,6 @@ public class CondicionTaxativaRepositoryTest {
     
     @Test
     public void findByCodigo_conCodigoDeCondicionExistente_devuelveCondicion() {
-        assertNotNull(condicionTaxativaRepository.findByCodigo("Mayor5"));
+        assertNotNull(condicionTaxativaRepository.findByCondCodigo("Mayor5"));
     }
 }

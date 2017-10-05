@@ -3,7 +3,6 @@ package com.utn.dds.javaianos.serviceTest;
 import com.utn.dds.javaianos.domain.CondicionTaxativa;
 import com.utn.dds.javaianos.domain.Metodologia;
 import com.utn.dds.javaianos.domain.StrategyCondicion;
-import com.utn.dds.javaianos.repository.CondicionTaxativaRepository;
 import com.utn.dds.javaianos.repository.MetodologiaRepository;
 import com.utn.dds.javaianos.service.MetodologiaService;
 import java.util.ArrayList;
@@ -35,7 +34,7 @@ public class MetodologiaServiceImplTest {
     @Test
     public void guardarMetodologia(){
         Metodologia metodologia = new Metodologia();
-        metodologia.setCodigo("unCodigo");
+        metodologia.setmetCodigo("unCodigo");
         metodologia.setDescripcion("unaDescripcion");
         //genero una condicion
         CondicionTaxativa condicion = new CondicionTaxativa();
@@ -53,13 +52,15 @@ public class MetodologiaServiceImplTest {
         lstCond.add(condicion2);
         metodologia.setListCondiciones(lstCond);
         metodologia.setCondiciones();
+
         
         int resultado = metodologiaService.saveMetodologia(metodologia);
         
-        Metodologia otraMetodologia = metodologiaRepository.findByCodigo("unCodigo");
+        Metodologia otraMetodologia = new Metodologia();
+        otraMetodologia = metodologiaRepository.findByMetCodigo("unCodigo");
         
         assertEquals(resultado,0);
-        assertEquals(otraMetodologia.getCodigo(),metodologia.getCodigo());
+        assertEquals(otraMetodologia.getmetCodigo(),metodologia.getmetCodigo());
         assertEquals(otraMetodologia.getDescripcion(),metodologia.getDescripcion());
         assertNotNull(otraMetodologia.getCondiciones());
         }

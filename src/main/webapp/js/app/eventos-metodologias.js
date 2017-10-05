@@ -137,7 +137,7 @@ function validarIngresoNuevaMetodologia() {
     $('#btn-crear-metodologia').click(function () {
         cleanResponses();
 
-       
+
         var codigo = $('#input-codigo-met').val();
         var descripcion = $('#input-descripcion-met').val();
         var condiciones = [];
@@ -149,14 +149,13 @@ function validarIngresoNuevaMetodologia() {
             
             
         });
-        
+
         var data = {
             codigo: codigo,
             descripcion: descripcion,
             condiciones: condiciones.join(";")
          };
-        
-        
+             
         $.ajax({
             url: 'http://localhost:8084/TpIntegradorDDS/api/nueva-metodologia',
             type: 'POST',
@@ -181,7 +180,7 @@ function validarIngresoNuevaMetodologia() {
                 }
             }
         });
-        
+
     }
     );
 }

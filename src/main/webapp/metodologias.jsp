@@ -59,8 +59,8 @@
                 <div class="col-md-4 col-sm-8 hero-feature">
                     <div class="thumbnail">
                         <div class="caption">
-                            <h3>Cargar Condiciones</h3>
-                            <p><font size="3">Ingreso de condiciones para Metodologias</font></p>
+                            <h3>Gestion Condiciones</h3>
+                            <p><font size="3">Alta, Baja y Modificacion de Condiciones para Metodologias</font></p>
                             <p>
                                 <a id="btn-abrir-nueva-condicion" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-nueva-condicion">Abrir modulo</a>
                             </p>
@@ -105,7 +105,7 @@
             </footer>
         </div>
 
-        <!-- ***** Modulo Nueva metodologia ***** -->
+        <!-- ***** Modulo Nueva condicion ***** -->
         <!-- Modal -->
         <div id="modal-nueva-condicion" class="modal fade" role="dialog">
             <div class="modal-dialog">
@@ -114,6 +114,16 @@
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">Nueva Condicion</h4><br>
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <button id="btn-mostrar-condiciones" type="button">Buscar </button>
+                            </div>
+                            <div class="col-xs-9">
+                                <div id="div-condiciones" class="col-xs-10" style="display:none;">
+                                    <p><select id="list-condiciones" class="form-control" name="size"></select></p>
+                                </div> 
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-xs-12">
                                 <p>Codigo: <input id ="input-codigo" type="text" required="true" size="45"></p>
@@ -176,7 +186,7 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="col-xs-10">
-                                    <p><select id="list-condiciones" class="form-control" name="size"></select></p>
+                                    <p><select id="list-condiciones2" class="form-control" name="size"></select></p>
                                 </div> 
                                 <div class="col-xs-2">
                                     <button id="btn-agregar-condicion" class="add_field_button">Agregar</button>

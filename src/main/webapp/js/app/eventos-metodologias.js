@@ -16,8 +16,8 @@ function initListaIndicadores() {
 }
 ;
 
-function initListaCondiciones() {
-    var listaCondiciones = $('#list-condiciones');
+function initListaCondiciones(unaLista) {
+    var listaCondiciones = unaLista;
 
     listaCondiciones.empty();
     listaCondiciones.append('<option value="" disabled selected>Seleccione una Condicion</option>');
@@ -55,7 +55,7 @@ function agregarCondicion() {
         if (x < max_fields) { //max input box allowed
             x++; //text box increment
             $(wrapper).append('<div class="btn-group"><button id="uno" class="btn btn-info btn-lg" value="'+$('#list-condiciones option:selected').val() +
-                    '" disabled>' + $('#list-condiciones option:selected').text() + '</button><button id="remove" type="button" class="btn btn-danger btn-lg" title="Eliminar condicion">x</button><br></div>');
+                    '">' + $('#list-condiciones option:selected').text() + '</button><button id="remove" type="button" class="btn btn-danger btn-lg" title="Eliminar condicion">x</button><br></div>');
         }
     });
 
@@ -187,6 +187,15 @@ function validarIngresoNuevaMetodologia() {
 }
 ;
 
+function mostrarCondiciones()
+{
+    $('#btn-mostrar-condiciones').click(function () {
+        $('#div-condiciones').css('display','inline-block');
+        initListaCondiciones($('#list-condiciones'));
+        
+       });
+};
+
 function cleanResponses() {
     $('#warning-message').hide();
     $('#syntax-error-message').hide();
@@ -202,7 +211,7 @@ function abrirModalNuevaCondicion() {
     $('#btn-abrir-nueva-condicion').click(function () {
         cleanForm();
         cleanResponses();
-        initListaIndicadores();
+        initListaIndicadores($('#list-condiciones'));
         initListaTipoCondiciones();
         validarIngresoNuevaCondicion();
     });
@@ -222,7 +231,7 @@ function abrirModalNuevaMetodologia() {
     $('#btn-abrir-nueva-metodologia').click(function () {
         cleanForm();
         cleanResponses();
-        initListaCondiciones();
+        initListaCondiciones($('#list-condiciones2'));
         validarIngresoNuevaMetodologia();
     });
 }
@@ -259,6 +268,7 @@ $(document).ready(function () {
     
     // eventos
     abrirModalNuevaCondicion();
+    mostrarCondiciones();
     //cerrarModalNuevacondicion();
     
     abrirModalNuevaMetodologia();
@@ -274,3 +284,4 @@ $(document).ready(function () {
     //validarIngresoNuevaMetodologia();
 
 });
+

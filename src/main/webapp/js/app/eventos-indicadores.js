@@ -9,7 +9,7 @@ function initListaIndicadores() {
         type: 'GET',
         success: function (indicadores) {
             $.each(indicadores, function (indice, indicador) {
-                listaIndicadores.append('<option value='+indicador.codigo+'>'+ indicador.nombre + '</option>');
+                listaIndicadores.append('<option value="'+indicador.codigo+'">'+ indicador.nombre + '</option>');
             });
         }
     });

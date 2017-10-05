@@ -107,18 +107,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-3 col-sm-6 hero-feature">
-                    <div class="thumbnail">
-                        <img src="http://placehold.it/800x500" alt="" >
-                        <div class="caption">
-                            <h3>Graficos Comparativos</h3>
-                            <p>Proximamente.</p>
-                            <p>
-                                <a href="#" class="btn btn-primary">Abrir modulo</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                
             </div>        
             <hr>
 

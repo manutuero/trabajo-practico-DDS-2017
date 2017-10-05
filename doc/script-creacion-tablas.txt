@@ -25,8 +25,9 @@ CREATE TABLE `dbprod`.`Indicador`
 	`formula` VARCHAR(255) NOT NULL) ENGINE = InnoDB;
 
 CREATE TABLE `dbprod`.`Metodologia` 
-	(`metCodigo` VARCHAR(50) NOT NULL PRIMARY KEY,
-    `descripcion` VARCHAR(50) NOT NULL) ENGINE = InnoDB;
+	(`codigo` VARCHAR(50) NOT NULL PRIMARY KEY,
+    	`descripcion` VARCHAR(50) NOT NULL,
+	`condiciones` VARCHAR(255) NOT NULL) ENGINE = InnoDB;
 
 CREATE TABLE `dbprod`.`Condicion` 
  	(`condCodigo` VARCHAR(50) NOT NULL PRIMARY KEY,
@@ -34,11 +35,11 @@ CREATE TABLE `dbprod`.`Condicion`
 	`tipo` VARCHAR(50) NOT NULL,
   	`formula` VARCHAR(255) NOT NULL) ENGINE = InnoDB;
 
-CREATE TABLE `dbprod` . `Metodologia_Condicion` 
+/*CREATE TABLE `dbprod` . `MetodologiaCondicion` 
 	(`condicion` VARCHAR(50) NOT NULL,
     `metodologia`  VARCHAR(50) NOT NULL,
     PRIMARY KEY (condicion, metodologia),
-    CONSTRAINT FOREIGN KEY (condicion) REFERENCES Condicion(condCodigo),
-    CONSTRAINT FOREIGN KEY (metodologia) REFERENCES Metodologia(metCodigo))ENGINE = InnoDB;
+    FOREIGN KEY (condicion) REFERENCES Condicion(codigo),
+    FOREIGN KEY (metodologia) REFERENCES Metodologia(codigo))ENGINE = InnoDB;*/
 
 INSERT INTO `dbprod`.`Empresa` (nombre) VALUES ('Facebook'),('Twitter');

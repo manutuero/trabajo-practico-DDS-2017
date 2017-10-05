@@ -23,6 +23,24 @@ public class Metodologia implements Serializable {
     @Column(name = "metCodigo")
     private String metCodigo;
     private String descripcion;
+    private String condiciones;
+
+    public void setCondiciones(String condiciones) {
+        this.condiciones = condiciones;
+    }
+    
+    @Transient
+    public List<StrategyCondicion> listCondiciones;
+    
+    @Transient
+    private List<String> liststrCondiciones;
+
+    public void setCondiciones() {
+        for(StrategyCondicion condicion : listCondiciones)
+        {
+            this.condiciones = this.condiciones +";"+ condicion.getCodigo();
+        }
+    }
 
     }
 

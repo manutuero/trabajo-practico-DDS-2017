@@ -20,40 +20,45 @@ import javax.persistence.Transient;
 public class Metodologia implements Serializable {
 
     @Id
-    @Column(name = "metCodigo")
-    private String metCodigo;
+    @Column(name = "Codigo")
+    private String Codigo;
     private String descripcion;
     private String condiciones;
 
-    public void setCondiciones(String condiciones) {
-        this.condiciones = condiciones;
-    }
-    
     @Transient
     public List<StrategyCondicion> listCondiciones;
-    
+
     @Transient
     private List<String> liststrCondiciones;
 
     public void setCondiciones() {
-        for(StrategyCondicion condicion : listCondiciones)
-        {
-            this.condiciones = this.condiciones +";"+ condicion.getCodigo();
+        for (StrategyCondicion condicion : listCondiciones) {
+            this.condiciones = this.condiciones + ";" + condicion.getCodigo();
         }
-    }
-
     }
 
     public String getDescripcion() {
         return descripcion;
     }
 
+    public String getCodigo() {
+        return Codigo;
+    }
+
+    public void setCondiciones(String condiciones) {
+        this.condiciones = condiciones;
+    }
+
+    public String getCondiciones() {
+        return condiciones;
+    }
+
     public List<StrategyCondicion> getListCondiciones() {
         return listCondiciones;
     }
 
-    public void setmetCodigo(String metCodigo) {
-        this.metCodigo = metCodigo;
+    public void setCodigo(String Codigo) {
+        this.Codigo = Codigo;
     }
 
     public void setDescripcion(String descripcion) {
@@ -72,15 +77,15 @@ public class Metodologia implements Serializable {
         this.liststrCondiciones = liststrCondiciones;
     }
 
-    public void addCondicion(StrategyCondicion condicion){
+    public void addCondicion(StrategyCondicion condicion) {
         this.listCondiciones.add(condicion);
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((metCodigo == null) ? 0 : metCodigo.hashCode());
+        result = prime * result + ((Codigo == null) ? 0 : Codigo.hashCode());
         return result;
     }
 
@@ -96,7 +101,7 @@ public class Metodologia implements Serializable {
             return false;
         }
         Metodologia other = (Metodologia) obj;
-        if (metCodigo != other.metCodigo) {
+        if (Codigo != other.Codigo) {
             return false;
         }
         if (descripcion == null) {
@@ -111,7 +116,7 @@ public class Metodologia implements Serializable {
 
     @Override
     public String toString() {
-        return "Metodologia [metCodigo=" + metCodigo + ", descripcion=" + descripcion + "]";
+        return "Metodologia [Codigo=" + Codigo + ", descripcion=" + descripcion + "]";
     }
 
     public void evaluarMetodologia() {

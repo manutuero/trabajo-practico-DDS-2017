@@ -17,19 +17,19 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @WebAppConfiguration
 @Transactional
 public class CondicionTaxativaServiceImplTest {
+
     @Autowired
     CondicionTaxativaService condicionTaxativaService;
-    
+
     @Autowired
     CondicionTaxativaRepository condicionTaxativaRepo;
-    
+
     @Test
     public void guardarCondicion() {
         CondicionTaxativa condicion = new CondicionTaxativa();
-        condicion.setcondCodigo("testTax");
+        condicion.setCodigo("testTax");
         condicion.setFormula("IN<5");
         condicion.setNombre("TEste");
-        
 
         int resultado = condicionTaxativaService.saveCondicion(condicion);
 
@@ -39,6 +39,5 @@ public class CondicionTaxativaServiceImplTest {
         assertEquals("IN<5", condicionGuardada.getFormula());
         assertEquals(0, resultado);
     }
-    
-    
+
 }

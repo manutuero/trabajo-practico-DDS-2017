@@ -17,8 +17,8 @@ import javax.persistence.Table;
 public abstract class StrategyCondicion implements Serializable {
 
     @Id
-    @Column(name="condCodigo")
-    private String condCodigo;
+    @Column(name = "Codigo")
+    private String Codigo;
     private String nombre;
     private String formula;
 
@@ -26,16 +26,16 @@ public abstract class StrategyCondicion implements Serializable {
         return nombre;
     }
 
-    public String getcondCodigo() {
-        return condCodigo;
+    public String getCodigo() {
+        return Codigo;
     }
 
     public String getFormula() {
         return formula;
     }
 
-    public void setcondCodigo(String condCodigo) {
-        this.condCodigo = condCodigo;
+    public void setCodigo(String Codigo) {
+        this.Codigo = Codigo;
     }
 
     public void setNombre(String nombre) {
@@ -51,8 +51,8 @@ public abstract class StrategyCondicion implements Serializable {
 
     ;
     
-    public StrategyCondicion(String condCodigo, String nombre, String formula) {
-        this.condCodigo = condCodigo;
+    public StrategyCondicion(String Codigo, String nombre, String formula) {
+        this.Codigo = Codigo;
         this.nombre = nombre;
         this.formula = formula;
     }
@@ -61,7 +61,7 @@ public abstract class StrategyCondicion implements Serializable {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((condCodigo == null) ? 0 : condCodigo.hashCode());
+        result = prime * result + ((Codigo == null) ? 0 : Codigo.hashCode());
         result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
         return result;
     }
@@ -78,7 +78,7 @@ public abstract class StrategyCondicion implements Serializable {
             return false;
         }
         StrategyCondicion other = (StrategyCondicion) obj;
-        if (condCodigo != other.condCodigo) {
+        if (Codigo != other.Codigo) {
             return false;
         }
         if (nombre == null) {
@@ -93,7 +93,7 @@ public abstract class StrategyCondicion implements Serializable {
 
     @Override
     public String toString() {
-        return "StrategyCondicion [condCodigo=" + condCodigo + ", nombre=" + nombre + "]";
+        return "StrategyCondicion [Codigo=" + Codigo + ", nombre=" + nombre + "]";
     }
 
 }

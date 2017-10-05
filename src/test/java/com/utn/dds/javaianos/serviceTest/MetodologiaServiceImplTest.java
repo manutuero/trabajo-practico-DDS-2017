@@ -22,19 +22,17 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @WebAppConfiguration
 @Transactional
 public class MetodologiaServiceImplTest {
+
     @Autowired
     MetodologiaService metodologiaService;
-    
+
     @Autowired
     MetodologiaRepository metodologiaRepository;
-    
-    @Autowired
-    CondicionTaxativaRepository condicionRepository;
-    
+
     @Test
-    public void guardarMetodologia(){
+    public void guardarMetodologia() {
         Metodologia metodologia = new Metodologia();
-        metodologia.setmetCodigo("unCodigo");
+        metodologia.setCodigo("unCodigo");
         metodologia.setDescripcion("unaDescripcion");
         //genero una condicion
         CondicionTaxativa condicion = new CondicionTaxativa();
@@ -53,16 +51,15 @@ public class MetodologiaServiceImplTest {
         metodologia.setListCondiciones(lstCond);
         metodologia.setCondiciones();
 
-        
         int resultado = metodologiaService.saveMetodologia(metodologia);
-        
+
         Metodologia otraMetodologia = new Metodologia();
         otraMetodologia = metodologiaRepository.findByMetCodigo("unCodigo");
-        
-        assertEquals(resultado,0);
-        assertEquals(otraMetodologia.getmetCodigo(),metodologia.getmetCodigo());
-        assertEquals(otraMetodologia.getDescripcion(),metodologia.getDescripcion());
+
+        assertEquals(resultado, 0);
+        assertEquals(otraMetodologia.getCodigo(), metodologia.getCodigo());
+        assertEquals(otraMetodologia.getDescripcion(), metodologia.getDescripcion());
         assertNotNull(otraMetodologia.getCondiciones());
-        }
-    
+    }
+
 }

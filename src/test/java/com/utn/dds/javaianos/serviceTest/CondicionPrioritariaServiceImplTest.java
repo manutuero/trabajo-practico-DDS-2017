@@ -17,19 +17,19 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @WebAppConfiguration
 @Transactional
 public class CondicionPrioritariaServiceImplTest {
+
     @Autowired
     CondicionPrioritariaService condicionPrioritariaService;
-    
+
     @Autowired
     CondicionPrioritariaRepository condicionPrioritariaRepo;
-    
+
     @Test
     public void guardarCondicion() {
         CondicionPrioritaria condicion = new CondicionPrioritaria();
-        condicion.setcondCodigo("testPrio");
+        condicion.setCodigo("testPrio");
         condicion.setFormula("IN>2");
         condicion.setNombre("TEsteo");
-        
 
         int resultado = condicionPrioritariaService.saveCondicion(condicion);
 

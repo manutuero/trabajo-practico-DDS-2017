@@ -113,39 +113,37 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Nueva Condicion</h4><br>
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <button id="btn-mostrar-condiciones" type="button">Buscar </button>
-                            </div>
-                            <div class="col-xs-9">
-                                <div id="div-condiciones" class="col-xs-10" style="display:none;">
-                                    <p><select id="list-condiciones" class="form-control" name="size"></select></p>
-                                </div> 
-                            </div>
+                        <h4 class="modal-title">Nueva Condicion <button id="btn-mostrar-condiciones" type="button"><span class="glyphicon glyphicon-folder-open"></span> </button> 
+                            <div id="div-condiciones" style="display:none;">
+                                <p><select id="list-condiciones" class="form-control" name="size"></select></p>
+                            </div> </h4>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <p>Codigo: <input id ="input-codigo" type="text" required="true" size="45"> 
+                                <button type="button" class="btn btn-xs btn-primary" data-toggle="popover-codigo-condicion" title="Proximamente" data-content="Ejemplo" >?</button></p>
+
                         </div>
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <p>Codigo: <input id ="input-codigo" type="text" required="true" size="45"></p>
-                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <p>Nombre: <input id ="input-nombre" type="text" required="true" size="45">
+                                <button type="button" class="btn btn-xs btn-primary" data-toggle="popover-descripcion-condicion" title="Proximamente" data-content="Ejemplo" >?</button></p>
                         </div>
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <p>Nombre: <input id ="input-nombre" type="text" required="true" size="45"></p>
-                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <select id="list-tipos-condiciones" class="form-control" name="size"></select>
                         </div>
-                        <div class="row">
-                            <div class="col-xs-6">
-                                <select id="list-tipos-condiciones" class="form-control" name="size"></select>
-                            </div>
-                            <div class="col-xs-6">
-                                <p><select onChange="insertarIndicador()" id="list-indicadores" class="form-control" name="size"   ></select></p>
-                            </div>
+                        <div class="col-xs-6">
+                            <p><select onChange="insertarIndicador()" id="list-indicadores" class="form-control" name="size"   ></select></p>
                         </div>
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <p>Formula: <textarea id="textarea-formula-condicion" class="form-control" rows="2" style="max-width:100%;"></textarea></p>
-                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <p>Formula:    <button type="button" class="btn btn-xs btn-primary" data-toggle="popover-formula-condicion" title="Ejemplo:" data-content="IngresoNeto > 1000000" >?</button></p>
+                            <textarea id="textarea-formula-condicion" class="form-control" rows="2" style="max-width:100%;"></textarea>
                         </div>
                     </div>
                     <div class="row">
@@ -172,37 +170,36 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Nueva Metodologia</h4><br>
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <p>Codigo: <input id ="input-codigo-met" type="text" required="true" size="45"></p>
-                            </div>
-                            <div class="col-xs-12">
-                                <p>Descripcion: <input id ="input-descripcion-met" type="text" required="true" size="45"></p>
-                            </div>
+                        <h4 class="modal-title">Nueva Metodologia <button id="btn-mostrar-metodologias" type="button"><span class="glyphicon glyphicon-folder-open"></span> </button> </h4>                        
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <p>Nombre <input id ="input-codigo-met" type="text" required="true" size="45">
+                                <button type="button" class="btn btn-xs btn-primary" data-toggle="popover-metodologia-nombre" title="Proximamente" data-content="Ejemplo" >?</button></p>
+                        </div>
+                        <div class="col-xs-12">
+                            <p>Descripcion: <input id ="input-descripcion-met" type="text" required="true" size="45">
+                                <button type="button" class="btn btn-xs btn-primary" data-toggle="popover-metodologia-descripcion" title="Proximamente" data-content="Ejemplo" >?</button></p>
                         </div>
                     </div>
                     <p style="text-indent: 10px">  Seleccione un conjunto de Condiciones </p>
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="col-xs-10">
-                                    <p><select id="list-condiciones2" class="form-control" name="size"></select></p>
-                                </div> 
-                                <div class="col-xs-2">
-                                    <button id="btn-agregar-condicion" class="add_field_button">Agregar</button>
-                                </div> 
-                            </div>
-                            <div class="col-xs-12">
-                                <div class="input_fields_wrap"></div> 
-                             </div>
-                        </div>
                     <div class="row">
-                            <div class="col-xs-12">
-                                <p>Formula: <textarea id="textarea" class="form-control" rows="2" style="max-width:100%;"></textarea></p>
-                            </div>
+                        <div class="col-xs-12">
+                            <div class="col-xs-10">
+                                <p><select id="list-condiciones2" class="form-control" name="size"></select></p>
+                            </div> 
+                            <div class="col-xs-2">
+                                <button id="btn-agregar-condicion" class="add_field_button">Agregar</button>
+                            </div> 
                         </div>
-                    
-                        
+                        <div class="col-xs-12">
+                            <div class="input_fields_wrap"></div> 
+                        </div>
+                    </div>
+
+
+
                     <div class="row">
                         <div class="col-xs-12">
                             <div id="warning-message" class="alert alert-warning" hidden="true">

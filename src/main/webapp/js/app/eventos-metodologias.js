@@ -211,6 +211,10 @@ function abrirModalNuevaCondicion() {
         cleanForm();
         cleanResponses();
         initListaIndicadores($('#list-condiciones'));
+        $('[data-toggle="popover-formula-condicion"]').popover();
+        $('[data-toggle="popover-codigo-condicion"]').popover();
+        $('[data-toggle="popover-descripcion-condicion"]').popover();
+        
         initListaTipoCondiciones();
         validarIngresoNuevaCondicion();
     });
@@ -231,6 +235,8 @@ function abrirModalNuevaMetodologia() {
         cleanForm();
         cleanResponses();
         initListaCondiciones($('#list-condiciones2'));
+        $('[data-toggle="popover-metodologia-nombre"]').popover();
+        $('[data-toggle="popover-metodologia-descripcion"]').popover();
         validarIngresoNuevaMetodologia();
     });
 }

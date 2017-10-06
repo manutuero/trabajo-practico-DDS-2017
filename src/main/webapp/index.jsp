@@ -48,7 +48,7 @@
             <!-- Page Features -->
             <div class="row text-center">
 
-                <div class="col-md-3 col-sm-6 hero-feature">
+                <div class="col-md-4 col-sm-6 hero-feature">
                     <div class="thumbnail">
                         <img src="<%=request.getContextPath()%>\images\bolsa-valores.jpg" alt="http://placehold.it/800x500" >
                         <div class="caption">
@@ -63,23 +63,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-3 col-sm-6 hero-feature">
-                    <div class="thumbnail">
-                        <img src="<%=request.getContextPath()%>\images\consulta-valores.jpeg" alt="http://placehold.it/800x500">
-                        <div class="caption">
-                            <h3>Consultar valores</h3>
-                            <p>Modulo de consulta de valores por criterios.</p>
-                            <p>
-                                <!-- Dipara un modal al apretar el boton -->
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-consultar-valores">
-                                    Abrir modulo
-                                </button>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3 col-sm-6 hero-feature">
+                <div class="col-md-4 col-sm-6 hero-feature">
                     <div class="thumbnail">
                         <img src="<%=request.getContextPath()%>\images\indicadores.png" alt="http://placehold.it/800x500">
                         <div class="caption">
@@ -94,7 +78,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-3 col-sm-6 hero-feature">
+                <div class="col-md-4 col-sm-6 hero-feature">
                     <div class="thumbnail">
                         <img src="<%=request.getContextPath()%>\images\formulas-matematicas.jpg" alt="http://placehold.it/800x500">
                         <div class="caption">
@@ -121,47 +105,6 @@
             </footer>
         </div>
 
-        <!-- ***** Modulo Consultar valores ***** -->
-        <!-- Modal -->
-        <div id="modal-consultar-valores" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button id="btn-consultar-valores" type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Consultar valores de una cuenta</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>Este modulo permite visualizar los valores de todas las cuentas asociadas a una empresa para un periodo determinado.</p>
-                        <div class="row">
-                            <div class="col-xs-2">Seleccione empresa</div>
-                            <div class="col-xs-6">
-                                <p><select id="list-empresas" class="form-control" name="size" ></select></p>
-                            </div>
-                        </div>
-                        <p>Ingrese periodo: <input id="input-periodo" name="periodo" type="text" required="true"></p>
-                        <div class="modal-footer">
-                            <button id="btn-consultar" class="btn btn-primary">Consultar</button>
-                            <button id="btn-cerrar-calcular-valores" type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
-                        </div>
-                        <!-- Grid table -->
-                        <table class="table table-condensed">
-                            <thead>
-                                <tr>
-                                    <th>Cuenta</th>
-                                    <th>Valor</th>
-                                </tr>
-                            </thead>
-                            <tbody id="cotizaciones">
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-            </div>
-        </div> 
-
         <!-- ***** Modulo Carga Indicadores ***** -->
         <div id="modal-indicadores" class="modal fade" role="dialog">
             <div class="modal-dialog">
@@ -184,7 +127,7 @@
 
         <script src="js/vendor/jquery-3.2.1.min.js"></script>
         <script src="js/vendor/bootstrap.min.js"></script>
-        <script src="js/app/eventos-cuentas.js"></script>
+<!--        <script src="js/app/eventos-cuentas.js"></script>-->
     </body>
 </html>
 

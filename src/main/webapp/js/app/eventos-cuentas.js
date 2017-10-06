@@ -7,8 +7,8 @@ function obtenerValoresCuentas() {
             periodo: periodo
         };
 
-        if (empresa === null || periodo === null) {
-            alert("no se aceptan campos vacios");
+        if (empresa === null || periodo === "") {
+            alert("No se aceptan campos vacios");
         } else {
             $.ajax({
                 url: 'http://localhost:8084/TpIntegradorDDS/api/cotizaciones',
@@ -45,30 +45,30 @@ function initListaEmpresas() {
 }
 
 function abrirModalConsultarValores() {
-    $('#btn-consultar-valores').click(function () {
-        limpiarFormularios();
+    $('#btn-abrir-consultar-valores').click(function () {
+        initListaEmpresas();
+        limpiarGrillaValores();
     });
 }
 ;
 
 function cerrarModalCalcularValores() {
-    $('#btn-cerrar-calcular-valores').click(function () {
-        limpiarFormularios();
+    $('#btn-cerrar-consultar-valores').click(function () {
+        limpiarGrillaValores();
     });
 }
 ;
 
-function limpiarFormularios() {
+function limpiarGrillaValores() {
     $('.btn-primary').click(function () {
         $('#cotizaciones tr').remove();
     });
 }
 
 $(document).ready(function () {
+    limpiarGrillaValores();
     abrirModalConsultarValores();
-    cerrarModalCalcularValores();
-    limpiarFormularios();
-    initListaEmpresas();
+    cerrarModalCalcularValores();  
     obtenerValoresCuentas();
 
 

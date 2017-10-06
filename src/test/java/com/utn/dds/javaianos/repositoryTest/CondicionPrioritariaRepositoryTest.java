@@ -1,4 +1,6 @@
+
 package com.utn.dds.javaianos.repositoryTest;
+
 
 import com.utn.dds.javaianos.domain.CondicionPrioritaria;
 import com.utn.dds.javaianos.repository.CondicionPrioritariaRepository;
@@ -15,18 +17,18 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 @Transactional
 public class CondicionPrioritariaRepositoryTest {
-
+    
     @Autowired
     CondicionPrioritariaRepository condicionPrioritariaRepository;
-
+    
     @Test
     public void findByCodigo_conCodigoDeCondicionExistente_devuelveCondicion() {
-        assertNotNull(condicionPrioritariaRepository.findByCondCodigo("Menor5"));
+        assertNotNull(condicionPrioritariaRepository.findByCodigo("Menor5"));
     }
-
+    
     @Test
-    public void findByCodigo2_conCodigoDeCondicionExistente_devuelveCondicion() {
-        CondicionPrioritaria condicion = condicionPrioritariaRepository.findByCondCodigo("Menor5");
+    public void findByCodigo2_conCodigoDeCondicionExistente_devuelveCondicion(){
+        CondicionPrioritaria condicion = condicionPrioritariaRepository.findByCodigo("Menor5");
         assertEquals("Menor5", condicion.getCodigo());
     }
 }

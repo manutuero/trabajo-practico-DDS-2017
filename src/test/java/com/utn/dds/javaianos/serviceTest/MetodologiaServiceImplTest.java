@@ -3,6 +3,7 @@ package com.utn.dds.javaianos.serviceTest;
 import com.utn.dds.javaianos.domain.CondicionTaxativa;
 import com.utn.dds.javaianos.domain.Metodologia;
 import com.utn.dds.javaianos.domain.StrategyCondicion;
+import com.utn.dds.javaianos.repository.CondicionTaxativaRepository;
 import com.utn.dds.javaianos.repository.MetodologiaRepository;
 import com.utn.dds.javaianos.service.MetodologiaService;
 import java.util.ArrayList;
@@ -22,15 +23,17 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @WebAppConfiguration
 @Transactional
 public class MetodologiaServiceImplTest {
-
     @Autowired
     MetodologiaService metodologiaService;
-
+    
     @Autowired
     MetodologiaRepository metodologiaRepository;
-
+    
+    @Autowired
+    CondicionTaxativaRepository condicionRepository;
+    
     @Test
-    public void guardarMetodologia() {
+    public void guardarMetodologia(){
         Metodologia metodologia = new Metodologia();
         metodologia.setCodigo("unCodigo");
         metodologia.setDescripcion("unaDescripcion");
@@ -50,16 +53,15 @@ public class MetodologiaServiceImplTest {
         lstCond.add(condicion2);
         metodologia.setListCondiciones(lstCond);
         metodologia.setCondiciones();
-
+        
         int resultado = metodologiaService.saveMetodologia(metodologia);
-
-        Metodologia otraMetodologia = new Metodologia();
-        otraMetodologia = metodologiaRepository.findByMetCodigo("unCodigo");
-
-        assertEquals(resultado, 0);
-        assertEquals(otraMetodologia.getCodigo(), metodologia.getCodigo());
-        assertEquals(otraMetodologia.getDescripcion(), metodologia.getDescripcion());
+        
+        Metodologia otraMetodologia = metodologiaRepository.findByCodigo("unCodigo");
+        
+        assertEquals(resultado,0);
+        assertEquals(otraMetodologia.getCodigo(),metodologia.getCodigo());
+        assertEquals(otraMetodologia.getDescripcion(),metodologia.getDescripcion());
         assertNotNull(otraMetodologia.getCondiciones());
-    }
-
+        }
+    
 }

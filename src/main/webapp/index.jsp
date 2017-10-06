@@ -71,7 +71,7 @@
                             <p>Modulo de consulta de valores por criterios.</p>
                             <p>
                                 <!-- Dipara un modal al apretar el boton -->
-                                <button id="btn-abrir-consultar-valores" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-consultar-valores">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-consultar-valores">
                                     Abrir modulo
                                 </button>
                             </p>
@@ -129,7 +129,7 @@
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button id="btn-close-consultar-valores" type="button" class="close" data-dismiss="modal">&times;</button>
+                        <button id="btn-consultar-valores" type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">Consultar valores de una cuenta</h4>
                     </div>
                     <div class="modal-body">
@@ -161,6 +161,26 @@
 
             </div>
         </div> 
+
+        <!-- ***** Modulo Carga Indicadores ***** -->
+        <div id="modal-indicadores" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Indicadores</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Este modulo permite ingresar y/o consultar un nuevo indicador. A su vez es posible ingresar </p>
+                        <button id="btn-consultar" class="btn btn-primary pull-right" data-toogle="modal" data-target="#modal-visualizar-indicadores">Predefinido</button>
+                        <button id="btn-consultar" class="btn btn-primary pull-left" data-toogle="modal" data-target="#modal-nuevo-indicador">Nuevo</button>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div> 
+            </div>
+        </div>
+
 
         <script src="js/vendor/jquery-3.2.1.min.js"></script>
         <script src="js/vendor/bootstrap.min.js"></script>

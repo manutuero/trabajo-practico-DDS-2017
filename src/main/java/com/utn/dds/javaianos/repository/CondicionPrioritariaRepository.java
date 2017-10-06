@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CondicionPrioritariaRepository extends JpaRepository<CondicionPrioritaria, Long>{
     public CondicionPrioritaria findByNombre(String nombre);
-    public CondicionPrioritaria findByCondCodigo(String codigo);
+    public CondicionPrioritaria findByCodigo(String codigo);
 }
 

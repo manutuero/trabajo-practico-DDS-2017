@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CondicionRepository extends JpaRepository<StrategyCondicion, Long>{
     public StrategyCondicion findByNombre(String nombre);
-    public StrategyCondicion findByCondCodigo(String codigo);
+    public StrategyCondicion findByCodigo(String codigo);
 }

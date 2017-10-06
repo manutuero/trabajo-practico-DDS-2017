@@ -23,8 +23,8 @@ public class CondicionPrioritariaServiceImpl implements CondicionPrioritariaServ
     }
     
     @Override
-    public CondicionPrioritaria findCondicionByCondCodigo(String codigo) {
-        return condicionPrioritariaRepository.findByCondCodigo(codigo);
+    public CondicionPrioritaria findCondicionByCodigo(String codigo) {
+        return condicionPrioritariaRepository.findByCodigo(codigo);
     }
     
     @Override

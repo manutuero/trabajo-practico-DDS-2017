@@ -3,35 +3,37 @@ CREATE DATABASE `dbprod`;
 
 CREATE TABLE `dbprod`.`Cuenta` 
 	(`codigo` VARCHAR(50) NOT NULL PRIMARY KEY,
-    `nombre` VARCHAR(150) NOT NULL) ENGINE = InnoDB;
+     	 `nombre` VARCHAR(150) NOT NULL) ENGINE = InnoDB;
 
 CREATE TABLE `dbprod`.`Empresa` 
 	(`nombre` VARCHAR(50) NOT NULL PRIMARY KEY) ENGINE = InnoDB;
 
 CREATE TABLE `dbprod`.`Cotizacion`
 	( id INT AUTO_INCREMENT PRIMARY KEY,
-	`cuenta` VARCHAR(50) NOT NULL,
-    `empresa` VARCHAR(50) NOT NULL,
- 	`periodo` INT NOT NULL,
-	`valor` DECIMAL NOT NULL,
-	CONSTRAINT FOREIGN KEY (cuenta) REFERENCES Cuenta(codigo),
-    CONSTRAINT FOREIGN KEY (empresa) REFERENCES Empresa(nombre),	
-	CONSTRAINT UNIQUE (`cuenta`, `empresa`, `periodo`)) ENGINE = InnoDB;
+	 `cuenta` VARCHAR(50) NOT NULL,
+     	 `empresa` VARCHAR(50) NOT NULL,
+ 	 `periodo` INT NOT NULL,
+	 `valor` DECIMAL NOT NULL,
+	  FOREIGN KEY (cuenta) REFERENCES Cuenta(codigo),
+    	  FOREIGN KEY (empresa) REFERENCES Empresa(nombre),	
+	  UNIQUE (`cuenta`, `empresa`, `periodo`)) ENGINE = InnoDB;
 
 CREATE TABLE `dbprod`.`Indicador`
 	(`codigo` VARCHAR(50) NOT NULL PRIMARY KEY,
-    `nombre` VARCHAR(50),
-	`tipo` VARCHAR(50) NOT NULL,
-	`formula` VARCHAR(255) NOT NULL) ENGINE = InnoDB;
+         `nombre` VARCHAR(50),
+	 `tipo` VARCHAR(50) NOT NULL,
+	 `formula` VARCHAR(255) NOT NULL) ENGINE = InnoDB;
 
 CREATE TABLE `dbprod`.`Metodologia` 
 	(`codigo` VARCHAR(50) NOT NULL PRIMARY KEY,
     	`descripcion` VARCHAR(50) NOT NULL,
 	`condiciones` VARCHAR(255) NOT NULL) ENGINE = InnoDB;
 
+
+
 CREATE TABLE `dbprod`.`Condicion` 
- 	(`condCodigo` VARCHAR(50) NOT NULL PRIMARY KEY,
-    `nombre` VARCHAR(150) NOT NULL,
+ 	(`codigo` VARCHAR(50) NOT NULL PRIMARY KEY,
+       `nombre` VARCHAR(150) NOT NULL,
 	`tipo` VARCHAR(50) NOT NULL,
   	`formula` VARCHAR(255) NOT NULL) ENGINE = InnoDB;
 
@@ -42,4 +44,5 @@ CREATE TABLE `dbprod`.`Condicion`
     FOREIGN KEY (condicion) REFERENCES Condicion(codigo),
     FOREIGN KEY (metodologia) REFERENCES Metodologia(codigo))ENGINE = InnoDB;*/
 
-INSERT INTO `dbprod`.`Empresa` (nombre) VALUES ('Facebook'),('Twitter');
+INSERT INTO `dbprod`.`Empresa` (nombre) VALUES ('Facebook'),
+				     ('Twitter');

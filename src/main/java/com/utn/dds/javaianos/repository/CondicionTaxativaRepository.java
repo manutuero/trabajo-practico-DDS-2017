@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CondicionTaxativaRepository extends JpaRepository<CondicionTaxativa, Long>{
     public CondicionTaxativa findByNombre(String nombre);
-    public CondicionTaxativa findByCondCodigo(String codigo);
+    public CondicionTaxativa findByCodigo(String codigo);
 }

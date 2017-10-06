@@ -24,8 +24,8 @@ public class CondicionServiceImpl implements CondicionService {
     }
     
     @Override
-    public StrategyCondicion findCondicionByCondCodigo(String codigo) {
-        return condicionRepository.findByCondCodigo(codigo);
+    public StrategyCondicion findCondicionByCodigo(String codigo) {
+        return condicionRepository.findByCodigo(codigo);
     }
     
     @Override
@@ -55,7 +55,7 @@ public class CondicionServiceImpl implements CondicionService {
         List<StrategyCondicion> listCondiciones = new ArrayList<>();
         for(String condicion: condiciones)
         {
-            listCondiciones.add(condicionRepository.findByCondCodigo(condicion));
+            listCondiciones.add(condicionRepository.findByCodigo(condicion));
         }
                
         return listCondiciones;

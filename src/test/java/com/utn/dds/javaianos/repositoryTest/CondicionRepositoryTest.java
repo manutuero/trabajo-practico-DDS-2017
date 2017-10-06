@@ -19,7 +19,7 @@ public class CondicionRepositoryTest {
     
     @Test
     public void findByCodigo_conCodigoDeCondicionExistente_devuelveCondicion() {
-        assertNotNull(condicionRepository.findByCondCodigo("Mayor5"));
+        assertNotNull(condicionRepository.findByCodigo("Mayor5"));
     }
     
 }

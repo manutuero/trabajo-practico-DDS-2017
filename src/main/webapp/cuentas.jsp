@@ -7,6 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
         <link href="css/heroic-features.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/bootstrap-datetimepicker.css" type="text/css">
     </head>
     <body>
         <!-- Navigation bar -->
@@ -81,7 +82,7 @@
                             <p>
                                 <!-- Dipara un modal al apretar el boton -->
                                 <button type="button" id="btn-abrir-consultar-valores" class="btn btn-primary" data-toggle="modal" data-target="#modal-consultar-valores">
-                                    Abrir modulo
+                                    Abrir 
                                 </button>
                             </p>
                         </div>
@@ -157,23 +158,37 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Consultar valores de una cuenta</h4>
+                        <h4 class="modal-title">Consultar valores de una cuenta <button type="button" class="btn btn-xs btn-primary" data-toggle="popover-cuenta-titulo" title="" data-content="Este modulo permite visualizar los valores de todas las cuentas asociadas a una empresa para un periodo determinado." >?</button></p</h4>
+                        
                     </div>
                     <div class="modal-body">
-                        <p>Este modulo permite visualizar los valores de todas las cuentas asociadas a una empresa para un periodo determinado.</p>
+                        
                         <div class="row">
-                            <div class="col-xs-2">Seleccione empresa</div>
+                            <div class="col-xs-2">Empresa</div>
                             <div class="col-xs-6">
                                 <p><select id="list-empresas" class="form-control" name="size" ></select></p>
                             </div>
                         </div>
-                        <p>Ingrese periodo: <input id="input-periodo" name="periodo" type="text" required="true"></p>
+                        <div class="row">
+                            <div class="col-xs-2">Periodo:</div>
+                            <div class="col-xs-6">
+                                <div class='input-group date' id='datetimepickerfrom'>
+                                    <input type='text' class="form-control" id="input-periodo" />
+                                    <span class="input-group-addon open-datetimepicker">
+                                        <span class="glyphicon glyphicon-calendar">
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <br>
                         <div class="modal-footer">
                             <button id="btn-consultar" class="btn btn-primary">Consultar</button>
                             <button id="btn-cerrar-consultar-valores" type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
                         </div>
                         <!-- Grid table -->
-                        <table class="table table-condensed">
+                        <table class="table table-condensed" id="grilla" style="display:none">
                             <thead>
                                 <tr>
                                     <th>Cuenta</th>
@@ -193,5 +208,8 @@
         <script src="js/vendor/jquery-3.2.1.min.js"></script>
         <script src="js/vendor/bootstrap.min.js"></script>
         <script src="js/app/eventos-cuentas.js"></script>
+        <script src="js/app/moment-with-locales.js"></script>
+        <script src="js/app/bootstrap-datetimepicker.js"></script>
+
     </body>
 </html>

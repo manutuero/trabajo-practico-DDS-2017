@@ -1,5 +1,6 @@
 function obtenerValoresCuentas() {
     $('#btn-consultar').click(function () {
+        
         var empresa = $('#list-empresas').val();
         var periodo = $('#input-periodo').val();
         var data = {
@@ -10,6 +11,7 @@ function obtenerValoresCuentas() {
         if (empresa === null || periodo === "") {
             alert("No se aceptan campos vacios");
         } else {
+            $('#grilla').css('display','inline-block');
             $.ajax({
                 url: 'http://localhost:8084/TpIntegradorDDS/api/cotizaciones',
                 type: 'POST',
@@ -25,6 +27,13 @@ function obtenerValoresCuentas() {
             });
         }
     });
+}
+
+function datepicker() {
+     $('.input-group.date').datetimepicker({
+                viewMode: 'years',
+                format: 'YYYY-MM'
+            });
 }
 
 function initListaEmpresas() {
@@ -47,7 +56,10 @@ function initListaEmpresas() {
 function abrirModalConsultarValores() {
     $('#btn-abrir-consultar-valores').click(function () {
         initListaEmpresas();
+        $('[data-toggle="popover-cuenta-titulo"]').popover();
+        datepicker();
         limpiarGrillaValores();
+        
     });
 }
 ;

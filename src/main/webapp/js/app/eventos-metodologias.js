@@ -54,8 +54,8 @@ function agregarCondicion() {
         e.preventDefault();
         if (x < max_fields) { //max input box allowed
             x++; //text box increment
-            $(wrapper).append('<div class="btn-group"><button id="uno" class="btn btn-info btn-lg" value="'+$('#list-condiciones option:selected').val() +
-                    '">' + $('#list-condiciones option:selected').text() + '</button><button id="remove" type="button" class="btn btn-danger btn-lg" title="Eliminar condicion">x</button><br></div>');
+            $(wrapper).append('<div class="btn-group"><button id="uno" class="btn btn-info btn-lg" value="'+$('#list-condiciones2 option:selected').val() +
+                    '">' + $('#list-condiciones2 option:selected').text() + '</button><button id="remove" type="button" class="btn btn-danger btn-lg" title="Eliminar condicion">x</button><br></div>');
         }
     });
 

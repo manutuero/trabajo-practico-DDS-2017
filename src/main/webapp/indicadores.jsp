@@ -7,6 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
         <link href="css/heroic-features.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css" type="text/css">
     </head>
     <body>
         <!-- Navigation bar -->
@@ -153,9 +154,19 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-2">Año</div>
-                        <div class="col-xs-10"><p><input id ="input-anio" type="text" required="true" size="20"></p></div>
+                        <div class="col-xs-2">Periodo:</div>
+                        <div class="col-xs-6">
+                            <div class='input-group date' id='datetimepicker'>
+                                <input type='text' class="form-control" id="input-anio" />
+                                <span class="input-group-addon open-datetimepicker">
+                                    <span class="glyphicon glyphicon-calendar">
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+
                     </div>
+                    <br>
                     <div class="row">
                         <div class="col-xs-2">Empresa</div>
                         <div class="col-xs-6">
@@ -184,8 +195,10 @@
     </div>
 
     <!-- Script files -->
-    <script src="js/vendor/jquery-3.2.1.min.js"></script>
+    <script src="js/vendor/jquery.min.js"></script>
+    <script src="js/vendor/moment.min.js"></script>
     <script src="js/vendor/bootstrap.min.js"></script>
+    <script src="js/vendor/bootstrap-datetimepicker.min.js"></script>
     <script src="js/app/eventos-indicadores.js"></script>
 </body>
 </html>

@@ -144,9 +144,18 @@ function abrirModalEvaluarIndicador() {
     $('#btn-abrir-evaluar-indicador').click(function () {
         initListaIndicadores();
         initListaEmpresas();
+        datepicker();
     });
 }
 ;
+
+function datepicker() {
+     
+    $('#datetimepicker').datetimepicker({
+                viewMode: 'years',
+                format: 'YYYY'
+            });
+};
 
 // Metodos que van a estar listos para usar cuando se cargue el documento HTML.
 $(document).ready(function () {

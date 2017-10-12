@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
         <link href="css/heroic-features.css" rel="stylesheet">
-        <link rel="stylesheet" href="css/bootstrap-datetimepicker.css" type="text/css">
+        <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css" type="text/css">
     </head>
     <body>
         <!-- Navigation bar -->
@@ -205,10 +205,10 @@
         </div> 
 
         <!-- Script files -->
-        <script src="js/vendor/jquery-3.2.1.min.js"></script>
-        <script src="js/app/moment-with-locales.js"></script>
+        <script src="js/vendor/jquery.min.js"></script>
+        <script src="js/vendor/moment.min.js"></script>
         <script src="js/vendor/bootstrap.min.js"></script>
-        <script src="js/app/bootstrap-datetimepicker.js"></script>
+        <script src="js/vendor/bootstrap-datetimepicker.min.js"></script>
         <script src="js/app/eventos-cuentas.js"></script>
 
     </body>

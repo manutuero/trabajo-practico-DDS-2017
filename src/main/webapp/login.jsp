@@ -29,8 +29,9 @@
                         <div id="mailbox">
                             <input id="input-usuario" placeholder="Usuario" type="mail" name="name" style="width:270px; height:42px; border: solid 1px #c2c4c6; font-size:16px; padding-left:8px;" />
                         </div>
-                        <div>
+                        <div id="btn-acceso">
                             <input type="submit" id="btn-continuar" value="Continuar" />
+                           
                         </div>
                         <div id="info3">
                             <a href="#"/>Mas Opciones</a>

@@ -30,11 +30,12 @@ function obtenerValoresCuentas() {
 }
 
 function datepicker() {
-     $('.input-group.date').datetimepicker({
+     
+    $('#datetimepicker').datetimepicker({
                 viewMode: 'years',
-                format: 'YYYY-MM'
+                format: 'YYYY'
             });
-}
+};
 
 function initListaEmpresas() {
     var listaEmpresas = $('#list-empresas');

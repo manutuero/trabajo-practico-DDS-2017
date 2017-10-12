@@ -44,5 +44,11 @@ CREATE TABLE `dbprod`.`Condicion`
     FOREIGN KEY (condicion) REFERENCES Condicion(codigo),
     FOREIGN KEY (metodologia) REFERENCES Metodologia(codigo))ENGINE = InnoDB;*/
 
+CREATE TABLE `dbprod`.`Usuario` 
+ 	(`usuario` VARCHAR(50) NOT NULL PRIMARY KEY,
+       `password` VARCHAR(50) NOT NULL) ENGINE = InnoDB;
+
+INSERT INTO `dbprod`.`Usuario` (usuario, password) VALUES ('admin', '1234');
+
 INSERT INTO `dbprod`.`Empresa` (nombre) VALUES ('Facebook'),
 				     ('Twitter');

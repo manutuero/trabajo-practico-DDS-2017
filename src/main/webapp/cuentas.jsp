@@ -172,7 +172,7 @@
                         <div class="row">
                             <div class="col-xs-2">Periodo:</div>
                             <div class="col-xs-6">
-                                <div class='input-group date' id='datetimepickerfrom'>
+                                <div class='input-group date' id='datetimepicker'>
                                     <input type='text' class="form-control" id="input-periodo" />
                                     <span class="input-group-addon open-datetimepicker">
                                         <span class="glyphicon glyphicon-calendar">
@@ -206,10 +206,10 @@
 
         <!-- Script files -->
         <script src="js/vendor/jquery-3.2.1.min.js"></script>
-        <script src="js/vendor/bootstrap.min.js"></script>
-        <script src="js/app/eventos-cuentas.js"></script>
         <script src="js/app/moment-with-locales.js"></script>
+        <script src="js/vendor/bootstrap.min.js"></script>
         <script src="js/app/bootstrap-datetimepicker.js"></script>
+        <script src="js/app/eventos-cuentas.js"></script>
 
     </body>
 </html>

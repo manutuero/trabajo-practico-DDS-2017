@@ -3,7 +3,7 @@ function findUsuario()
     $('#btn-continuar').click(function () {
 
         var usuario = $('#input-usuario').val();
-        
+
         var data = {
             usuario: usuario
         };
@@ -13,13 +13,13 @@ function findUsuario()
             type: 'GET',
             data: data,
             success: function (resultado) {
-                if(!!resultado.usuario)
+                if (!!resultado.usuario)
                 {
                     $('#info2').html("Bienvenido " + resultado.usuario);
                     $('#input-usuario').attr("placeholder", "Password");
                     $('#input-usuario').val("");
                     $('#btn-acceso').html('<input type="submit" id="btn-ingresar" value="Entrar" />');
-                    
+
                     ingresar(resultado.usuario);
                 }
             }
@@ -27,16 +27,17 @@ function findUsuario()
 
     });
 
-};
+}
+;
 
 function ingresar(usuario)
 {
     $('#btn-ingresar').click(function () {
 
         alert(usuario);
-        
+
         var password = $('#input-usuario').val();
-        
+
         var data = {
             usuario: usuario,
             password: password
@@ -47,7 +48,7 @@ function ingresar(usuario)
             type: 'GET',
             data: data,
             success: function (resultado) {
-                if(!!resultado.usuario)
+                if (!!resultado.usuario)
                 {
                     alert("todo bien");
                 }
@@ -56,10 +57,11 @@ function ingresar(usuario)
 
     });
 
-};
+}
+;
 
 $(document).ready(function () {
-   findUsuario();
-   
-   
+    findUsuario();
+
+
 });

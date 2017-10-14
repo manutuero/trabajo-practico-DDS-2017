@@ -40,4 +40,9 @@ public class IndicadorRestController {
         Double resultado = indicadorService.evaluarIndicador(indicador, empresa, anio);
         return resultado;
     }
+    
+    @RequestMapping(value = "/api/indicador", method = RequestMethod.GET)
+    public Indicador obtenerIndicador(@RequestParam(name = "codigo") String codigo) {
+        return indicadorService.findIndicador(codigo);
+    }
 }

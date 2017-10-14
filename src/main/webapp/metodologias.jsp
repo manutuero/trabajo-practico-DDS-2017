@@ -113,9 +113,9 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Nueva Condicion <button id="btn-mostrar-condiciones" type="button"><span class="glyphicon glyphicon-folder-open"></span> </button> 
+                        <h4 class="modal-title">Gestion de Condiciones <button id="btn-mostrar-condiciones" type="button"><span class="glyphicon glyphicon-folder-open"></span> </button> 
                             <div id="div-condiciones" style="display:none;">
-                                <p><select id="list-condiciones" class="form-control" name="size"></select></p>
+                                <p><select onChange="traerCondicion()" id="list-condiciones" class="form-control" name="size"></select></p>
                             </div> </h4>
                     </div>
                     <br>

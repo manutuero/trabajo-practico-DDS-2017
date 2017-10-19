@@ -52,7 +52,7 @@
                             <p>
                                 <!-- Dipara un modal al apretar el boton -->
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-cargar-cuentas">
-                                    Abrir
+                                    Abrir modulo
                                 </button>
                             </p>
                         </div>
@@ -67,7 +67,7 @@
                             <p>
                                 <!-- Dipara un modal al apretar el boton -->
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-cargar-cotizaciones">
-                                    Abrir
+                                    Abrir modulo
                                 </button>
                             </p>
                         </div>
@@ -82,7 +82,7 @@
                             <p>
                                 <!-- Dipara un modal al apretar el boton -->
                                 <button type="button" id="btn-abrir-consultar-valores" class="btn btn-primary" data-toggle="modal" data-target="#modal-consultar-valores">
-                                    Abrir 
+                                    Abrir modulo 
                                 </button>
                             </p>
                         </div>
@@ -180,7 +180,6 @@
                                     </span>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -200,7 +199,6 @@
                     </table>
                 </div>
             </div>
-
         </div>
     </div> 
 

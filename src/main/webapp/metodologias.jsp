@@ -118,13 +118,11 @@
                                 <p><select onChange="traerCondicion()" id="list-condiciones" class="form-control" name="size"></select></p>
                             </div> </h4>
                     </div>
-
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-xs-12">
                                 <p>Codigo: <input id ="input-codigo" type="text" required="true" size="45"> 
                                     <button type="button" class="btn btn-xs btn-primary" data-toggle="popover-codigo-condicion" title="Proximamente" data-content="Ejemplo" >?</button></p>
-
                             </div>
                         </div>
                         <div class="row">
@@ -133,13 +131,14 @@
                                     <button type="button" class="btn btn-xs btn-primary" data-toggle="popover-descripcion-condicion" title="Proximamente" data-content="Ejemplo" >?</button></p>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-xs-6">
-                                <select id="list-tipos-condiciones" class="form-control" name="size"></select>
-                            </div>
-                            <div class="col-xs-6">
-                                <p><select onChange="insertarIndicador()" id="list-indicadores" class="form-control" name="size"   ></select></p>
-                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <select id="list-tipos-condiciones" class="form-control" name="size"></select>
+                        </div>
+                        <div class="col-xs-6">
+                            <p><select onChange="insertarIndicador()" id="list-indicadores" class="form-control" name="size"   ></select></p>                            
+                    </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
@@ -158,21 +157,21 @@
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <input id="btn-crear-condicion" type="submit" class="btn btn-primary" value="Crear">
-                        <button id="btn-cerrar-nueva-condicion" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input id="btn-crear-condicion" type="submit" class="btn btn-primary" value="Crear">
+                    <button id="btn-cerrar-nueva-condicion" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
-
-        <div id="modal-nueva-metod" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Gestion Metodologia <button id="btn-mostrar-metodologias" type="button"><span class="glyphicon glyphicon-folder-open"></span> </button> </h4>                        
+    </div>
+    <div id="modal-nueva-metod" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Gestion Metodologia <button id="btn-mostrar-metodologias" type="button"><span class="glyphicon glyphicon-folder-open"></span> </button> </h4>
                     </div>
                     <div class="modal-body">
                         <div class="row">
@@ -198,60 +197,75 @@
                             <div class="col-xs-12">
                                 <div class="input_fields_wrap"></div> 
                             </div>
-                        </div>
+                </div>
 
 
 
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div id="warning-message" class="alert alert-warning" hidden="true">
-                                    <strong>Advertencia!</strong> Los campos no deben estar vacios.
-                                </div>
-                            </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div id="warning-message" class="alert alert-warning" hidden="true">
+                            <strong>Advertencia!</strong> Los campos no deben estar vacios.
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <input id="btn-crear-metodologia" type="submit" class="btn btn-primary" value="Crear">
-                        <button id="btn-cerrar-nueva-metod" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input id="btn-crear-metodologia" type="submit" class="btn btn-primary" value="Crear">
+                    <button id="btn-cerrar-nueva-metod" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- ***** Modulo Evaluar Metodologia ***** -->
-        <!-- Modal -->
-        <div id="modal-evaluar-metod" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <p><h4 class="modal-title">Evaluar Metodologia</h4><p>
-                        <div class="row">
-                            <div class="col-xs-2">Metodologia</div>
-                            <div class="col-xs-6">
-                                <p><select id="list-metodologias" class="form-control" name="size" ></select></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <p>Resultado: <text id="textarea-formula" class="form-control" rows="5" style="max-width:100%;"></textarea></p>
-                            </div>
+    <!-- ***** Modulo Evaluar Metodologia ***** -->
+    <!-- Modal -->
+    <div id="modal-evaluar-metod" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <p><h4 class="modal-title">Evaluar Metodologia</h4><p>
+                    <div class="row">
+                        <div class="col-xs-2">Metodologia</div>
+                        <div class="col-xs-6">
+                            <p><select id="list-metodologias" class="form-control" name="size" ></select></p>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <input id="btn-crear" type="submit" class="btn btn-primary" value="Calcular">
-                        <button id="btn-cerrar-evaluar-metod" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <div class="row">
+                        <div class="col-xs-2">Empresas</div>
+                        <div class="col-xs-6">
+                            <p><select id="list-empresas" class="form-control" name="size" ></select></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-2">Año</div>
+                        <div class="col-xs-10"><p><input id="input-anio" type="text" required="true" size="20"></p></div>
                     </div>
                 </div>
+                <div class="modal-footer">
+                    <input id="btn-evaluar-metodologia" type="submit" class="btn btn-primary" value="Evaluar">
+                    <button id="btn-cerrar-evaluar-metod" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                </div>
+                <!-- Grid table -->
+                <table class="table table-condensed" id="grilla" style="display:none">
+                    <thead>
+                        <tr>
+                            <th>Empresa</th>
+                            <th>Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resultado">
+                    </tbody>
+                </table>
             </div>
         </div>
+    </div>
 
-        <!-- Script files -->
-        <script src="js/vendor/jquery-3.2.1.min.js"></script>
-        <script src="js/vendor/bootstrap.min.js"></script>
-        <script src="js/app/eventos-metodologias.js"></script>
-    </body>
+    <!-- Script files -->
+    <script src="js/vendor/jquery-3.2.1.min.js"></script>
+    <script src="js/vendor/bootstrap.min.js"></script>
+    <script src="js/app/eventos-metodologias.js"></script>
+</body>
 </html>
 
 

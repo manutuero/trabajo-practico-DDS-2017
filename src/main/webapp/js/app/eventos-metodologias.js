@@ -91,6 +91,26 @@ function insertarIndicador() {
     $('#textarea-formula-condicion').append($('#list-indicadores').val());
 }
 ;
+function traerCondicion() {
+    var codigo = $('#list-condiciones').val();
+
+    var data = {
+        codigo: codigo,
+    };
+
+    $.ajax({
+        url: 'http://localhost:8084/TpIntegradorDDS/api/condicion',
+        type: 'GET',
+        data: data,
+        success: function (condicion) {
+            $('#input-codigo').val(condicion.codigo);
+            $('#input-nombre').val(condicion.nombre);
+            $('#textarea-formula-condicion').val(condicion.formula);
+            //$('#list-tipos-condiciones').val();
+        }
+    });
+}
+;
 
 function validarIngresoNuevaCondicion() {
 

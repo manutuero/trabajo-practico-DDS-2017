@@ -1,6 +1,6 @@
 function obtenerValoresCuentas() {
     $('#btn-consultar').click(function () {
-        
+
         var empresa = $('#list-empresas').val();
         var periodo = $('#input-periodo').val();
         var data = {
@@ -11,7 +11,7 @@ function obtenerValoresCuentas() {
         if (empresa === null || periodo === "") {
             alert("No se aceptan campos vacios");
         } else {
-            $('#grilla').css('display','inline-block');
+            $('#grilla').css('display', 'inline-block');
             $.ajax({
                 url: 'http://localhost:8084/TpIntegradorDDS/api/cotizaciones',
                 type: 'POST',
@@ -30,11 +30,13 @@ function obtenerValoresCuentas() {
 }
 
 function datepicker() {
-     $('.input-group.date').datetimepicker({
-                viewMode: 'years',
-                format: 'YYYY-MM'
-            });
+
+    $('#datetimepicker').datetimepicker({
+        viewMode: 'years',
+        format: 'YYYY'
+    });
 }
+;
 
 function initListaEmpresas() {
     var listaEmpresas = $('#list-empresas');
@@ -59,7 +61,7 @@ function abrirModalConsultarValores() {
         $('[data-toggle="popover-cuenta-titulo"]').popover();
         datepicker();
         limpiarGrillaValores();
-        
+
     });
 }
 ;
@@ -80,7 +82,7 @@ function limpiarGrillaValores() {
 $(document).ready(function () {
     limpiarGrillaValores();
     abrirModalConsultarValores();
-    cerrarModalCalcularValores();  
+    cerrarModalCalcularValores();
     obtenerValoresCuentas();
 
 

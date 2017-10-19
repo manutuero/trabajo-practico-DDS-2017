@@ -180,36 +180,34 @@
                                     </span>
                                 </div>
                             </div>
-
                         </div>
-                        <br>
-                        <div class="modal-footer">
-                            <button id="btn-consultar" class="btn btn-primary">Consultar</button>
-                            <button id="btn-cerrar-consultar-valores" type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
-                        </div>
-                        <!-- Grid table -->
-                        <table class="table table-condensed" id="grilla" style="display:none">
-                            <thead>
-                                <tr>
-                                    <th>Cuenta</th>
-                                    <th>Valor</th>
-                                </tr>
-                            </thead>
-                            <tbody id="cotizaciones">
-                            </tbody>
-                        </table>
                     </div>
+                    <div class="modal-footer">
+                        <button id="btn-consultar" class="btn btn-primary">Consultar</button>
+                        <button id="btn-cerrar-consultar-valores" type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                    <!-- Grid table -->
+                    <table class="table table-condensed" id="grilla" style="display:none">
+                        <thead>
+                            <tr>
+                                <th>Cuenta</th>
+                                <th>Valor</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cotizaciones">
+                        </tbody>
+                    </table>
                 </div>
-
             </div>
-        </div> 
+        </div>
+    </div> 
 
-        <!-- Script files -->
-        <script src="js/vendor/jquery.min.js"></script>
-        <script src="js/vendor/moment.min.js"></script>
-        <script src="js/vendor/bootstrap.min.js"></script>
-        <script src="js/vendor/bootstrap-datetimepicker.min.js"></script>
-        <script src="js/app/eventos-cuentas.js"></script>
+    <!-- Script files -->
+    <script src="js/vendor/jquery.min.js"></script>
+    <script src="js/vendor/moment.min.js"></script>
+    <script src="js/vendor/bootstrap.min.js"></script>
+    <script src="js/vendor/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/app/eventos-cuentas.js"></script>
 
-    </body>
+</body>
 </html>

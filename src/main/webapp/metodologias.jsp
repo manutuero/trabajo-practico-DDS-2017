@@ -123,7 +123,6 @@
                             <div class="col-xs-12">
                                 <p>Codigo: <input id ="input-codigo" type="text" required="true" size="45"> 
                                     <button type="button" class="btn btn-xs btn-primary" data-toggle="popover-codigo-condicion" title="Proximamente" data-content="Ejemplo" >?</button></p>
-
                             </div>
                         </div>
                         <div class="row">
@@ -138,21 +137,23 @@
                             <select id="list-tipos-condiciones" class="form-control" name="size"></select>
                         </div>
                         <div class="col-xs-6">
-                            <p><select onChange="insertarIndicador()" id="list-indicadores" class="form-control" name="size"   ></select></p>                            </div>
+                            <p><select onChange="insertarIndicador()" id="list-indicadores" class="form-control" name="size"   ></select></p>                            
                     </div>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <p>Formula:    <button type="button" class="btn btn-xs btn-primary" data-toggle="popover-formula-condicion" title="Ejemplo:" data-content="IngresoNeto > 1000000" >?</button></p>
-                            <textarea id="textarea-formula-condicion" class="form-control" rows="2" style="max-width:100%;"></textarea>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div id="warning-message" class="alert alert-warning" hidden="true">
-                                <strong>Advertencia!</strong> Los campos no deben estar vacios.
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <p>Formula:    <button type="button" class="btn btn-xs btn-primary" data-toggle="popover-formula-condicion" title="Ejemplo:" data-content="IngresoNeto > 1000000" >?</button></p>
+                                <textarea id="textarea-formula-condicion" class="form-control" rows="2" style="max-width:100%;"></textarea>
                             </div>
-                            <div id="syntax-error-message" class="alert alert-danger" hidden="true">
-                                <strong>Error sintactico!</strong> La formula ingresada posee una expresion no valida.
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div id="warning-message" class="alert alert-warning" hidden="true">
+                                    <strong>Advertencia!</strong> Los campos no deben estar vacios.
+                                </div>
+                                <div id="syntax-error-message" class="alert alert-danger" hidden="true">
+                                    <strong>Error sintactico!</strong> La formula ingresada posee una expresion no valida.
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -164,14 +165,13 @@
             </div>
         </div>
     </div>
-
     <div id="modal-nueva-metod" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Gestion Metodologia <button id="btn-mostrar-metodologias" type="button"><span class="glyphicon glyphicon-folder-open"></span> </button> </h4>                        
+                    <h4 class="modal-title">Gestion Metodologia <button id="btn-mostrar-metodologias" type="button"><span class="glyphicon glyphicon-folder-open"></span> </button> </h4>
                     </div>
                     <div class="modal-body">
                         <div class="row">
@@ -196,7 +196,7 @@
                             </div>
                             <div class="col-xs-12">
                                 <div class="input_fields_wrap"></div> 
-                            </div>F
+                            </div>
                 </div>
 
 

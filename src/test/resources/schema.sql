@@ -5,6 +5,7 @@ DROP TABLE IF EXISTS Empresa;
 /*DROP TABLE IF EXISTS MetodologiaCondicion;*/
 DROP TABLE IF EXISTS Condicion;
 DROP TABLE IF EXISTS Metodologia;
+DROP TABLE IF EXISTS Usuario;
 
 
 CREATE TABLE Cuenta (
@@ -47,6 +48,11 @@ CREATE TABLE Metodologia (
     condiciones VARCHAR(255) NOT NULL
 );
 
+CREATE TABLE Usuario (
+    usuario VARCHAR(50) NOT NULL PRIMARY KEY,
+    password VARCHAR(50) NOT NULL
+);
+
 /*CREATE TABLE MetodologiaCondicion (
     condicion VARCHAR(50) NOT NULL,
     metodologia  VARCHAR(50) NOT NULL PRIMARY KEY,
@@ -80,6 +86,8 @@ INSERT INTO Cotizacion(id, cuenta, empresa, periodo, valor) VALUES (4,'INOD','Fa
 INSERT INTO Cotizacion(id, cuenta, empresa, periodo, valor) VALUES (5,'EFG','Facebook',2016,1);
 
 INSERT INTO Indicador(codigo, nombre, tipo, formula) VALUES ('INETO','Ingreso neto','predefinido','INOC+INOD');
+
+INSERT INTO Usuario(usuario, password) VALUES ('admin', '1234');
 
 
 

@@ -9,7 +9,7 @@ function initListaIndicadores() {
         type: 'GET',
         success: function (indicadores) {
             $.each(indicadores, function (indice, indicador) {
-                listaIndicadores.append('<option value="'+indicador.codigo+'">' + indicador.nombre + '</option>');
+                listaIndicadores.append('<option value="' + indicador.codigo + '">' + indicador.nombre + '</option>');
             });
         }
     });
@@ -44,6 +44,24 @@ function initListaTipoCondiciones() {
 
 }
 
+function initListaMetodologias() {
+    var listaMetodologias = $('#list-metodologias');
+
+    listaMetodologias.empty();
+    listaMetodologias.append('<option value="" disabled selected>Seleccione una metodologia</option>');
+
+    $.ajax({
+        url: 'http://localhost:8084/TpIntegradorDDS/api/metodologias',
+        type: 'GET',
+        success: function (metodologias) {
+            $.each(metodologias, function (indice, metodologia) {
+                listaMetodologias.append('<option value="' + metodologia.codigo + '">' + metodologia.descripcion + '</option>');
+            });
+        }
+    });
+}
+;
+
 function agregarCondicion() {
 
     var max_fields = 10; //maximum input boxes allowed
@@ -54,7 +72,7 @@ function agregarCondicion() {
         e.preventDefault();
         if (x < max_fields) { //max input box allowed
             x++; //text box increment
-            $(wrapper).append('<div class="btn-group"><button id="uno" class="btn btn-info btn-lg" value="'+$('#list-condiciones2 option:selected').val() +
+            $(wrapper).append('<div class="btn-group"><button id="uno" class="btn btn-info btn-lg" value="' + $('#list-condiciones2 option:selected').val() +
                     '">' + $('#list-condiciones2 option:selected').text() + '</button><button id="remove" type="button" class="btn btn-danger btn-lg" title="Eliminar condicion">x</button><br></div>');
         }
     });
@@ -137,26 +155,26 @@ function validarIngresoNuevaMetodologia() {
     $('#btn-crear-metodologia').click(function () {
         cleanResponses();
 
-       
+
         var codigo = $('#input-codigo-met').val();
         var descripcion = $('#input-descripcion-met').val();
         var condiciones = [];
 
-        
+
         $('.btn-info').each(function ()
         {
             condiciones.push($(this).val());
-            
-            
+
+
         });
-        
+
         var data = {
             codigo: codigo,
             descripcion: descripcion,
             condiciones: condiciones.join(";")
-         };
-        
-        
+        };
+
+
         $.ajax({
             url: 'http://localhost:8084/TpIntegradorDDS/api/nueva-metodologia',
             type: 'POST',
@@ -181,20 +199,70 @@ function validarIngresoNuevaMetodologia() {
                 }
             }
         });
-        
+
     }
     );
 }
 ;
 
+function evaluarMetodologia() {
+    $('#btn-evaluar-metodologia').click(function () {
+        var metodologia = $('#list-metodologias').val();
+        var empresas = $('list-empresas').val();
+        var periodo = $('#input-anio').val();
+        var data = {
+            metodologia: metodologia,
+            empresas: empresas,
+            periodo: periodo
+        };
+        if (metodologia === null || periodo === "") {
+            alert("No se aceptan campos vacios");
+        } else {
+            $('#grilla').css('display', 'inline-block');
+            $.ajax({
+                url: 'http://localhost:8084/TpIntegradorDDS/api/evaluar-metodologia',
+                type: 'POST',
+                data: data,
+                success: function (valores) {
+                    var $resultados = $('#resultado');
+                    $.each(valores, function (i, valor) {
+                        console.log(valor);
+                        $resultados.append('<tr><td>' + valor.empresa + '</td><td>'
+                                + valor.valor + '</td></tr>');
+                    });
+                }
+            });
+        }
+        ;
+
+    }
+    );
+}
+
+function initListaEmpresas() {
+    var listEmpresas = $('list-empresas');
+    listEmpresas.empty();
+    //listEmpresas.append('<option value="" disabled selected>Empresas a evaluar</option>');
+    $.ajax({
+        url: 'http://localhost:8084/TpIntegradorDDS/api/empresas',
+        type: 'GET',
+        success: function (empresas) {
+            $.each(empresas, function (indice, empresa) {
+                listEmpresas.append('<option disabled>' + empresa.nombre + '</option>');
+            });
+        }
+    });
+}
+
 function mostrarCondiciones()
 {
     $('#btn-mostrar-condiciones').click(function () {
-        $('#div-condiciones').css('display','inline-block');
+        $('#div-condiciones').css('display', 'inline-block');
         initListaCondiciones($('#list-condiciones'));
-        
-       });
-};
+
+    });
+}
+;
 
 function cleanResponses() {
     $('#warning-message').hide();
@@ -215,7 +283,7 @@ function abrirModalNuevaCondicion() {
         $('[data-toggle="popover-formula-condicion"]').popover();
         $('[data-toggle="popover-codigo-condicion"]').popover();
         $('[data-toggle="popover-descripcion-condicion"]').popover();
-        
+
         initListaTipoCondiciones();
         validarIngresoNuevaCondicion();
     });
@@ -253,6 +321,11 @@ function cerrarModalNuevaMetodologia() {
 
 function abrirModalEvaluarMetodologia() {
     $('#btn-abrir-evaluar-metodologia').click(function () {
+        cleanForm();
+        cleanResponses();
+        initListaMetodologias();
+        initListaEmpresas();
+        evaluarMetodologia();
 
     });
 }
@@ -271,12 +344,12 @@ $(document).ready(function () {
     cleanForm();
     cleanResponses();
 
-    
+
     // eventos
     abrirModalNuevaCondicion();
     mostrarCondiciones();
     //cerrarModalNuevacondicion();
-    
+
     abrirModalNuevaMetodologia();
     agregarCondicion();
     //validarIngresoNuevaMetodologia();
@@ -284,8 +357,8 @@ $(document).ready(function () {
 
     abrirModalEvaluarMetodologia();
     cerrarModalEvaluarMetodologia();
-    
-    
+
+
 
     //validarIngresoNuevaMetodologia();
 

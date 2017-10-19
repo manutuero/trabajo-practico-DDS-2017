@@ -159,10 +159,10 @@
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">Consultar valores de una cuenta <button type="button" class="btn btn-xs btn-primary" data-toggle="popover-cuenta-titulo" title="" data-content="Este modulo permite visualizar los valores de todas las cuentas asociadas a una empresa para un periodo determinado." >?</button></p</h4>
-
+                        
                     </div>
                     <div class="modal-body">
-
+                        
                         <div class="row">
                             <div class="col-xs-2">Empresa</div>
                             <div class="col-xs-6">
@@ -180,36 +180,36 @@
                                     </span>
                                 </div>
                             </div>
-
+                            
                         </div>
+                        <br>
+                        <div class="modal-footer">
+                            <button id="btn-consultar" class="btn btn-primary">Consultar</button>
+                            <button id="btn-cerrar-consultar-valores" type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                        </div>
+                        <!-- Grid table -->
+                        <table class="table table-condensed" id="grilla" style="display:none">
+                            <thead>
+                                <tr>
+                                    <th>Cuenta</th>
+                                    <th>Valor</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cotizaciones">
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="modal-footer">
-                        <button id="btn-consultar" class="btn btn-primary">Consultar</button>
-                        <button id="btn-cerrar-consultar-valores" type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
-                    </div>
-                    <!-- Grid table -->
-                    <table class="table table-condensed" id="grilla" style="display:none">
-                        <thead>
-                            <tr>
-                                <th>Cuenta</th>
-                                <th>Valor</th>
-                            </tr>
-                        </thead>
-                        <tbody id="cotizaciones">
-                        </tbody>
-                    </table>
                 </div>
+
             </div>
+        </div> 
 
-        </div>
-    </div> 
+        <!-- Script files -->
+        <script src="js/vendor/jquery.min.js"></script>
+        <script src="js/vendor/moment.min.js"></script>
+        <script src="js/vendor/bootstrap.min.js"></script>
+        <script src="js/vendor/bootstrap-datetimepicker.min.js"></script>
+        <script src="js/app/eventos-cuentas.js"></script>
 
-    <!-- Script files -->
-    <script src="js/vendor/jquery.min.js"></script>
-    <script src="js/vendor/moment.min.js"></script>
-    <script src="js/vendor/bootstrap.min.js"></script>
-    <script src="js/vendor/bootstrap-datetimepicker.min.js"></script>
-    <script src="js/app/eventos-cuentas.js"></script>
-
-</body>
+    </body>
 </html>

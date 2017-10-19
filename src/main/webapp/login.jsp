@@ -31,7 +31,7 @@
                         </div>
                         <div id="btn-acceso">
                             <input type="submit" id="btn-continuar" value="Continuar" />
-
+                           
                         </div>
                         <div id="info3">
                             <a href="#"/>Mas Opciones</a>
@@ -54,7 +54,7 @@
             </center>
         </div>
         <script src="js/vendor/jquery-3.2.1.min.js"></script>
-
-        <script src="js/app/eventos-login.js"></script>-->
+        
+       <script src="js/app/eventos-login.js"></script>-->
     </body>
 </html>

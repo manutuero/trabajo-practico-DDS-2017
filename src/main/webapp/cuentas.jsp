@@ -158,7 +158,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Consultar valores de una cuenta <button type="button" class="btn btn-xs btn-primary" data-toggle="popover-cuenta-titulo" title="" data-content="Este modulo permite visualizar los valores de todas las cuentas asociadas a una empresa para un periodo determinado." >?</button></p</h4>
+                        <h4 class="modal-title">Consultar valores de una cuenta <button type="button" class="btn btn-xs btn-primary" data-toggle="popover-cuenta-titulo" title="" data-content="Este modulo permite visualizar los valores de todas las cuentas asociadas a una empresa para un periodo determinado." >?</button></h4>
 
                     </div>
                     <div class="modal-body">
@@ -173,7 +173,7 @@
                             <div class="col-xs-2">Periodo:</div>
                             <div class="col-xs-6">
                                 <div class='input-group date' id='datetimepicker'>
-                                    <input type='text' class="form-control" id="input-periodo" />
+                                    <input type='text' class="form-control" id="input-periodo">
                                     <span class="input-group-addon open-datetimepicker">
                                         <span class="glyphicon glyphicon-calendar">
                                         </span>

@@ -95,7 +95,7 @@ function traerCondicion() {
     var codigo = $('#list-condiciones').val();
 
     var data = {
-        codigo: codigo,
+        codigo: codigo
     };
 
     $.ajax({
@@ -228,7 +228,7 @@ function validarIngresoNuevaMetodologia() {
 function evaluarMetodologia() {
     $('#btn-evaluar-metodologia').click(function () {
         var metodologia = $('#list-metodologias').val();
-        var empresas = $('list-empresas').val();
+        var empresas = $('#list-empresas').val();
         var periodo = $('#input-anio').val();
         var data = {
             metodologia: metodologia,
@@ -260,7 +260,7 @@ function evaluarMetodologia() {
 }
 
 function initListaEmpresas() {
-    var listEmpresas = $('list-empresas');
+    var listEmpresas = $('#list-empresas');
     listEmpresas.empty();
     //listEmpresas.append('<option value="" disabled selected>Empresas a evaluar</option>');
     $.ajax({

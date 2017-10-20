@@ -182,7 +182,7 @@ function cerrarModalNuevoIndicador() {
 
 function abrirModalEvaluarIndicador() {
     $('#btn-abrir-evaluar-indicador').click(function () {
-        initListaIndicadores($('#list-indicadores2'));
+        initListaIndicadores($('#list-indicadores'));
         initListaEmpresas();
         datepicker();
     });

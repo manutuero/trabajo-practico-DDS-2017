@@ -91,7 +91,7 @@
                     </div>
                 </div>
 
-                
+
             </div>        
             <hr>
 
@@ -127,7 +127,7 @@
 
         <script src="js/vendor/jquery-3.2.1.min.js"></script>
         <script src="js/vendor/bootstrap.min.js"></script>
-<!--        <script src="js/app/eventos-cuentas.js"></script>-->
+        <!--        <script src="js/app/eventos-cuentas.js"></script>-->
     </body>
 </html>
 

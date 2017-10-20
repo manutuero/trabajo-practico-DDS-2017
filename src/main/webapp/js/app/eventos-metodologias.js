@@ -9,7 +9,7 @@ function initListaIndicadores() {
         type: 'GET',
         success: function (indicadores) {
             $.each(indicadores, function (indice, indicador) {
-                listaIndicadores.append('<option value="'+indicador.codigo+'">' + indicador.nombre + '</option>');
+                listaIndicadores.append('<option value="' + indicador.codigo + '">' + indicador.nombre + '</option>');
             });
         }
     });
@@ -54,7 +54,7 @@ function agregarCondicion() {
         e.preventDefault();
         if (x < max_fields) { //max input box allowed
             x++; //text box increment
-            $(wrapper).append('<div class="btn-group"><button id="uno" class="btn btn-info btn-lg" value="'+$('#list-condiciones2 option:selected').val() +
+            $(wrapper).append('<div class="btn-group"><button id="uno" class="btn btn-info btn-lg" value="' + $('#list-condiciones2 option:selected').val() +
                     '">' + $('#list-condiciones2 option:selected').text() + '</button><button id="remove" type="button" class="btn btn-danger btn-lg" title="Eliminar condicion">x</button><br></div>');
         }
     });
@@ -73,25 +73,26 @@ function insertarIndicador() {
     $('#textarea-formula-condicion').append($('#list-indicadores').val());
 }
 ;
-function traerCondicion(){
+function traerCondicion() {
     var codigo = $('#list-condiciones').val();
-    
+
     var data = {
-            codigo: codigo,
-        };
-    
+        codigo: codigo,
+    };
+
     $.ajax({
         url: 'http://localhost:8084/TpIntegradorDDS/api/condicion',
         type: 'GET',
         data: data,
         success: function (condicion) {
-        $('#input-codigo').val(condicion.codigo);
-        $('#input-nombre').val(condicion.nombre);
-        $('#textarea-formula-condicion').val(condicion.formula);
-        //$('#list-tipos-condiciones').val();
+            $('#input-codigo').val(condicion.codigo);
+            $('#input-nombre').val(condicion.nombre);
+            $('#textarea-formula-condicion').val(condicion.formula);
+            //$('#list-tipos-condiciones').val();
         }
     });
-};
+}
+;
 
 function validarIngresoNuevaCondicion() {
 
@@ -156,26 +157,26 @@ function validarIngresoNuevaMetodologia() {
     $('#btn-crear-metodologia').click(function () {
         cleanResponses();
 
-       
+
         var codigo = $('#input-codigo-met').val();
         var descripcion = $('#input-descripcion-met').val();
         var condiciones = [];
 
-        
+
         $('.btn-info').each(function ()
         {
             condiciones.push($(this).val());
-            
-            
+
+
         });
-        
+
         var data = {
             codigo: codigo,
             descripcion: descripcion,
             condiciones: condiciones.join(";")
-         };
-        
-        
+        };
+
+
         $.ajax({
             url: 'http://localhost:8084/TpIntegradorDDS/api/nueva-metodologia',
             type: 'POST',
@@ -200,7 +201,7 @@ function validarIngresoNuevaMetodologia() {
                 }
             }
         });
-        
+
     }
     );
 }
@@ -209,11 +210,12 @@ function validarIngresoNuevaMetodologia() {
 function mostrarCondiciones()
 {
     $('#btn-mostrar-condiciones').click(function () {
-        $('#div-condiciones').css('display','inline-block');
+        $('#div-condiciones').css('display', 'inline-block');
         initListaCondiciones($('#list-condiciones'));
-        
-       });
-};
+
+    });
+}
+;
 
 function cleanResponses() {
     $('#warning-message').hide();
@@ -234,7 +236,7 @@ function abrirModalNuevaCondicion() {
         $('[data-toggle="popover-formula-condicion"]').popover();
         $('[data-toggle="popover-codigo-condicion"]').popover();
         $('[data-toggle="popover-descripcion-condicion"]').popover();
-        
+
         initListaTipoCondiciones();
         validarIngresoNuevaCondicion();
     });
@@ -290,12 +292,12 @@ $(document).ready(function () {
     cleanForm();
     cleanResponses();
 
-    
+
     // eventos
     abrirModalNuevaCondicion();
     mostrarCondiciones();
     //cerrarModalNuevacondicion();
-    
+
     abrirModalNuevaMetodologia();
     agregarCondicion();
     //validarIngresoNuevaMetodologia();
@@ -303,8 +305,8 @@ $(document).ready(function () {
 
     abrirModalEvaluarMetodologia();
     cerrarModalEvaluarMetodologia();
-    
-    
+
+
 
     //validarIngresoNuevaMetodologia();
 

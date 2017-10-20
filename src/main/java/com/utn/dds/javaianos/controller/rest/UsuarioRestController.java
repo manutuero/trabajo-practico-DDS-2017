@@ -18,6 +18,6 @@ public class UsuarioRestController {
     
     @RequestMapping(value = "/api/findUsuario", method = RequestMethod.GET)
     public Usuario obtenerUsuario(@RequestParam(name = "usuario") String usuario) {
-        return usuarioService.findUsuario(usuario);
+        return usuarioService.findByUsuario(usuario);
     }
 }

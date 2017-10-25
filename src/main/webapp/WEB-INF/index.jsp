@@ -55,9 +55,9 @@
                             <h3>Cuentas</h3>
                             <p>Modulo de gestion de cuentas empresariales.</p>
                             <p>
-                                <a href="/TpIntegradorDDS/cuentas.jsp" class="btn btn-primary">
-                                    Abrir modulo
-                                </a>
+                            <form action="CuentasServlet" method="post">
+                                <input type="submit" class="btn btn-primary" value="Abrir modulo">
+                                </a>		                                </form>
                             </p>
                         </div>
                     </div>
@@ -70,9 +70,9 @@
                             <h3>Indicadores</h3>
                             <p>Modulo de gestion de Indicadores</p>
                             <p>
-                                <a href="/TpIntegradorDDS/indicadores.jsp" class="btn btn-primary">
-                                    Abrir modulo
-                                </a>
+                            <form action="IndicadoresServlet" method="post">
+                                <input type="submit" class="btn btn-primary" value="Abrir modulo">
+                            </form>
                             </p>
                         </div>
                     </div>
@@ -85,7 +85,9 @@
                             <h3>Metodologias</h3>
                             <p>Modulo que permite la administracion y el uso de metodologias.</p>
                             <p>
-                                <a href="/TpIntegradorDDS/metodologias.jsp" method="POST" class="btn btn-primary">Abrir modulo</a>
+                            <form action="MetodologiaServlet" method="post">
+                                <input type="submit" class="btn btn-primary" value="Abrir modulo">
+                            </form>
                             </p>
                         </div>
                     </div>

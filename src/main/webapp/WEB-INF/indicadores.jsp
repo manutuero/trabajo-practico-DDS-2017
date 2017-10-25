@@ -173,7 +173,7 @@
                         <div class="col-xs-2">Periodo:</div>
                         <div class="col-xs-6">
                             <div class='input-group date' id='datetimepicker'>
-                                <input type='text' class="form-control" id="input-anio" />
+                                <input type='text' class="form-control" id="input-anio">
                                 <span class="input-group-addon open-datetimepicker">
                                     <span class="glyphicon glyphicon-calendar">
                                     </span>

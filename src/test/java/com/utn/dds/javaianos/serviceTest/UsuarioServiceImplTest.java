@@ -37,5 +37,20 @@ public class UsuarioServiceImplTest {
         assertEquals(otroUsuario.getPassword(),unUsuario.getPassword());
         
     }
+    
+    @Test
+    public void validarUsuario() {
+        Usuario unUsuario = new Usuario();
+        unUsuario.setUsuario("Juan");
+        unUsuario.setPassword("4321");
+        
+        usuarioService.saveUsuario(unUsuario);
+        
+        Integer resultado = usuarioService.validarUsuario("Juan", "4321");
+        
+        assertEquals(resultado,(Integer)1);
+        
+        
+    }
 
 }

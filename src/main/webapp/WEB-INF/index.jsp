@@ -55,9 +55,9 @@
                             <h3>Cuentas</h3>
                             <p>Modulo de gestion de cuentas empresariales.</p>
                             <p>
-                            <form action="CuentasServlet" method="post">
-                                <input type="submit" class="btn btn-primary" value="Abrir modulo">
-                                </a>		                                </form>
+                                <form action="CuentasServlet" method="post">
+                                    <input type="submit" class="btn btn-primary" value="Abrir modulo">
+                                </form>
                             </p>
                         </div>
                     </div>
@@ -70,9 +70,9 @@
                             <h3>Indicadores</h3>
                             <p>Modulo de gestion de Indicadores</p>
                             <p>
-                            <form action="IndicadoresServlet" method="post">
-                                <input type="submit" class="btn btn-primary" value="Abrir modulo">
-                            </form>
+                                <form action="IndicadoresServlet" method="post">
+                                    <input type="submit" class="btn btn-primary" value="Abrir modulo">
+                                </form>
                             </p>
                         </div>
                     </div>
@@ -85,9 +85,9 @@
                             <h3>Metodologias</h3>
                             <p>Modulo que permite la administracion y el uso de metodologias.</p>
                             <p>
-                            <form action="MetodologiaServlet" method="post">
-                                <input type="submit" class="btn btn-primary" value="Abrir modulo">
-                            </form>
+                                <form action="MetodologiaServlet" method="post">
+                                    <input type="submit" class="btn btn-primary" value="Abrir modulo">
+                                </form>
                             </p>
                         </div>
                     </div>

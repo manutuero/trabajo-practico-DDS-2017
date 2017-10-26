@@ -29,8 +29,23 @@ public class UsuarioServiceImpl implements UsuarioService{
     }
 
     @Override
-    public Usuario findUsuario(String usuario) {
+    public Usuario findByUsuario(String usuario) {
         return usuarioRepository.findByUsuario(usuario);
+    }
+    
+    @Override
+    public Integer validarUsuario(String usuario, String password)
+    {
+        Integer resultado = 0;
+        Usuario user = usuarioRepository.findByUsuario(usuario);
+        if(user.getPassword().equals(password))
+        {
+            resultado = 1;
+        }
+        
+        
+        
+        return resultado;
     }
     
 }

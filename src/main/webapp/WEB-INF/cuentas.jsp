@@ -52,7 +52,7 @@
                             <p>
                                 <!-- Dipara un modal al apretar el boton -->
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-cargar-cuentas">
-                                    Abrir modulo
+                                    Abrir
                                 </button>
                             </p>
                         </div>
@@ -67,7 +67,7 @@
                             <p>
                                 <!-- Dipara un modal al apretar el boton -->
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-cargar-cotizaciones">
-                                    Abrir modulo
+                                    Abrir
                                 </button>
                             </p>
                         </div>
@@ -82,7 +82,7 @@
                             <p>
                                 <!-- Dipara un modal al apretar el boton -->
                                 <button type="button" id="btn-abrir-consultar-valores" class="btn btn-primary" data-toggle="modal" data-target="#modal-consultar-valores">
-                                    Abrir modulo 
+                                    Abrir
                                 </button>
                             </p>
                         </div>
@@ -159,7 +159,6 @@
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">Consultar valores de una cuenta <button type="button" class="btn btn-xs btn-primary" data-toggle="popover-cuenta-titulo" title="" data-content="Este modulo permite visualizar los valores de todas las cuentas asociadas a una empresa para un periodo determinado." >?</button></h4>
-
                     </div>
                     <div class="modal-body">
 

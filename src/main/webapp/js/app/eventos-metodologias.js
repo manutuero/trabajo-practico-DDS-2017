@@ -44,6 +44,24 @@ function initListaTipoCondiciones() {
 
 }
 
+function initListaMetodologias() {
+    var listaMetodologias = $('#list-metodologias');
+
+    listaMetodologias.empty();
+    listaMetodologias.append('<option value="" disabled selected>Seleccione una metodologia</option>');
+
+    $.ajax({
+        url: 'http://localhost:8084/TpIntegradorDDS/api/metodologias',
+        type: 'GET',
+        success: function (metodologias) {
+            $.each(metodologias, function (indice, metodologia) {
+                listaMetodologias.append('<option value="' + metodologia.codigo + '">' + metodologia.descripcion + '</option>');
+            });
+        }
+    });
+}
+;
+
 function agregarCondicion() {
 
     var max_fields = 10; //maximum input boxes allowed
@@ -77,7 +95,7 @@ function traerCondicion() {
     var codigo = $('#list-condiciones').val();
 
     var data = {
-        codigo: codigo,
+        codigo: codigo
     };
 
     $.ajax({
@@ -207,6 +225,55 @@ function validarIngresoNuevaMetodologia() {
 }
 ;
 
+function evaluarMetodologia() {
+    $('#btn-evaluar-metodologia').click(function () {
+        var metodologia = $('#list-metodologias').val();
+        var empresas = $('#list-empresas').val();
+        var periodo = $('#input-anio').val();
+        var data = {
+            metodologia: metodologia,
+            empresas: empresas,
+            periodo: periodo
+        };
+        if (metodologia === null || periodo === "") {
+            alert("No se aceptan campos vacios");
+        } else {
+            $('#grilla').css('display', 'inline-block');
+            $.ajax({
+                url: 'http://localhost:8084/TpIntegradorDDS/api/evaluar-metodologia',
+                type: 'POST',
+                data: data,
+                success: function (valores) {
+                    var $resultados = $('#resultado');
+                    $.each(valores, function (i, valor) {
+                        console.log(valor);
+                        $resultados.append('<tr><td>' + valor.empresa + '</td><td>'
+                                + valor.valor + '</td></tr>');
+                    });
+                }
+            });
+        }
+        ;
+
+    }
+    );
+}
+
+function initListaEmpresas() {
+    var listEmpresas = $('#list-empresas');
+    listEmpresas.empty();
+    //listEmpresas.append('<option value="" disabled selected>Empresas a evaluar</option>');
+    $.ajax({
+        url: 'http://localhost:8084/TpIntegradorDDS/api/empresas',
+        type: 'GET',
+        success: function (empresas) {
+            $.each(empresas, function (indice, empresa) {
+                listEmpresas.append('<option disabled>' + empresa.nombre + '</option>');
+            });
+        }
+    });
+}
+
 function mostrarCondiciones()
 {
     $('#btn-mostrar-condiciones').click(function () {
@@ -274,6 +341,11 @@ function cerrarModalNuevaMetodologia() {
 
 function abrirModalEvaluarMetodologia() {
     $('#btn-abrir-evaluar-metodologia').click(function () {
+        cleanForm();
+        cleanResponses();
+        initListaMetodologias();
+        initListaEmpresas();
+        evaluarMetodologia();
 
     });
 }

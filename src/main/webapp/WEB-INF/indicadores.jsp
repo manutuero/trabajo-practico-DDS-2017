@@ -20,9 +20,9 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li>
-                            <a href="/TpIntegradorDDS/index.jsp">Home</a> 
-                        </li>
+                        <form action="IndexServlet" class="nav navbar-nav" method="post">
+                            <button type="submit" class="btn btn-link navbar-btn">Home </button>
+                        </form>
                     </ul>
                 </div>
             </div>
@@ -173,7 +173,7 @@
                         <div class="col-xs-2">Periodo:</div>
                         <div class="col-xs-6">
                             <div class='input-group date' id='datetimepicker'>
-                                <input type='text' class="form-control" id="input-anio" />
+                                <input type='text' class="form-control" id="input-anio">
                                 <span class="input-group-addon open-datetimepicker">
                                     <span class="glyphicon glyphicon-calendar">
                                     </span>

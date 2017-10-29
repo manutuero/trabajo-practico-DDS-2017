@@ -19,28 +19,26 @@ public class Metodologia implements Serializable {
     public void setCondiciones(String condiciones) {
         this.condiciones = condiciones;
     }
-    
+
     @Transient
     public List<StrategyCondicion> listCondiciones;
-    
+
     @Transient
     private List<String> liststrCondiciones;
 
     public void setCondiciones() {
-        for(StrategyCondicion condicion : listCondiciones)
-        {
-            this.condiciones = this.condiciones +";"+ condicion.getCodigo();
+        for (StrategyCondicion condicion : listCondiciones) {
+            this.condiciones = this.condiciones + ";" + condicion.getCodigo();
         }
     }
 
     public String getCondiciones() {
         return condiciones;
     }
-    
+
     public String getCodigo() {
         return codigo;
     }
-
 
     public String getDescripcion() {
         return descripcion;
@@ -53,7 +51,6 @@ public class Metodologia implements Serializable {
     public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
-
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
@@ -70,9 +67,5 @@ public class Metodologia implements Serializable {
     public void setListstrCondiciones(List<String> liststrCondiciones) {
         this.liststrCondiciones = liststrCondiciones;
     }
-
-    
-    
-    public void evaluarMetodologia(){} ;
 
 }

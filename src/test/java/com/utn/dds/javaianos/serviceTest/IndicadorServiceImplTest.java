@@ -133,5 +133,23 @@ public class IndicadorServiceImplTest {
         assertEquals(new Double(8555),valor);
     }
     
+    @Test
+    public void eliminarIndicador(){
+        Integer num;
+        
+        Indicador indicador = new Indicador();
+        indicador.setCodigo("unCodigo");
+        indicador.setNombre("I_Test");
+        indicador.setTipo("definido por el usuario");
+        indicador.setFormula("INETO*INOD+5");
+        
+        indicadorService.saveIndicador(indicador);
+        
+        num = indicadorService.eliminarIndicador("unCodigo");
+        
+        assertEquals(num,(Integer)1);
+        
+    }
+    
     
 }

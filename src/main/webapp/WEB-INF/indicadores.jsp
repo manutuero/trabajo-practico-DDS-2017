@@ -95,7 +95,7 @@
             </footer>
         </div>
 
-        <!-- ***** Modulo Nuevo Indicador ***** -->
+        <!-- ***** Modulo admin Indicador ***** -->
         <!-- Modal -->
         <div id="modal-nuevo-indi" class="modal fade" role="dialog">
             <div class="modal-dialog">
@@ -144,6 +144,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
+                        <button id="btn-eliminar-indicador" style="display:none" type="submit" class="btn btn-danger pull-left" value="Borrar" style="">Eliminar</button>
                         <input id="btn-crear" type="submit" class="btn btn-primary" value="Crear">
                         <button id="btn-cerrar-nuevo-indicador" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                     </div>

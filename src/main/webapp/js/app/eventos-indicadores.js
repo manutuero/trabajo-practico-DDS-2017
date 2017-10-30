@@ -13,6 +13,8 @@ function initListaIndicadores(unaLista) {
             });
         }
     });
+
+
 }
 ;
 
@@ -43,8 +45,10 @@ function traerIndicador()
             $('#input-nombre').val(indicador.nombre);
             $('#textarea-formula').val(indicador.formula);
             $('#btn-crear').val("Guardar");
+            $('#btn-eliminar-indicador').css('display', 'inline-block');
         }
     });
+
 }
 ;
 
@@ -129,6 +133,30 @@ function validarIngresoNuevoIndicador() {
     });
 }
 ;
+function eliminarIndicador()
+{
+    $('#btn-eliminar-indicador').click(function () {
+        
+        var codigo = $('#input-codigo').val();
+
+        var data = {
+            codigo: codigo
+        };
+
+        $.ajax({
+            url: 'http://localhost:8084/TpIntegradorDDS/api/eliminar-indicador',
+            type: 'POST',
+            data: data,
+            
+            success: function (response) {
+                alert("El indicador fue eliminado correctamente");
+            }
+        });
+
+    });
+
+}
+;
 
 function initListaEmpresas() {
     var listaEmpresas = $('#list-empresas');
@@ -164,7 +192,7 @@ function abrirModalNuevoIndicador() {
         $('[data-toggle="popover-nombre-indicador"]').popover();
         $('[data-toggle="popover-codigo-indicador"]').popover();
         $('[data-toggle="popover-formula-indicador"]').popover();
-
+        eliminarIndicador();
         //traerIndicador();
         cleanForm();
         cleanResponses();

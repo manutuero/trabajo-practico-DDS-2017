@@ -106,6 +106,7 @@ function traerCondicion() {
             $('#input-codigo').val(condicion.codigo);
             $('#input-nombre').val(condicion.nombre);
             $('#textarea-formula-condicion').val(condicion.formula);
+            $('#btn-eliminar-condicion').css('display', 'inline-block');
             //$('#list-tipos-condiciones').val();
         }
     });
@@ -284,6 +285,49 @@ function mostrarCondiciones()
 }
 ;
 
+function eliminarCondicion(){
+    $('#btn-eliminar-condicion').click(function () {
+        alert("hola");
+        var codigo = $('#input-codigo').val();
+alert(codigo);
+        var data = {
+            codigo: codigo
+        };
+
+        $.ajax({
+            url: 'http://localhost:8084/TpIntegradorDDS/api/eliminar-condicion',
+            type: 'POST',
+            data: data,            
+            success: function (response) {
+                alert("La Condicion fue eliminada correctamente");
+            }
+        });
+
+    });
+};
+
+function eliminarMetodologia(){
+  $('#btn-eliminar-metodologia').click(function () {
+        
+        var codigo = $('#input-codigo-met').val();
+
+        var data = {
+            codigo: codigo
+        };
+
+        $.ajax({
+            url: 'http://localhost:8084/TpIntegradorDDS/api/eliminar-metodologia',
+            type: 'POST',
+            data: data,            
+            success: function (response) {
+                alert("La Condicion fue eliminada correctamente");
+            }
+        });
+
+    });
+    
+};
+
 function cleanResponses() {
     $('#warning-message').hide();
     $('#syntax-error-message').hide();
@@ -303,6 +347,7 @@ function abrirModalNuevaCondicion() {
         $('[data-toggle="popover-formula-condicion"]').popover();
         $('[data-toggle="popover-codigo-condicion"]').popover();
         $('[data-toggle="popover-descripcion-condicion"]').popover();
+        eliminarCondicion()
 
         initListaTipoCondiciones();
         validarIngresoNuevaCondicion();
@@ -326,6 +371,7 @@ function abrirModalNuevaMetodologia() {
         initListaCondiciones($('#list-condiciones2'));
         $('[data-toggle="popover-metodologia-nombre"]').popover();
         $('[data-toggle="popover-metodologia-descripcion"]').popover();
+        eliminarMetodologia()
         validarIngresoNuevaMetodologia();
     });
 }

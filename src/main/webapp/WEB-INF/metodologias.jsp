@@ -160,6 +160,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <button id="btn-eliminar-condicion" style="display:none" type="submit" class="btn btn-danger pull-left" value="Borrar" style="">Eliminar</button>
                     <input id="btn-crear-condicion" type="submit" class="btn btn-primary" value="Crear">
                     <button id="btn-cerrar-nueva-condicion" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                 </div>
@@ -212,6 +213,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
+                        <button id="btn-eliminar-metodologia" style="display:none" type="submit" class="btn btn-danger pull-left" value="Borrar" style="">Eliminar</button>
                         <input id="btn-crear-metodologia" type="submit" class="btn btn-primary" value="Crear">
                         <button id="btn-cerrar-nueva-metod" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                     </div>

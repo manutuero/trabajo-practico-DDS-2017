@@ -22,4 +22,6 @@ public class CondicionRepositoryTest {
         assertNotNull(condicionRepository.findByCodigo("Mayor5"));
     }
     
+    
+    
 }

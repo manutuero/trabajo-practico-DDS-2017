@@ -173,7 +173,9 @@ function initListaEmpresas() {
             });
         }
     });
-}
+};
+
+
 
 function cleanResponses() {
     $('#warning-message').hide();

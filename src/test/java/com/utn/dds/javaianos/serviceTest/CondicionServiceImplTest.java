@@ -31,4 +31,9 @@ public class CondicionServiceImplTest {
     public void saveCondicion_conFormulaValida_guardaYDevuelve0() {
         
     }
+    
+    @Test
+    public void eliminarCondicion_conCodigoDeCondicionExistente_devuelveUno() {
+        assertEquals((Integer)1, condicionService.eliminarCondicion("Mayor5"));
+    }
 }

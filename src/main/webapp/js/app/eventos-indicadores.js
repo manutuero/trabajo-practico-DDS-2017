@@ -230,6 +230,9 @@ function datepicker() {
 
 // Metodos que van a estar listos para usar cuando se cargue el documento HTML.
 $(document).ready(function () {
+    $('#a-user').append(getCookie("user")+'<b class="caret"></b>');
+    getCookie(cname);
+    
     cleanForm();
     cleanResponses();
 
@@ -240,3 +243,18 @@ $(document).ready(function () {
     abrirModalEvaluarIndicador();
     calcularIndicador();
 });
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}

@@ -409,7 +409,7 @@ function cerrarModalEvaluarMetodologia() {
 $(document).ready(function () {
     
     $('#a-user').append(getCookie("user")+'<b class="caret"></b>');
-    getCookie(cname);
+    
     
     cleanForm();
     cleanResponses();

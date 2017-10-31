@@ -35,10 +35,10 @@ public class IndicadorServiceImpl implements IndicadorService {
 
     @Autowired
     private CotizacionRepository cotizacionRepository;
-    
+
     @Autowired
     private CuentaRepository cuentaRepository;
-    
+
     @Override
     public Double evaluarIndicador(Indicador indicador, Empresa empresa, Integer periodo) {
         Double valor = 0.0;
@@ -47,23 +47,24 @@ public class IndicadorServiceImpl implements IndicadorService {
         Indicador indicadorFormula = null;
         Cotizacion cotizacionFormula = null;
         Cuenta cuenta = null;
-        for (String elemento : elementos) {       
-           indicadorFormula = null;
-           cotizacionFormula = null;
-           cuenta=null;
+        for (String elemento : elementos) {
+            indicadorFormula = null;
+            cotizacionFormula = null;
+            cuenta = null;
             if ((elemento.matches("([0-9.]+)")) || (elemento.matches("[-+*/()]"))) {
                 formulaFinal = formulaFinal + elemento;
             } else //Es un componente. Busco su valor. 
             {
-                if(indicadorRepository.findByCodigo(elemento)!=null){
-                   indicadorFormula = indicadorRepository.findByCodigo(elemento);
-                   valor = this.evaluarIndicador(indicadorFormula,empresa,  periodo);
-                } else 
+                if (indicadorRepository.findByCodigo(elemento) != null) {
+                    indicadorFormula = indicadorRepository.findByCodigo(elemento);
+                    valor = this.evaluarIndicador(indicadorFormula, empresa, periodo);
+                } else {
                     cuenta = cuentaRepository.findByCodigo(elemento);
-                    if(cotizacionRepository.findByCuentaAndEmpresaAndPeriodo(cuenta, empresa, periodo)!= null) {
-                       cotizacionFormula = cotizacionRepository.findByCuentaAndEmpresaAndPeriodo(cuenta, empresa, periodo);
-                       valor = cotizacionFormula.getValor();
-                    }
+                }
+                if (cotizacionRepository.findByCuentaAndEmpresaAndPeriodo(cuenta, empresa, periodo) != null) {
+                    cotizacionFormula = cotizacionRepository.findByCuentaAndEmpresaAndPeriodo(cuenta, empresa, periodo);
+                    valor = cotizacionFormula.getValor();
+                }
                 formulaFinal = formulaFinal + valor.toString(); //obtiene el valor en formato string de una cuenta o indicador.
             }
         }
@@ -128,5 +129,24 @@ public class IndicadorServiceImpl implements IndicadorService {
     @Override
     public List<Indicador> getAllIndicadores() {
         return indicadorRepository.findAll();
+    }
+
+    @Override
+    public Indicador findIndicador(String nombre) {
+        return indicadorRepository.findByCodigo(nombre);
+    }
+
+    @Override
+    public Integer eliminarIndicador(String nombre) {
+        Integer num = 0;
+
+        try {
+            indicadorRepository.delete(indicadorRepository.findByCodigo(nombre));
+            num = 1;
+        } catch (Exception e) {
+            System.out.println(e);    
+        }
+
+        return num;
     }
 }

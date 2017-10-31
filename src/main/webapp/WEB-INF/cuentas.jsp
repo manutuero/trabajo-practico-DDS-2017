@@ -7,6 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
         <link href="css/heroic-features.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css" type="text/css">
     </head>
     <body>
         <!-- Navigation bar -->
@@ -16,14 +17,27 @@
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"></button>
                     <a class="navbar-brand" href="#">Tp Integrador DDS</a>
                 </div>
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <li>
-                            <a href="/TpIntegradorDDS/index.jsp">Home</a> 
-                        </li>
-                    </ul>
-                </div>
+
+
+                <ul class="nav navbar-nav">
+                    <li>
+                        <form action="IndexServlet" class="nav navbar-nav" method="post">
+                            <button type="submit" class="btn btn-link navbar-btn">Home </button>
+                        </form>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a id="a-user" href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-user"></span> 
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href=""><span class="glyphicon glyphicon-cog"></span>  Cambiar contraseña</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/TpIntegradorDDS/login.jsp"><span class="glyphicon glyphicon-off"></span>  Cerrar Sesión</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
         </nav>
 
@@ -43,11 +57,11 @@
 
             <!-- Page Features -->
             <div class="row text-center">
-                <div class="col-md-6 col-sm-8 hero-feature">
+                <div class="col-md-4 col-sm-8 hero-feature">
                     <div class="thumbnail">
                         <div class="caption">
                             <h1>Cargar cuentas</h1>
-                            <p><font size="3">Carga de cuentas empresariales.</font></p>
+                            <p><font size="3">Carga de cuentas empresariales</font></p>
                             <p>
                                 <!-- Dipara un modal al apretar el boton -->
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-cargar-cuentas">
@@ -58,11 +72,11 @@
                     </div>
                 </div>
 
-                <div class="col-md-6 col-sm-8 hero-feature">
+                <div class="col-md-4 col-sm-8 hero-feature">
                     <div class="thumbnail">
                         <div class="caption">
                             <h1>Cargar Cotizaciones</h1>
-                            <p><font size="3">Carga de cotizaciones de cuentas segun empresa y periodo.</font></p>
+                            <p><font size="3">Carga de cotizaciones de cuentas segun empresa y periodo</font></p>
                             <p>
                                 <!-- Dipara un modal al apretar el boton -->
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-cargar-cotizaciones">
@@ -71,7 +85,22 @@
                             </p>
                         </div>
                     </div>
-                </div>           
+                </div>
+
+                <div class="col-md-4 col-sm-8 hero-feature">
+                    <div class="thumbnail">
+                        <div class="caption">
+                            <h1>Consultar valores</h1>
+                            <p><font size="3">Modulo de consulta de valores por criterios</font></p>
+                            <p>
+                                <!-- Dipara un modal al apretar el boton -->
+                                <button type="button" id="btn-abrir-consultar-valores" class="btn btn-primary" data-toggle="modal" data-target="#modal-consultar-valores">
+                                    Abrir
+                                </button>
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Page Footer -->
@@ -133,8 +162,66 @@
             </div>
         </div>
 
-        <!-- Script files -->
-        <script src="js/vendor/jquery-3.2.1.min.js"></script>
-        <script src="js/vendor/bootstrap.min.js"></script>
-    </body>
+        <!-- ***** Modulo Consultar valores ***** -->
+        <!-- Modal -->
+        <div id="modal-consultar-valores" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Consultar valores de una cuenta <button type="button" class="btn btn-xs btn-primary" data-toggle="popover-cuenta-titulo" title="" data-content="Este modulo permite visualizar los valores de todas las cuentas asociadas a una empresa para un periodo determinado." >?</button></h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="row">
+                            <div class="col-xs-2">Empresa</div>
+                            <div class="col-xs-6">
+                                <p><select id="list-empresas" class="form-control" name="size" ></select></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-2">Periodo:</div>
+                            <div class="col-xs-6">
+                                <div class='input-group date' id='datetimepicker'>
+                                    <input type='text' class="form-control" id="input-periodo">
+                                    <span class="input-group-addon open-datetimepicker">
+                                        <span class="glyphicon glyphicon-calendar">
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="btn-consultar" class="btn btn-primary">Consultar</button>
+                        <button id="btn-cerrar-consultar-valores" type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                    <!-- Grid table -->
+                    <div class="modal-body">
+                        <table class="table table-condensed" id="grilla" style="display:none">
+                            <thead>
+                                <tr>
+                                    <th>Cuenta</th>
+                                    <th>Valor</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cotizaciones">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+
+    <!-- Script files -->
+    <script src="js/vendor/jquery.min.js"></script>
+    <script src="js/vendor/moment.min.js"></script>
+    <script src="js/vendor/bootstrap.min.js"></script>
+    <script src="js/vendor/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/app/eventos-cuentas.js"></script>
+
+</body>
 </html>

@@ -7,4 +7,13 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MetodologiaRepository extends JpaRepository<Metodologia, Long> {
     //public Metodologia findByNombre(String nombre);
+    public Metodologia findByCodigo(String codigo);
+    
+    //@Modifying
+    //@Query("INSERT INTO MetodologiaCondicion (condicion, metodologia) VALUES ('algo', 'algo')")
+    //@Transactional
+    //public int guardarCondicionesPorMetodologia();
+    
+    
+    
 }

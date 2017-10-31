@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface IndicadorRepository extends JpaRepository<Indicador, Long>{
     public Indicador findByCodigo(String codigo);
+    
+           
 }

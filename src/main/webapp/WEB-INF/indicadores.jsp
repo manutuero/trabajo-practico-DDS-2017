@@ -7,6 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
         <link href="css/heroic-features.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css" type="text/css">
     </head>
     <body>
         <!-- Navigation bar -->
@@ -17,13 +18,26 @@
                     <a class="navbar-brand" href="#">Tp Integrador DDS</a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <li>
-                            <a href="/TpIntegradorDDS/index.jsp">Home</a> 
-                        </li>
-                    </ul>
-                </div>
+
+                <ul class="nav navbar-nav">
+                    <form action="IndexServlet" class="nav navbar-nav" method="post">
+                        <button type="submit" class="btn btn-link navbar-btn">Home </button>
+                    </form>
+                </ul>
+
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a id="a-user" href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-user"></span> 
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href=""><span class="glyphicon glyphicon-cog"></span>  Cambiar contraseña</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/TpIntegradorDDS/login.jsp"><span class="glyphicon glyphicon-off"></span>  Cerrar Sesión</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
         </nav>
 
@@ -38,11 +52,11 @@
             <!-- A success message -->
             <div class="row">
                 <div class="col-lg-7"></div>
-                <div class="col-lg-5">
-                    <div id="success-message" class="alert alert-success" hidden="true">
-                        <strong>Exito!</strong> El indicador se ha guardado exitosamente.
-                    </div>
+
+                <div id="success-message" class="alert alert-success" hidden="true">
+                    <strong>Exito!</strong> El indicador se ha guardado exitosamente.
                 </div>
+
             </div>
 
             <div class="row">
@@ -56,7 +70,7 @@
                 <div class="col-md-6 col-sm-8 hero-feature">
                     <div class="thumbnail">
                         <div class="caption">
-                            <h1>Cargar nuevo Indicador</h1>
+                            <h1>Administrar Indicadores</h1>
                             <p><font size="3">Modulo de ingreso de nuevos indicadores definidos por el usuario</font> </p>
                             <p>
                                 <!-- Dipara un modal al apretar el boton -->
@@ -94,7 +108,7 @@
             </footer>
         </div>
 
-        <!-- ***** Modulo Nuevo Indicador ***** -->
+        <!-- ***** Modulo admin Indicador ***** -->
         <!-- Modal -->
         <div id="modal-nuevo-indi" class="modal fade" role="dialog">
             <div class="modal-dialog">
@@ -102,33 +116,48 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Nuevo Indicador</h4><br>
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <p>Codigo: <input id ="input-codigo" type="text" required="true" size="20"></p>
-                                <p>Nombre: <input id ="input-nombre" type="text" required="true" size="45"></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <p>Formula: <textarea id="textarea-formula" class="form-control" rows="5" style="max-width:100%;"></textarea></p>
-                            </div>
-                        </div>
+                        <h4 class="modal-title">Gestion de Indicadores <button id="btn-mostrar-indicadores" type="button"><span class="glyphicon glyphicon-folder-open"></span> </button> 
+                            <div id="div-indicadores" style="display:none;">
+                                <p><select onChange="traerIndicador()" id="list-indicadores2" class="form-control" name="size"></select></p>
+                            </div> </h4>
                     </div>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div id="warning-message" class="alert alert-warning" hidden="true">
-                                <strong>Advertencia!</strong> Los campos no deben estar vacios.
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <p>Codigo: <input id ="input-codigo" type="text" required="true" size="20">
+                                    <button type="button" class="btn btn-xs btn-primary" data-toggle="popover-codigo-indicador" title="Proximamente" data-content="Ejemplo" >?</button></p>
+
+                                </p>
+                                <p>Nombre: <input id ="input-nombre" type="text" required="true" size="45">
+                                    <button type="button" class="btn btn-xs btn-primary" data-toggle="popover-nombre-indicador" title="Proximamente" data-content="Ejemplo" >?</button></p>
+                                </p>
                             </div>
-                            <div id="syntax-error-message" class="alert alert-danger" hidden="true">
-                                <strong>Error sintactico!</strong> La formula ingresada posee una expresion no valida.
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <p>Formula: 
+                                    <button type="button" class="btn btn-xs btn-primary" data-toggle="popover-formula-indicador" title="Proximamente" data-content="Ejemplo" >?</button></p>
+                                </p>
+                                <textarea id="textarea-formula" class="form-control" rows="5" style="max-width:100%;"></textarea>
                             </div>
-                            <div id="input-error-message" class="alert alert-danger" hidden="true">
-                                <strong>Error de contenido!</strong> La formula ingresada posee cuentas o indicadores no existentes.
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div id="warning-message" class="alert alert-warning" hidden="true">
+                                    <strong>Advertencia!</strong> Los campos no deben estar vacios.
+                                </div>
+                                <div id="syntax-error-message" class="alert alert-danger" hidden="true">
+                                    <strong>Error sintactico!</strong> La formula ingresada posee una expresion no valida.
+                                </div>
+                                <div id="input-error-message" class="alert alert-danger" hidden="true">
+                                    <strong>Error de contenido!</strong> La formula ingresada posee cuentas o indicadores no existentes.
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
+                        <button id="btn-eliminar-indicador" style="display:none" type="submit" class="btn btn-danger pull-left" value="Borrar" style="">Eliminar</button>
                         <input id="btn-crear" type="submit" class="btn btn-primary" value="Crear">
                         <button id="btn-cerrar-nuevo-indicador" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                     </div>
@@ -146,6 +175,8 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <p><h4 class="modal-title">Evaluar Indicador</h4><p>
+                </div>
+                <div class="modal-body">
                     <div class="row">
                         <div class="col-xs-2">Indicador</div>
                         <div class="col-xs-6">
@@ -153,21 +184,42 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-2">Año</div>
-                        <div class="col-xs-10"><p><input id ="input-nombre" type="text" required="true" size="20"></p></div>
+                        <div class="col-xs-2">Periodo:</div>
+                        <div class="col-xs-6">
+                            <div class='input-group date' id='datetimepicker'>
+                                <input type='text' class="form-control" id="input-anio">
+                                <span class="input-group-addon open-datetimepicker">
+                                    <span class="glyphicon glyphicon-calendar">
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+
                     </div>
+
+                    <br>
                     <div class="row">
                         <div class="col-xs-2">Empresa</div>
-                        <div class="col-xs-10"><p><input id ="input-nombre" type="text" required="true" size="20"></p></div>
+                        <div class="col-xs-6">
+                            <p><select id="list-empresas" class="form-control" name="size" ></select></p>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12">
-                            <p>Resultado: <text id="textarea-formula" class="form-control" rows="5" style="max-width:100%;"></textarea></p>
+                            <p>Resultado: <text id="text-resultado" class="form-control" rows="5" style="max-width:100%;"></text></p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div id="warning-message" class="alert alert-warning" hidden="true">
+                                <strong>Advertencia!</strong> Los campos no deben estar vacios.
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <input id="btn-crear" type="submit" class="btn btn-primary" value="Calcular">
+                    <input id="btn-calcular" type="submit" class="btn btn-primary" value="Calcular">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>
@@ -175,8 +227,10 @@
     </div>
 
     <!-- Script files -->
-    <script src="js/vendor/jquery-3.2.1.min.js"></script>
+    <script src="js/vendor/jquery.min.js"></script>
+    <script src="js/vendor/moment.min.js"></script>
     <script src="js/vendor/bootstrap.min.js"></script>
+    <script src="js/vendor/bootstrap-datetimepicker.min.js"></script>
     <script src="js/app/eventos-indicadores.js"></script>
 </body>
 </html>

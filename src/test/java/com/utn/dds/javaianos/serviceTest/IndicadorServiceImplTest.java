@@ -3,7 +3,9 @@ package com.utn.dds.javaianos.serviceTest;
 import com.utn.dds.javaianos.domain.Cuenta;
 import com.utn.dds.javaianos.domain.Empresa;
 import com.utn.dds.javaianos.domain.Indicador;
+import com.utn.dds.javaianos.repository.EmpresaRepository;
 import com.utn.dds.javaianos.repository.IndicadorRepository;
+import com.utn.dds.javaianos.service.EmpresaService;
 import com.utn.dds.javaianos.service.IndicadorService;
 import javax.transaction.Transactional;
 import static org.junit.Assert.assertEquals;
@@ -25,6 +27,9 @@ public class IndicadorServiceImplTest {
 
     @Autowired
     IndicadorRepository indicadorRepository;
+    
+    @Autowired
+    EmpresaService empresaService;
 
     @Test
     public void isValidFormula_conFormulaNoValida_devuelveFalse() {
@@ -127,4 +132,24 @@ public class IndicadorServiceImplTest {
         valor=indicadorService.evaluarIndicador(indicador, new Empresa("Facebook") ,2016);
         assertEquals(new Double(8555),valor);
     }
+    
+    @Test
+    public void eliminarIndicador(){
+        Integer num;
+        
+        Indicador indicador = new Indicador();
+        indicador.setCodigo("unCodigo");
+        indicador.setNombre("I_Test");
+        indicador.setTipo("definido por el usuario");
+        indicador.setFormula("INETO*INOD+5");
+        
+        indicadorService.saveIndicador(indicador);
+        
+        num = indicadorService.eliminarIndicador("unCodigo");
+        
+        assertEquals(num,(Integer)1);
+        
+    }
+    
+    
 }

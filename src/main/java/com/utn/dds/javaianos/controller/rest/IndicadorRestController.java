@@ -45,4 +45,11 @@ public class IndicadorRestController {
     public Indicador obtenerIndicador(@RequestParam(name = "codigo") String codigo) {
         return indicadorService.findIndicador(codigo);
     }
+    
+    @RequestMapping(value = "/api/eliminar-indicador", method = RequestMethod.POST)
+    public Integer eliminarIndicador(@RequestParam(name = "codigo") String codigo) {
+        return indicadorService.eliminarIndicador(codigo);
+    }
+    
+    
 }

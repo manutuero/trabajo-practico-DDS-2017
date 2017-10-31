@@ -13,6 +13,8 @@ function initListaIndicadores(unaLista) {
             });
         }
     });
+
+
 }
 ;
 
@@ -43,8 +45,10 @@ function traerIndicador()
             $('#input-nombre').val(indicador.nombre);
             $('#textarea-formula').val(indicador.formula);
             $('#btn-crear').val("Guardar");
+            $('#btn-eliminar-indicador').css('display', 'inline-block');
         }
     });
+
 }
 ;
 
@@ -129,6 +133,30 @@ function validarIngresoNuevoIndicador() {
     });
 }
 ;
+function eliminarIndicador()
+{
+    $('#btn-eliminar-indicador').click(function () {
+        
+        var codigo = $('#input-codigo').val();
+
+        var data = {
+            codigo: codigo
+        };
+
+        $.ajax({
+            url: 'http://localhost:8084/TpIntegradorDDS/api/eliminar-indicador',
+            type: 'POST',
+            data: data,
+            
+            success: function (response) {
+                alert("El indicador fue eliminado correctamente");
+            }
+        });
+
+    });
+
+}
+;
 
 function initListaEmpresas() {
     var listaEmpresas = $('#list-empresas');
@@ -145,7 +173,9 @@ function initListaEmpresas() {
             });
         }
     });
-}
+};
+
+
 
 function cleanResponses() {
     $('#warning-message').hide();
@@ -164,7 +194,7 @@ function abrirModalNuevoIndicador() {
         $('[data-toggle="popover-nombre-indicador"]').popover();
         $('[data-toggle="popover-codigo-indicador"]').popover();
         $('[data-toggle="popover-formula-indicador"]').popover();
-
+        eliminarIndicador();
         //traerIndicador();
         cleanForm();
         cleanResponses();
@@ -200,6 +230,9 @@ function datepicker() {
 
 // Metodos que van a estar listos para usar cuando se cargue el documento HTML.
 $(document).ready(function () {
+    $('#a-user').append(getCookie("user")+'<b class="caret"></b>');
+    getCookie(cname);
+    
     cleanForm();
     cleanResponses();
 
@@ -210,3 +243,18 @@ $(document).ready(function () {
     abrirModalEvaluarIndicador();
     calcularIndicador();
 });
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}

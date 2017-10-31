@@ -51,5 +51,10 @@ public class CondicionRestController {
     public StrategyCondicion obtenerCondicion(@RequestParam(name = "codigo") String codigo) {
         return condicionService.findCondicionByCodigo(codigo);
     }
+    @RequestMapping(value = "/api/eliminar-condicion", method = RequestMethod.POST)
+    public Integer eliminarCondicion(@RequestParam(name = "codigo") String codigo) {
+        return condicionService.eliminarCondicion(codigo);
+    }
+    
     
 }

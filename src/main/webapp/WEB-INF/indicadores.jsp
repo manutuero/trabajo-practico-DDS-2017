@@ -18,13 +18,26 @@
                     <a class="navbar-brand" href="#">Tp Integrador DDS</a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <li>
-                            <a href="/TpIntegradorDDS/index.jsp">Home</a> 
-                        </li>
-                    </ul>
-                </div>
+
+                <ul class="nav navbar-nav">
+                    <form action="IndexServlet" class="nav navbar-nav" method="post">
+                        <button type="submit" class="btn btn-link navbar-btn">Home </button>
+                    </form>
+                </ul>
+
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a id="a-user" href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-user"></span> 
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href=""><span class="glyphicon glyphicon-cog"></span>  Cambiar contraseña</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/TpIntegradorDDS/login.jsp"><span class="glyphicon glyphicon-off"></span>  Cerrar Sesión</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
         </nav>
 
@@ -95,7 +108,7 @@
             </footer>
         </div>
 
-        <!-- ***** Modulo Nuevo Indicador ***** -->
+        <!-- ***** Modulo admin Indicador ***** -->
         <!-- Modal -->
         <div id="modal-nuevo-indi" class="modal fade" role="dialog">
             <div class="modal-dialog">
@@ -144,6 +157,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
+                        <button id="btn-eliminar-indicador" style="display:none" type="submit" class="btn btn-danger pull-left" value="Borrar" style="">Eliminar</button>
                         <input id="btn-crear" type="submit" class="btn btn-primary" value="Crear">
                         <button id="btn-cerrar-nuevo-indicador" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                     </div>

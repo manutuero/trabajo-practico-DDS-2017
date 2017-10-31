@@ -106,6 +106,7 @@ function traerCondicion() {
             $('#input-codigo').val(condicion.codigo);
             $('#input-nombre').val(condicion.nombre);
             $('#textarea-formula-condicion').val(condicion.formula);
+            $('#btn-eliminar-condicion').css('display', 'inline-block');
             //$('#list-tipos-condiciones').val();
         }
     });
@@ -284,6 +285,49 @@ function mostrarCondiciones()
 }
 ;
 
+function eliminarCondicion(){
+    $('#btn-eliminar-condicion').click(function () {
+        alert("hola");
+        var codigo = $('#input-codigo').val();
+alert(codigo);
+        var data = {
+            codigo: codigo
+        };
+
+        $.ajax({
+            url: 'http://localhost:8084/TpIntegradorDDS/api/eliminar-condicion',
+            type: 'POST',
+            data: data,            
+            success: function (response) {
+                alert("La Condicion fue eliminada correctamente");
+            }
+        });
+
+    });
+};
+
+function eliminarMetodologia(){
+  $('#btn-eliminar-metodologia').click(function () {
+        
+        var codigo = $('#input-codigo-met').val();
+
+        var data = {
+            codigo: codigo
+        };
+
+        $.ajax({
+            url: 'http://localhost:8084/TpIntegradorDDS/api/eliminar-metodologia',
+            type: 'POST',
+            data: data,            
+            success: function (response) {
+                alert("La Condicion fue eliminada correctamente");
+            }
+        });
+
+    });
+    
+};
+
 function cleanResponses() {
     $('#warning-message').hide();
     $('#syntax-error-message').hide();
@@ -303,6 +347,7 @@ function abrirModalNuevaCondicion() {
         $('[data-toggle="popover-formula-condicion"]').popover();
         $('[data-toggle="popover-codigo-condicion"]').popover();
         $('[data-toggle="popover-descripcion-condicion"]').popover();
+        eliminarCondicion()
 
         initListaTipoCondiciones();
         validarIngresoNuevaCondicion();
@@ -326,6 +371,7 @@ function abrirModalNuevaMetodologia() {
         initListaCondiciones($('#list-condiciones2'));
         $('[data-toggle="popover-metodologia-nombre"]').popover();
         $('[data-toggle="popover-metodologia-descripcion"]').popover();
+        eliminarMetodologia()
         validarIngresoNuevaMetodologia();
     });
 }
@@ -361,6 +407,10 @@ function cerrarModalEvaluarMetodologia() {
 
 // Metodos que van a estar listos para usar cuando se cargue el documento HTML.
 $(document).ready(function () {
+    
+    $('#a-user').append(getCookie("user")+'<b class="caret"></b>');
+    getCookie(cname);
+    
     cleanForm();
     cleanResponses();
 
@@ -383,4 +433,19 @@ $(document).ready(function () {
     //validarIngresoNuevaMetodologia();
 
 });
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
 

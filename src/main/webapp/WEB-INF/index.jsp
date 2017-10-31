@@ -17,13 +17,22 @@
                     <a class="navbar-brand" href="#">Tp Integrador DDS</a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <li>
-                            <a href="#">Home</a>
-                        </li>
-                    </ul>
-                </div>
+                <!--                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                
+                                </div>-->
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a id="a-user" href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-user"></span> 
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href=""><span class="glyphicon glyphicon-cog"></span>  Cambiar contraseña</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/TpIntegradorDDS/login.jsp"><span class="glyphicon glyphicon-off"></span>  Cerrar Sesión</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
             </div>
         </nav>
 
@@ -32,7 +41,7 @@
 
             <!-- Jumbotron Header -->
             <header class="jumbotron hero-spacer">
-                <h1>Bienvenido Hector!</h1>
+                <h1 id="titulo">Bienvenido </h1>
                 <p>Esta aplicacion lo ayudara en la toma de decisiones para su trabajo como asesor en inversiones.</p>
             </header>
 
@@ -55,9 +64,9 @@
                             <h3>Cuentas</h3>
                             <p>Modulo de gestion de cuentas empresariales.</p>
                             <p>
-                                <form action="CuentasServlet" method="post">
-                                    <input type="submit" class="btn btn-primary" value="Abrir modulo">
-                                </form>
+                            <form action="CuentasServlet" method="post">
+                                <input type="submit" class="btn btn-primary" value="Abrir modulo">
+                            </form>
                             </p>
                         </div>
                     </div>
@@ -70,9 +79,9 @@
                             <h3>Indicadores</h3>
                             <p>Modulo de gestion de Indicadores</p>
                             <p>
-                                <form action="IndicadoresServlet" method="post">
-                                    <input type="submit" class="btn btn-primary" value="Abrir modulo">
-                                </form>
+                            <form action="IndicadoresServlet" method="post">
+                                <input type="submit" class="btn btn-primary" value="Abrir modulo">
+                            </form>
                             </p>
                         </div>
                     </div>
@@ -85,9 +94,9 @@
                             <h3>Metodologias</h3>
                             <p>Modulo que permite la administracion y el uso de metodologias.</p>
                             <p>
-                                <form action="MetodologiaServlet" method="post">
-                                    <input type="submit" class="btn btn-primary" value="Abrir modulo">
-                                </form>
+                            <form action="MetodologiaServlet" method="post">
+                                <input type="submit" class="btn btn-primary" value="Abrir modulo">
+                            </form>
                             </p>
                         </div>
                     </div>
@@ -129,7 +138,7 @@
 
         <script src="js/vendor/jquery-3.2.1.min.js"></script>
         <script src="js/vendor/bootstrap.min.js"></script>
-        <!--        <script src="js/app/eventos-cuentas.js"></script>-->
+        <script src="js/app/eventos-index.js"></script>-->
     </body>
 </html>
 

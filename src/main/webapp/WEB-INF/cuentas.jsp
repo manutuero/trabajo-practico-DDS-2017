@@ -17,14 +17,27 @@
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"></button>
                     <a class="navbar-brand" href="#">Tp Integrador DDS</a>
                 </div>
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <li>
-                            <a href="/TpIntegradorDDS/index.jsp">Home</a> 
-                        </li>
-                    </ul>
-                </div>
+
+
+                <ul class="nav navbar-nav">
+                    <li>
+                        <form action="IndexServlet" class="nav navbar-nav" method="post">
+                            <button type="submit" class="btn btn-link navbar-btn">Home </button>
+                        </form>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a id="a-user" href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-user"></span> 
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href=""><span class="glyphicon glyphicon-cog"></span>  Cambiar contraseña</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/TpIntegradorDDS/login.jsp"><span class="glyphicon glyphicon-off"></span>  Cerrar Sesión</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
         </nav>
 
@@ -186,16 +199,18 @@
                         <button id="btn-cerrar-consultar-valores" type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
                     </div>
                     <!-- Grid table -->
-                    <table class="table table-condensed" id="grilla" style="display:none">
-                        <thead>
-                            <tr>
-                                <th>Cuenta</th>
-                                <th>Valor</th>
-                            </tr>
-                        </thead>
-                        <tbody id="cotizaciones">
-                        </tbody>
-                    </table>
+                    <div class="modal-body">
+                        <table class="table table-condensed" id="grilla" style="display:none">
+                            <thead>
+                                <tr>
+                                    <th>Cuenta</th>
+                                    <th>Valor</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cotizaciones">
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

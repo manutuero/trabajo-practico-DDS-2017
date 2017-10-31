@@ -11,4 +11,5 @@ public interface CondicionService {
     public Integer saveCondicion(StrategyCondicion condicion);
     public List<StrategyCondicion> getAllCondiciones();
     public List<StrategyCondicion> getCondiciones(List<String> condiciones);
+    public Integer eliminarCondicion(String codigo);
 }

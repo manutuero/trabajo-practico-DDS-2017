@@ -38,7 +38,8 @@ public class LoginServlet extends HttpServlet{
 		
 		if(usuarioService.validarUsuario(user, pwd)==(Integer)1){
 			HttpSession session = request.getSession();
-			session.setAttribute("user", "Pankaj");
+			session.setAttribute("username", user);
+                        session.setAttribute("password", pwd);
 			//setting session to expiry in 30 mins
 			session.setMaxInactiveInterval(30*60);
 			Cookie userName = new Cookie("user", user);

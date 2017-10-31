@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/CuentasServlet")
-public class CuentasServlet extends HttpServlet {
-
-    protected void doPost(HttpServletRequest request,
+@WebServlet("/IndexServlet")
+public class IndexServlet extends HttpServlet{
+    
+     protected void doPost(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
 
         RequestDispatcher requestDispatcher = null;
@@ -25,11 +25,10 @@ public class CuentasServlet extends HttpServlet {
         userName.setMaxAge(30 * 60);
         response.addCookie(userName);
         
-        
-        requestDispatcher = request.getRequestDispatcher("/WEB-INF/cuentas.jsp");
+
+        requestDispatcher = request.getRequestDispatcher("/WEB-INF/index.jsp");
         requestDispatcher.forward(request, response);
         //response.sendRedirect("LoginSuccess.jsp");
 
     }
-
 }

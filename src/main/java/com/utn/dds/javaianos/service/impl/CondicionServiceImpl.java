@@ -61,7 +61,20 @@ public class CondicionServiceImpl implements CondicionService {
         return listCondiciones;
     }
  
-    
+    @Override
+    public Integer eliminarCondicion(String codigo)
+    {
+        Integer num = 0;
+
+        try {
+            condicionRepository.delete(condicionRepository.findByCodigo(codigo));
+            num = 1;
+        } catch (Exception e) {
+            System.out.println(e);    
+        }
+
+        return num;
+    }
     
    
 }

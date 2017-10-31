@@ -16,7 +16,6 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"></button>
                 <a class="navbar-brand" href="#">Tp Integrador DDS</a>
             </div>
-
             <ul class="nav navbar-nav">
                 <form action="IndexServlet" class="nav navbar-nav" method="post">
                     <button type="submit" class="btn btn-link navbar-btn">Home </button>
@@ -49,7 +48,6 @@
 
         <div class="row">
             <div class="col-lg-7"></div>
-
             <div id="success-condicion-message" class="alert alert-success" hidden="true">
                 <strong>Exito!</strong> La Condicion se ha guardado exitosamente.
             </div>
@@ -103,7 +101,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
 
         <!-- Page Footer -->
@@ -173,6 +170,7 @@
                 </div>
                 <div class="modal-footer">
                     <button id="btn-eliminar-condicion" style="display:none" type="submit" class="btn btn-danger pull-left" value="Borrar" style="">Eliminar</button>
+
                     <input id="btn-crear-condicion" type="submit" class="btn btn-primary" value="Crear">
                     <button id="btn-cerrar-nueva-condicion" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                 </div>
@@ -180,7 +178,7 @@
         </div>
     </div>
 
-
+  
     <div id="modal-nueva-metod" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->

@@ -18,7 +18,7 @@
             </div>
 
             <ul class="nav navbar-nav">
-                <form action="IndexServlet" class="nav navbar-nav" method="post">
+                <form action="IndexServlet.jsp" class="nav navbar-nav" method="post">
                     <button type="submit" class="btn btn-link navbar-btn">Home </button>
                 </form>
             </ul>

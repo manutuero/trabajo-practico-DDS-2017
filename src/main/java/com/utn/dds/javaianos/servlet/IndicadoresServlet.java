@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/IndicadoresServlet")
+@WebServlet("/IndicadoresServlet.jsp")
 public class IndicadoresServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request,

@@ -16,7 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 
-@WebServlet("/LoginServlet")
+@WebServlet("/LoginServlet.jsp")
 public class LoginServlet extends HttpServlet{
     @Autowired
     private UsuarioService usuarioService;

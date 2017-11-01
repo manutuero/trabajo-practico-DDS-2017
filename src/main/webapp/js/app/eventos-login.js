@@ -17,9 +17,10 @@ function findUsuario()
                 {
                     $('#info2').html("Bienvenido " + resultado.usuario);
 
-                    $('#btn-acceso').html('<form action="LoginServlet" method="post"><input id="user" type="hidden" name="user"><input id="pass" type="hidden" name="pass"><input type="submit" id="btn-ingresar" value="Entrar" /></form>');
+                    $('#btn-acceso').html('<form action="LoginServlet.jsp" method="post"><input id="user" type="hidden" name="user"><input id="pass" type="hidden" name="pass"><input type="submit" id="btn-ingresar" value="Entrar" /></form>');
                     $('#user').val($('#input-usuario').val());
                     $('#input-usuario').attr("placeholder", "Password");
+                    $('#input-usuario').attr("type", "Password");
                     $('#input-usuario').val("");
                     password();
                 }

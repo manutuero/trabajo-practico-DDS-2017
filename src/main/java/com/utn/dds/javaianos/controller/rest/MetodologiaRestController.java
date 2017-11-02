@@ -1,5 +1,7 @@
 package com.utn.dds.javaianos.controller.rest;
 
+import com.utn.dds.javaianos.domain.Empresa;
+import com.utn.dds.javaianos.domain.EmpresaValor;
 import com.utn.dds.javaianos.domain.Metodologia;
 import com.utn.dds.javaianos.service.CondicionService;
 import com.utn.dds.javaianos.service.MetodologiaService;
@@ -8,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -29,5 +32,12 @@ public class MetodologiaRestController {
     @RequestMapping(value = "/api/metodologias", method = RequestMethod.GET)
     public List<Metodologia> obtenerMetodologias() {
         return metodologiaService.getAllMetodologias();
+    }
+    
+    @RequestMapping(value = "/api/evaluar-metodologia", method = RequestMethod.POST)
+    public List<EmpresaValor> evaluarMetodologia(@RequestParam(name="metodologia") String codigo,
+            @RequestParam(name="empresas") List<Empresa> empresas,@RequestParam(name="periodo") Integer periodo) {
+        Metodologia metodologia = metodologiaService.findMetodologia(codigo);
+        return metodologiaService.evaluarMetodologia(metodologia, empresas, periodo);
     }
 }

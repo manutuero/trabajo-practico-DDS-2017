@@ -1,6 +1,11 @@
 package com.utn.dds.javaianos.controller;
 
 import com.utn.dds.javaianos.service.CuentaService;
+import java.io.IOException;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,8 +20,15 @@ public class CuentaController {
     private CuentaService cuentaService;
 
     @RequestMapping(value = "/fileUploadCuentas", method = RequestMethod.POST)
-    public String guardarCuentas(@RequestParam(name = "file") MultipartFile file) {        
+    public void guardarCuentas(@RequestParam(name = "file") MultipartFile file, HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
         cuentaService.saveCuentas(file);
-        return "redirect:/cuentas.jsp";
+
+        RequestDispatcher requestDispatcher = null;
+        
+        requestDispatcher = request.getRequestDispatcher("/WEB-INF/cuentas.jsp");
+        requestDispatcher.forward(request, response);
+
+        //return "redirect:/WEB-INF/cuentas.jsp";
     }
 }

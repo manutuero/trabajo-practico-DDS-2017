@@ -26,7 +26,8 @@ CREATE TABLE `dbprod`.`Indicador`
 
 CREATE TABLE `dbprod`.`Metodologia` 
 	(`codigo` VARCHAR(50) NOT NULL PRIMARY KEY,
-    	`descripcion` VARCHAR(50) NOT NULL) ENGINE = InnoDB;
+    	`descripcion` VARCHAR(50) NOT NULL,
+	`condiciones` VARCHAR(255) NOT NULL) ENGINE = InnoDB;
 
 
 
@@ -36,12 +37,18 @@ CREATE TABLE `dbprod`.`Condicion`
 	`tipo` VARCHAR(50) NOT NULL,
   	`formula` VARCHAR(255) NOT NULL) ENGINE = InnoDB;
 
-CREATE TABLE `dbprod` . `MetodologiaCondicion` 
+/*CREATE TABLE `dbprod` . `MetodologiaCondicion` 
 	(`condicion` VARCHAR(50) NOT NULL,
     `metodologia`  VARCHAR(50) NOT NULL,
     PRIMARY KEY (condicion, metodologia),
     FOREIGN KEY (condicion) REFERENCES Condicion(codigo),
-    FOREIGN KEY (metodologia) REFERENCES Metodologia(codigo))ENGINE = InnoDB;
+    FOREIGN KEY (metodologia) REFERENCES Metodologia(codigo))ENGINE = InnoDB;*/
+
+CREATE TABLE `dbprod`.`Usuario` 
+ 	(`usuario` VARCHAR(50) NOT NULL PRIMARY KEY,
+       `password` VARCHAR(50) NOT NULL) ENGINE = InnoDB;
+
+INSERT INTO `dbprod`.`Usuario` (usuario, password) VALUES ('admin', '1234');
 
 INSERT INTO `dbprod`.`Empresa` (nombre) VALUES ('Facebook'),
 				     ('Twitter');

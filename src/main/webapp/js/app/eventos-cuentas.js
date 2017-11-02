@@ -1,5 +1,6 @@
 function obtenerValoresCuentas() {
     $('#btn-consultar').click(function () {
+
         var empresa = $('#list-empresas').val();
         var periodo = $('#input-periodo').val();
         var data = {
@@ -7,9 +8,10 @@ function obtenerValoresCuentas() {
             periodo: periodo
         };
 
-        if (empresa === null || periodo === null) {
-            alert("no se aceptan campos vacios");
+        if (empresa === null || periodo === "") {
+            alert("No se aceptan campos vacios");
         } else {
+            $('#grilla').css('display', 'inline-block');
             $.ajax({
                 url: 'http://localhost:8084/TpIntegradorDDS/api/cotizaciones',
                 type: 'POST',
@@ -26,6 +28,15 @@ function obtenerValoresCuentas() {
         }
     });
 }
+
+function datepicker() {
+
+    $('#datetimepicker').datetimepicker({
+        viewMode: 'years',
+        format: 'YYYY'
+    });
+}
+;
 
 function initListaEmpresas() {
     var listaEmpresas = $('#list-empresas');
@@ -45,30 +56,35 @@ function initListaEmpresas() {
 }
 
 function abrirModalConsultarValores() {
-    $('#btn-consultar-valores').click(function () {
-        limpiarFormularios();
+    $('#btn-abrir-consultar-valores').click(function () {
+        initListaEmpresas();
+        $('[data-toggle="popover-cuenta-titulo"]').popover();
+        datepicker();
+        limpiarGrillaValores();
+
     });
 }
 ;
 
 function cerrarModalCalcularValores() {
-    $('#btn-cerrar-calcular-valores').click(function () {
-        limpiarFormularios();
+    $('#btn-cerrar-consultar-valores').click(function () {
+        limpiarGrillaValores();
     });
 }
 ;
 
-function limpiarFormularios() {
+function limpiarGrillaValores() {
     $('.btn-primary').click(function () {
         $('#cotizaciones tr').remove();
     });
-}
+};
 
 $(document).ready(function () {
+    $('#a-user').append(getCookie("user") + '<b class="caret"></b>');
+
+    limpiarGrillaValores();
     abrirModalConsultarValores();
     cerrarModalCalcularValores();
-    limpiarFormularios();
-    initListaEmpresas();
     obtenerValoresCuentas();
 
 
@@ -77,3 +93,18 @@ $(document).ready(function () {
         alert('This browser does not support the FileReader API.');
     }
 });
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}

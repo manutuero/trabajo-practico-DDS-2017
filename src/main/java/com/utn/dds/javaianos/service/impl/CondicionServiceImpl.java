@@ -1,4 +1,3 @@
-
 package com.utn.dds.javaianos.service.impl;
 
 import com.utn.dds.javaianos.domain.StrategyCondicion;
@@ -75,6 +74,6 @@ public class CondicionServiceImpl implements CondicionService {
 
         return num;
     }
-    
+
    
 }

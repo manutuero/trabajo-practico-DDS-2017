@@ -231,7 +231,6 @@ function datepicker() {
 // Metodos que van a estar listos para usar cuando se cargue el documento HTML.
 $(document).ready(function () {
     $('#a-user').append(getCookie("user")+'<b class="caret"></b>');
-    getCookie(cname);
     
     cleanForm();
     cleanResponses();

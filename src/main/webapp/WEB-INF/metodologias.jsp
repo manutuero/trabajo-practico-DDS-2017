@@ -134,14 +134,14 @@
                     <div class="row">
                         <div class="col-xs-12">
                             <p>Codigo: <input id ="input-codigo" type="text" required="true" size="45"> 
-                                <button type="button" class="btn btn-xs btn-primary" data-toggle="popover-codigo-condicion" title="Proximamente" data-content="Ejemplo" >?</button></p>
+                                <button type="button" class="btn btn-xs btn-primary" data-toggle="popover-codigo-condicion" title="Ayuda" data-content="Breve referencia de la condición deseada (Ej: 'Mayor5')" >?</button></p>
 
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12">
                             <p>Nombre: <input id ="input-nombre" type="text" required="true" size="45">
-                                <button type="button" class="btn btn-xs btn-primary" data-toggle="popover-descripcion-condicion" title="Proximamente" data-content="Ejemplo" >?</button></p>
+                                <button type="button" class="btn btn-xs btn-primary" data-toggle="popover-descripcion-condicion" title="Ejemplo:" data-content="'Mayor a 5'" >?</button></p>
                         </div>
                     </div>
 
@@ -193,11 +193,11 @@
                     <div class="row">
                         <div class="col-xs-12">
                             <p>Nombre <input id ="input-codigo-met" type="text" required="true" size="45">
-                                <button type="button" class="btn btn-xs btn-primary" data-toggle="popover-metodologia-nombre" title="Proximamente" data-content="Ejemplo" >?</button></p>
+                                <button type="button" class="btn btn-xs btn-primary" data-toggle="popover-metodologia-nombre" title="Ayuda" data-content="Breve referencia (Ej: 'WB')" >?</button></p>
                         </div>
                         <div class="col-xs-12">
                             <p>Descripcion: <input id ="input-descripcion-met" type="text" required="true" size="45">
-                                <button type="button" class="btn btn-xs btn-primary" data-toggle="popover-metodologia-descripcion" title="Proximamente" data-content="Ejemplo" >?</button></p>
+                                <button type="button" class="btn btn-xs btn-primary" data-toggle="popover-metodologia-descripcion" title="Ejemplo:" data-content="'Metodología Warren Buffet'" >?</button></p>
                         </div>
                     </div>
                     <p style="text-indent: 10px">  Seleccione un conjunto de Condiciones </p>

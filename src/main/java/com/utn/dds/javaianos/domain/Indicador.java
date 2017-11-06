@@ -15,7 +15,7 @@ public class Indicador implements Serializable, Componente {
     @Id
     private String codigo;
     private String nombre;
-    private String tipo;
+    private String usuario;
     private String formula;
     @Transient
     private List<Componente> componentes;
@@ -24,10 +24,10 @@ public class Indicador implements Serializable, Componente {
         this.componentes = new ArrayList();
     }
     
-    public Indicador(String codigo, String nombre, String tipo, String formula, List<Componente> componentes) {
+    public Indicador(String codigo, String nombre, String usuario, String formula, List<Componente> componentes) {
         this.codigo = codigo;
         this.nombre = nombre;
-        this.tipo = tipo;
+        this.usuario = usuario;
         this.formula = formula;
         this.componentes = componentes;
     }
@@ -48,12 +48,12 @@ public class Indicador implements Serializable, Componente {
         this.nombre = nombre;
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getUsuario() {
+        return usuario;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
     public String getFormula() {

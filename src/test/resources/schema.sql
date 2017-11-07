@@ -39,7 +39,8 @@ CREATE TABLE Condicion (
     codigo VARCHAR(50) NOT NULL PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
     tipo VARCHAR(50) NOT NULL,
-    formula VARCHAR(255) NOT NULL
+    formula VARCHAR(255) NOT NULL,
+    usuario VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE Metodologia (
@@ -66,8 +67,8 @@ CREATE TABLE Periodo (
 
 INSERT INTO Metodologia( codigo, descripcion, condiciones) VALUES ('test', 'asd', 'IN');
 
-INSERT INTO Condicion (codigo, nombre, tipo, formula) VALUES ('Mayor5','Mayor a 5','Taxativa','>5');
-INSERT INTO Condicion (codigo, nombre, tipo, formula) VALUES ('Menor5','Menor a 5','Prioritaria','<5');
+INSERT INTO Condicion (codigo, nombre, tipo, formula, usuario) VALUES ('Mayor5','Mayor a 5','Taxativa','>5', 'system');
+INSERT INTO Condicion (codigo, nombre, tipo, formula, usuario) VALUES ('Menor5','Menor a 5','Prioritaria','<5', 'system');
 
 INSERT INTO Metodologia (codigo, descripcion, condiciones) VALUES ('METOD1', 'una metodologia de prueba', 'Mayor5;Menor5');
 

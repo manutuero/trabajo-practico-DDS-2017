@@ -29,6 +29,7 @@ public class CondicionPrioritariaServiceImplTest {
         condicion.setCodigo("testPrio");
         condicion.setFormula("IN>2");
         condicion.setNombre("TEsteo");
+        condicion.setUsuario("system");
         
 
         int resultado = condicionPrioritariaService.saveCondicion(condicion);

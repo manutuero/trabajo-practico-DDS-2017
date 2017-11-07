@@ -3,10 +3,15 @@ function initListaIndicadores() {
 
     listaIndicadores.empty();
     listaIndicadores.append('<option value="" disabled selected>Seleccione un indicador</option>');
+    
+    var data = {
+        usuario: getCookie("user")
+    };
 
     $.ajax({
         url: 'http://localhost:8084/TpIntegradorDDS/api/indicadores',
         type: 'GET',
+        data: data,
         success: function (indicadores) {
             $.each(indicadores, function (indice, indicador) {
                 listaIndicadores.append('<option value="' + indicador.codigo + '">' + indicador.nombre + '</option>');
@@ -21,10 +26,14 @@ function initListaCondiciones(unaLista) {
 
     listaCondiciones.empty();
     listaCondiciones.append('<option value="" disabled selected>Seleccione una Condicion</option>');
-
+    
+    var data = {
+        usuario: getCookie("user")
+    };
     $.ajax({
         url: 'http://localhost:8084/TpIntegradorDDS/api/condiciones',
         type: 'GET',
+        data: data,
         success: function (condiciones) {
             $.each(condiciones, function (indice, condicion) {
                 listaCondiciones.append('<option value="' + condicion.codigo + '">' + condicion.nombre + '</option>');
@@ -140,7 +149,8 @@ function validarIngresoNuevaCondicion() {
             var data = {
                 codigo: codigo,
                 nombre: nombre,
-                formula: formula
+                formula: formula,
+                usuario: getCookie("user")
             };
 
             $.ajax({
@@ -285,11 +295,11 @@ function mostrarCondiciones()
 }
 ;
 
-function eliminarCondicion(){
+function eliminarCondicion() {
     $('#btn-eliminar-condicion').click(function () {
         alert("hola");
         var codigo = $('#input-codigo').val();
-alert(codigo);
+        alert(codigo);
         var data = {
             codigo: codigo
         };
@@ -297,18 +307,19 @@ alert(codigo);
         $.ajax({
             url: 'http://localhost:8084/TpIntegradorDDS/api/eliminar-condicion',
             type: 'POST',
-            data: data,            
+            data: data,
             success: function (response) {
                 alert("La Condicion fue eliminada correctamente");
             }
         });
 
     });
-};
+}
+;
 
-function eliminarMetodologia(){
-  $('#btn-eliminar-metodologia').click(function () {
-        
+function eliminarMetodologia() {
+    $('#btn-eliminar-metodologia').click(function () {
+
         var codigo = $('#input-codigo-met').val();
 
         var data = {
@@ -318,15 +329,16 @@ function eliminarMetodologia(){
         $.ajax({
             url: 'http://localhost:8084/TpIntegradorDDS/api/eliminar-metodologia',
             type: 'POST',
-            data: data,            
+            data: data,
             success: function (response) {
                 alert("La Condicion fue eliminada correctamente");
             }
         });
 
     });
-    
-};
+
+}
+;
 
 function cleanResponses() {
     $('#warning-message').hide();
@@ -407,10 +419,10 @@ function cerrarModalEvaluarMetodologia() {
 
 // Metodos que van a estar listos para usar cuando se cargue el documento HTML.
 $(document).ready(function () {
-    
-    $('#a-user').append(getCookie("user")+'<b class="caret"></b>');
-    
-    
+
+    $('#a-user').append(getCookie("user") + '<b class="caret"></b>');
+
+
     cleanForm();
     cleanResponses();
 
@@ -437,7 +449,7 @@ $(document).ready(function () {
 function getCookie(cname) {
     var name = cname + "=";
     var ca = document.cookie.split(';');
-    for(var i = 0; i < ca.length; i++) {
+    for (var i = 0; i < ca.length; i++) {
         var c = ca[i];
         while (c.charAt(0) == ' ') {
             c = c.substring(1);

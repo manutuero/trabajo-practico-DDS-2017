@@ -21,7 +21,7 @@ CREATE TABLE `dbprod`.`Cotizacion`
 CREATE TABLE `dbprod`.`Indicador`
 	(`codigo` VARCHAR(50) NOT NULL PRIMARY KEY,
          `nombre` VARCHAR(50),
-	 `tipo` VARCHAR(50) NOT NULL,
+	 `usuario` VARCHAR(50) NOT NULL,
 	 `formula` VARCHAR(255) NOT NULL) ENGINE = InnoDB;
 
 CREATE TABLE `dbprod`.`Metodologia` 
@@ -35,7 +35,8 @@ CREATE TABLE `dbprod`.`Condicion`
  	(`codigo` VARCHAR(50) NOT NULL PRIMARY KEY,
        `nombre` VARCHAR(150) NOT NULL,
 	`tipo` VARCHAR(50) NOT NULL,
-  	`formula` VARCHAR(255) NOT NULL) ENGINE = InnoDB;
+  	`formula` VARCHAR(255) NOT NULL,
+	`usuario` VARCHAR(50) NOT NULL) ENGINE = InnoDB;
 
 /*CREATE TABLE `dbprod` . `MetodologiaCondicion` 
 	(`condicion` VARCHAR(50) NOT NULL,

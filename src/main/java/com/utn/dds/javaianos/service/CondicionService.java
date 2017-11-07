@@ -9,7 +9,8 @@ public interface CondicionService {
     public StrategyCondicion findCondicionByNombre(String nombre);
     public StrategyCondicion findCondicionByCodigo(String codigo);
     public Integer saveCondicion(StrategyCondicion condicion);
-    public List<StrategyCondicion> getAllCondiciones();
+    public List<StrategyCondicion> getAllCondiciones(String usuario);
     public List<StrategyCondicion> getCondiciones(List<String> condiciones);
     public Integer eliminarCondicion(String codigo);
+    
 }

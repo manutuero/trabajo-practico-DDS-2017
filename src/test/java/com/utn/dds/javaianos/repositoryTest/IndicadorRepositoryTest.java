@@ -2,6 +2,7 @@ package com.utn.dds.javaianos.repositoryTest;
 
 import com.utn.dds.javaianos.domain.Indicador;
 import com.utn.dds.javaianos.repository.IndicadorRepository;
+import java.util.List;
 import javax.transaction.Transactional;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
@@ -26,7 +27,16 @@ public class IndicadorRepositoryTest {
         Indicador indicador = indicadorRepository.findByCodigo("INETO");
 
         assertEquals("Ingreso neto",indicador.getNombre());
-        assertEquals("predefinido",indicador.getTipo());
+        assertEquals("system",indicador.getUsuario());
         assertEquals("INOC+INOD",indicador.getFormula());
+    }
+    
+    @Test
+    public void findByUsuario() {
+        
+        List<Indicador> indicadores = indicadorRepository.findByUsuario("nacho");
+
+        assertEquals(false,indicadores.isEmpty());
+       
     }
 }

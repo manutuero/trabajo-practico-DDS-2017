@@ -43,8 +43,8 @@ public class CondicionRestController {
     }
     
     @RequestMapping(value = "/api/condiciones", method = RequestMethod.GET)
-    public List<StrategyCondicion> obtenerCondiciones() {
-        return condicionService.getAllCondiciones();
+    public List<StrategyCondicion> obtenerCondiciones(@RequestParam(name = "usuario") String usuario) {
+        return condicionService.getAllCondiciones(usuario);
     }
     
     @RequestMapping(value = "/api/condicion", method = RequestMethod.GET)

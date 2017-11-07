@@ -29,8 +29,8 @@ public class IndicadorRestController {
     }
 
     @RequestMapping(value = "/api/indicadores", method = RequestMethod.GET)
-    public List<Indicador> obtenerIndicadores() {
-        return indicadorService.getAllIndicadores();
+    public List<Indicador> obtenerIndicadores(String usuario) {
+        return indicadorService.getAllIndicadores(usuario);
     }
 
     @RequestMapping(value = "/api/calcular-indicador", method = RequestMethod.GET)

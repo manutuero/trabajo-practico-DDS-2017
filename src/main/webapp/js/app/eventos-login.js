@@ -39,38 +39,23 @@ function password()
 });
 }
 
-//function ingresar(usuario)
-//{
-//    $('#btn-ingresar').click(function () {
-//
-//        alert(usuario);
-//
-//        var password = $('#input-usuario').val();
-//
-//        var data = {
-//            usuario: usuario,
-//            password: password
-//        };
-//
-//        $.ajax({
-//            url: 'http://localhost:8084/TpIntegradorDDS/api/ingresar',
-//            type: 'GET',
-//            data: data,
-//            success: function (resultado) {
-//                if (!!resultado.usuario)
-//                {
-//                    alert("todo bien");
-//                }
-//            }
-//        });
-//
-//    });
-//
-//}
-//;
 
 $(document).ready(function () {
     findUsuario();
-
-
+    focus();
+    
+    
 });
+
+function focus(){
+    $("#input-usuario").keyup(function(event) {
+    if (event.keyCode === 13) {
+        $("#btn-continuar").click();
+    }
+    });
+    $("#input-usuario").keyup(function(event) {
+    if (event.keyCode === 13) {
+        $("#btn-ingresar").click();
+    }
+    });
+}

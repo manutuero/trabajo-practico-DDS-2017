@@ -48,19 +48,19 @@ CREATE TABLE `dbprod`.`Usuario`
        `password` VARCHAR(50) NOT NULL) ENGINE = InnoDB;
 
 INSERT INTO `dbprod`.`Usuario` (usuario, password) VALUES ('admin', '1234'), 
-							('Usuario1', '1234'),
+							('Usuario1', '1234');
 
 INSERT INTO `dbprod`.`Empresa` (nombre) VALUES ('Facebook'), 
 						('Twitter'), 
-						('Arcor')
+						('Arcor'),
 						('Walmart');
 
 INSERT INTO `dbprod`.`Indicador` (codigo, nombre, usuario, formula) VALUES ('RC','Razon Corriente', 'admin', 'AC/PC'),
-									('EPAT', 'Endeudamiento Patrimonial', 'admin', 'PT/PAT')
-									('APAL', 'Apalancamiento', 'admin', 'AT/PAT')
-									('RV', 'Rotacion de Ventas', 'Usuario1', 'V/AT')
-									('B', 'Beneficio', 'Usuario1', 'V-C')
-									('ROA', 'Rentabilidad del Activo', 'Usuario1', 'B/AT')
+									('EPAT', 'Endeudamiento Patrimonial', 'admin', 'PT/PAT'),
+									('APAL', 'Apalancamiento', 'admin', 'AT/PAT'),
+									('RV', 'Rotacion de Ventas', 'Usuario1', 'V/AT'),
+									('B', 'Beneficio', 'Usuario1', 'V-C'),
+									('ROA', 'Rentabilidad del Activo', 'Usuario1', 'B/AT'),
 									('ROE', 'Rentabilidad sobre Patrimonio', 'Usuario1', 'B/PAT');
 
 INSERT INTO `dbprod`.`Condicion` (codigo, nombre, tipo, formula, usuario) VALUES ('POS', 'Positivo', 'Taxativa', '>0', 'admin'),

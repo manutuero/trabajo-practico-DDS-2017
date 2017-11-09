@@ -297,9 +297,7 @@ function mostrarCondiciones()
 
 function eliminarCondicion() {
     $('#btn-eliminar-condicion').click(function () {
-        alert("hola");
         var codigo = $('#input-codigo').val();
-        alert(codigo);
         var data = {
             codigo: codigo
         };

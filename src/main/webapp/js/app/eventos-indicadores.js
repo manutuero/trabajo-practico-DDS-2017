@@ -1,5 +1,9 @@
 function initListaIndicadores(unaLista) {
     var listaIndicadores = unaLista;
+    
+    var data = {
+        usuario: getCookie("user")
+    };
 
     listaIndicadores.empty();
     listaIndicadores.append('<option value="" disabled selected>Seleccione un indicador</option>');
@@ -7,6 +11,7 @@ function initListaIndicadores(unaLista) {
     $.ajax({
         url: 'http://localhost:8084/TpIntegradorDDS/api/indicadores',
         type: 'GET',
+        data: data,
         success: function (indicadores) {
             $.each(indicadores, function (indice, indicador) {
                 listaIndicadores.append('<option value="' + indicador.codigo + '">' + indicador.nombre + '</option>');
@@ -90,7 +95,7 @@ function validarIngresoNuevoIndicador() {
         cleanResponses();
         var codigo = $('#input-codigo').val();
         var nombre = $('#input-nombre').val();
-        var tipo = "definido por el usuario";
+        var usuario = getCookie("user");
         var formula = $('#textarea-formula').val();
 
         if (codigo === '' || nombre === '' || formula === '') {
@@ -101,7 +106,7 @@ function validarIngresoNuevoIndicador() {
             var data = {
                 codigo: codigo,
                 nombre: nombre,
-                tipo: tipo,
+                usuario: usuario,
                 formula: formula
             };
 

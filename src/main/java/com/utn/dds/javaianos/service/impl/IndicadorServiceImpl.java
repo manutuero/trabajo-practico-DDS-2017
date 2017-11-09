@@ -127,8 +127,10 @@ public class IndicadorServiceImpl implements IndicadorService {
     }
 
     @Override
-    public List<Indicador> getAllIndicadores() {
-        return indicadorRepository.findAll();
+    public List<Indicador> getAllIndicadores(String usuario) {
+        List<Indicador> indicadores = indicadorRepository.findByUsuario("system");
+        indicadores.addAll(indicadorRepository.findByUsuario(usuario));
+        return indicadores;
     }
 
     @Override

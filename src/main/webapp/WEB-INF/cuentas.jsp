@@ -21,7 +21,7 @@
 
                 <ul class="nav navbar-nav">
                     <li>
-                        <form action="IndexServlet" class="nav navbar-nav" method="post">
+                        <form action="IndexServlet.jsp" class="nav navbar-nav" method="post">
                             <button type="submit" class="btn btn-link navbar-btn">Home </button>
                         </form>
                     </li>
@@ -64,7 +64,7 @@
                             <p><font size="3">Carga de cuentas empresariales</font></p>
                             <p>
                                 <!-- Dipara un modal al apretar el boton -->
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-cargar-cuentas">
+                                <button type="button" id="btn-abrir-cargar-cuentas" class="btn btn-primary" data-toggle="modal" data-target="#modal-cargar-cuentas">
                                     Abrir
                                 </button>
                             </p>
@@ -79,7 +79,7 @@
                             <p><font size="3">Carga de cotizaciones de cuentas segun empresa y periodo</font></p>
                             <p>
                                 <!-- Dipara un modal al apretar el boton -->
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-cargar-cotizaciones">
+                                <button type="button" id="btn-abrir-cargar-cotizaciones" class="btn btn-primary" data-toggle="modal" data-target="#modal-cargar-cotizaciones">
                                     Abrir
                                 </button>
                             </p>

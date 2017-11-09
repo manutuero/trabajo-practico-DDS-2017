@@ -1,3 +1,10 @@
 EBITDA,Earnings Before Interest Taxes Depreciation and Amortization
 INOC,Ingreso Neto En Operaciones Continuas
 INOD,Ingreso Neto En Operaciones Discontinuadas
+AC,Activo Corriente
+AT,Activo Total
+PC,Pasivo Corriente
+PT,Pasivo Total
+PAT,Patrimonio
+V,Ventas
+C,Costos

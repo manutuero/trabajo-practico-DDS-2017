@@ -29,6 +29,7 @@ public class CondicionTaxativaServiceImplTest {
         condicion.setCodigo("testTax");
         condicion.setFormula("IN<5");
         condicion.setNombre("TEste");
+        condicion.setUsuario("system");
         
 
         int resultado = condicionTaxativaService.saveCondicion(condicion);

@@ -7,6 +7,7 @@ import com.utn.dds.javaianos.repository.EmpresaRepository;
 import com.utn.dds.javaianos.repository.IndicadorRepository;
 import com.utn.dds.javaianos.service.EmpresaService;
 import com.utn.dds.javaianos.service.IndicadorService;
+import java.util.List;
 import javax.transaction.Transactional;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
@@ -27,7 +28,7 @@ public class IndicadorServiceImplTest {
 
     @Autowired
     IndicadorRepository indicadorRepository;
-    
+
     @Autowired
     EmpresaService empresaService;
 
@@ -48,7 +49,7 @@ public class IndicadorServiceImplTest {
         Indicador indicador = new Indicador();
         indicador.setCodigo("I1");
         indicador.setNombre("I1");
-        indicador.setTipo("definido por el usuario");
+        indicador.setUsuario("definido por el usuario");
         indicador.setFormula("(verdura/2)+1");
 
         assertEquals(false, indicadorService.allComponentsExists(indicador));
@@ -59,7 +60,7 @@ public class IndicadorServiceImplTest {
         Indicador indicador = new Indicador();
         indicador.setCodigo("I1");
         indicador.setNombre("I1");
-        indicador.setTipo("definido por el usuario");
+        indicador.setUsuario("definido por el usuario");
         indicador.setFormula("INOC+INOD");
 
         assertEquals(true, indicadorService.allComponentsExists(indicador));
@@ -70,7 +71,7 @@ public class IndicadorServiceImplTest {
         Indicador indicador = new Indicador();
         indicador.setCodigo("I1");
         indicador.setNombre("I1");
-        indicador.setTipo("definido por el usuario");
+        indicador.setUsuario("definido por el usuario");
         indicador.setFormula("INOC");
 
         int resultado = indicadorService.saveIndicador(indicador);
@@ -78,7 +79,7 @@ public class IndicadorServiceImplTest {
         Indicador indicadorGuardado = indicadorRepository.findByCodigo("I1");
 
         assertEquals("I1", indicadorGuardado.getNombre());
-        assertEquals("definido por el usuario", indicadorGuardado.getTipo());
+        assertEquals("definido por el usuario", indicadorGuardado.getUsuario());
         assertEquals("INOC", indicadorGuardado.getFormula());
         assertEquals(0, resultado);
     }
@@ -87,7 +88,7 @@ public class IndicadorServiceImplTest {
     public void saveIndicador_conFormulaNoValida_noGuardaYDevuelve1() {
         Indicador indicador = new Indicador();
         indicador.setNombre("I1");
-        indicador.setTipo("definido por el usuario");
+        indicador.setUsuario("definido por el usuario");
         indicador.setFormula("$-*");
 
         int resultado = indicadorService.saveIndicador(indicador);
@@ -100,7 +101,7 @@ public class IndicadorServiceImplTest {
     public void saveIndicador_conFormulaValidaYElementosNoExistentes_noGuardaYDevuelve2() {
         Indicador indicador = new Indicador();
         indicador.setNombre("I1");
-        indicador.setTipo("definido por el usuario");
+        indicador.setUsuario("definido por el usuario");
         indicador.setFormula("C1+C3*10");
 
         int resultado = indicadorService.saveIndicador(indicador);
@@ -111,45 +112,60 @@ public class IndicadorServiceImplTest {
 
     @Test
     public void evaluarIndicador_conIndicadorNuevoFormulaSoloCuentas_devuelveValor() {
-        Double valor ;
+        Double valor;
         Indicador indicador = new Indicador();
         indicador.setCodigo("I_TestSoloCuenta");
         indicador.setNombre("I_TestSoloCuenta");
-        indicador.setTipo("definido por el usuario");
+        indicador.setUsuario("definido por el usuario");
         indicador.setFormula("EBITDA*EFG");
-        valor=indicadorService.evaluarIndicador(indicador, new Empresa("Facebook") ,2016);
-        assertEquals(new Double(14870),valor);
+        valor = indicadorService.evaluarIndicador(indicador, new Empresa("Facebook"), 2016);
+        assertEquals(new Double(14870), valor);
     }
-    
+
     @Test
-    public void evaluarIndicador_conIndicadorNuevoFormulaCuentaEIndicador_devuelveValor(){
-        Double valor ;
+    public void evaluarIndicador_conIndicadorNuevoFormulaCuentaEIndicador_devuelveValor() {
+        Double valor;
         Indicador indicador = new Indicador();
         indicador.setCodigo("I_Test");
         indicador.setNombre("I_Test");
-        indicador.setTipo("definido por el usuario");
+        indicador.setUsuario("definido por el usuario");
         indicador.setFormula("INETO*INOD+5");
-        valor=indicadorService.evaluarIndicador(indicador, new Empresa("Facebook") ,2016);
-        assertEquals(new Double(8555),valor);
+        valor = indicadorService.evaluarIndicador(indicador, new Empresa("Facebook"), 2016);
+        assertEquals(new Double(8555), valor);
     }
-    
+
     @Test
-    public void eliminarIndicador(){
+    public void eliminarIndicador() {
         Integer num;
-        
+
         Indicador indicador = new Indicador();
         indicador.setCodigo("unCodigo");
         indicador.setNombre("I_Test");
-        indicador.setTipo("definido por el usuario");
+        indicador.setUsuario("definido por el usuario");
         indicador.setFormula("INETO*INOD+5");
-        
+
         indicadorService.saveIndicador(indicador);
-        
+
         num = indicadorService.eliminarIndicador("unCodigo");
-        
-        assertEquals(num,(Integer)1);
-        
+
+        assertEquals(num, (Integer) 1);
+
     }
-    
-    
+
+//    @Test
+//    public void getAllIndicadores() {
+//        Indicador indicador = new Indicador();
+//        indicador.setCodigo("unCodigo");
+//        indicador.setNombre("I_Test");
+//        indicador.setUsuario("nacho");
+//        indicador.setFormula("INETO*INOD+5");
+//
+//        indicadorService.saveIndicador(indicador);
+//
+//        List<Indicador> indicadores = indicadorService.getAllIndicadores("nacho");
+//        
+//        assertEquals(true, indicadores.contains(indicador));
+//
+//    }
+
 }

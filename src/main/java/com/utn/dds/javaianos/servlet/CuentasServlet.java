@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/CuentasServlet")
+@WebServlet("/CuentasServlet.jsp")
 public class CuentasServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request,
@@ -31,5 +31,6 @@ public class CuentasServlet extends HttpServlet {
         //response.sendRedirect("LoginSuccess.jsp");
 
     }
+    
 
 }

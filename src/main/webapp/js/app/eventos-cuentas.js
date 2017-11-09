@@ -77,11 +77,11 @@ function limpiarGrillaValores() {
     $('.btn-primary').click(function () {
         $('#cotizaciones tr').remove();
     });
-}
+};
 
 $(document).ready(function () {
-    $('#a-user').append(getCookie("user")+'<b class="caret"></b>');
-    
+    $('#a-user').append(getCookie("user") + '<b class="caret"></b>');
+  
     limpiarGrillaValores();
     abrirModalConsultarValores();
     cerrarModalCalcularValores();
@@ -97,7 +97,7 @@ $(document).ready(function () {
 function getCookie(cname) {
     var name = cname + "=";
     var ca = document.cookie.split(';');
-    for(var i = 0; i < ca.length; i++) {
+    for (var i = 0; i < ca.length; i++) {
         var c = ca[i];
         while (c.charAt(0) == ' ') {
             c = c.substring(1);

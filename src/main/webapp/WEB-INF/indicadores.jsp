@@ -20,7 +20,7 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
 
                 <ul class="nav navbar-nav">
-                    <form action="IndexServlet" class="nav navbar-nav" method="post">
+                    <form action="IndexServlet.jsp" class="nav navbar-nav" method="post">
                         <button type="submit" class="btn btn-link navbar-btn">Home </button>
                     </form>
                 </ul>
@@ -125,18 +125,18 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <p>Codigo: <input id ="input-codigo" type="text" required="true" size="20">
-                                    <button type="button" class="btn btn-xs btn-primary" data-toggle="popover-codigo-indicador" title="Proximamente" data-content="Ejemplo" >?</button></p>
+                                    <button type="button" class="btn btn-xs btn-primary" data-toggle="popover-codigo-indicador" title="Ayuda" data-content="Breve referencia (Ej: 'IN')" >?</button></p>
 
                                 </p>
                                 <p>Nombre: <input id ="input-nombre" type="text" required="true" size="45">
-                                    <button type="button" class="btn btn-xs btn-primary" data-toggle="popover-nombre-indicador" title="Proximamente" data-content="Ejemplo" >?</button></p>
+                                    <button type="button" class="btn btn-xs btn-primary" data-toggle="popover-nombre-indicador" title="Ejemplo:" data-content="'Ingreso Neto'" >?</button></p>
                                 </p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
                                 <p>Formula: 
-                                    <button type="button" class="btn btn-xs btn-primary" data-toggle="popover-formula-indicador" title="Proximamente" data-content="Ejemplo" >?</button></p>
+                                    <button type="button" class="btn btn-xs btn-primary" data-toggle="popover-formula-indicador" title="Ayuda" data-content="Cálculo deseado formado por cuentas y/o indicadores (Ej: 'IN*5')" >?</button></p>
                                 </p>
                                 <textarea id="textarea-formula" class="form-control" rows="5" style="max-width:100%;"></textarea>
                             </div>

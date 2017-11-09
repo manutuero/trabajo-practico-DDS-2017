@@ -18,7 +18,7 @@
                 <a class="navbar-brand" href="#">Tp Integrador DDS</a>
             </div>
             <ul class="nav navbar-nav">
-                <form action="IndexServlet" class="nav navbar-nav" method="post">
+                <form action="IndexServlet.jsp" class="nav navbar-nav" method="post">
                     <button type="submit" class="btn btn-link navbar-btn">Home </button>
                 </form>
             </ul>
@@ -189,11 +189,11 @@
                     <div class="row">
                         <div class="col-xs-12">
                             <p>Nombre <input id ="input-codigo-met" type="text" required="true" size="45">
-                                <button type="button" class="btn btn-xs btn-primary" data-toggle="popover-metodologia-nombre" title="Ejemplo" data-content="WARREN BUFFET" >?</button></p>
+                                <button type="button" class="btn btn-xs btn-primary" data-toggle="popover-metodologia-nombre" title="Ayuda" data-content="Breve referencia (Ej: 'WB')" >?</button></p>
                         </div>
                         <div class="col-xs-12">
                             <p>Descripcion: <input id ="input-descripcion-met" type="text" required="true" size="45">
-                                <button type="button" class="btn btn-xs btn-primary" data-toggle="popover-metodologia-descripcion" title="Ejemplo" data-content="Metodologia de Warren Buffet" >?</button></p>
+                                <button type="button" class="btn btn-xs btn-primary" data-toggle="popover-metodologia-descripcion" title="Ejemplo:" data-content="'Metodología Warren Buffet'" >?</button></p>
                         </div>
                     </div>
                     <p style="text-indent: 10px">  Seleccione un conjunto de Condiciones </p>

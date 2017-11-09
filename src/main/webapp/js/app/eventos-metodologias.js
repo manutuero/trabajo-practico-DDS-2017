@@ -3,10 +3,15 @@ function initListaIndicadores() {
 
     listaIndicadores.empty();
     listaIndicadores.append('<option value="" disabled selected>Seleccione un indicador</option>');
+    
+    var data = {
+        usuario: getCookie("user")
+    };
 
     $.ajax({
         url: 'http://localhost:8084/TpIntegradorDDS/api/indicadores',
         type: 'GET',
+        data: data,
         success: function (indicadores) {
             $.each(indicadores, function (indice, indicador) {
                 listaIndicadores.append('<option value="' + indicador.codigo + '">' + indicador.nombre + '</option>');
@@ -21,10 +26,14 @@ function initListaCondiciones(unaLista) {
 
     listaCondiciones.empty();
     listaCondiciones.append('<option value="" disabled selected>Seleccione una Condicion</option>');
-
+    
+    var data = {
+        usuario: getCookie("user")
+    };
     $.ajax({
         url: 'http://localhost:8084/TpIntegradorDDS/api/condiciones',
         type: 'GET',
+        data: data,
         success: function (condiciones) {
             $.each(condiciones, function (indice, condicion) {
                 listaCondiciones.append('<option value="' + condicion.codigo + '">' + condicion.nombre + '</option>');
@@ -137,7 +146,8 @@ function validarIngresoNuevaCondicion() {
             var data = {
                 codigo: codigo,
                 nombre: nombre,
-                formula: formula
+                formula: formula,
+                usuario: getCookie("user")
             };
 
             $.ajax({
@@ -283,9 +293,8 @@ function mostrarCondiciones() {
 
 function eliminarCondicion() {
     $('#btn-eliminar-condicion').click(function () {
-        alert("hola");
         var codigo = $('#input-codigo').val();
-        alert(codigo);
+
         var data = {
             codigo: codigo
         };

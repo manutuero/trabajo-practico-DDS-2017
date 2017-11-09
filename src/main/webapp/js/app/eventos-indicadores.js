@@ -237,7 +237,6 @@ function datepicker() {
 $(document).ready(function () {
     $('#a-user').append(getCookie("user")+'<b class="caret"></b>');
     
-    
     cleanForm();
     cleanResponses();
 

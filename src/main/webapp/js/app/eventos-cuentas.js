@@ -81,7 +81,7 @@ function limpiarGrillaValores() {
 
 $(document).ready(function () {
     $('#a-user').append(getCookie("user") + '<b class="caret"></b>');
-
+  
     limpiarGrillaValores();
     abrirModalConsultarValores();
     cerrarModalCalcularValores();

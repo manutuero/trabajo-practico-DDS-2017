@@ -9,7 +9,9 @@ import com.utn.dds.javaianos.domain.StrategyCondicion;
 import com.utn.dds.javaianos.repository.CondicionPrioritariaRepository;
 import com.utn.dds.javaianos.repository.CondicionRepository;
 import com.utn.dds.javaianos.repository.CondicionTaxativaRepository;
+import com.utn.dds.javaianos.repository.EmpresaRepository;
 import com.utn.dds.javaianos.repository.MetodologiaRepository;
+import com.utn.dds.javaianos.service.CondicionPrioritariaService;
 import com.utn.dds.javaianos.service.MetodologiaService;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -31,20 +33,23 @@ public class MetodologiaServiceImpl implements MetodologiaService {
     private CondicionPrioritariaRepository condicionPrioritariaRepository;
 
     @Autowired
+    private CondicionPrioritariaService condicionPrioritariaService;
+    
+    
+    @Autowired
     private CondicionRepository condicionRepository;
+
+    @Autowired
+    private EmpresaRepository empresaRepository;
 
     @Override
     public Integer saveMetodologia(Metodologia metodologia) {
-
         try {
-
             metodologiaRepository.save(metodologia);
-
             return 0;
         } catch (Exception e) {
             return 1;
         }
-
     }
 
     @Override
@@ -53,33 +58,26 @@ public class MetodologiaServiceImpl implements MetodologiaService {
     }
 
     @Override
-    public List<EmpresaValor> evaluarMetodologia(Metodologia metodologia, List<Empresa> empresas, Integer periodo) {
-        List<StrategyCondicion> condiciones = new ArrayList<>();
+    public List<EmpresaValor> evaluarMetodologia(Metodologia metodologia, Integer periodo) {
+        List<Empresa> empresas = new ArrayList<>();
+        empresas.addAll(empresaRepository.findAll());
         String[] strCondiciones = metodologia.getCondiciones().split(";");
         for (String strCondicion : strCondiciones) {
             StrategyCondicion condicion = condicionRepository.findByCodigo(strCondicion);
-            condiciones.add(condicion);
+            if(condicion != null){
+                metodologia.getListCondiciones().add(condicion);
+            }
         }
-        metodologia.setListCondiciones(condiciones);
         List<EmpresaValor> empresasValores = new ArrayList<>();
         for (Empresa empresa : empresas) {
-
-            EmpresaValor empresaValor = new EmpresaValor();
-            //List<Boolean> valores = new ArrayList<>();
-            empresaValor.setEmpresa(empresa);
-            empresaValor.setValor(0);
-
+            EmpresaValor empresaValor = new EmpresaValor(empresa, 0);
             for (StrategyCondicion condicion : metodologia.getListCondiciones()) {
-                //valores.add(condicion.evaluarCondicion(periodo, empresa));
-                condicion.evaluarCondicion(periodo, empresaValor);
+                condicionPrioritariaService.evaluarCondicion(condicion,periodo, empresaValor);
             }
-            //empresaValor.setValor(valores);
-
-            //String[] terminos = condicion.getFormula().split("<>=");
             empresasValores.add(empresaValor);
         }
 
-        Collections.sort(empresasValores, new CompareEmpresaValor()); // uso el método sort para ordenar por condiciones que cumplen(valores)
+        Collections.sort(empresasValores, new CompareEmpresaValor()); // uso el método sort para ordenar por las condiciones que cumplen(valores)
 
         return empresasValores;
     }
@@ -90,19 +88,10 @@ public class MetodologiaServiceImpl implements MetodologiaService {
     }
 }
 
-class CompareEmpresaValor implements Comparator {
+class CompareEmpresaValor implements Comparator<EmpresaValor> {
 
     @Override
-    public int compare(Object o1, Object o2) {
-        int valor1 = ((EmpresaValor) o1).getValor();
-        int valor2 = ((EmpresaValor) o2).getValor();
-        if (valor1 > valor2) {//ordenamos de mayor a menor
-            return -1;
-        } else if (valor1 < valor2) {
-            return 1;
-        } else {
-            return 0;
-        }
-
+    public int compare(EmpresaValor o1, EmpresaValor o2) {
+        return o2.getValor() - o1.getValor();
     }
 }

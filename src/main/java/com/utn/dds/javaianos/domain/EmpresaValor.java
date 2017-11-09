@@ -1,9 +1,13 @@
 package com.utn.dds.javaianos.domain;
 
-import java.util.Comparator;
-import java.util.List;
+/*Clase para evaluar una metodologia*/
 
 public class EmpresaValor {
+
+    public EmpresaValor(Empresa empresa, Integer valor) {
+        this.empresa = empresa;
+        this.valor = valor;
+    }
 
     public Empresa empresa;
     public Integer valor;
@@ -28,4 +32,3 @@ public class EmpresaValor {
         this.valor++;
     }
 }
-

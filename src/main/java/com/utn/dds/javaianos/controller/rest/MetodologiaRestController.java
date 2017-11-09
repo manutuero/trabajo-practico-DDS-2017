@@ -1,6 +1,5 @@
 package com.utn.dds.javaianos.controller.rest;
 
-import com.utn.dds.javaianos.domain.Empresa;
 import com.utn.dds.javaianos.domain.EmpresaValor;
 import com.utn.dds.javaianos.domain.Metodologia;
 import com.utn.dds.javaianos.service.CondicionService;
@@ -15,10 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class MetodologiaRestController {
-    
+
     @Autowired
     private MetodologiaService metodologiaService;
-    
+
     @Autowired
     private CondicionService condicionService;
 
@@ -33,11 +32,11 @@ public class MetodologiaRestController {
     public List<Metodologia> obtenerMetodologias() {
         return metodologiaService.getAllMetodologias();
     }
-    
+
     @RequestMapping(value = "/api/evaluar-metodologia", method = RequestMethod.POST)
-    public List<EmpresaValor> evaluarMetodologia(@RequestParam(name="metodologia") String codigo,
-            @RequestParam(name="empresas") List<Empresa> empresas,@RequestParam(name="periodo") Integer periodo) {
+    public List<EmpresaValor> evaluarMetodologia(@RequestParam(name = "metodologia") String codigo,
+            @RequestParam(name = "periodo") Integer periodo) {
         Metodologia metodologia = metodologiaService.findMetodologia(codigo);
-        return metodologiaService.evaluarMetodologia(metodologia, empresas, periodo);
+        return metodologiaService.evaluarMetodologia(metodologia, periodo);
     }
 }

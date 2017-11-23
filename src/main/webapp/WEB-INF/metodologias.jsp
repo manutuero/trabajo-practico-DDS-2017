@@ -7,6 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
         <link href="css/heroic-features.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/sweetalert2.min.css">
     </head>
 
     <!-- Navigation bar -->
@@ -165,9 +166,6 @@
                             <div id="warning-message" class="alert alert-warning" hidden="true">
                                 <strong>Advertencia!</strong> Los campos no deben estar vacios.
                             </div>
-                            <div id="syntax-error-message" class="alert alert-danger" hidden="true">
-                                <strong>Error sintactico!</strong> La formula ingresada posee una expresion no valida.
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -283,6 +281,7 @@
     <script src="js/vendor/jquery-3.2.1.min.js"></script>
     <script src="js/vendor/bootstrap.min.js"></script>
     <script src="js/app/eventos-metodologias.js"></script>
+    <script src="js/vendor/sweetalert2.min.js"></script>
 </html>
 
 

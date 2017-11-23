@@ -3,7 +3,7 @@ function initListaIndicadores() {
 
     listaIndicadores.empty();
     listaIndicadores.append('<option value="" disabled selected>Seleccione un indicador</option>');
-    
+
     var data = {
         usuario: getCookie("user")
     };
@@ -26,7 +26,7 @@ function initListaCondiciones(unaLista) {
 
     listaCondiciones.empty();
     listaCondiciones.append('<option value="" disabled selected>Seleccione una Condicion</option>');
-    
+
     var data = {
         usuario: getCookie("user")
     };
@@ -143,6 +143,11 @@ function validarIngresoNuevaCondicion() {
 
         if (nombre === '' || formula === '') {
             $('#warning-message').show();
+            swal(
+                    'Advertencia',
+                    'Los campos no deben estar vacios.',
+                    'warning'
+                    );
         } else {
             $('#warning-message').hide();
 
@@ -165,15 +170,27 @@ function validarIngresoNuevaCondicion() {
                         cleanResponses();
                         cleanForm();
                         $('#modal-nueva-condicion').modal("hide");
-                        $('#success-condicion-message').show();
+                        swal(
+                                'Bien hecho!',
+                                'La Condicion ha sido guardada correctamente!',
+                                'success'
+                                );
                     }
                     if (response.resultado === "1") {
                         cleanResponses();
-                        $('#syntax-error-message').show();
+                        swal(
+                                'La Condicion NO fue guardada',
+                                'La formula ingresada posee errores de sintaxis',
+                                'error'
+                                );
                     }
                     if (response.resultado === "2") {
                         cleanResponses();
-                        $('#input-error-message').show();
+                        swal(
+                                'El Indicador NO fue guardado',
+                                'La formula ingresada posee cuentas o indicadores no existentes',
+                                'error'
+                                );
                     }
                 }
             });
@@ -218,16 +235,21 @@ function validarIngresoNuevaMetodologia() {
                     cleanResponses();
                     cleanForm();
                     $('#modal-nueva-metod').modal("hide");
-                    $('#success-metod-message').show();
+                    swal(
+                            'Bien hecho!',
+                            'La metodologia ha sido guardada',
+                            'success'
+                            )
                 }
                 if (response.resultado === "1") {
                     cleanResponses();
-                    $('#syntax-error-message').show();
+                    swal(
+                            'ERROR!!',
+                            'La metodologia NO fue guardada',
+                            'error'
+                            );
                 }
-                if (response.resultado === "2") {
-                    cleanResponses();
-                    $('#input-error-message').show();
-                }
+
             }
         });
 
@@ -297,21 +319,42 @@ function mostrarCondiciones()
 
 function eliminarCondicion() {
     $('#btn-eliminar-condicion').click(function () {
-        var codigo = $('#input-codigo').val();
-        var data = {
-            codigo: codigo
-        };
 
-        $.ajax({
-            url: 'http://localhost:8084/TpIntegradorDDS/api/eliminar-condicion',
-            type: 'POST',
-            data: data,
-            success: function (response) {
-                alert("La Condicion fue eliminada correctamente");
+        swal({
+            title: 'Esta seguro?',
+            text: "No podra revertir los cambios",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Si, borralo!',
+            cancelButtonText: 'Cancelar'
+        }).then(function (result) {
+            if (result.value) {
+                var codigo = $('#input-codigo').val();
+                var data = {
+                    codigo: codigo
+                };
+
+                $.ajax({
+                    url: 'http://localhost:8084/TpIntegradorDDS/api/eliminar-condicion',
+                    type: 'POST',
+                    data: data,
+                    success: function (response) {
+                        swal(
+                                'Borrado',
+                                'La condicion ha sido borrada',
+                                'success'
+                                )
+
+                    }
+                });
             }
-        });
+        })
+
 
     });
+
 }
 ;
 

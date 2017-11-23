@@ -11,8 +11,6 @@
         <link rel="stylesheet" href="css/sweetalert2.min.css">
     </head>
     <body>
-        <p id="info-cuentas" hidden>${messageCuentas}</p>
-        <p id="info-coti" hidden>${messageCoti}</p>
         <!-- Navigation bar -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
@@ -55,7 +53,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h3>¿Que desea hacer?</h3>
-                 </div>
+                </div>
             </div>
 
             <!-- Page Features -->
@@ -219,6 +217,9 @@
         </div>
     </div> 
 
+    <p id="info-cuentas" hidden>${messageCuentas}</p>
+    <p id="info-coti" hidden>${messageCoti}</p>
+
     <!-- Script files -->
     <script src="js/vendor/jquery.min.js"></script>
     <script src="js/vendor/moment.min.js"></script>
@@ -226,7 +227,7 @@
     <script src="js/vendor/bootstrap-datetimepicker.min.js"></script>
     <script src="js/app/eventos-cuentas.js"></script>
     <script src="js/vendor/sweetalert2.min.js"></script>
-    
+
 
 </body>
 </html>

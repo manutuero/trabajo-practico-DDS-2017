@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="css/style-login.css" type="text/css">
         <link href="css/heroic-features.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+        <link rel="stylesheet" href="css/sweetalert2.min.css">
 
     </head>
     <body>
@@ -53,8 +54,10 @@
                 </div>
             </center>
         </div>
-        <script src="js/vendor/jquery-3.2.1.min.js"></script>
+        <p id="info-login" hidden>${messageLogin}</p>
 
-        <script src="js/app/eventos-login.js"></script>-->
+        <script src="js/vendor/jquery-3.2.1.min.js"></script>
+        <script src="js/app/eventos-login.js"></script>
+        <script src="js/vendor/sweetalert2.min.js"></script>
     </body>
 </html>

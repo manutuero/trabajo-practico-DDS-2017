@@ -23,6 +23,14 @@ function findUsuario()
                     $('#input-usuario').attr("type", "Password");
                     $('#input-usuario').val("");
                     password();
+                } else
+                {
+                    swal(
+                            'ERROR',
+                            'El usuario ingresado no es valido',
+                            'error'
+                            );
+                    focus();
                 }
             }
         });
@@ -34,28 +42,49 @@ function findUsuario()
 
 function password()
 {
-    $("#input-usuario").keyup(function() {
-    $("#pass").val(this.value);
-});
+    $("#input-usuario").keyup(function () {
+        $("#pass").val(this.value);
+    });
 }
 
 
 $(document).ready(function () {
     findUsuario();
     focus();
-    
-    
+    mensajeLogin();
+
 });
 
-function focus(){
-    $("#input-usuario").keyup(function(event) {
-    if (event.keyCode === 13) {
-        $("#btn-continuar").click();
+function mensajeLogin()
+{
+    if ($('#info-login').text() == "nook")
+    {
+        swal(
+                'ERROR',
+                'La contraseña ingresada no es valida',
+                'error'
+                );
     }
+    if ($('#info-login').text() == "logout")
+    {
+        swal(
+                'Vuelva pronto!',
+                'Ha cerrado sesion correctamente',
+                'success'
+                );
+    }
+
+}
+
+function focus() {
+    $("#input-usuario").keyup(function (event) {
+        if (event.keyCode === 13) {
+            $("#btn-continuar").click();
+        }
     });
-    $("#input-usuario").keyup(function(event) {
-    if (event.keyCode === 13) {
-        $("#btn-ingresar").click();
-    }
+    $("#input-usuario").keyup(function (event) {
+        if (event.keyCode === 13) {
+            $("#btn-ingresar").click();
+        }
     });
 }

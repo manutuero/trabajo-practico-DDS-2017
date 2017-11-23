@@ -21,11 +21,19 @@ public class CuentaController {
 
     @RequestMapping(value = "/fileUploadCuentas", method = RequestMethod.POST)
     public void guardarCuentas(@RequestParam(name = "file") MultipartFile file, HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-        cuentaService.saveCuentas(file);
+            HttpServletResponse response) throws ServletException, IOException {
+        //mensaje para el front
+        String message;
+        try {
+            cuentaService.saveCuentas(file);
+            message = "ok";
+
+        } catch (Exception e) {
+            message = "nook";
+        }
+        request.setAttribute("messageCuentas", message);
 
         RequestDispatcher requestDispatcher = null;
-        
         requestDispatcher = request.getRequestDispatcher("/WEB-INF/cuentas.jsp");
         requestDispatcher.forward(request, response);
 

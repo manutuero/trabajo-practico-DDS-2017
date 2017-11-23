@@ -47,6 +47,7 @@ function traerIndicador()
         data: data,
         success: function (indicador) {
             $('#input-codigo').val(indicador.codigo);
+            $('#input-codigo').attr('readonly', true);
             $('#input-nombre').val(indicador.nombre);
             $('#textarea-formula').val(indicador.formula);
             $('#btn-crear').val("Guardar");

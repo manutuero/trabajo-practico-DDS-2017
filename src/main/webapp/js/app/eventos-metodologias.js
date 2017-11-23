@@ -113,6 +113,7 @@ function traerCondicion() {
         data: data,
         success: function (condicion) {
             $('#input-codigo').val(condicion.codigo);
+            $('#input-codigo').attr('readonly', true);
             $('#input-nombre').val(condicion.nombre);
             $('#textarea-formula-condicion').val(condicion.formula);
             $('#btn-eliminar-condicion').css('display', 'inline-block');

@@ -235,7 +235,9 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <p><h4 class="modal-title">Evaluar Metodologia</h4><p>
+                    <h4 class="modal-title">Evaluar Metodologia
+                        <button type="button" class="btn btn-content btn-primary" data-toggle="popover-evaluar-metodologia" data-content="El resultado será un listado ordenado de empresas en las que es deseable invertir">?</button>
+                    </h4>
                 </div>
                 <div class="modal-body">
                     <div class="row">
@@ -247,7 +249,7 @@
                     <div class="row">
                         <div class="col-xs-2">Empresas</div>
                         <div class="col-xs-6">
-                            <p><select id="list-empresas"></select></p>
+                            <p><select id="list-empresas" class="form-control"></select></p>
                         </div>
                     </div>
                     <div class="row" >
@@ -273,7 +275,7 @@
                         <thead>
                             <tr>
                                 <th>Empresa</th>
-                                <th>Valor</th>
+                                <th>Porcentaje de condiciones cumplidas</th>
                             </tr>
                         </thead>
                         <tbody id="resultado">

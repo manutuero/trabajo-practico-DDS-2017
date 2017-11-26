@@ -6,12 +6,11 @@ import com.utn.dds.javaianos.domain.Empresa;
 import com.utn.dds.javaianos.domain.EmpresaValor;
 import com.utn.dds.javaianos.domain.Metodologia;
 import com.utn.dds.javaianos.domain.StrategyCondicion;
-import com.utn.dds.javaianos.repository.CondicionPrioritariaRepository;
 import com.utn.dds.javaianos.repository.CondicionRepository;
-import com.utn.dds.javaianos.repository.CondicionTaxativaRepository;
 import com.utn.dds.javaianos.repository.EmpresaRepository;
 import com.utn.dds.javaianos.repository.MetodologiaRepository;
 import com.utn.dds.javaianos.service.CondicionPrioritariaService;
+import com.utn.dds.javaianos.service.CondicionTaxativaService;
 import com.utn.dds.javaianos.service.MetodologiaService;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -27,15 +26,11 @@ public class MetodologiaServiceImpl implements MetodologiaService {
     private MetodologiaRepository metodologiaRepository;
 
     @Autowired
-    private CondicionTaxativaRepository condicionTaxativaRepository;
-
-    @Autowired
-    private CondicionPrioritariaRepository condicionPrioritariaRepository;
-
-    @Autowired
     private CondicionPrioritariaService condicionPrioritariaService;
-    
-    
+
+    @Autowired
+    private CondicionTaxativaService condicionTaxativaService;
+
     @Autowired
     private CondicionRepository condicionRepository;
 
@@ -64,21 +59,41 @@ public class MetodologiaServiceImpl implements MetodologiaService {
         String[] strCondiciones = metodologia.getCondiciones().split(";");
         for (String strCondicion : strCondiciones) {
             StrategyCondicion condicion = condicionRepository.findByCodigo(strCondicion);
-            if(condicion != null){
+            if (condicion != null) {
                 metodologia.getListCondiciones().add(condicion);
             }
         }
+        Integer cantCondiciones = metodologia.getListCondiciones().size();
+        System.out.println("--------------------------------------------///////////////////////");
+        System.out.println("Condiciones: " + cantCondiciones);
         List<EmpresaValor> empresasValores = new ArrayList<>();
         for (Empresa empresa : empresas) {
-            EmpresaValor empresaValor = new EmpresaValor(empresa, 0);
+            System.out.println("Empresa:" + empresa.getNombre());
+            EmpresaValor empresaValor = new EmpresaValor(empresa, 0, true);
             for (StrategyCondicion condicion : metodologia.getListCondiciones()) {
-                condicionPrioritariaService.evaluarCondicion(condicion,periodo, empresaValor);
+                if (condicionPrioritariaService.findCondicionByCodigo(condicion.getCodigo()) != null) {
+                    condicionPrioritariaService.evaluarCondicion((CondicionPrioritaria) condicion, periodo, empresaValor);
+                } else {
+                    if (condicionTaxativaService.findCondicionByCodigo(condicion.getCodigo()) != null) {
+                        condicionTaxativaService.evaluarCondicion((CondicionTaxativa) condicion, periodo, empresaValor);
+                    }
+                }
+
             }
-            empresasValores.add(empresaValor);
+
+            if (empresaValor.getConvieneInvertir() && !(empresasValores.contains(empresaValor))) {
+                empresaValor.setValor((empresaValor.getValor() * 100) / cantCondiciones);
+                empresasValores.add(empresaValor);
+            } else {
+                if (!(empresaValor.getConvieneInvertir()) && empresasValores.contains(empresaValor)) {
+                    empresasValores.remove(empresaValor);
+                }
+            }
+
+            // uso el método sort para ordenar por las condiciones que cumplen(valores)
+            Collections.sort(empresasValores, new CompareEmpresaValor());
+
         }
-
-        Collections.sort(empresasValores, new CompareEmpresaValor()); // uso el método sort para ordenar por las condiciones que cumplen(valores)
-
         return empresasValores;
     }
 
@@ -92,6 +107,12 @@ class CompareEmpresaValor implements Comparator<EmpresaValor> {
 
     @Override
     public int compare(EmpresaValor o1, EmpresaValor o2) {
-        return o2.getValor() - o1.getValor();
+        int resultado = Integer.compare(o2.getValor(), o1.getValor());
+        if (resultado != 0) {
+            return resultado;
+        }
+
+        return o1.getEmpresa().getNombre().compareTo(o2.getEmpresa().getNombre());
+        //return o2.getValor() - o1.getValor();
     }
 }

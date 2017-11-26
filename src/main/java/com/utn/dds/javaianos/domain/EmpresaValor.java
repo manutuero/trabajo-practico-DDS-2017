@@ -4,14 +4,24 @@ package com.utn.dds.javaianos.domain;
 
 public class EmpresaValor {
 
-    public EmpresaValor(Empresa empresa, Integer valor) {
+    public EmpresaValor(Empresa empresa, Integer valor,Boolean convieneInvertir) {
         this.empresa = empresa;
         this.valor = valor;
+        this.convieneInvertir = convieneInvertir;
     }
 
     public Empresa empresa;
     public Integer valor;
+    public Boolean convieneInvertir;
 
+    public Boolean getConvieneInvertir() {
+        return convieneInvertir;
+    }
+
+    public void setConvieneInvertir(Boolean convieneInvertir) {
+        this.convieneInvertir = convieneInvertir;
+    }
+    
     public Integer getValor() {
         return valor;
     }

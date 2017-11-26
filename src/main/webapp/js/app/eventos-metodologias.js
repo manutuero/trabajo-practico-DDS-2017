@@ -3,7 +3,7 @@ function initListaIndicadores() {
 
     listaIndicadores.empty();
     listaIndicadores.append('<option value="" disabled selected>Seleccione un indicador</option>');
-    
+
     var data = {
         usuario: getCookie("user")
     };
@@ -26,7 +26,7 @@ function initListaCondiciones(unaLista) {
 
     listaCondiciones.empty();
     listaCondiciones.append('<option value="" disabled selected>Seleccione una Condicion</option>');
-    
+
     var data = {
         usuario: getCookie("user")
     };
@@ -247,8 +247,8 @@ function evaluarMetodologia() {
                 success: function (valores) {
                     var $resultados = $('#resultado');
                     $.each(valores, function (i, valor) {
-                        console.log(valor);
-                        $resultados.append('<tr><td>' + valor.empresa.nombre + '</td><td>'
+                            console.log(valor);
+                            $resultados.append('<tr><td>' + valor.empresa.nombre + '</td><td>'
                                 + valor.valor + '</td></tr>');
                     });
                 }
@@ -403,6 +403,7 @@ function abrirModalEvaluarMetodologia() {
     $('#btn-abrir-evaluar-metodologia').click(function () {
         cleanForm();
         cleanResponses();
+        $('[data-toggle="popover-evaluar-metodologia"]').popover();
         initListaMetodologias();
         initListaEmpresas();
         datepicker();
@@ -414,6 +415,7 @@ function abrirModalEvaluarMetodologia() {
 function cerrarModalEvaluarMetodologia() {
     $('#btn-cerrar-evaluar-metod').click(function () {
         limpiarGrillaValores();
+        $('#input-anio').val("");
     });
 }
 ;

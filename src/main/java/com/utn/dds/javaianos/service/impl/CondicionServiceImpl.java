@@ -67,5 +67,5 @@ public class CondicionServiceImpl implements CondicionService {
 
         return num;
     }
-}
 
+}

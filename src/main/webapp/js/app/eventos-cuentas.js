@@ -69,6 +69,7 @@ function abrirModalConsultarValores() {
 function cerrarModalCalcularValores() {
     $('#btn-cerrar-consultar-valores').click(function () {
         limpiarGrillaValores();
+        $('#input-periodo').val("");
     });
 }
 ;

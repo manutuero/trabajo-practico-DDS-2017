@@ -220,6 +220,7 @@ function abrirModalEvaluarIndicador() {
         initListaIndicadores($('#list-indicadores'));
         initListaEmpresas();
         datepicker();
+        $('#input-anio').val("");
     });
 }
 ;

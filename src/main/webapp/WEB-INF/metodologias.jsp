@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
         <link href="css/heroic-features.css" rel="stylesheet">
         <link rel="stylesheet" href="css/sweetalert2.min.css">
+        <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css" type="text/css">
     </head>
 
     <!-- Navigation bar -->
@@ -17,7 +18,6 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"></button>
                 <a class="navbar-brand" href="#">Tp Integrador DDS</a>
             </div>
-
             <ul class="nav navbar-nav">
                 <form action="IndexServlet.jsp" class="nav navbar-nav" method="post">
                     <button type="submit" class="btn btn-link navbar-btn">Home </button>
@@ -50,7 +50,6 @@
 
         <div class="row">
             <div class="col-lg-7"></div>
-
             <div id="success-condicion-message" class="alert alert-success" hidden="true">
                 <strong>Exito!</strong> La Condicion se ha guardado exitosamente.
             </div>
@@ -104,7 +103,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
 
         <!-- Page Footer -->
@@ -135,17 +133,15 @@
                     <div class="row">
                         <div class="col-xs-12">
                             <p>Codigo: <input id ="input-codigo" type="text" required="true" size="45"> 
-                                <button type="button" class="btn btn-xs btn-primary" data-toggle="popover-codigo-condicion" title="Ayuda" data-content="Breve referencia de la condición deseada (Ej: 'Mayor5')" >?</button></p>
-
+                                <button type="button" class="btn btn-xs btn-primary" data-toggle="popover-codigo-condicion" title="Ejemplo" data-content="INOC POSITIVO" >?</button></p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12">
                             <p>Nombre: <input id ="input-nombre" type="text" required="true" size="45">
-                                <button type="button" class="btn btn-xs btn-primary" data-toggle="popover-descripcion-condicion" title="Ejemplo:" data-content="'Mayor a 5'" >?</button></p>
+                                <button type="button" class="btn btn-xs btn-primary" data-toggle="popover-descripcion-condicion" title="Ejemplo" data-content="Condicion donde el INOC es positivo" >?</button></p>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col-xs-6">
                             <select id="list-tipos-condiciones" class="form-control" name="size"></select>
@@ -154,7 +150,6 @@
                             <p><select onChange="insertarIndicador()" id="list-indicadores" class="form-control" name="size"   ></select></p>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col-xs-12">
                             <p>Formula:    <button type="button" class="btn btn-xs btn-primary" data-toggle="popover-formula-condicion" title="Ejemplo:" data-content="IngresoNeto > 1000000" >?</button></p>
@@ -178,7 +173,8 @@
         </div>
     </div>
 
-
+    <!-- ***** Modulo de Gestion de Metodologias ***** -->
+    <!-- Modal --> 
     <div id="modal-nueva-metod" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
@@ -212,9 +208,6 @@
                             <div class="input_fields_wrap"></div> 
                         </div>
                     </div>
-
-
-
                     <div class="row">
                         <div class="col-xs-12">
                             <div id="warning-message" class="alert alert-warning" hidden="true">
@@ -240,7 +233,11 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <p><h4 class="modal-title">Evaluar Metodologia</h4><p>
+                    <h4 class="modal-title">Evaluar Metodologia
+                        <button type="button" class="btn btn-content btn-primary" data-toggle="popover-evaluar-metodologia" data-content="El resultado será un listado ordenado de empresas en las que es deseable invertir">?</button>
+                    </h4>
+                </div>
+                <div class="modal-body">
                     <div class="row">
                         <div class="col-xs-2">Metodologia</div>
                         <div class="col-xs-6">
@@ -250,12 +247,20 @@
                     <div class="row">
                         <div class="col-xs-2">Empresas</div>
                         <div class="col-xs-6">
-                            <p><select id="list-empresas" class="form-control" name="size" ></select></p>
+                            <p><select id="list-empresas" class="form-control"></select></p>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-xs-2">Año</div>
-                        <div class="col-xs-10"><p><input id="input-anio" type="text" required="true" size="20"></p></div>
+                    <div class="row" >
+                        <div class="col-xs-2">Periodo</div>
+                        <div class="col-xs-6">
+                            <div class='input-group date' id='datetimepicker'>
+                                <input type='text' class="form-control" id="input-anio" required="true">
+                                <span class="input-group-addon open-datetimepicker">
+                                    <span class="glyphicon glyphicon-calendar">
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -263,23 +268,27 @@
                     <button id="btn-cerrar-evaluar-metod" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                 </div>
                 <!-- Grid table -->
-                <table class="table table-condensed" id="grilla" style="display:none">
-                    <thead>
-                        <tr>
-                            <th>Empresa</th>
-                            <th>Valor</th>
-                        </tr>
-                    </thead>
-                    <tbody id="resultado">
-                    </tbody>
-                </table>
+                <div class="modal-body">
+                    <table class="table table-condensed" id="grilla" style="display:none">
+                        <thead>
+                            <tr>
+                                <th>Empresa</th>
+                                <th>Porcentaje de condiciones cumplidas</th>
+                            </tr>
+                        </thead>
+                        <tbody id="resultado">
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- Script files -->
-    <script src="js/vendor/jquery-3.2.1.min.js"></script>
+    <script src="js/vendor/jquery.min.js"></script>
+    <script src="js/vendor/moment.min.js"></script>
     <script src="js/vendor/bootstrap.min.js"></script>
+    <script src="js/vendor/bootstrap-datetimepicker.min.js"></script>
     <script src="js/app/eventos-metodologias.js"></script>
     <script src="js/vendor/sweetalert2.min.js"></script>
 </html>

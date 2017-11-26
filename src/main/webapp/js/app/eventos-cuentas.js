@@ -71,6 +71,7 @@ function abrirModalConsultarValores() {
 function cerrarModalCalcularValores() {
     $('#btn-cerrar-consultar-valores').click(function () {
         limpiarGrillaValores();
+        $('#input-periodo').val("");
     });
 }
 ;
@@ -84,7 +85,7 @@ function limpiarGrillaValores() {
 
 $(document).ready(function () {
     $('#a-user').append(getCookie("user") + '<b class="caret"></b>');
-
+  
     limpiarGrillaValores();
     abrirModalConsultarValores();
     cerrarModalCalcularValores();

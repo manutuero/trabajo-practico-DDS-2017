@@ -1,3 +1,5 @@
+/* global message */
+
 function obtenerValoresCuentas() {
     $('#btn-consultar').click(function () {
 
@@ -78,7 +80,8 @@ function limpiarGrillaValores() {
     $('.btn-primary').click(function () {
         $('#cotizaciones tr').remove();
     });
-};
+}
+;
 
 $(document).ready(function () {
     $('#a-user').append(getCookie("user") + '<b class="caret"></b>');
@@ -93,7 +96,54 @@ $(document).ready(function () {
     if (!window.FileReader) {
         alert('This browser does not support the FileReader API.');
     }
+    mensajeCuentas();
+    mensajeCoti();
+
+
+
 });
+
+function mensajeCuentas()
+{
+    if ($('#info-cuentas').text() == "ok")
+    {
+        swal(
+                'Bien hecho!',
+                'Las cuentas se han cargado correctamente!',
+                'success'
+                );
+    }
+    if ($('#info-cuentas').text() == "nook")
+    {
+        swal(
+                'ERROR',
+                'Las cuentas NO pudieron ser cargadas',
+                'error'
+                );
+    }
+
+}
+
+function mensajeCoti()
+{
+    if ($('#info-coti').text() == "ok")
+    {
+        swal(
+                'Bien hecho!',
+                'Las Cotizaciones se han cargado correctamente!',
+                'success'
+                );
+    }
+    if ($('#info-coti').text() == "nook")
+    {
+        swal(
+                'ERROR',
+                'Las Cotizaciones NO pudieron ser cargadas',
+                'error'
+                );
+    }
+
+}
 
 function getCookie(cname) {
     var name = cname + "=";

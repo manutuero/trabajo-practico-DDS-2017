@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
         <link href="css/heroic-features.css" rel="stylesheet">
         <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css" type="text/css">
+        <link rel="stylesheet" href="css/sweetalert2.min.css">
     </head>
     <body>
         <!-- Navigation bar -->
@@ -216,12 +217,17 @@
         </div>
     </div> 
 
+    <p id="info-cuentas" hidden>${messageCuentas}</p>
+    <p id="info-coti" hidden>${messageCoti}</p>
+
     <!-- Script files -->
     <script src="js/vendor/jquery.min.js"></script>
     <script src="js/vendor/moment.min.js"></script>
     <script src="js/vendor/bootstrap.min.js"></script>
     <script src="js/vendor/bootstrap-datetimepicker.min.js"></script>
     <script src="js/app/eventos-cuentas.js"></script>
+    <script src="js/vendor/sweetalert2.min.js"></script>
+
 
 </body>
 </html>

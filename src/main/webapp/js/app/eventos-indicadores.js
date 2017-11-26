@@ -1,6 +1,6 @@
 function initListaIndicadores(unaLista) {
     var listaIndicadores = unaLista;
-    
+
     var data = {
         usuario: getCookie("user")
     };
@@ -47,6 +47,7 @@ function traerIndicador()
         data: data,
         success: function (indicador) {
             $('#input-codigo').val(indicador.codigo);
+            $('#input-codigo').attr('readonly', true);
             $('#input-nombre').val(indicador.nombre);
             $('#textarea-formula').val(indicador.formula);
             $('#btn-crear').val("Guardar");
@@ -73,6 +74,11 @@ function calcularIndicador()
 
         if (anio === '' || empresa === '') {
             $('#warning-message').show();
+            swal(
+                    'Advertencia',
+                    'Los campos no deben estar vacios.',
+                    'warning'
+                    );
         } else {
             $('#warning-message').hide();
 
@@ -99,7 +105,11 @@ function validarIngresoNuevoIndicador() {
         var formula = $('#textarea-formula').val();
 
         if (codigo === '' || nombre === '' || formula === '') {
-            $('#warning-message').show();
+            swal(
+                    'Advertencia',
+                    'Los campos no deben estar vacios.',
+                    'warning'
+                    );
         } else {
             $('#warning-message').hide();
 
@@ -122,15 +132,29 @@ function validarIngresoNuevoIndicador() {
                         cleanResponses();
                         cleanForm();
                         $('#modal-nuevo-indi').modal("hide");
-                        $('#success-message').show();
+//                        $('#success-message').show();
+                        swal(
+                                'Bien hecho!',
+                                'El Indicador ha sigo guardado correctamente!',
+                                'success'
+                                );
                     }
                     if (response.resultado === "1") {
                         cleanResponses();
-                        $('#syntax-error-message').show();
+//                        $('#syntax-error-message').show();
+                        swal(
+                                'El Indicador NO fue guardado',
+                                'La formula ingresada posee errores de sintaxis',
+                                'error'
+                                );
                     }
                     if (response.resultado === "2") {
                         cleanResponses();
-                        $('#input-error-message').show();
+                        swal(
+                                'El Indicador NO fue guardado',
+                                'La formula ingresada posee cuentas o indicadores no existentes',
+                                'error'
+                                );
                     }
                 }
             });
@@ -141,22 +165,41 @@ function validarIngresoNuevoIndicador() {
 function eliminarIndicador()
 {
     $('#btn-eliminar-indicador').click(function () {
-        
-        var codigo = $('#input-codigo').val();
 
-        var data = {
-            codigo: codigo
-        };
 
-        $.ajax({
-            url: 'http://localhost:8084/TpIntegradorDDS/api/eliminar-indicador',
-            type: 'POST',
-            data: data,
-            
-            success: function (response) {
-                alert("El indicador fue eliminado correctamente");
+        swal({
+            title: 'Esta seguro?',
+            text: "No podra revertir los cambios",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Si, borralo!',
+            cancelButtonText: 'Cancelar'
+        }).then(function (result) {
+            if (result.value) {
+                var codigo = $('#input-codigo').val();
+
+                var data = {
+                    codigo: codigo
+                };
+
+                $.ajax({
+                    url: 'http://localhost:8084/TpIntegradorDDS/api/eliminar-indicador',
+                    type: 'POST',
+                    data: data,
+
+                    success: function (response) {
+                        swal(
+                                'Borrado',
+                                'El indicador ha sido borrado',
+                                'success'
+                                )
+                    }
+                });
             }
-        });
+        })
+
 
     });
 
@@ -178,7 +221,8 @@ function initListaEmpresas() {
             });
         }
     });
-};
+}
+;
 
 
 
@@ -236,8 +280,9 @@ function datepicker() {
 
 // Metodos que van a estar listos para usar cuando se cargue el documento HTML.
 $(document).ready(function () {
-    $('#a-user').append(getCookie("user")+'<b class="caret"></b>');
-    
+    $('#a-user').append(getCookie("user") + '<b class="caret"></b>');
+
+  
     cleanForm();
     cleanResponses();
 
@@ -252,7 +297,7 @@ $(document).ready(function () {
 function getCookie(cname) {
     var name = cname + "=";
     var ca = document.cookie.split(';');
-    for(var i = 0; i < ca.length; i++) {
+    for (var i = 0; i < ca.length; i++) {
         var c = ca[i];
         while (c.charAt(0) == ' ') {
             c = c.substring(1);

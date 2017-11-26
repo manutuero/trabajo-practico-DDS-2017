@@ -22,7 +22,18 @@ public class CotizacionController {
     @RequestMapping(value = "/fileUploadCotizaciones", method = RequestMethod.POST)
     public void guardarCotizaciones(@RequestParam(name = "file") MultipartFile file, HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
-        cotizacionService.saveCotizaciones(file);
+        
+         //mensaje para el front
+        String message;
+        try {
+            cotizacionService.saveCotizaciones(file);
+            message = "ok";
+
+        } catch (Exception e) {
+            message = "nook";
+        }
+        request.setAttribute("messageCoti", message);
+        
         RequestDispatcher requestDispatcher = null;
 
         requestDispatcher = request.getRequestDispatcher("/WEB-INF/cuentas.jsp");

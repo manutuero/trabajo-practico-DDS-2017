@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
         <link href="css/heroic-features.css" rel="stylesheet">
         <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css" type="text/css">
+        <link rel="stylesheet" href="css/sweetalert2.min.css">
     </head>
     <body>
         <!-- Navigation bar -->
@@ -142,19 +143,6 @@
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div id="warning-message" class="alert alert-warning" hidden="true">
-                                    <strong>Advertencia!</strong> Los campos no deben estar vacios.
-                                </div>
-                                <div id="syntax-error-message" class="alert alert-danger" hidden="true">
-                                    <strong>Error sintactico!</strong> La formula ingresada posee una expresion no valida.
-                                </div>
-                                <div id="input-error-message" class="alert alert-danger" hidden="true">
-                                    <strong>Error de contenido!</strong> La formula ingresada posee cuentas o indicadores no existentes.
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <div class="modal-footer">
                         <button id="btn-eliminar-indicador" style="display:none" type="submit" class="btn btn-danger pull-left" value="Borrar" style="">Eliminar</button>
@@ -225,6 +213,7 @@
             </div>
         </div>
     </div>
+    <p id="info-indicadores" hidden>${messageIndicadores}</p>
 
     <!-- Script files -->
     <script src="js/vendor/jquery.min.js"></script>
@@ -232,6 +221,7 @@
     <script src="js/vendor/bootstrap.min.js"></script>
     <script src="js/vendor/bootstrap-datetimepicker.min.js"></script>
     <script src="js/app/eventos-indicadores.js"></script>
+    <script src="js/vendor/sweetalert2.min.js"></script>
 </body>
 </html>
 

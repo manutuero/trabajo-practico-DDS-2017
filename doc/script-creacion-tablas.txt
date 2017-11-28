@@ -17,38 +17,55 @@ CREATE TABLE `dbprod`.`Cotizacion`
 	  FOREIGN KEY (cuenta) REFERENCES Cuenta(codigo),
     	  FOREIGN KEY (empresa) REFERENCES Empresa(nombre),	
 	  UNIQUE (`cuenta`, `empresa`, `periodo`)) ENGINE = InnoDB;
+      
+CREATE TABLE `dbprod`.`Usuario` 
+ 	(`usuario` VARCHAR(50) NOT NULL PRIMARY KEY,
+       `password` VARCHAR(50) NOT NULL) ENGINE = InnoDB;
 
 CREATE TABLE `dbprod`.`Indicador`
 	(`codigo` VARCHAR(50) NOT NULL PRIMARY KEY,
          `nombre` VARCHAR(50),
-	 `tipo` VARCHAR(50) NOT NULL,
-	 `formula` VARCHAR(255) NOT NULL) ENGINE = InnoDB;
+	 `usuario` VARCHAR(50) NOT NULL,
+	 `formula` VARCHAR(255) NOT NULL,
+        FOREIGN KEY (usuario) REFERENCES Usuario(usuario)) ENGINE = InnoDB;
 
 CREATE TABLE `dbprod`.`Metodologia` 
 	(`codigo` VARCHAR(50) NOT NULL PRIMARY KEY,
     	`descripcion` VARCHAR(50) NOT NULL,
-	`condiciones` VARCHAR(255) NOT NULL) ENGINE = InnoDB;
-
-
+	`condiciones` VARCHAR(255) NOT NULL,
+    `usuario` VARCHAR(50) NOT NULL,
+        FOREIGN KEY (usuario) REFERENCES Usuario(usuario)) ENGINE = InnoDB;
 
 CREATE TABLE `dbprod`.`Condicion` 
  	(`codigo` VARCHAR(50) NOT NULL PRIMARY KEY,
        `nombre` VARCHAR(150) NOT NULL,
 	`tipo` VARCHAR(50) NOT NULL,
-  	`formula` VARCHAR(255) NOT NULL) ENGINE = InnoDB;
+  	`formula` VARCHAR(255) NOT NULL,
+	`usuario` VARCHAR(50) NOT NULL,
+        FOREIGN KEY (usuario) REFERENCES Usuario(usuario)) ENGINE = InnoDB;
 
-/*CREATE TABLE `dbprod` . `MetodologiaCondicion` 
-	(`condicion` VARCHAR(50) NOT NULL,
-    `metodologia`  VARCHAR(50) NOT NULL,
-    PRIMARY KEY (condicion, metodologia),
-    FOREIGN KEY (condicion) REFERENCES Condicion(codigo),
-    FOREIGN KEY (metodologia) REFERENCES Metodologia(codigo))ENGINE = InnoDB;*/
+INSERT INTO `dbprod`.`Usuario` (usuario, password) VALUES ('admin', '1234'), 
+							('Usuario1', '1234');
 
-CREATE TABLE `dbprod`.`Usuario` 
- 	(`usuario` VARCHAR(50) NOT NULL PRIMARY KEY,
-       `password` VARCHAR(50) NOT NULL) ENGINE = InnoDB;
+INSERT INTO `dbprod`.`Empresa` (nombre) VALUES ('Facebook'), 
+						('Twitter'), 
+						('Arcor'),
+						('Walmart');
 
-INSERT INTO `dbprod`.`Usuario` (usuario, password) VALUES ('admin', '1234');
+INSERT INTO `dbprod`.`Indicador` (codigo, nombre, usuario, formula) VALUES ('RC','Razon Corriente', 'admin', 'AC/PC'),
+									('EPAT', 'Endeudamiento Patrimonial', 'admin', 'PT/PAT'),
+									('APAL', 'Apalancamiento', 'admin', 'AT/PAT'),
+									('RV', 'Rotacion de Ventas', 'Usuario1', 'V/AT'),
+									('B', 'Beneficio', 'Usuario1', 'V-C'),
+									('ROA', 'Rentabilidad del Activo', 'Usuario1', 'B/AT'),
+									('ROE', 'Rentabilidad sobre Patrimonio', 'Usuario1', 'B/PAT'),
+                                    ('INGR','Ingreso Neto','admin','INOC-INOD');
 
-INSERT INTO `dbprod`.`Empresa` (nombre) VALUES ('Facebook'),
-				     ('Twitter');
+INSERT INTO `dbprod`.`Condicion` (codigo, nombre, tipo, formula, usuario) VALUES ('POS', 'Positivo', 'Taxativa', '>0', 'admin'),
+										('NEG', 'Negativo', 'Prioritaria', '<0', 'Usuario1'),
+                                        ('INGRPOS','Ingreso Neto mayor a cero','Taxativa','INGR>0','admin'),
+                                        ('INGRALTO','Ingreso Neto mayor a un millon','Prioritaria','INGR>1000000','admin');
+                                        
+INSERT INTO `dbprod`.`Metodologia` (codigo,descripcion,condiciones,usuario) VALUES ('MET1','Metodologia mixta','INGRPOS;INGRALTO', 'admin'),
+										('MET2','Metodologia con condicion prioritaria','INGRALTO', 'admin'),
+                                        ('MET','Metodologia con condicion taxativa','INGRPOS', 'admin');

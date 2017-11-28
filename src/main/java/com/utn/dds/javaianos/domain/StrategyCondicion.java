@@ -1,9 +1,7 @@
 package com.utn.dds.javaianos.domain;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
@@ -20,6 +18,15 @@ public abstract class StrategyCondicion implements Serializable {
     private String codigo;
     private String nombre;
     private String formula;
+    private String usuario;
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
 
     public String getNombre() {
         return nombre;
@@ -50,12 +57,11 @@ public abstract class StrategyCondicion implements Serializable {
 
     ;
     
-    public StrategyCondicion(String codigo, String nombre, String formula) {
+    public StrategyCondicion(String codigo, String nombre, String formula, String usuario) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.formula = formula;
+        this.usuario = usuario;
     }
-
-    public abstract void evaluarCondicion(Integer periodo, EmpresaValor empresaValor);
 
 }

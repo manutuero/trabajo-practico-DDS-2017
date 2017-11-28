@@ -3,6 +3,7 @@ package com.utn.dds.javaianos.serviceTest;
 import com.utn.dds.javaianos.domain.CondicionPrioritaria;
 import com.utn.dds.javaianos.repository.CondicionPrioritariaRepository;
 import com.utn.dds.javaianos.service.CondicionPrioritariaService;
+import com.utn.dds.javaianos.service.CondicionService;
 import javax.transaction.Transactional;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
@@ -18,7 +19,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @Transactional
 public class CondicionPrioritariaServiceImplTest {
     @Autowired
-    CondicionPrioritariaService condicionPrioritariaService;
+    CondicionService condicionService;
     
     @Autowired
     CondicionPrioritariaRepository condicionPrioritariaRepo;
@@ -29,9 +30,10 @@ public class CondicionPrioritariaServiceImplTest {
         condicion.setCodigo("testPrio");
         condicion.setFormula("IN>2");
         condicion.setNombre("TEsteo");
+        condicion.setUsuario("system");
         
 
-        int resultado = condicionPrioritariaService.saveCondicion(condicion);
+        int resultado = condicionService.saveCondicion(condicion);
 
         CondicionPrioritaria condicionGuardada = condicionPrioritariaRepo.findByCodigo("testPrio");
 

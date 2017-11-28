@@ -16,45 +16,44 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class CondicionRestController {
-    
+
     @Autowired
     private CondicionService condicionService;
-    
-    @Autowired
-    private CondicionTaxativaService condicionTaxativaService;
-    
-    @Autowired
-    private CondicionPrioritariaService condicionPrioritariaService;
-        
+
+//    @Autowired
+//    private CondicionTaxativaService condicionTaxativaService;
+//
+//    @Autowired
+//    private CondicionPrioritariaService condicionPrioritariaService;
     @RequestMapping(value = "/api/nueva-condicion-taxativa", method = RequestMethod.POST)
-    public JsonResponse guardarCondicionTaxativa(@RequestBody CondicionTaxativa condicion)
-    {
-        Integer resultado = condicionTaxativaService.saveCondicion(condicion);
+    public JsonResponse guardarCondicionTaxativa(@RequestBody CondicionTaxativa condicion) {
+        //Integer resultado = condicionTaxativaService.saveCondicion(condicion);
+        Integer resultado = condicionService.saveCondicion(condicion);
         JsonResponse jsonResponse = new JsonResponse(resultado.toString());
         return jsonResponse;
     }
-    
+
     @RequestMapping(value = "/api/nueva-condicion-prioritaria", method = RequestMethod.POST)
-    public JsonResponse guardarCondicionPrioritaria(@RequestBody CondicionPrioritaria condicion)
-    {
-        Integer resultado = condicionPrioritariaService.saveCondicion(condicion);
+    public JsonResponse guardarCondicionPrioritaria(@RequestBody CondicionPrioritaria condicion) {
+//        Integer resultado = condicionPrioritariaService.saveCondicion(condicion);
+        Integer resultado = condicionService.saveCondicion(condicion);
         JsonResponse jsonResponse = new JsonResponse(resultado.toString());
         return jsonResponse;
     }
-    
+
     @RequestMapping(value = "/api/condiciones", method = RequestMethod.GET)
-    public List<StrategyCondicion> obtenerCondiciones() {
-        return condicionService.getAllCondiciones();
+    public List<StrategyCondicion> obtenerCondiciones(@RequestParam(name = "usuario") String usuario) {
+        return condicionService.getAllCondiciones(usuario);
     }
-    
+
     @RequestMapping(value = "/api/condicion", method = RequestMethod.GET)
     public StrategyCondicion obtenerCondicion(@RequestParam(name = "codigo") String codigo) {
         return condicionService.findCondicionByCodigo(codigo);
     }
+
     @RequestMapping(value = "/api/eliminar-condicion", method = RequestMethod.POST)
     public Integer eliminarCondicion(@RequestParam(name = "codigo") String codigo) {
         return condicionService.eliminarCondicion(codigo);
     }
-    
-    
+
 }

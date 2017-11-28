@@ -1,3 +1,5 @@
+/* global message */
+
 function obtenerValoresCuentas() {
     $('#btn-consultar').click(function () {
 
@@ -69,6 +71,7 @@ function abrirModalConsultarValores() {
 function cerrarModalCalcularValores() {
     $('#btn-cerrar-consultar-valores').click(function () {
         limpiarGrillaValores();
+        $('#input-periodo').val("");
     });
 }
 ;
@@ -78,11 +81,11 @@ function limpiarGrillaValores() {
         $('#cotizaciones tr').remove();
     });
 }
+;
 
 $(document).ready(function () {
-    $('#a-user').append(getCookie("user")+'<b class="caret"></b>');
-    
-    
+    $('#a-user').append(getCookie("user") + '<b class="caret"></b>');
+  
     limpiarGrillaValores();
     abrirModalConsultarValores();
     cerrarModalCalcularValores();
@@ -93,12 +96,59 @@ $(document).ready(function () {
     if (!window.FileReader) {
         alert('This browser does not support the FileReader API.');
     }
+    mensajeCuentas();
+    mensajeCoti();
+
+
+
 });
+
+function mensajeCuentas()
+{
+    if ($('#info-cuentas').text() == "ok")
+    {
+        swal(
+                'Bien hecho!',
+                'Las cuentas se han cargado correctamente!',
+                'success'
+                );
+    }
+    if ($('#info-cuentas').text() == "nook")
+    {
+        swal(
+                'ERROR',
+                'Las cuentas NO pudieron ser cargadas',
+                'error'
+                );
+    }
+
+}
+
+function mensajeCoti()
+{
+    if ($('#info-coti').text() == "ok")
+    {
+        swal(
+                'Bien hecho!',
+                'Las Cotizaciones se han cargado correctamente!',
+                'success'
+                );
+    }
+    if ($('#info-coti').text() == "nook")
+    {
+        swal(
+                'ERROR',
+                'Las Cotizaciones NO pudieron ser cargadas',
+                'error'
+                );
+    }
+
+}
 
 function getCookie(cname) {
     var name = cname + "=";
     var ca = document.cookie.split(';');
-    for(var i = 0; i < ca.length; i++) {
+    for (var i = 0; i < ca.length; i++) {
         var c = ca[i];
         while (c.charAt(0) == ' ') {
             c = c.substring(1);

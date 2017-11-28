@@ -2,6 +2,7 @@ package com.utn.dds.javaianos.serviceTest;
 
 import com.utn.dds.javaianos.domain.CondicionTaxativa;
 import com.utn.dds.javaianos.repository.CondicionTaxativaRepository;
+import com.utn.dds.javaianos.service.CondicionService;
 import com.utn.dds.javaianos.service.CondicionTaxativaService;
 import javax.transaction.Transactional;
 import static org.junit.Assert.assertEquals;
@@ -18,7 +19,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @Transactional
 public class CondicionTaxativaServiceImplTest {
     @Autowired
-    CondicionTaxativaService condicionTaxativaService;
+    CondicionService condicionService;
     
     @Autowired
     CondicionTaxativaRepository condicionTaxativaRepo;
@@ -29,9 +30,10 @@ public class CondicionTaxativaServiceImplTest {
         condicion.setCodigo("testTax");
         condicion.setFormula("IN<5");
         condicion.setNombre("TEste");
+        condicion.setUsuario("system");
         
 
-        int resultado = condicionTaxativaService.saveCondicion(condicion);
+        int resultado = condicionService.saveCondicion(condicion);
 
         CondicionTaxativa condicionGuardada = condicionTaxativaRepo.findByCodigo("testTax");
 

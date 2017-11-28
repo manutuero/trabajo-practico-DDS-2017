@@ -1,7 +1,6 @@
 $(document).ready(function () {
     $('#a-user').append(getCookie("user")+'<b class="caret"></b>');
     $('#titulo').append(getCookie("user"));
-    getCookie(cname);
 });
 
 function getCookie(cname) {

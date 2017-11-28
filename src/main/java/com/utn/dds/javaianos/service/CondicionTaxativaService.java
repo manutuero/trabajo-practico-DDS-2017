@@ -2,12 +2,10 @@
 package com.utn.dds.javaianos.service;
 
 import com.utn.dds.javaianos.domain.CondicionTaxativa;
-import java.util.List;
-
+import com.utn.dds.javaianos.domain.EmpresaValor;
 
 public interface CondicionTaxativaService {
     public CondicionTaxativa findCondicionByNombre(String nombre);
     public CondicionTaxativa findCondicionByCodigo(String codigo);
-    public Integer saveCondicion(CondicionTaxativa condicion);
-    public List<CondicionTaxativa> getAllCondiciones();
+    public void evaluarCondicion(CondicionTaxativa condicion, Integer periodo, EmpresaValor empresaValor);
 }

@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
         <link href="css/heroic-features.css" rel="stylesheet">
         <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css" type="text/css">
+        <link rel="stylesheet" href="css/sweetalert2.min.css">
     </head>
     <body>
         <!-- Navigation bar -->
@@ -21,7 +22,7 @@
 
                 <ul class="nav navbar-nav">
                     <li>
-                        <form action="IndexServlet" class="nav navbar-nav" method="post">
+                        <form action="IndexServlet.jsp" class="nav navbar-nav" method="post">
                             <button type="submit" class="btn btn-link navbar-btn">Home </button>
                         </form>
                     </li>
@@ -64,7 +65,7 @@
                             <p><font size="3">Carga de cuentas empresariales</font></p>
                             <p>
                                 <!-- Dipara un modal al apretar el boton -->
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-cargar-cuentas">
+                                <button type="button" id="btn-abrir-cargar-cuentas" class="btn btn-primary" data-toggle="modal" data-target="#modal-cargar-cuentas">
                                     Abrir
                                 </button>
                             </p>
@@ -79,7 +80,7 @@
                             <p><font size="3">Carga de cotizaciones de cuentas segun empresa y periodo</font></p>
                             <p>
                                 <!-- Dipara un modal al apretar el boton -->
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-cargar-cotizaciones">
+                                <button type="button" id="btn-abrir-cargar-cotizaciones" class="btn btn-primary" data-toggle="modal" data-target="#modal-cargar-cotizaciones">
                                     Abrir
                                 </button>
                             </p>
@@ -216,12 +217,17 @@
         </div>
     </div> 
 
+    <p id="info-cuentas" hidden>${messageCuentas}</p>
+    <p id="info-coti" hidden>${messageCoti}</p>
+
     <!-- Script files -->
     <script src="js/vendor/jquery.min.js"></script>
     <script src="js/vendor/moment.min.js"></script>
     <script src="js/vendor/bootstrap.min.js"></script>
     <script src="js/vendor/bootstrap-datetimepicker.min.js"></script>
     <script src="js/app/eventos-cuentas.js"></script>
+    <script src="js/vendor/sweetalert2.min.js"></script>
+
 
 </body>
 </html>

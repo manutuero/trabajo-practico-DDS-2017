@@ -2,7 +2,6 @@ package com.utn.dds.javaianos.controller.rest;
 
 import com.utn.dds.javaianos.domain.EmpresaValor;
 import com.utn.dds.javaianos.domain.Metodologia;
-import com.utn.dds.javaianos.service.CondicionService;
 import com.utn.dds.javaianos.service.MetodologiaService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +17,6 @@ public class MetodologiaRestController {
     @Autowired
     private MetodologiaService metodologiaService;
 
-    @Autowired
-    private CondicionService condicionService;
-
     @RequestMapping(value = "/api/nueva-metodologia", method = RequestMethod.POST)
     public JsonResponse guardarMetodologia(@RequestBody Metodologia metodologia) {
         Integer resultado = metodologiaService.saveMetodologia(metodologia);
@@ -29,8 +25,8 @@ public class MetodologiaRestController {
     }
 
     @RequestMapping(value = "/api/metodologias", method = RequestMethod.GET)
-    public List<Metodologia> obtenerMetodologias() {
-        return metodologiaService.getAllMetodologias();
+    public List<Metodologia> obtenerMetodologias(@RequestParam(name = "usuario")String usuario) {
+        return metodologiaService.getAllMetodologias(usuario);
     }
 
     @RequestMapping(value = "/api/evaluar-metodologia", method = RequestMethod.POST)
@@ -38,5 +34,15 @@ public class MetodologiaRestController {
             @RequestParam(name = "periodo") Integer periodo) {
         Metodologia metodologia = metodologiaService.findMetodologia(codigo);
         return metodologiaService.evaluarMetodologia(metodologia, periodo);
+    }
+
+    @RequestMapping(value = "/api/metodologia", method = RequestMethod.GET)
+    public Metodologia obtenerMetodologia(@RequestParam(name = "codigo") String codigo) {
+        return metodologiaService.findMetodologia(codigo);
+    }
+
+    @RequestMapping(value = "/api/eliminar-metodologia", method = RequestMethod.POST)
+    public Integer eliminarmetodologia(@RequestParam(name = "codigo") String codigo) {
+        return metodologiaService.eliminarMetodologia(codigo);
     }
 }

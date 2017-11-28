@@ -16,16 +16,13 @@ public class Metodologia implements Serializable {
     private String codigo;
     private String descripcion;
     private String condiciones; //atributo con las condiciones como string separados por ;
+    private String usuario;
 
     @Transient
     public List<StrategyCondicion> listCondiciones;
 
-    //@Transient
-    //private List<String> liststrCondiciones;
-
     public Metodologia() {
         this.listCondiciones = new ArrayList();
-        //this.liststrCondiciones = new ArrayList();
     }
 
     public void setCondiciones(String condiciones) {
@@ -66,12 +63,12 @@ public class Metodologia implements Serializable {
         this.listCondiciones = listCondiciones;
     }
 
-   /* public List<String> getListstrCondiciones() {
-        return liststrCondiciones;
+    public String getUsuario() {
+        return usuario;
     }
 
-    public void setListstrCondiciones(List<String> liststrCondiciones) {
-        this.liststrCondiciones = liststrCondiciones;
-    }*/
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
 
 }

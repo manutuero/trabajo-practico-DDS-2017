@@ -156,13 +156,6 @@
                             <textarea id="textarea-formula-condicion" class="form-control" rows="2" style="max-width:100%;"></textarea>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div id="warning-message" class="alert alert-warning" hidden="true">
-                                <strong>Advertencia!</strong> Los campos no deben estar vacios.
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <div class="modal-footer">
                     <button id="btn-eliminar-condicion" style="display:none" type="submit" class="btn btn-danger pull-left" value="Borrar" style="">Eliminar</button>
@@ -181,7 +174,10 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Gestion Metodologia <button id="btn-mostrar-metodologias" type="button"><span class="glyphicon glyphicon-folder-open"></span> </button> </h4>
+                    <h4 class="modal-title">Gestion Metodologia <button id="btn-mostrar-metodologias" type="button"><span class="glyphicon glyphicon-folder-open"></span> </button> 
+                        <div id="div-metodologias" style="display:none;">
+                            <p><select onChange="traerMetodologia()" id="list-metodologias2" class="form-control" name="size"></select></p>
+                        </div></h4>
                 </div>
                 <div class="modal-body">
                     <div class="row">
@@ -206,13 +202,6 @@
                         </div>
                         <div class="col-xs-12">
                             <div class="input_fields_wrap"></div> 
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div id="warning-message" class="alert alert-warning" hidden="true">
-                                <strong>Advertencia!</strong> Los campos no deben estar vacios.
-                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">

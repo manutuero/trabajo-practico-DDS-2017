@@ -48,8 +48,24 @@ public class MetodologiaServiceImpl implements MetodologiaService {
     }
 
     @Override
-    public List<Metodologia> getAllMetodologias() {
-        return metodologiaRepository.findAll();
+    public List<Metodologia> getAllMetodologias(String usuario) {
+        List<Metodologia> metodologias = metodologiaRepository.findByUsuario("system");
+        metodologias.addAll(metodologiaRepository.findByUsuario(usuario));
+        return metodologias;
+    }
+
+    @Override
+    public Integer eliminarMetodologia(String codigo) {
+        Integer num = 0;
+        //0 si no se borro, 1 si se borro
+        try {
+            metodologiaRepository.delete(metodologiaRepository.findByCodigo(codigo));
+            num = 1;
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        return num;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.utn.dds.javaianos.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -14,17 +15,19 @@ public class Metodologia implements Serializable {
     @Id
     private String codigo;
     private String descripcion;
-    private String condiciones;
-
-    public void setCondiciones(String condiciones) {
-        this.condiciones = condiciones;
-    }
+    private String condiciones; //atributo con las condiciones como string separados por ;
+    private String usuario;
 
     @Transient
     public List<StrategyCondicion> listCondiciones;
 
-    @Transient
-    private List<String> liststrCondiciones;
+    public Metodologia() {
+        this.listCondiciones = new ArrayList();
+    }
+
+    public void setCondiciones(String condiciones) {
+        this.condiciones = condiciones;
+    }
 
     public void setCondiciones() {
         for (StrategyCondicion condicion : listCondiciones) {
@@ -60,12 +63,12 @@ public class Metodologia implements Serializable {
         this.listCondiciones = listCondiciones;
     }
 
-    public List<String> getListstrCondiciones() {
-        return liststrCondiciones;
+    public String getUsuario() {
+        return usuario;
     }
 
-    public void setListstrCondiciones(List<String> liststrCondiciones) {
-        this.liststrCondiciones = liststrCondiciones;
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
 }

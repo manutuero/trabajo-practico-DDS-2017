@@ -71,7 +71,7 @@ public class IndicadorServiceImplTest {
         Indicador indicador = new Indicador();
         indicador.setCodigo("I1");
         indicador.setNombre("I1");
-        indicador.setUsuario("definido por el usuario");
+        indicador.setUsuario("admin");
         indicador.setFormula("INOC");
 
         int resultado = indicadorService.saveIndicador(indicador);
@@ -79,7 +79,7 @@ public class IndicadorServiceImplTest {
         Indicador indicadorGuardado = indicadorRepository.findByCodigo("I1");
 
         assertEquals("I1", indicadorGuardado.getNombre());
-        assertEquals("definido por el usuario", indicadorGuardado.getUsuario());
+        assertEquals("admin", indicadorGuardado.getUsuario());
         assertEquals("INOC", indicadorGuardado.getFormula());
         assertEquals(0, resultado);
     }
@@ -141,7 +141,7 @@ public class IndicadorServiceImplTest {
         Indicador indicador = new Indicador();
         indicador.setCodigo("unCodigo");
         indicador.setNombre("I_Test");
-        indicador.setUsuario("definido por el usuario");
+        indicador.setUsuario("admin");
         indicador.setFormula("INETO*INOD+5");
 
         indicadorService.saveIndicador(indicador);

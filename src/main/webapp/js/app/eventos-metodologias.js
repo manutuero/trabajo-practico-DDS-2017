@@ -53,15 +53,20 @@ function initListaTipoCondiciones() {
 
 }
 
-function initListaMetodologias() {
-    var listaMetodologias = $('#list-metodologias');
+function initListaMetodologias(lista) {
+    var listaMetodologias = lista;
 
     listaMetodologias.empty();
     listaMetodologias.append('<option value="" disabled selected>Seleccione una metodologia</option>');
 
+    var data = {
+        usuario: getCookie("user")
+    };
+
     $.ajax({
         url: 'http://localhost:8084/TpIntegradorDDS/api/metodologias',
         type: 'GET',
+        data: data,
         success: function (metodologias) {
             $.each(metodologias, function (indice, metodologia) {
                 listaMetodologias.append('<option value="' + metodologia.codigo + '">' + metodologia.descripcion + '</option>');
@@ -72,7 +77,6 @@ function initListaMetodologias() {
 ;
 
 function agregarCondicion() {
-
     var max_fields = 10; //maximum input boxes allowed
     var wrapper = $(".input_fields_wrap"); //Fields wrapper
 
@@ -102,7 +106,6 @@ function insertarIndicador() {
 ;
 function traerCondicion() {
     var codigo = $('#list-condiciones').val();
-
     var data = {
         codigo: codigo
     };
@@ -124,7 +127,6 @@ function traerCondicion() {
 ;
 
 function validarIngresoNuevaCondicion() {
-
     $('#btn-crear-condicion').click(function () {
         cleanResponses();
 
@@ -204,55 +206,61 @@ function validarIngresoNuevaMetodologia() {
     $('#btn-crear-metodologia').click(function () {
         cleanResponses();
 
-
         var codigo = $('#input-codigo-met').val();
         var descripcion = $('#input-descripcion-met').val();
+        var usuario = getCookie("user");
         var condiciones = [];
-
 
         $('.btn-info').each(function ()
         {
             condiciones.push($(this).val());
-
-
         });
 
-        var data = {
-            codigo: codigo,
-            descripcion: descripcion,
-            condiciones: condiciones.join(";")
-        };
+        if (codigo === '' || descripcion === '') {
+            swal(
+                    'Advertencia',
+                    'Los campos no deben estar vacios.',
+                    'warning'
+                    );
+        } else {
 
+            var data = {
+                codigo: codigo,
+                descripcion: descripcion,
+                condiciones: condiciones.join(";"),
+                usuario: usuario
+            };
 
-        $.ajax({
-            url: 'http://localhost:8084/TpIntegradorDDS/api/nueva-metodologia',
-            type: 'POST',
-            data: JSON.stringify(data),
-            dataType: 'json',
-            contentType: 'application/json',
-            accept: 'application/json',
-            success: function (response) {
-                if (response.resultado === "0") {
-                    cleanResponses();
-                    cleanForm();
-                    $('#modal-nueva-metod').modal("hide");
-                    swal(
-                            'Bien hecho!',
-                            'La metodologia ha sido guardada',
-                            'success'
-                            )
+            $.ajax({
+                url: 'http://localhost:8084/TpIntegradorDDS/api/nueva-metodologia',
+                type: 'POST',
+                data: JSON.stringify(data),
+                dataType: 'json',
+                contentType: 'application/json',
+                accept: 'application/json',
+                success: function (response) {
+                    if (response.resultado === "0") {
+                        cleanResponses();
+                        cleanForm();
+                        $('#modal-nueva-metod').modal("hide");
+                        swal(
+                                'Bien hecho!',
+                                'La metodologia ha sido guardada',
+                                'success'
+                                );
+                    }
+                    if (response.resultado === "1") {
+                        cleanResponses();
+                        swal(
+                                'ERROR!!',
+                                'La metodologia NO fue guardada',
+                                'error'
+                                );
+                    }
+
                 }
-                if (response.resultado === "1") {
-                    cleanResponses();
-                    swal(
-                            'ERROR!!',
-                            'La metodologia NO fue guardada',
-                            'error'
-                            );
-                }
-
-            }
-        });
+            });
+        }
 
     }
     );
@@ -262,15 +270,17 @@ function validarIngresoNuevaMetodologia() {
 function evaluarMetodologia() {
     $('#btn-evaluar-metodologia').click(function () {
         var metodologia = $('#list-metodologias').val();
-        var empresas = $('#list-empresas').val();
         var periodo = $('#input-anio').val();
         var data = {
             metodologia: metodologia,
-            empresas: empresas,
             periodo: periodo
         };
         if (metodologia === null || periodo === "") {
-            alert("No se aceptan campos vacios");
+            swal(
+                    'Advertencia',
+                    'Los campos no deben estar vacios.',
+                    'warning'
+                    );
         } else {
             $('#grilla').css('display', 'inline-block');
             $.ajax({
@@ -281,7 +291,7 @@ function evaluarMetodologia() {
                     var $resultados = $('#resultado');
                     $.each(valores, function (i, valor) {
                         console.log(valor);
-                        $resultados.append('<tr><td>' + valor.empresa + '</td><td>'
+                        $resultados.append('<tr><td>' + valor.empresa.nombre + '</td><td>'
                                 + valor.valor + '</td></tr>');
                     });
                 }
@@ -293,10 +303,10 @@ function evaluarMetodologia() {
     );
 }
 
-function initListaEmpresas() {
+function initListaEmpresas() { //es visual, para ver que empresas hay
     var listEmpresas = $('#list-empresas');
     listEmpresas.empty();
-    //listEmpresas.append('<option value="" disabled selected>Empresas a evaluar</option>');
+    listEmpresas.append('<option value="" disabled selected>Empresas a evaluar</option>');
     $.ajax({
         url: 'http://localhost:8084/TpIntegradorDDS/api/empresas',
         type: 'GET',
@@ -308,12 +318,18 @@ function initListaEmpresas() {
     });
 }
 
-function mostrarCondiciones()
-{
+function datepicker() {
+    $('#datetimepicker').datetimepicker({
+        viewMode: 'years',
+        format: 'YYYY'
+    });
+}
+;
+
+function mostrarCondiciones() {
     $('#btn-mostrar-condiciones').click(function () {
         $('#div-condiciones').css('display', 'inline-block');
         initListaCondiciones($('#list-condiciones'));
-
     });
 }
 ;
@@ -346,14 +362,48 @@ function eliminarCondicion() {
                                 'Borrado',
                                 'La condicion ha sido borrada',
                                 'success'
-                                )
+                                );
 
                     }
                 });
             }
-        })
+        });
 
 
+    });
+
+}
+;
+
+function mostrarMetodologias()
+{
+    $('#btn-mostrar-metodologias').click(function () {
+        $('#div-metodologias').css('display', 'inline-block');
+        initListaMetodologias($('#list-metodologias2'));
+
+    });
+}
+;
+
+function traerMetodologia()
+{
+    var codigo = $('#list-metodologias2').val();
+
+    var data = {
+        codigo: codigo
+    };
+
+    $.ajax({
+        url: 'http://localhost:8084/TpIntegradorDDS/api/metodologia',
+        type: 'GET',
+        data: data,
+        success: function (metodologia) {
+            $('#input-codigo-met').val(metodologia.codigo);
+            $('#input-codigo-met').attr('readonly', true);
+            $('#input-descripcion-met').val(metodologia.descripcion);
+            $('#btn-crear-metodologia').val("Guardar");
+            $('#btn-eliminar-metodologia').css('display', 'inline-block');
+        }
     });
 
 }
@@ -362,20 +412,39 @@ function eliminarCondicion() {
 function eliminarMetodologia() {
     $('#btn-eliminar-metodologia').click(function () {
 
-        var codigo = $('#input-codigo-met').val();
+        swal({
+            title: 'Esta seguro?',
+            text: "No podra revertir los cambios",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Si, borrar!',
+            cancelButtonText: 'Cancelar'
+        }).then(function (result) {
+            if (result.value) {
+                var codigo = $('#input-codigo-met').val();
 
-        var data = {
-            codigo: codigo
-        };
+                var data = {
+                    codigo: codigo
+                };
 
-        $.ajax({
-            url: 'http://localhost:8084/TpIntegradorDDS/api/eliminar-metodologia',
-            type: 'POST',
-            data: data,
-            success: function (response) {
-                alert("La Condicion fue eliminada correctamente");
+                $.ajax({
+                    url: 'http://localhost:8084/TpIntegradorDDS/api/eliminar-metodologia',
+                    type: 'POST',
+                    data: data,
+
+                    success: function (response) {
+                        swal(
+                                'Borrado',
+                                'La metodologia ha sido borrada',
+                                'success'
+                                );
+                    }
+                });
             }
         });
+
 
     });
 
@@ -397,11 +466,12 @@ function abrirModalNuevaCondicion() {
     $('#btn-abrir-nueva-condicion').click(function () {
         cleanForm();
         cleanResponses();
+        mostrarCondiciones();
         initListaIndicadores($('#list-condiciones'));
         $('[data-toggle="popover-formula-condicion"]').popover();
         $('[data-toggle="popover-codigo-condicion"]').popover();
         $('[data-toggle="popover-descripcion-condicion"]').popover();
-        eliminarCondicion()
+        eliminarCondicion();
 
         initListaTipoCondiciones();
         validarIngresoNuevaCondicion();
@@ -409,7 +479,7 @@ function abrirModalNuevaCondicion() {
 }
 ;
 
-function cerrarModalEvaluarCondicion() {
+function cerrarModalNuevaCondicion() {
     $('#btn-cerrar-nueva-condicion').click(function () {
         cleanForm();
         cleanResponses();
@@ -417,15 +487,16 @@ function cerrarModalEvaluarCondicion() {
 }
 ;
 
-
 function abrirModalNuevaMetodologia() {
     $('#btn-abrir-nueva-metodologia').click(function () {
         cleanForm();
         cleanResponses();
+        agregarCondicion();
+        mostrarMetodologias();
         initListaCondiciones($('#list-condiciones2'));
         $('[data-toggle="popover-metodologia-nombre"]').popover();
         $('[data-toggle="popover-metodologia-descripcion"]').popover();
-        eliminarMetodologia()
+        eliminarMetodologia();
         validarIngresoNuevaMetodologia();
     });
 }
@@ -439,22 +510,29 @@ function cerrarModalNuevaMetodologia() {
 }
 ;
 
+function limpiarGrillaValores() {
+    $('.btn-primary').click(function () {
+        $('#resultado tr').remove();
+    });
+}
+
 function abrirModalEvaluarMetodologia() {
     $('#btn-abrir-evaluar-metodologia').click(function () {
         cleanForm();
         cleanResponses();
-        initListaMetodologias();
+        $('[data-toggle="popover-evaluar-metodologia"]').popover();
+        initListaMetodologias($('#list-metodologias'));
         initListaEmpresas();
-        evaluarMetodologia();
-
+        datepicker();
+        limpiarGrillaValores();
     });
 }
 ;
 
 function cerrarModalEvaluarMetodologia() {
     $('#btn-cerrar-evaluar-metod').click(function () {
-        cleanForm();
-        cleanResponses();
+        limpiarGrillaValores();
+        $('#input-anio').val("");
     });
 }
 ;
@@ -464,26 +542,20 @@ $(document).ready(function () {
 
     $('#a-user').append(getCookie("user") + '<b class="caret"></b>');
 
-
     cleanForm();
     cleanResponses();
 
-
     // eventos
     abrirModalNuevaCondicion();
-    mostrarCondiciones();
-    //cerrarModalNuevacondicion();
+    cerrarModalNuevaCondicion();
 
     abrirModalNuevaMetodologia();
-    agregarCondicion();
-    //validarIngresoNuevaMetodologia();
     cerrarModalNuevaMetodologia();
 
+    limpiarGrillaValores();
     abrirModalEvaluarMetodologia();
     cerrarModalEvaluarMetodologia();
-
-
-
+    evaluarMetodologia();
     //validarIngresoNuevaMetodologia();
 
 });

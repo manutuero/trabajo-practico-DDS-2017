@@ -37,16 +37,19 @@ public class MetodologiaServiceImplTest {
         Metodologia metodologia = new Metodologia();
         metodologia.setCodigo("unCodigo");
         metodologia.setDescripcion("unaDescripcion");
+        metodologia.setUsuario("admin");
         //genero una condicion
         CondicionTaxativa condicion = new CondicionTaxativa();
         condicion.setCodigo("testTax");
         condicion.setFormula("IN<5");
         condicion.setNombre("TEste");
+        condicion.setUsuario("admin");
         //genero otra
         CondicionTaxativa condicion2 = new CondicionTaxativa();
         condicion2.setCodigo("testTax2");
         condicion2.setFormula("IN>5");
         condicion2.setNombre("test");
+        condicion2.setUsuario("admin");
         //lista de condiciones
         List<StrategyCondicion> lstCond = new ArrayList<>();
         lstCond.add(condicion);

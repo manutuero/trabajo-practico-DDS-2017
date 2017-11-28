@@ -264,6 +264,7 @@ function abrirModalEvaluarIndicador() {
         initListaIndicadores($('#list-indicadores'));
         initListaEmpresas();
         datepicker();
+        $('#input-anio').val("");
     });
 }
 ;
@@ -281,7 +282,7 @@ function datepicker() {
 $(document).ready(function () {
     $('#a-user').append(getCookie("user") + '<b class="caret"></b>');
 
-
+  
     cleanForm();
     cleanResponses();
 

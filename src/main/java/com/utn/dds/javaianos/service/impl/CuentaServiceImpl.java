@@ -6,6 +6,8 @@ import com.utn.dds.javaianos.domain.Empresa;
 import com.utn.dds.javaianos.repository.CuentaRepository;
 import com.utn.dds.javaianos.service.CuentaService;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
@@ -44,6 +46,30 @@ public class CuentaServiceImpl implements CuentaService {
         }
     }
 
+    @Override
+    public void saveCuentas(Path path){
+        try {
+            byte[] bytes = Files.readAllBytes(path);
+            String data = new String(bytes);
+            String[] rows = data.split("\\n");
+
+            for (String row : rows) {
+                StringTokenizer st = new StringTokenizer(row, ",");
+
+                Cuenta cuenta = new Cuenta();
+                try {
+                    cuenta.setCodigo(st.nextToken());
+                    cuenta.setNombre(st.nextToken());
+                } catch (NoSuchElementException ex) {
+                    cuenta.setNombre(null);
+                }
+                cuentaRepository.save(cuenta);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(CuentaServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     @Override
     public Double calcularValor(Componente componente, Empresa empresa, Integer periodo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

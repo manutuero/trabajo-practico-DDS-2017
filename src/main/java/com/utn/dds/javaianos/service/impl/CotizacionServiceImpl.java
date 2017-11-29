@@ -9,6 +9,8 @@ import com.utn.dds.javaianos.repository.CuentaRepository;
 import com.utn.dds.javaianos.repository.EmpresaRepository;
 import com.utn.dds.javaianos.service.CotizacionService;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
@@ -48,6 +50,28 @@ public class CotizacionServiceImpl implements CotizacionService {
             Logger.getLogger(CuentaServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    @Override
+    public void saveCotizaciones(Path path){
+        try {
+            byte[] bytes = Files.readAllBytes(path);
+            String data = new String(bytes);
+            String[] rows = data.split("\\n");
+
+            for (String row : rows) {
+                StringTokenizer st = new StringTokenizer(row, ",");
+                Cotizacion cotizacion = new Cotizacion();
+                cotizacion.setCuenta(cuentaRepository.findByCodigo(st.nextToken()));
+                cotizacion.setEmpresa(empresaRepository.findByNombre(st.nextToken()));
+                cotizacion.setPeriodo(Integer.parseInt(st.nextToken()));
+                cotizacion.setValor(Double.parseDouble(st.nextToken()));
+                cotizacionRepository.save(cotizacion);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(CuentaServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
 
     @Override
     public Cotizacion buscarCotizacion(Cuenta cuenta, Empresa empresa, Integer periodo) {

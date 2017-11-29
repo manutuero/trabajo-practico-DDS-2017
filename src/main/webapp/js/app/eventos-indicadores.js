@@ -1,12 +1,8 @@
 function initListaIndicadores(unaLista) {
-    var listaIndicadores = unaLista;
 
     var data = {
         usuario: getCookie("user")
     };
-
-    listaIndicadores.empty();
-    listaIndicadores.append('<option value="" disabled selected>Seleccione un indicador</option>');
 
     $.ajax({
         url: 'http://localhost:8084/TpIntegradorDDS/api/indicadores',
@@ -14,7 +10,7 @@ function initListaIndicadores(unaLista) {
         data: data,
         success: function (indicadores) {
             $.each(indicadores, function (indice, indicador) {
-                listaIndicadores.append('<option value="' + indicador.codigo + '">' + indicador.nombre + '</option>');
+                unaLista.append('<option value="' + indicador.codigo + '">' + indicador.nombre + '</option>');
             });
         }
     });
@@ -23,15 +19,15 @@ function initListaIndicadores(unaLista) {
 }
 ;
 
-function mostrarIndicadores()
-{
-    $('#btn-mostrar-indicadores').click(function () {
-        $('#div-indicadores').css('display', 'inline-block');
-        initListaIndicadores($('#list-indicadores2'));
-
-    });
-}
-;
+//function mostrarIndicadores()
+//{
+//    $('#btn-mostrar-indicadores').click(function () {
+//        $('#div-indicadores').css('display', 'inline-block');
+//        initListaIndicadores($('#list-indicadores2'));
+//
+//    });
+//}
+//;
 
 function traerIndicador()
 {
@@ -73,14 +69,12 @@ function calcularIndicador()
         };
 
         if (anio === '' || empresa === '') {
-            $('#warning-message').show();
             swal(
                     'Advertencia',
                     'Los campos no deben estar vacios.',
                     'warning'
                     );
         } else {
-            $('#warning-message').hide();
 
             $.ajax({
                 url: 'http://localhost:8084/TpIntegradorDDS/api/calcular-indicador',
@@ -107,7 +101,7 @@ function validarIngresoNuevoIndicador() {
         if (codigo === '' || nombre === '' || formula === '') {
             swal(
                     'Advertencia',
-                    'Los campos no deben estar vacios.',
+                    'Los campos no deben estar vaciosSSSSS.',
                     'warning'
                     );
         } else {
@@ -132,7 +126,6 @@ function validarIngresoNuevoIndicador() {
                         cleanResponses();
                         cleanForm();
                         $('#modal-nuevo-indi').modal("hide");
-//                        $('#success-message').show();
                         swal(
                                 'Bien hecho!',
                                 'El Indicador ha sigo guardado correctamente!',
@@ -141,7 +134,6 @@ function validarIngresoNuevoIndicador() {
                     }
                     if (response.resultado === "1") {
                         cleanResponses();
-//                        $('#syntax-error-message').show();
                         swal(
                                 'El Indicador NO fue guardado',
                                 'La formula ingresada posee errores de sintaxis',
@@ -165,7 +157,6 @@ function validarIngresoNuevoIndicador() {
 function eliminarIndicador()
 {
     $('#btn-eliminar-indicador').click(function () {
-
 
         swal({
             title: 'Esta seguro?',
@@ -206,18 +197,17 @@ function eliminarIndicador()
 }
 ;
 
-function initListaEmpresas() {
-    var listaEmpresas = $('#list-empresas');
+function initListaEmpresas(lista) {
 
-    listaEmpresas.empty();
-    listaEmpresas.append('<option value="" disabled selected>Seleccione una empresa</option>');
+    lista.empty();
+    lista.append('<option value="" disabled selected>Seleccione una empresa</option>');
 
     $.ajax({
         url: 'http://localhost:8084/TpIntegradorDDS/api/empresas',
         type: 'GET',
         success: function (empresas) {
             $.each(empresas, function (indice, empresa) {
-                listaEmpresas.append('<option>' + empresa.nombre + '</option>');
+                lista.append('<option>' + empresa.nombre + '</option>');
             });
         }
     });
@@ -227,9 +217,6 @@ function initListaEmpresas() {
 
 
 function cleanResponses() {
-    $('#warning-message').hide();
-    $('#syntax-error-message').hide();
-    $('#input-error-message').hide();
 }
 ;
 
@@ -239,14 +226,20 @@ function cleanForm() {
 
 function abrirModalNuevoIndicador() {
     $('#btn-abrir-nuevo-indicador').click(function () {
-        mostrarIndicadores();
+        cleanForm();
+        cleanResponses();
+        //mostrarIndicadores();
+        $('#input-codigo').attr('readonly', false);
+        $('#list-indicadores2').empty();
+        $('#list-indicadores2').append('<option value="" disabled selected>Seleccione un indicador para editarlo</option>');
+        initListaIndicadores($('#list-indicadores2'));
         $('[data-toggle="popover-nombre-indicador"]').popover();
         $('[data-toggle="popover-codigo-indicador"]').popover();
         $('[data-toggle="popover-formula-indicador"]').popover();
         eliminarIndicador();
         //traerIndicador();
-        cleanForm();
-        cleanResponses();
+        validarIngresoNuevoIndicador();
+
     });
 }
 ;
@@ -255,16 +248,26 @@ function cerrarModalNuevoIndicador() {
     $('#btn-cerrar-nuevo-indicador').click(function () {
         cleanForm();
         cleanResponses();
+        $('#input-codigo').val("");
+        $('#input-nombre').val("");
+        $('#textarea-formula').val("");
+        $('#btn-crear').val("Crear");
+        $('#btn-eliminar-indicador').css('display', 'none');
+        //$('#div-metodologias').css('display', 'none');
     });
 }
 ;
 
 function abrirModalEvaluarIndicador() {
     $('#btn-abrir-evaluar-indicador').click(function () {
+        $('#list-indicadores').empty();
+        $('#list-indicadores').append('<option value="" disabled selected>Seleccione un indicador</option>');
         initListaIndicadores($('#list-indicadores'));
-        initListaEmpresas();
+        initListaEmpresas($('#list-empresas'));
         datepicker();
+        calcularIndicador();
         $('#input-anio').val("");
+        $('#text-resultado').val("");
     });
 }
 ;
@@ -282,16 +285,16 @@ function datepicker() {
 $(document).ready(function () {
     $('#a-user').append(getCookie("user") + '<b class="caret"></b>');
 
-  
+
     cleanForm();
     cleanResponses();
 
     // eventos
     abrirModalNuevoIndicador();
     cerrarModalNuevoIndicador();
-    validarIngresoNuevoIndicador();
+    //validarIngresoNuevoIndicador();
     abrirModalEvaluarIndicador();
-    calcularIndicador();
+    //calcularIndicador();
 });
 
 function getCookie(cname) {

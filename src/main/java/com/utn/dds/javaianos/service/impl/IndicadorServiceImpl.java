@@ -1,15 +1,18 @@
 package com.utn.dds.javaianos.service.impl;
 
+import com.mongodb.DuplicateKeyException;
 import com.utn.dds.javaianos.domain.Cotizacion;
 import com.utn.dds.javaianos.domain.Cuenta;
 import com.utn.dds.javaianos.domain.Empresa;
 import com.utn.dds.javaianos.domain.Indicador;
+import com.utn.dds.javaianos.domain.IndicadorMongo;
 import com.utn.dds.javaianos.parser.ExpressionParser;
 import com.utn.dds.javaianos.parser.ParseException;
 import com.utn.dds.javaianos.parser.TokenMgrError;
 import com.utn.dds.javaianos.repository.CotizacionRepository;
 import com.utn.dds.javaianos.repository.CuentaRepository;
 import com.utn.dds.javaianos.repository.IndicadorRepository;
+import com.utn.dds.javaianos.repository.IndicadorRepositoryMongo;
 import com.utn.dds.javaianos.service.IndicadorService;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -38,6 +41,9 @@ public class IndicadorServiceImpl implements IndicadorService {
 
     @Autowired
     private CuentaRepository cuentaRepository;
+
+    @Autowired
+    private IndicadorRepositoryMongo indicadorRepositoryMongo;
 
     @Override
     public Double evaluarIndicador(Indicador indicador, Empresa empresa, Integer periodo) {
@@ -87,8 +93,10 @@ public class IndicadorServiceImpl implements IndicadorService {
             1: error, expresion mal formada en la formula del indicador
             2: error, elementos no existentes en la formula del indicador
          */
+
         if (isValidExpression(indicador.getFormula()) && allComponentsExists(indicador)) {
             indicadorRepository.save(indicador);
+            guardarIndicadorEnMongo(indicador); // Persistimos el indicador en noSQL
             return 0;
         } else if (!isValidExpression(indicador.getFormula())) {
             return 1;
@@ -146,9 +154,25 @@ public class IndicadorServiceImpl implements IndicadorService {
             indicadorRepository.delete(indicadorRepository.findByCodigo(nombre));
             num = 1;
         } catch (Exception e) {
-            System.out.println(e);    
+            System.out.println(e);
         }
 
         return num;
+    }
+
+    @Transactional
+    public void guardarIndicadorEnMongo(Indicador indicador) {
+        try {
+            if (indicadorRepositoryMongo.findByCodigo(indicador.getCodigo()) == null) {
+                IndicadorMongo indicadorMongo = new IndicadorMongo();
+                indicadorMongo.setCodigo(indicador.getCodigo());
+                indicadorMongo.setNombre(indicador.getNombre());
+                indicadorMongo.setUsuario(indicador.getUsuario());
+                indicadorMongo.setFormula(indicador.getFormula());
+
+                indicadorRepositoryMongo.save(indicadorMongo);
+            }
+        } catch (org.springframework.dao.DuplicateKeyException ex) {
+        }
     }
 }

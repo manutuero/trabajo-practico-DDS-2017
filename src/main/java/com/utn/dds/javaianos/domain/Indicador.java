@@ -71,80 +71,9 @@ public class Indicador implements Serializable, Componente {
     public void setComponentes(List<Componente> componentes) {
         this.componentes = componentes;
     }
-    
-//    @Override
-//    public Double calcularValor(String empresa, Integer periodo) {
-//        Double valor = 0.0;
-//        String[] elementos = formula.split("(?<=[-+*/)( ])|(?=[-+*/)( ])");
-//        String formulaFinal = "";
-//        Componente componente = null;
-//
-//        Integer pos=0;
-//        for (String elemento : elementos) {       
-//            if ((elemento.matches("([0-9.]+)")) || (elemento.matches("[-+*/()]"))) {
-//                formulaFinal = formulaFinal + elemento;
-//            } else //Es un componente. Busco su valor. 
-//            {
-//                componente=componentes.get(pos);
-//                pos++;
-//                if(componente.getNombre().equals(elemento)){
-//                    valor=componente.calcularValor(empresa,periodo);
-//                    formulaFinal = formulaFinal + valor.toString();//obtiene el valor en formato string de una cuenta o indicador.
-//                } else 
-//                {
-//                    System.out.println("Error al buscar elemento leido de la formula en la lista de componentes");
-//                }
-//            }
-//        }
-//        System.out.println("Formula final aca: " + formulaFinal);
-//        ScriptEngineManager manager = new ScriptEngineManager();
-//        ScriptEngine engine = manager.getEngineByName("js");
-//        try {
-//            valor = (Double) engine.eval(formulaFinal);
-//        } catch (ScriptException ex) {
-//            Logger.getLogger(Indicador.class.getName()).log(Level.SEVERE, null, ex);
-//            valor = 0.0;
-//        }
-//        return valor;
-//    }
-//
-//    @Override
-//    public void add(Componente componente) {
-//        componentes.add(componente);
-//    }
-//
-//    @Override
-//    public void remove(Componente componente) {
-//        componentes.remove(componente);
-//    }
-//
-//    @Override
-//    public Componente getChild(int i) {
-//        return componentes.get(i);
-//    }
-//
-//    @Override
-//    public Double calcularValor() {
-//        return null;
-//    }
-
-   /* @Override
-    public void add(Componente componente) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
-    public void remove(Componente componente) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String toString() {
+        return String.format("Indicador[codigo=%s, nombre=%s, usuario=%s, formula=%s]", codigo, nombre, usuario, formula);
     }
-
-    @Override
-    public Componente getChild(int i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Double calcularValor(Empresa empresa, Integer periodo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }*/
 }

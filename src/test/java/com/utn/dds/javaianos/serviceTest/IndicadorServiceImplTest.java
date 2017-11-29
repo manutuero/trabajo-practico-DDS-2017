@@ -1,13 +1,10 @@
 package com.utn.dds.javaianos.serviceTest;
 
-import com.utn.dds.javaianos.domain.Cuenta;
 import com.utn.dds.javaianos.domain.Empresa;
 import com.utn.dds.javaianos.domain.Indicador;
-import com.utn.dds.javaianos.repository.EmpresaRepository;
 import com.utn.dds.javaianos.repository.IndicadorRepository;
 import com.utn.dds.javaianos.service.EmpresaService;
 import com.utn.dds.javaianos.service.IndicadorService;
-import java.util.List;
 import javax.transaction.Transactional;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
@@ -31,6 +28,9 @@ public class IndicadorServiceImplTest {
 
     @Autowired
     EmpresaService empresaService;
+    
+/*    @Test
+    public void hello(){}*/
 
     @Test
     public void isValidFormula_conFormulaNoValida_devuelveFalse() {
@@ -167,5 +167,4 @@ public class IndicadorServiceImplTest {
 //        assertEquals(true, indicadores.contains(indicador));
 //
 //    }
-
 }

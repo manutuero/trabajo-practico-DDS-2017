@@ -275,7 +275,7 @@ function evaluarMetodologia() {
                     'warning'
                     );
         } else {
-            $('#grilla').css('display', 'inline-block');
+            $('#grilla').css('display', 'table');
             $.ajax({
                 url: 'http://localhost:8084/TpIntegradorDDS/api/evaluar-metodologia',
                 type: 'POST',
@@ -284,8 +284,8 @@ function evaluarMetodologia() {
                     var $resultados = $('#resultado');
                     $.each(valores, function (i, valor) {
                         console.log(valor);
-                        $resultados.append('<tr><td>' + valor.empresa.nombre + '</td><td>'
-                                + valor.valor + '</td></tr>');
+                        $resultados.append('<tr><td>' + valor.empresa.nombre + '</td><td>' + '<div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:' + valor.valor + "%" + '">' +
+                                +valor.valor + "%" + '</div> </div> </td></tr>');
                     });
                 }
             });

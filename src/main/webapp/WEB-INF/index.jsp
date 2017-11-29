@@ -14,7 +14,7 @@
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"></button>
-                    <a class="navbar-brand" href="#">Tp Integrador DDS</a>
+                    <a class="navbar-brand">Tp Integrador DDS</a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <!--                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -26,7 +26,7 @@
                             <span class="glyphicon glyphicon-user"></span> 
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href=""><span class="glyphicon glyphicon-cog"></span>  Cambiar contraseña</a></li>
+                            <li><a><span class="glyphicon glyphicon-cog"></span>  Cambiar contraseña</a></li>
                             <li class="divider"></li>
                             <li><a href="/TpIntegradorDDS/login.jsp"><span class="glyphicon glyphicon-off"></span>  Cerrar Sesión</a></li>
                         </ul>

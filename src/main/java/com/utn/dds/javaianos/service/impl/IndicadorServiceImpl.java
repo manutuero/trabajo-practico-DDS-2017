@@ -170,7 +170,9 @@ public class IndicadorServiceImpl implements IndicadorService {
                 indicadorMongo.setUsuario(indicador.getUsuario());
                 indicadorMongo.setFormula(indicador.getFormula());
 
-                indicadorRepositoryMongo.save(indicadorMongo);
+                IndicadorMongo im = indicadorRepositoryMongo.save(indicadorMongo);
+                if(im != null)
+                    System.out.println("------------------ GUARDO CORRECTAMENTE ---------------");
             }
         } catch (org.springframework.dao.DuplicateKeyException ex) {
         }

@@ -144,6 +144,12 @@ function validarIngresoNuevoIndicador() {
                         cleanResponses();
                         cleanForm();
                         $('#modal-nuevo-indi').modal("hide");
+                        $('#input-codigo').val("");
+                        $('#input-nombre').val("");
+                        $('#textarea-formula').val("");
+                        $('#btn-crear').val("Crear");
+                        $('#btn-eliminar-indicador').css('display', 'none');
+                        $('#div-indicadores').css('display', 'none');
                         swal(
                                 'Bien hecho!',
                                 'El Indicador ha sigo guardado correctamente!',
@@ -199,6 +205,13 @@ function eliminarIndicador()
                     data: data,
 
                     success: function (response) {
+                        $('#modal-nuevo-indi').modal("hide");
+                        $('#input-codigo').val("");
+                        $('#input-nombre').val("");
+                        $('#textarea-formula').val("");
+                        $('#btn-crear').val("Crear");
+                        $('#btn-eliminar-indicador').css('display', 'none');
+                        $('#div-indicadores').css('display', 'none');
                         swal(
                                 'Borrado',
                                 'El indicador ha sido borrado',

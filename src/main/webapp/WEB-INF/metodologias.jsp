@@ -124,8 +124,8 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Gestion de Condiciones <!--<button id="btn-mostrar-condiciones" type="button"><span class="glyphicon glyphicon-folder-open"></span> </button>-->
-                        <div id="div-condiciones" style="display:inline-block;">
+                    <h4 class="modal-title">Gestion de Condiciones <button id="btn-mostrar-condiciones" type="button"><span class="glyphicon glyphicon-folder-open"></span> </button>
+                        <div id="div-condiciones" style="display:none;">
                             <p><select onChange="traerCondicion()" id="list-condiciones" class="form-control" name="size"></select></p>
                         </div> </h4>
                 </div>
@@ -174,8 +174,8 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Gestion Metodologia <!--<button id="btn-mostrar-metodologias" type="button"><span class="glyphicon glyphicon-folder-open"></span> </button> -->
-                        <div id="div-metodologias" style="display:inline-block;">
+                    <h4 class="modal-title">Gestion Metodologia <button id="btn-mostrar-metodologias" type="button"><span class="glyphicon glyphicon-folder-open"></span> </button> 
+                        <div id="div-metodologias" style="display:none;">
                             <p><select onChange="traerMetodologia()" id="list-metodologias2" class="form-control" name="size"></select></p>
                         </div></h4>
                 </div>

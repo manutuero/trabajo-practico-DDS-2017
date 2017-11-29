@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Table(name = "Cotizacion")
@@ -19,10 +21,12 @@ public class Cotizacion implements Serializable {
     
     @ManyToOne
     @JoinColumn(name = "cuenta")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Cuenta cuenta;
     
     @ManyToOne
     @JoinColumn(name = "empresa")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Empresa empresa;
     
     private Integer periodo;

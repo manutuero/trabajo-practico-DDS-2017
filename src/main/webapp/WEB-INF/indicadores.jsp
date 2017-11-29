@@ -51,14 +51,6 @@
             </header>
 
             <!-- A success message -->
-            <div class="row">
-                <div class="col-lg-7"></div>
-
-                <div id="success-message" class="alert alert-success" hidden="true">
-                    <strong>Exito!</strong> El indicador se ha guardado exitosamente.
-                </div>
-
-            </div>
 
             <div class="row">
                 <div class="col-lg-12">
@@ -117,8 +109,8 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Gestion de Indicadores <button id="btn-mostrar-indicadores" type="button"><span class="glyphicon glyphicon-folder-open"></span> </button> 
-                            <div id="div-indicadores" style="display:none;">
+                        <h4 class="modal-title">Gestion de Indicadores <!--<button id="btn-mostrar-indicadores" type="button"><span class="glyphicon glyphicon-folder-open"></span> </button>--> 
+                            <div id="div-indicadores" style="display:inline-block;">
                                 <p><select onChange="traerIndicador()" id="list-indicadores2" class="form-control" name="size"></select></p>
                             </div> </h4>
                     </div>
@@ -198,17 +190,10 @@
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div id="warning-message" class="alert alert-warning" hidden="true">
-                                <strong>Advertencia!</strong> Los campos no deben estar vacios.
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <div class="modal-footer">
                     <input id="btn-calcular" type="submit" class="btn btn-primary" value="Calcular">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button id="btn-cerrar-evaluar-indi" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>

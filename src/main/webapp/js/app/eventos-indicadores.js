@@ -1,8 +1,14 @@
 function initListaIndicadores(unaLista) {
 
+
+    var listaIndicadores = unaLista;
+
     var data = {
         usuario: getCookie("user")
     };
+
+    listaIndicadores.empty();
+    listaIndicadores.append('<option value="" disabled selected>Seleccione un indicador</option>');
 
     $.ajax({
         url: 'http://localhost:8084/TpIntegradorDDS/api/indicadores',
@@ -10,24 +16,23 @@ function initListaIndicadores(unaLista) {
         data: data,
         success: function (indicadores) {
             $.each(indicadores, function (indice, indicador) {
-                unaLista.append('<option value="' + indicador.codigo + '">' + indicador.nombre + '</option>');
+                listaIndicadores.append('<option value="' + indicador.codigo + '">' + indicador.nombre + '</option>');
             });
+            indicadores = null;
         }
     });
-
-
 }
 ;
 
-//function mostrarIndicadores()
-//{
-//    $('#btn-mostrar-indicadores').click(function () {
-//        $('#div-indicadores').css('display', 'inline-block');
-//        initListaIndicadores($('#list-indicadores2'));
-//
-//    });
-//}
-//;
+function mostrarIndicadores()
+{
+    $('#btn-mostrar-indicadores').click(function () {
+        $('#div-indicadores').css('display', 'inline-block');
+        initListaIndicadores($('#list-indicadores2'));
+
+    });
+}
+;
 
 function traerIndicador()
 {
@@ -81,7 +86,20 @@ function calcularIndicador()
                 type: 'GET',
                 data: data,
                 success: function (resultado) {
-                    $('#text-resultado').text(resultado);
+                    if (isNaN(resultado))
+                    {
+                        swal(
+                                'Atencion',
+                                'No se encontraron Cotizaciones para la empresa y el periodo seleccionados',
+                                'warning'
+                                );
+                        $('#text-resultado').text("0");
+
+                    } else
+                    {
+                        $('#text-resultado').text(resultado);
+                    }
+
                 }
             });
 
@@ -101,7 +119,7 @@ function validarIngresoNuevoIndicador() {
         if (codigo === '' || nombre === '' || formula === '') {
             swal(
                     'Advertencia',
-                    'Los campos no deben estar vaciosSSSSS.',
+                    'Los campos no deben estar vacios.',
                     'warning'
                     );
         } else {
@@ -126,6 +144,12 @@ function validarIngresoNuevoIndicador() {
                         cleanResponses();
                         cleanForm();
                         $('#modal-nuevo-indi').modal("hide");
+                        $('#input-codigo').val("");
+                        $('#input-nombre').val("");
+                        $('#textarea-formula').val("");
+                        $('#btn-crear').val("Crear");
+                        $('#btn-eliminar-indicador').css('display', 'none');
+                        $('#div-indicadores').css('display', 'none');
                         swal(
                                 'Bien hecho!',
                                 'El Indicador ha sigo guardado correctamente!',
@@ -181,6 +205,13 @@ function eliminarIndicador()
                     data: data,
 
                     success: function (response) {
+                        $('#modal-nuevo-indi').modal("hide");
+                        $('#input-codigo').val("");
+                        $('#input-nombre').val("");
+                        $('#textarea-formula').val("");
+                        $('#btn-crear').val("Crear");
+                        $('#btn-eliminar-indicador').css('display', 'none');
+                        $('#div-indicadores').css('display', 'none');
                         swal(
                                 'Borrado',
                                 'El indicador ha sido borrado',
@@ -228,16 +259,11 @@ function abrirModalNuevoIndicador() {
     $('#btn-abrir-nuevo-indicador').click(function () {
         cleanForm();
         cleanResponses();
-        //mostrarIndicadores();
         $('#input-codigo').attr('readonly', false);
-        $('#list-indicadores2').empty();
-        $('#list-indicadores2').append('<option value="" disabled selected>Seleccione un indicador para editarlo</option>');
-        initListaIndicadores($('#list-indicadores2'));
         $('[data-toggle="popover-nombre-indicador"]').popover();
         $('[data-toggle="popover-codigo-indicador"]').popover();
         $('[data-toggle="popover-formula-indicador"]').popover();
         eliminarIndicador();
-        //traerIndicador();
         validarIngresoNuevoIndicador();
 
     });
@@ -253,7 +279,7 @@ function cerrarModalNuevoIndicador() {
         $('#textarea-formula').val("");
         $('#btn-crear').val("Crear");
         $('#btn-eliminar-indicador').css('display', 'none');
-        //$('#div-metodologias').css('display', 'none');
+        $('#div-indicadores').css('display', 'none');
     });
 }
 ;
@@ -288,7 +314,7 @@ $(document).ready(function () {
 
     cleanForm();
     cleanResponses();
-
+    mostrarIndicadores();
     // eventos
     abrirModalNuevoIndicador();
     cerrarModalNuevoIndicador();

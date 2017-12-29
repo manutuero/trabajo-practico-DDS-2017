@@ -16,7 +16,7 @@
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"></button>
-                    <a class="navbar-brand" href="#">Tp Integrador DDS</a>
+                    <a class="navbar-brand">Tp Integrador DDS</a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
 
@@ -33,7 +33,7 @@
                             <span class="glyphicon glyphicon-user"></span> 
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href=""><span class="glyphicon glyphicon-cog"></span>  Cambiar contraseña</a></li>
+                            <li><a><span class="glyphicon glyphicon-cog"></span>  Cambiar contraseña</a></li>
                             <li class="divider"></li>
                             <li><a href="/TpIntegradorDDS/login.jsp"><span class="glyphicon glyphicon-off"></span>  Cerrar Sesión</a></li>
                         </ul>
@@ -109,8 +109,8 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Gestion de Indicadores <!--<button id="btn-mostrar-indicadores" type="button"><span class="glyphicon glyphicon-folder-open"></span> </button>--> 
-                            <div id="div-indicadores" style="display:inline-block;">
+                        <h4 class="modal-title">Gestion de Indicadores <button id="btn-mostrar-indicadores" type="button"><span class="glyphicon glyphicon-folder-open"></span> </button>
+                            <div id="div-indicadores" style="display:none;">
                                 <p><select onChange="traerIndicador()" id="list-indicadores2" class="form-control" name="size"></select></p>
                             </div> </h4>
                     </div>
@@ -199,6 +199,7 @@
         </div>
     </div>
     <p id="info-indicadores" hidden>${messageIndicadores}</p>
+    <p id='cont-gestion-indicadores'>0</p>
 
     <!-- Script files -->
     <script src="js/vendor/jquery.min.js"></script>

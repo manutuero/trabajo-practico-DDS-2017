@@ -50,7 +50,8 @@ INSERT INTO `dbprod`.`Usuario` (usuario, password) VALUES ('admin', '1234'),
 INSERT INTO `dbprod`.`Empresa` (nombre) VALUES ('Facebook'), 
 						('Twitter'), 
 						('Arcor'),
-						('Walmart');
+						('Walmart'),
+						('Google');
 
 INSERT INTO `dbprod`.`Indicador` (codigo, nombre, usuario, formula) VALUES ('RC','Razon Corriente', 'admin', 'AC/PC'),
 									('EPAT', 'Endeudamiento Patrimonial', 'admin', 'PT/PAT'),

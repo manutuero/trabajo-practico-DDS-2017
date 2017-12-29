@@ -94,4 +94,10 @@ public class CotizacionServiceImpl implements CotizacionService {
     public Double calcularValor(Componente cuenta, Empresa empresa, Integer periodo) {
         return this.buscarCotizacion((Cuenta) cuenta, empresa, periodo).getValor();
     }
+    
+    @Override
+    public void deleteAll()
+    {
+        cotizacionRepository.deleteAll();
+    }
 }

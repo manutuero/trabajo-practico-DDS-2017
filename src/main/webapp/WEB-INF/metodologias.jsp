@@ -16,7 +16,7 @@
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"></button>
-                <a class="navbar-brand" href="#">Tp Integrador DDS</a>
+                <a class="navbar-brand">Tp Integrador DDS</a>
             </div>
             <ul class="nav navbar-nav">
                 <form action="IndexServlet.jsp" class="nav navbar-nav" method="post">
@@ -31,7 +31,7 @@
                         <span class="glyphicon glyphicon-user"></span> 
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href=""><span class="glyphicon glyphicon-cog"></span>  Cambiar contraseña</a></li>
+                        <li><a><span class="glyphicon glyphicon-cog"></span>  Cambiar contraseña</a></li>
                         <li class="divider"></li>
                         <li><a href="/TpIntegradorDDS/login.jsp"><span class="glyphicon glyphicon-off"></span>  Cerrar Sesión</a></li>
                     </ul>
@@ -124,8 +124,8 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Gestion de Condiciones <!--<button id="btn-mostrar-condiciones" type="button"><span class="glyphicon glyphicon-folder-open"></span> </button>-->
-                        <div id="div-condiciones" style="display:inline-block;">
+                    <h4 class="modal-title">Gestion de Condiciones <button id="btn-mostrar-condiciones" type="button"><span class="glyphicon glyphicon-folder-open"></span> </button>
+                        <div id="div-condiciones" style="display:none;">
                             <p><select onChange="traerCondicion()" id="list-condiciones" class="form-control" name="size"></select></p>
                         </div> </h4>
                 </div>
@@ -174,8 +174,8 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Gestion Metodologia <!--<button id="btn-mostrar-metodologias" type="button"><span class="glyphicon glyphicon-folder-open"></span> </button> -->
-                        <div id="div-metodologias" style="display:inline-block;">
+                    <h4 class="modal-title">Gestion Metodologia <button id="btn-mostrar-metodologias" type="button"><span class="glyphicon glyphicon-folder-open"></span> </button> 
+                        <div id="div-metodologias" style="display:none;">
                             <p><select onChange="traerMetodologia()" id="list-metodologias2" class="form-control" name="size"></select></p>
                         </div></h4>
                 </div>
@@ -253,7 +253,8 @@
                 </div>
                 <!-- Grid table -->
                 <div class="modal-body">
-                    <table class="table table-condensed" id="grilla" style="display:none">
+
+                    <table class="table table-hover" id="grilla" style="display:none">
                         <thead>
                             <tr>
                                 <th>Empresa</th>
@@ -263,6 +264,7 @@
                         <tbody id="resultado">
                         </tbody>
                     </table>
+
                 </div>
             </div>
         </div>

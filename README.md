@@ -5,7 +5,7 @@ El Stack utilizado fue:
 
 /* Backend */
 - Java EE 8.0
-- Spring Boot + Spring MVC + Spring Data
+- Spring Boot + Maven + Spring MVC + Spring Data
 - Hibernate ORM
 - MY-SQL con phpMyAdmin como interfaz web.
 - MongoDB.
@@ -19,3 +19,6 @@ El Stack utilizado fue:
 
 /* Arquitectura */
 - 3 capas (persistencia, logica, presentacion).
+
+/* IDE */
+- Netbeans 8.2 (con Apache tomcat embebido)

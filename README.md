@@ -25,4 +25,4 @@ El Stack utilizado fue:
 - Netbeans 8.2 (con Apache tomcat embebido)
 
 /* Deploy */
--XAMPP en Windows 10 (localhost)
+- XAMPP en Windows 10 (localhost)

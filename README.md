@@ -16,6 +16,7 @@ El Stack utilizado fue:
 - HTML5
 - CSS
 - Javascript (JQUERY) + AJAX
+- Bootstrap 4.0
 
 /* Arquitectura */
 - 3 capas (persistencia, logica, presentacion).

@@ -23,3 +23,6 @@ El Stack utilizado fue:
 
 /* IDE */
 - Netbeans 8.2 (con Apache tomcat embebido)
+
+/* Deploy */
+XAMPP en Windows 10 (localhost)
